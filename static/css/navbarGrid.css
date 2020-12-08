@@ -1,0 +1,77 @@
+.grid-container {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "topBar topBar topBar topBar topBar topBar"
+      "navBar navBar navBar navBar navBar navBar";
+      padding: 0;
+      margin: 0;
+  }
+  .topBar { grid-area: topBar;
+    width: 100%;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    
+}
+.navBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.65fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". mainBar mainBar mainBar mainBar ."
+      "bottomBar bottomBar bottomBar bottomBar bottomBar bottomBar";
+    grid-area: navBar;
+ 
+  }
+  .mainBar {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1fr ;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . . ."
+      "logoBox searchBar searchBar cart";
+    grid-area: mainBar;
+  }
+  .searchBar { grid-area: searchBar;
+    width: 100%;
+    height: 5vh;
+}
+  .cart { grid-area: cart;}
+  .logoBox { grid-area: logoBox;
+    width: 100%;
+    height: 100%;
+}
+.bottomBar { 
+    grid-area: bottomBar;
+    background: rgb(245, 245, 245);
+    box-shadow: rgba(0, 0, 0, 0.64) 0px 2px 8px -5px;
+ }
+@media (max-width:1500px){
+    .mainBar {
+        grid-template-columns: 0.6fr 0.9fr 0.9fr 1.1fr;
+        grid-template-rows: 0.3fr 1fr 0.3fr;
+      }
+      .topBar {
+        grid-area: topBar;
+        height: auto;
+    }
+}
+@media (max-width:1220px){
+    .navBar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+          "mainBar mainBar mainBar mainBar mainBar mainBar"
+          ". . . . . .";
+        grid-area: navBar;
+      }
+}

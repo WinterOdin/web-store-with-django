@@ -1,0 +1,218 @@
+.topBarWrapper{
+    width: 70%;
+    margin-left: 15%;
+}
+.topBarTextLeft,.topBarTextRight{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+.topBarTextRight{
+    text-align: left;
+}
+.topBarTextLeft{
+    text-align: right;
+}
+
+.woocommerce-product-search {
+    margin-top: 1vh;
+    height: 40px;
+    border-radius: 30px;
+    background: #fff;
+    position: relative;
+    padding-right: 120px;
+    padding-left: 10px;
+    border: 1px solid rgb(204, 204, 204);
+    display: flex;
+    align-items: center;
+}
+.search-field {
+    border: 0;
+    height: 37px;
+    width: 100%;
+    background: 0 0;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+ .btnSubmit{
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    height: 40px;
+    min-width: 80px;
+    text-align: center;
+    border-radius:20px;
+    border: 0;
+    font-weight: 500;
+    color: #ffffff;
+    background: rgb(77, 77, 77);
+    border:none;
+    outline: none;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+.btnSubmit:hover {
+    background: rgb(26, 26, 26);
+}
+.search-categories>select {
+    color: #6b6b6b;
+    font-size: .938em;
+    line-height: 1.4em;
+    display: inline-block;
+    max-width: 60%;
+    margin-left: ;
+    padding: 0 1.75rem 0 .75rem;
+    vertical-align: middle;
+    background: #fff;
+    background-size: 8px 10px;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.logoWrapper{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    width: 100%;
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 1vh;
+}
+.cartWrapper{
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+}
+.iconWrapper{
+    display: flex;
+    width: 33.33%;
+}
+.iconContent{
+    height: 56px;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+.tileLink{
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    width: 100%;
+    height: 100%;
+    color:black;
+}
+.iconPic{
+    font-size: 28px;
+    width: 32px;
+    height: 32px;
+}
+.tileLink:hover{
+    color:black;
+    text-decoration: none;
+}
+.iconText{
+    font-size: 11px;
+    line-height: 30px;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0 7px 0 7px;
+}
+.iconContent1:hover{
+    border-top: none;
+    border-radius: 8px 8px 0px 0px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
+    background: rgb(255, 255, 255);
+    z-index: 11;
+    -webkit-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    box-shadow: 5px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    
+}
+.helpBox{
+   
+    z-index: 10;
+    position: absolute;
+    top: 100%;
+    min-width: 200px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 8px 8px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
+    padding: 8px 0px 24px;
+    left: 0px;
+}
+
+.tileListHelpTitle{
+    padding: 0px 16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(112, 112, 112);
+    font-size: 15px;
+}
+.listHelpBox{
+    list-style-type: none;
+    padding: 0;
+}
+.listStyleHelpBox{
+    list-style-type: none;
+    box-sizing: inherit;
+    padding: 0px;
+    margin: 0px;
+    height: 3.4vh;
+    width: 100%;
+    font-size: 14px;
+}
+.linkHelpBox{
+    padding: 0px 16px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+a.linkHelpBox{
+    color: rgb(112, 112, 112);
+
+}
+a:hover.linkHelpBox{
+    color: rgb(112, 112, 112);
+    text-decoration: none;
+}
+.listStyleHelpBox:hover{
+    background-color: rgb(245, 245, 245);
+}
+.dayBoxHelp,.hourBoxHelp{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(112, 112, 112);
+    font-size: 10px;
+}
+
+
+
+@media (max-width:1500px){
+    .logoWrapper{
+        font-size: 23px;
+    }
+}
+@media (max-width:1220px){
+    .logoWrapper{
+        text-align: center;
+    }
+}
