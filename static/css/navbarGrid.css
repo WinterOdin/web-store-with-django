@@ -1,4 +1,5 @@
-.grid-container {
+
+.grid-container-PC {
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -48,11 +49,25 @@
     width: 100%;
     height: 100%;
 }
-.bottomBar { 
+.bottomBar {
+    width: 100%;
+    height: 100%;
     grid-area: bottomBar;
     background: rgb(245, 245, 245);
     box-shadow: rgba(0, 0, 0, 0.64) 0px 2px 8px -5px;
  }
+ .grid-container-mobile{
+   display: none
+ }
+
+
+
+
+
+
+
+
+
 @media (max-width:1500px){
     .mainBar {
         grid-template-columns: 0.6fr 0.9fr 0.9fr 1.1fr;
@@ -63,15 +78,111 @@
         height: auto;
     }
 }
+
+
+
+
+
+
+
+
 @media (max-width:1220px){
     .navBar {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 0px 0px;
-        grid-template-areas:
-          "mainBar mainBar mainBar mainBar mainBar mainBar"
-          ". . . . . .";
-        grid-area: navBar;
+
+        grid-template-rows: 1fr 0.5fr;
+  
       }
+      
+}
+
+
+
+
+
+
+
+@media (max-width:950px){
+  .grid-container-PC {
+    display: none;
+  }
+  .grid-container-mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "gridMobile";
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px;
+    height: 16vh;
+
+  }
+  
+  .gridMobile {
+    padding-top: 1vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 0.5fr;
+    gap: 0px 0px;
+    grid-area: gridMobile;
+  }
+  
+  .iconBar { grid-area: 1 / 1 / 2 / 5; }
+  
+  .searchBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "searchBarMobile searchBarMobile searchBarMobile searchBarMobile";
+    grid-area: 2 / 1 / 3 / 5;
+  }
+  
+  .searchBarMobile { grid-area: searchBarMobile; }
+  
+  .logoWrapper { 
+    grid-area: 1 / 1 / 2 / 3; 
+  }
+  
+  .iconWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.6fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "icon1 icon2 icon3";
+    grid-area: 1 / 3 / 2 / 5;
+  }
+  
+  .icon1 { grid-area: icon1; }
+  
+  .icon2 { grid-area: icon2; }
+  
+  .icon3 { grid-area: icon3; }
+  
+}
+@media (max-width:380px){
+  .grid-container-mobile {
+
+    height: 18vh;
+
+  }
+}
+
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) {
+      .grid-container-mobile {
+        height: 16vh;
+      }
+
+
+     }
+
+@media (max-width:330px){
+  .grid-container-mobile {
+    height: 20vh;
+
+  }
 }

@@ -13,10 +13,11 @@
   integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
   crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Products &#8211; Amera</title>
+ 
 </head>
 <body>
-    <div class="grid-container">
+ 
+    <div class="grid-container-PC">
         <div class="topBar">
             <div class="topBarWrapper">
                 <div class="container-fluid">
@@ -38,7 +39,7 @@
         <div class="navBar">
             <div class="mainBar">
                 <div class="searchBar">
-                    <form role="search" method="get" class="woocommerce-product-search" action="">
+                    <form role="search" method="get" class="product-search" action="">
                         <input type="search" id="woocommerce-product-search-field-N8269" class="search-field" placeholder="Search Products…" value="" name="">
                         <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
                         <input type="hidden" name="post_type" value="product">
@@ -47,7 +48,7 @@
                 </div>
                 <div class="cart">
                     <div class="cartWrapper">
-                        <div class="iconWrapper">
+                        <div class="iconWrapper1">
                             <div class="iconContent1">
                                 <a class="tileLink" href="">
                                     <div class="iconPic">
@@ -59,7 +60,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="helpBox">
+                        <div class="helpBox1">
                             <div class="tileListHelpTitle">Pupularne</div>
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Dostawa</a></li>
@@ -103,31 +104,56 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="iconWrapper">
-                            <div class="iconContent">
+                       <span class="lineHelpBox"></span>
+                        <div class="iconWrapper2">
+                            <div class="iconContent2">
                                 <a class="tileLink" href="">
                                     <div class="iconPic">
                                         <i class="fas fa-user"></i>
                                     </div>
                                     <div class="iconText">
-                                        Pomoc i kontakt
+                                        Twoje Konto
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        
-                        <div class="iconWrapper">
-                            <div class="iconContent">
+                        <div class="helpBox2">
+                            <div class="tileListHelpTitle">Twoje konto</div>
+                                <div class="loginButtonHelpBox">
+                                    <a href="" >
+                                        <div class="linkLoginHelpBox">
+                                            Zaloguj sie
+                                        </div>
+                                    </a>
+                                    <hr class="hrLogin">
+                                    <p class="textHrLogin">Nie masz konta?</p>
+                                    <a href="" >
+                                        <div class="linkCreateHelpBox">
+                                            Zaloguj sie
+                                        </div>
+                                    </a>
+                                </div>    
+                            <div class="tileListHelpTitle">Skontaktuj się z nami</div>
+                            <ul class="listHelpBox "> 
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Twoje konto</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Zamówienia</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Ustawienia Konta</a></li>
+                            </ul> 
+                        </div>
+                        <div class="iconWrapper3">
+                            <div class="iconContent3">
                                 <a class="tileLink" href="">
                                     <div class="iconPic">
                                         <i class="fas fa-shopping-cart"></i>
                                     </div>
                                     <div class="iconText">
-                                        Pomoc i kontakt
+                                        Koszyk
                                     </div>
                                 </a>
                             </div>
+                        </div>
+                        <div class="helpBox3">
+                            <div class="tileListHelpTitle">Twój koszyk</div>
                         </div>
                     </div>
                 </div>
@@ -137,11 +163,201 @@
                     </div>
                 </div>
             </div>
-            <div class="bottomBar"></div>
+            <div class="bottomBar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1">
+                            
+                        </div>
+                        <div class="col-2">
+                            <div class="categoryPC">
+                                <a class="categoryPCLink">
+                                    Asic
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="categoryPC">
+                                <a class="categoryPCLink">
+                                    Serwery
+                                </a>
+                            </div>
+                        </div>
+                
+                        <div class="col-2">
+                            <div class="categoryPC">
+                                <a class="categoryPCLink">
+                                    Koparki GPU
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="categoryPC">
+                                <a class="categoryPCLink">
+                                    Akcesoria
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="categoryPC">
+                                <a class="categoryPCLink">
+                                    Usługi
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
 
+
+
+      <div class="grid-container-mobile">
+        <div class="gridMobile">
+          <div class="iconBar"></div>
+          <div class="searchBar">
+            <div class="searchBarMobile">
+                <form role="search" method="get" class="product-search" action="">
+                    <input type="search" id="woocommerce-product-search-field-N8269" class="search-field" placeholder="Search Products…" value="" name="">
+                    <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
+                    <input type="hidden" name="post_type" value="product">
+                </form>
+            </div>
+          </div>
+          <div class="logoWrapper">
+            CryptoTech<span class="colorDotNav">.</span>
+          </div>
+         <div class="iconWrapper">
+            <div class="icon1">
+                <a class="tileLink" href="">
+                    <div class="iconPic">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="iconText">
+                        kontakt
+                    </div>
+                </a>
+            </div>
+            <div class="icon2">
+                <a class="tileLink" href="">
+                    <div class="iconPic">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="iconText">
+                        Twoje Konto
+                    </div>
+                </a>
+            </div>
+            <div class="icon3">
+                <a class="tileLink" href="">
+                    <div class="iconPic">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="iconText">
+                        Koszyk
+                    </div>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="categoryRootMobile">
+    <div class="categoryMobile">
+        <div class="full hide-scroll">
+          <ul class="hs">
+            <li class="itemCategoryMobile">
+            <a href="" class="linkCategoryMobile">
+                <i class="fab fa-bitcoin iconCategoryMobile"></i>
+                <div class="textCategoryMobile">
+                    Koparki GPU
+                </div>
+            </a>
+
+
+            </li>
+            <li class="itemCategoryMobile">
+                <a href="" class="linkCategoryMobile">
+                    <i class="fas fa-server iconCategoryMobile"></i>
+                    <div class="textCategoryMobile">
+                        Serwery
+                    </div>
+                </a>
+            </li>
+            <li   class="itemCategoryMobile">
+                <a  href="" class="linkCategoryMobile">
+                    <i class="fas fa-digital-tachograph iconCategoryMobile"></i>
+                    <div class="textCategoryMobile">
+                        ASIC
+                    </div>
+                </a>
+            </li>
+            <li class="itemCategoryMobile">
+                <a href="" class="linkCategoryMobile">
+                    <i class="fab fa-buffer iconCategoryMobile"></i>
+                    <div class="textCategoryMobile">
+                        Akcesoria
+                    </div>
+                </a>
+            </li>
+            <li class="itemCategoryMobile">
+                <a href="" class="linkCategoryMobile">
+                    <i class="fas fa-cogs iconCategoryMobile"></i>
+                    <div class="textCategoryMobile">
+                        Usługi
+                    </div>
+                </a>
+            </li>
+          </ul>
+        </div>
+      
+      </div>
+</div>
+
+
+
+
+
+
+
+      
+
+
+
+      
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+$('.iconContent1 ').mouseover(function(){
+$('.helpBox1').show();
+});
+
+$('.helpBox1').mouseleave(function(){
+$('.helpBox1').hide();
+});
+
+
+$('.iconContent2 ').mouseover(function(){
+$('.helpBox2').show();
+});
+
+$('.helpBox2').mouseleave(function(){
+$('.helpBox2').hide();
+});
+$('.iconContent3 ').mouseover(function(){
+$('.helpBox3').show();
+});
+
+$('.helpBox3').mouseleave(function(){
+$('.helpBox3').hide();
+});
+</script>
+
 </body>
 </html>
