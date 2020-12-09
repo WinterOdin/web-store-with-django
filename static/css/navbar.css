@@ -266,7 +266,6 @@ a:hover.linkHelpBox{
     padding:9px 0 9px;
 }
 .categoryPCLink{
-    
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
@@ -338,7 +337,7 @@ a:hover.linkHelpBox{
 
 
     .categoryRootMobile {
-        --gutter: 20px;
+        --gutter: 10px;
       }
       
       .categoryMobile{
@@ -383,7 +382,7 @@ a:hover.linkHelpBox{
       
 
       .categoryRootMobile{
-        overflow: hidden;
+        
         height: 100%;
         display: grid;
         place-items: center;
@@ -396,8 +395,8 @@ a:hover.linkHelpBox{
       
       .categoryMobile {
         width: 100%;
-        height: auto;
-        overflow-y: scroll;
+        height:auto;
+        overflow-y: hidden;
       }
       
       .hs > li,
@@ -417,10 +416,17 @@ a:hover.linkHelpBox{
 
 }
 
+@media (max-width:400px){
+    .categoryRootMobile {
+        --gutter: 20px;
+      }
+}
+
 @media (max-width:380px){
     .textCategoryMobile {
         font-size: 11px;
     }
+ 
 }
 
 @media only screen 

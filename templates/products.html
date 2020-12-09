@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content  %}
+<div class="breadcrumbsWrapper">
+    <div class="container ">
+        <div class="breadcrumbsText">
+            Home <i class="fa fa-angle-right"></i> sklep
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="containerProducts">
+        <div class="grid-container-product">
+            <div class="leftColProduct">
+                <div class="categoryListProduct">
+                    <div class="categoryTitleProduct disableBorder">
+                        Kategorie
+                    </div>
+                    <ul class="ulListProduct">
+                        <li class="liListProduct disableBorder">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Konteneryt Miningowe</a></span>
+                        </li>
+                        <li class="liListProduct">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Koparki GPU</a></span>
+                        </li>
+                        <li class="liListProduct">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Producenci</a></span>
+                        </li>
+                        <li class="liListProduct">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Nowe</a></span>
+                        </li>
+                        <li class="liListProduct">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Używane</a></span>
+                        </li>
+                        <li class="liListProduct">
+                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Usługi</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rightColProduct">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="shopTextTile">
+                                Polecane
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="resultsTextTile">
+                                Wyświetlanie 1–24 z 56 wyników
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'productList.html'  %}
+            </div>
+          </div>
+    </div>
+
+</div>
+
+{% endblock  %}

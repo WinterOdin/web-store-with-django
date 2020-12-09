@@ -1,0 +1,105 @@
+.footerBar{
+    width: 100%;
+    height: 30vh;
+  
+  }
+  .footerLogo,.numberTextFooter{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+        font-style: italic;
+        opacity: 0.9;
+        margin-top: 1vh;
+  }
+  .numberTextFooter{
+      padding-top: 0.8vh;
+      font-size: 15px;
+      font-weight: 300;
+  }
+  .numberWrapperFooter{
+    width: 100%;
+    height: 10vh; 
+  }
+  .iconFooter{
+    font-size: 50px;
+    float: left;
+    width: 25%;
+  }
+  .numberContainerFooter{
+    width: 70%;
+    float: left;
+  }
+  .logoAddress,.dataAddress,.numberContent,.emailFooter{
+    color: #383838;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.numberContent{
+    color: #0275d8;
+    font-size: 18px;
+  }
+
+.dataAddress{
+    padding-top: 0.6vh;
+    font-size: 17px;
+    font-weight: 400;
+    text-transform: none;
+}
+.emailFooter{
+    padding-top: 0.8vh;
+    font-size: 17px;
+    font-weight: 400;
+    text-transform: none;
+}
+.hoursFooter{
+    margin-top: 1vh;
+}
+.dayFooterHelp,.hourFooterHelp{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(112, 112, 112);
+    font-size: 14px;
+    text-align: left;
+}
+.hourFooterHelp{
+    font-style: italic;
+}
+.listFooterBox{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.additionalLinksFooter{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2vh;
+    color: rgb(112, 112, 112);
+}
+.additionalTextLinksFooter{
+    font-size: 17px;
+    font-weight: 600;
+}
+.listFooterBox{
+    margin-top: 2.5vh;
+}
+.listStyleFooterBox a{
+    font-size: 14px;
+    line-height: 30px;
+    color: rgb(112, 112, 112);
+
+}
+
+
+
+.footerBorder{
+    margin-top: 4vh;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+.winterodin{
+    padding: 1.5vh 0 1.5vh;
+    width: 100%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
