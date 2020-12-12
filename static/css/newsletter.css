@@ -1,0 +1,23 @@
+.newsletterWrapper{
+    width: 100%;
+    font-family: 'Montserrat';
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    border-radius: 17px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding-top: 2vh;
+    padding-bottom: 3vh;
+}
+.newsletterFormBox{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.newsletterTextBox{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    margin-top: 1%;
+}

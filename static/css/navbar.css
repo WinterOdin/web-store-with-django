@@ -1,7 +1,21 @@
 .categoryRootMobile,.grid-container-mobile{
     display: none;
 }
-
+.langSelect{
+    padding: 15px 20px;
+    border: 0;
+    font-size: 17px;
+    width: 100%;
+    margin-top: 0vh;
+    background: rgb(245, 245, 245);
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Montserrat';
+    
+}
+.langSelect:focus {
+    outline: none;
+}
 .topBarWrapper{
     width: 70%;
     margin-left: 15%;
@@ -271,10 +285,20 @@ a:hover.linkHelpBox{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top:3px ;
 }
 
-
-
+.languageMobile{
+    display: none;
+    width: 100%;
+    height: 5vh;
+    background: rgb(245, 245, 245);
+    box-shadow: rgba(0, 0, 0, 0.64) 0px 2px 8px -5px;
+}
+.languageWrapperMobile{
+    width: 20%;
+    margin-left: 40%;
+}
 
 
 @media (max-width:1500px){
@@ -290,9 +314,17 @@ a:hover.linkHelpBox{
         display: none;
     }
 }
-@media (max-width:950px){
-    .categoryRootMobile,.grid-container-mobile{
+@media (max-width:980px){
+    .categoryPCLink{
+        font-size: 14px;
+    }
+}
+@media (max-width:955px){
+    .categoryRootMobile,.grid-container-mobile,.languageMobile{
         display: block;
+    }
+    .langSelect {
+        padding: 7px 2px;
     }
     .product-search {
         margin-top: 1.5vh;
@@ -415,6 +447,20 @@ a:hover.linkHelpBox{
 
 
 }
+@media (max-width:795px){
+    .langSelect {
+        padding:14px 2px;
+    }
+}
+@media (max-width:420px){
+    .languageWrapperMobile{
+        width: 30%;
+        margin-left: 35%;
+    }.langSelect {
+        padding:7px 2px;
+    }
+    
+}
 
 @media (max-width:400px){
     .categoryRootMobile {
@@ -425,6 +471,12 @@ a:hover.linkHelpBox{
 @media (max-width:380px){
     .textCategoryMobile {
         font-size: 11px;
+    }
+    .languageMobile{
+        height: 6vh;
+    }
+    .langSelect {
+        padding:12px 2px;
     }
  
 }
@@ -444,9 +496,13 @@ a:hover.linkHelpBox{
             padding: 0 0px 0 0px;
         }
      }
-     
-
-
+     @media only screen 
+     and (device-width : 375px) 
+     and (device-height : 667px)  {
+        .langSelect {
+            padding:6px 2px;
+        }
+      }
 @media (max-width:330px){
     .iconPic {
         font-size: 21px;
@@ -463,4 +519,14 @@ a:hover.linkHelpBox{
         grid-template-columns: 10px repeat(5, calc(45% - var(--gutter) * 2)) 10px;
         grid-template-rows: minmax(130px, 1fr);
       }
+      .languageMobile{
+        height: 7vh;
+    }
+    .languageWrapperMobile{
+        width: 40%;
+        margin-left: 30%;
+    }
+    .langSelect {
+        padding:8px 2px;
+    }
   }

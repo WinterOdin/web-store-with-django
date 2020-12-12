@@ -1,3 +1,5 @@
+{% load i18n  %}
+{% get_current_language as LANGUAGE_CODE  %}
 
     <div class="grid-container-PC">
         <div class="topBar">
@@ -22,7 +24,7 @@
             <div class="mainBar">
                 <div class="searchBar">
                     <form role="search" method="get" class="product-search" action="">
-                        <input type="search" id="woocommerce-product-search-field-N8269" class="search-field" placeholder="Search Products…" value="" name="">
+                        <input type="search"  class="search-field" placeholder="Search Products…" value="" name="">
                         <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
                         <input type="hidden" name="post_type" value="product">
       
@@ -37,24 +39,24 @@
                                         <i class="fas fa-headset"></i>
                                     </div>
                                     <div class="iconText">
-                                        Pomoc i kontakt
+                                        {% trans "Pomoc i kontakt" %}
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="helpBox1">
-                            <div class="tileListHelpTitle">Pupularne</div>
+                            <div class="tileListHelpTitle">{% trans "Popularne" %}</div>
                             <ul class="listHelpBox "> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Dostawa</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Gwarancja</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Zwroty</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Częste pytania</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Dostawa" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Gwarancja" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Zwroty" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Częste pytania" %}</a></li>
                             </ul>                            
-                            <div class="tileListHelpTitle">Skontaktuj się z nami</div>
+                            <div class="tileListHelpTitle">{% trans "Skontaktuj się z nami" %}</div>
                             <ul class="listHelpBox"> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Kontakt</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Kontakt" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">crypto@shop.pl</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Częste pytania</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Częste pytania" %}</a></li>
                                 <li class="listStyleHelpBox">
                                     <a class="linkHelpBox" href="">+48 564 473 362</a>
                                 </li>
@@ -75,12 +77,13 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="dayBoxHelp">
-                                            Sob. - Niedz.
+                                            
+                                            {% trans "Sob. - Niedz." %}
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="hourBoxHelp">
-                                            zamknięte
+                                            {% trans "zamknięte" %}
                                         </div>
                                     </div>
                                 </div>
@@ -94,32 +97,32 @@
                                         <i class="fas fa-user"></i>
                                     </div>
                                     <div class="iconText">
-                                        Twoje Konto
+                                        {% trans "Twoje Konto" %}
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="helpBox2">
-                            <div class="tileListHelpTitle">Twoje konto</div>
+                            <div class="tileListHelpTitle">{% trans "Twoje konto" %}</div>
                                 <div class="loginButtonHelpBox">
                                     <a href="" >
                                         <div class="linkLoginHelpBox">
-                                            Zaloguj sie
+                                            {% trans "Zaloguj sie" %}
                                         </div>
                                     </a>
                                     <hr class="hrLogin">
-                                    <p class="textHrLogin">Nie masz konta?</p>
+                                    <p class="textHrLogin">{% trans "Nie masz konta?" %}</p>
                                     <a href="" >
                                         <div class="linkCreateHelpBox">
-                                            Zaloguj sie
+                                            {% trans "Zaloguj sie" %}
                                         </div>
                                     </a>
                                 </div>    
                             <div class="tileListHelpTitle">Skontaktuj się z nami</div>
                             <ul class="listHelpBox "> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Twoje konto</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Zamówienia</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">Ustawienia Konta</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Twoje konto" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Zamówienia" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Ustawienia Konta" %}</a></li>
                             </ul> 
                         </div>
                         <div class="iconWrapper3">
@@ -129,13 +132,13 @@
                                         <i class="fas fa-shopping-cart"></i>
                                     </div>
                                     <div class="iconText">
-                                        Koszyk
+                                        {% trans "Koszyk" %}
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="helpBox3">
-                            <div class="tileListHelpTitle">Twój koszyk</div>
+                            <div class="tileListHelpTitle">{% trans "Twój koszyk" %}</div>
                         </div>
                     </div>
                 </div>
@@ -149,47 +152,57 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-1">
-                            
+
                         </div>
                         <div class="col-2">
                             <div class="categoryPC">
                                 <a class="categoryPCLink">
-                                    Asic
+                                    
+                                    {% trans "Koparki GPU" %} 
                                 </a>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="categoryPC">
                                 <a class="categoryPCLink">
-                                    Serwery
-                                </a>
-                            </div>
-                        </div>
-                
-                        <div class="col-2">
-                            <div class="categoryPC">
-                                <a class="categoryPCLink">
-                                    Koparki GPU
+                                   {% trans "Serwery" %} 
                                 </a>
                             </div>
                         </div>
                         <div class="col-2">
+                            <form method="POST" action="{% url 'set_language'  %}">
+                                {% csrf_token  %}
+                                <input type="hidden" name="text" value="{{redirect_to}}">
+                                <select class="langSelect" name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    {% get_available_languages as LANGUAGES  %}
+                                    {% get_language_info_list for LANGUAGES as LG  %}
+                                    {% for x in LG  %}
+                                        <option value="{{ x.code  }}" 
+                                            {% if x.code == LANGUAGE_CODE  %} selected {% endif  %}>
+                                        {{ x.name_local  }}({{ x.code  }})
+                                        </option>
+                                    {% endfor  %}
+                                </select>
+                            </form>
+                        </div>
+                        <div class="col-2">
                             <div class="categoryPC">
                                 <a class="categoryPCLink">
-                                    Akcesoria
+                                   {% trans "Akcesoria" %} 
                                 </a>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="categoryPC">
                                 <a class="categoryPCLink">
-                                    Usługi
+                                    {% trans "Usługi" %} 
                                 </a>
                             </div>
                         </div>
                         <div class="col-1">
-
+                            
                         </div>
+                    
                     </div>
                 </div>
             </div>
@@ -220,7 +233,7 @@
                         <i class="fas fa-headset"></i>
                     </div>
                     <div class="iconText">
-                        kontakt
+                        {% trans "Kontakt" %} 
                     </div>
                 </a>
             </div>
@@ -230,7 +243,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="iconText">
-                        Twoje Konto
+                        {% trans "Twoje Konto" %} 
                     </div>
                 </a>
             </div>
@@ -240,14 +253,31 @@
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="iconText">
-                        Koszyk
+                        {% trans "Koszyk" %} 
                     </div>
                 </a>
             </div>
           </div>
         </div>
       </div>
-
+<div class="languageMobile">
+    <div class="languageWrapperMobile">
+        <form method="POST" action="{% url 'set_language'  %}">
+            {% csrf_token  %}
+            <input type="hidden" name="text" value="{{redirect_to}}">
+            <select class="langSelect" name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
+                {% get_available_languages as LANGUAGES  %}
+                {% get_language_info_list for LANGUAGES as LG  %}
+                {% for x in LG  %}
+                    <option value="{{ x.code  }}" 
+                        {% if x.code == LANGUAGE_CODE  %} selected {% endif  %}>
+                    {{ x.name_local  }}({{ x.code  }})
+                    </option>
+                {% endfor  %}
+            </select>
+        </form>
+    </div>
+</div>
 <div class="categoryRootMobile">
     <div  class="categoryMobile">
         <div   class="full hide-scroll">
@@ -256,7 +286,7 @@
             <a href="" class="linkCategoryMobile">
                 <i class="fab fa-bitcoin iconCategoryMobile"></i>
                 <div class="textCategoryMobile">
-                    Koparki GPU
+                    {% trans "Koparki GPU" %} 
                 </div>
             </a>
 
@@ -266,7 +296,7 @@
                 <a href="" class="linkCategoryMobile">
                     <i class="fas fa-server iconCategoryMobile"></i>
                     <div class="textCategoryMobile">
-                        Serwery
+                        {% trans "Serwery" %} 
                     </div>
                 </a>
             </li>
@@ -282,7 +312,7 @@
                 <a href="" class="linkCategoryMobile">
                     <i class="fab fa-buffer iconCategoryMobile"></i>
                     <div class="textCategoryMobile">
-                        Akcesoria
+                        {% trans "Koparki GPU" %} 
                     </div>
                 </a>
             </li>
@@ -290,7 +320,7 @@
                 <a href="" class="linkCategoryMobile">
                     <i class="fas fa-cogs iconCategoryMobile"></i>
                     <div class="textCategoryMobile">
-                        Usługi
+                        {% trans "Usługi" %} 
                     </div>
                 </a>
             </li>

@@ -1,4 +1,4 @@
-
+{% load i18n  %}
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-4">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="numberContainerFooter">
                         <div class="numberTextFooter">
-                            Masz pytania? Zadzwon!
+                            {% trans "Masz pytania? Zadzwon!" %} 
                         </div>
                         <div class="numberContent">
                             (+48) 564 473 345
@@ -43,12 +43,12 @@
                             <div class="row no-gutters">
                                 <div class="col-6">
                                     <div class="dayFooterHelp">
-                                        Sob. - Niedz.
+                                        {% trans "Sob. - Niedz." %}
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="hourFooterHelp">
-                                        zamknięte
+                                        {% trans "zamknięte" %}
                                     </div>
                                 </div>
                             </div>
@@ -65,14 +65,14 @@
             <div class="footerBar">
                 <div class="additionalLinksFooter">
                     <div class="additionalTextLinksFooter">
-                        Przydatne Informacje 
+                        {% trans "Przydatne Informacje" %} 
                     </div>
                     <div class="additionalLinksContent">
                         <ul class="listFooterBox" >
-                            <li class="listStyleFooterBox"><a href=" "> Regulamin Sklepu Internetowego</a></li>
-                            <li class="listStyleFooterBox"><a href=" "> Polityka prywatności i cookies</a></li>
-                            <li class="listStyleFooterBox"><a href=" "> Płatność i wysyłka</a></li>
-                            <li class="listStyleFooterBox"><a href=" "> Dochodowość</a></li>
+                            <li class="listStyleFooterBox"><a href=" ">{% trans "Regulamin Sklepu Internetowego" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href=" ">{% trans "Polityka prywatności i cookies" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href=" ">{% trans "Płatność i wysyłka" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href=" ">{% trans "Dochodowość" %}  </a></li>
                         </ul>
                     </div>
                 </div>

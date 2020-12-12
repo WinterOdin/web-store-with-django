@@ -1,0 +1,105 @@
+.titleDesktopDetail{
+    margin-top:4vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+.smallDetailInfoWrapper{
+    margin-top: 3vh;
+    width: 90%;
+    
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(92, 92, 92);
+    font-size: 17px;
+
+}
+.smallInfoContent{
+    text-align: left;
+}
+.colorTest{
+    color: rgb(41, 165, 41);
+    font-weight: 600;
+}
+.priceBoxDetail{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10%;
+    width: 70%;
+    margin-left: 10%;
+    border-radius:15px;
+    height: 15vh;
+    
+}
+.priceBoxDetail:hover{
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.065) 0px 0px 2px 1px, rgba(0, 0, 0, 0.066) 0px 4px 8px 0px;
+}
+.properPriceBox,.discountBox{
+    width: 100%;
+    text-align: right;
+    padding-right:15%;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgb(124, 124, 124)
+}
+.discountBox{
+    padding-top: 2%;
+    color: rgb(175, 175, 175);
+    font-size: 15px;
+    padding-right:14%;
+    text-decoration: line-through;
+}
+.buttonsDetailWrapper{
+    width: 80%;
+    margin-left: 10%;
+    padding-top:1vh;
+}
+.quantityDetailSelect {
+    padding: 9px 5px;
+    border: 1px solid rgb(184, 184, 184);
+    font-size: 13px;
+    width: 15%;
+    border-radius: 15px;
+    margin-top: 0vh;
+    background:rgb(184, 184, 184));
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Montserrat';
+}
+.buttonDetail{
+    white-space: nowrap;
+    width: 70%;
+    margin-left: 10%;
+    height: 40px;
+    font-size: 15px;
+    padding: 0px 8px;
+    background: rgb(19, 172, 0);
+    border:rgb(19, 172, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+@media (max-width:550px){
+
+    .buttonsDetailWrapper{
+        width: 90%;
+        margin-left: 5%;
+        padding-top:1vh;
+    }
+    .quantityDetailSelect {
+        width: 13%;
+        border-radius: 15px;
+
+    }
+    .buttonDetail{
+        width: 80%;
+        margin-left: 5%;
+    }
+    .priceBoxDetail{
+        margin-top: 10%;
+        width: 90%;
+        margin-left: 5%;
+        border-radius:15px;
+        height: 16vh;
+    }
+}

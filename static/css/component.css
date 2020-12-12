@@ -10,14 +10,13 @@ body{
 }
 .qaz{
 	width: 100%;
-	height: 30vh;
-	background-color: rgb(124, 124, 124);
+	height: auto;
+	border-radius: 10px;
+	padding:17px 0 18px;
+	
 }
-.picture{
-	background-color: blue;
-}
-.content{
-	background-color: red;
+.qaz:hover{
+	box-shadow: rgba(0, 0, 0, 0.065) 0px 0px 2px 1px, rgba(0, 0, 0, 0.066) 0px 4px 8px 0px;
 }
 
 .containerWrapper
@@ -95,7 +94,7 @@ body{
 
 .cbp-vm-image img {
 	display: inline-block;
-	max-width: 100%;
+	width: 70%;
 	border: none;
 }
 
@@ -109,18 +108,28 @@ body{
 }
 
 .cbp-vm-add {
-	color: #fff;
-	background: #47a3da;
-	padding: 10px 20px;
-	border-radius: 2px;
-	margin: 20px 0 0;
-	display: inline-block;
-	transition: background 0.2s;
+	font-size: 20px;
+	border: 1px solid rgb(81, 196, 36);
+	width: 40%;
+	margin-left: 10%;
+	border-radius: 50%;
+	color:rgb(81, 196, 36);
+	padding: 6px 8px;
+	line-height: 40px;
+	visibility: hidden;
+	
+}
+.qaz:hover .cbp-vm-add{
+	visibility: visible;
 }
 
 .cbp-vm-add:hover {
-	color: #fff;
-	background: #02639d;
+	background-color: rgb(81, 196, 36);
+	color:white;
+	
+}
+a:hover .cbp-vm-add{
+	color:white;
 }
 
 .cbp-vm-add:before {
@@ -150,10 +159,7 @@ body{
 	font-size: 22px !important;
 }
 
-.cbp-vm-add:before {
-	content: "\f055";
-	font-size: 22px !important;
-}
+
 
 /* Individual view mode styles */
 
@@ -163,26 +169,36 @@ body{
 }
 
 .cbp-vm-view-grid ul li {
-	width: 32%;
-	text-align: center;
-	margin: 20px 0 0;
+	width: 28%;
+	margin: 20px 12px 0;
 	display: inline-block;
 	vertical-align: top;
 }
 
 .cbp-vm-view-grid .cbp-vm-title {
-	font-size: 2em;
+	font-size: 16px;
+	text-align: left;
+	padding:15px 20px;
+	font-family: 'Lato', sans-serif;
 }
 
 .cbp-vm-view-grid .cbp-vm-details {
 	max-width: 300px;
 	min-height: 70px;
 	margin: 0 auto;
+	display: none;
+
 } 
 
 .cbp-vm-view-grid .cbp-vm-price {
-	margin: 10px 0;
-	font-size: 1.5em;
+	font-size: 14px;
+	width: 50%;
+	font-family: 'Lato', sans-serif;
+	color:rgb(168, 168, 168);
+	float: left;
+	display: block;
+	padding-top:15px
+	
 }
 
 
@@ -202,45 +218,78 @@ body{
 }
 
 .cbp-vm-view-list .cbp-vm-image {
-	width: 10%;
+	width: 22%;
+	padding-left: 20px;
 }
-
+.cbp-vm-view-list .cbp-vm-image img{
+	width: 90%;	
+}
 .cbp-vm-view-list .cbp-vm-title {
-	font-size: 1.3em;
-	padding: 0 10px;
+	font-size:20px;
+	padding: 0 5px;
 	white-space: normal;
-	width: 23%;
+	width: 26%;
+	font-weight: 400;
 }
 
 .cbp-vm-view-list .cbp-vm-price {
-	font-size: 1.3em;
+	font-size: 17px;
 	width: 10%;
 }
 
 .cbp-vm-view-list .cbp-vm-details {
-	width: 40%;
+	width: 30%;
 	padding: 0 15px;
+	font-size: 15px;
 	overflow: hidden;
 	white-space: normal;
+
 }
 
 .cbp-vm-view-list .cbp-vm-add {
-	margin: 0;
+	font-size: 20px;
+	width: 6%;
+	text-align: center;
+    border-radius: 20px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	line-height: 0px;
+	margin-left:0%;
+	visibility: visible;
+}
+.cbp-vm-price-promo{
+	font-size: 12px;
+	color:rgb(163, 163, 163);
+	text-decoration: line-through;
+	position: absolute;
+	margin-left:20px;
 }
 
-@media screen and (max-width: 66.7em) {
+.cbp-vm-view-list .cbp-vm-price-promo{
+	font-size: 12px;
+	color:rgb(163, 163, 163);
+	text-decoration: line-through;
+	position: absolute;
+	left:48%;
+	top:33%
+}
+
+@media screen and (max-width: 1065px) {
 	.cbp-vm-view-list .cbp-vm-details  {
 		width: 30%;
 	}
 } 
 
-@media screen and (max-width: 57em) {
+@media screen and (max-width: 950px) {
 	.cbp-vm-view-grid ul li {
-		width: 49%;
+		width: 40%;
 	}
 }
 
-@media screen and (max-width: 47.375em) {
+@media screen and (max-width: 775px) {
+	.cbp-vm-view-grid ul li {
+		width: 40%;
+	}
 	.cbp-vm-view-list .cbp-vm-image {
 		width: 20%;
 	}
@@ -258,11 +307,140 @@ body{
 	.cbp-vm-view-list .cbp-vm-add  {
 		margin: 10px;
 	}
-}
-
-@media screen and (max-width: 40.125em) {
-	.cbp-vm-view-grid ul li {
+	.cbp-vm-options {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.cbp-vm-view-list .cbp-vm-title {
+		font-size: 17px;
+	}
+	.cbp-vm-view-list .cbp-vm-image,
+	.cbp-vm-view-list .cbp-vm-title,
+	.cbp-vm-view-list .cbp-vm-details,
+	.cbp-vm-view-list .cbp-vm-price,
+	.cbp-vm-view-list .cbp-vm-add {
+	display: block;
+	vertical-align: middle;
+	}
+	.cbp-vm-view-list .cbp-vm-price {
+		font-size: 19px;
 		width: 100%;
+		height: 5vh;
+		margin-top: 1vh;
+		padding-left:10px;
+	}
+	.cbp-vm-view-list .cbp-vm-title {
+		padding-left:10px;
+		margin-top: 2vh;
+		font-weight: 500;
+	}
+	.cbp-vm-view-list .cbp-vm-image {
+		width: 100%;
+		padding-left: 20px;
+	}
+	.cbp-vm-view-list .cbp-vm-image img{
+		width: 60%;
+		margin-left:20%;	
+	}
+	.cbp-vm-view-list .cbp-vm-add {
+		font-size: 20px;
+		width: 50%;
+		margin-left:25%;	
+	}
+	.cbp-vm-view-list .cbp-vm-price-promo{
+		font-size: 15px;
+		left:19%;
+		top:61%
 	}
 }
 
+@media screen and (max-width: 639px) {
+	.cbp-vm-view-grid ul li {
+		width: 100%;
+	}
+	.cbp-vm-view-grid .cbp-vm-price {
+		font-size: 15px;
+		width: 50%;
+		padding: 15px 20px;
+		text-align: left;
+	}
+	.cbp-vm-view-grid .cbp-vm-image {
+		width: 100%;
+		padding-left: 20px;
+	
+	}
+	.cbp-vm-view-grid .cbp-vm-image img{
+		width: 50%;	
+	}
+	.cbp-vm-view-grid .cbp-vm-add {
+		visibility: visible
+	}
+}
+@media screen and (max-width: 420px) {
+	.cbp-vm-view-grid .cbp-vm-image {
+		width: 100%;
+	
+	}
+	.cbp-vm-view-grid .cbp-vm-image img{
+		width: 60%;
+	}
+	.cbp-vm-view-grid ul li {
+		margin: 20px 0px 0;
+
+	}
+	.cbp-vm-view-list .cbp-vm-details {
+		display: block;
+		width: 100%;
+		margin: 10px 0 20px;
+	}
+	.cbp-vm-options {
+		height: 7vh;
+		padding-left: 1vw;
+	}
+	.cbp-vm-view-list .cbp-vm-price-promo{
+		font-size: 13px;
+		margin-left:10px;
+		left: 0;
+		top:61%
+		
+	}
+}
+
+
+@media screen and (max-width: 380px) {
+	.cbp-vm-view-list .cbp-vm-price-promo{
+		top:60%	
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.cbp-vm-view-grid ul li {
+		width: 100%;
+	}
+	.cbp-vm-view-grid .cbp-vm-title {
+		font-weight: 500;
+		font-size: 16px;
+	}
+	.cbp-vm-view-list .cbp-vm-title {
+		padding-left: 10px;
+		margin-top: 2vh;
+		font-weight: 500;
+	}
+	.cbp-vm-view-grid .cbp-vm-price {
+		font-size: 16px;
+		width: 50%;
+		padding: 15px 20px;
+		text-align: left;
+	}
+	.cbp-vm-view-grid .cbp-vm-image img{
+		width: 60%;	
+	}
+	.cbp-vm-view-list .cbp-vm-add {
+		font-size: 20px;
+		width: 60%;
+		margin-left:20%;	
+	}
+	.cbp-vm-view-list .cbp-vm-price-promo{
+		top:56%	
+	}
+}

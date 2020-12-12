@@ -81,3 +81,11 @@
         margin-left: 0%;
     }
 }
+@media (max-width:330px){
+    .shopTextTile {
+        font-size: 23px;
+    }
+    .resultsTextTile{
+        font-size: 12px;
+    }
+}

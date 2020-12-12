@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n  %}
+{% block content  %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            {% include 'productCarousel.html'  %}
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="titleDesktopDetail">
+                GPU #OBM10RX5700 – Koparka kryptowalut GPU ETH, ETC 10-kartowa
+            </div>
+            <div class="smallDetailInfoWrapper">
+                <div class="smallInfoContent">
+                    {% trans "Producent" %}: CryptoTech &nbsp;
+                </div>
+                <div class="smallInfoContent">
+                    Dostępność: 
+                    <span class="colorTest">
+                        12 sztuk w magazyie
+                    </span>
+                </div>
+            </div>
+            
+            <div class="priceBoxDetail">
+                <div class="discountBox">
+                265600 zł
+                </div>
+                <div class="properPriceBox">
+                    260000 zł
+                </div>
+               
+                <div class="buttonsDetailWrapper">
+                    <form method="POST" action="{% url 'set_language'  %}">
+                        {% csrf_token  %}
+                        <select class="quantityDetailSelect" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <button class="buttonDetail"> 
+                            <i class="fas fa-cart-plus" aria-hidden="true"></i> {% trans "Dodaj do koszyka"  %}
+                        </button>
+                        
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include 'newsletter.html'  %}
+
+{% endblock  %}

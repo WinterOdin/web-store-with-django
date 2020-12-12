@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="newsletterWrapper">
+                <div class="newsletterTextBox">
+                    <h3><i class="far fa-paper-plane"></i> Newsletter</h3>
+                    <div class="newsletterText">
+                        Zapisz się do naszego newslettera i nie przegap żadnych okazji. <br />
+                        Bądź na bieżąco z najnowszymi technologiami.
+                        
+                    </div>
+                </div>
+                <div class="newsletterFormBox">
+                    <form role="search" method="get" class="product-search" action="">
+                        {% csrf_token  %}
+                        <input type="search"  class="search-field" placeholder="Twój email…" value="" name="">
+                        <button type="submit" class="btnSubmit"><i class="far fa-paper-plane"></i></button>
+                        <input type="hidden" name="post_type" value="product">
+                    </form>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
