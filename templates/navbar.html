@@ -8,12 +8,21 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="topBarTextRight">
+                                {% if user.is_authenticated  %}
+                                    {% trans "Witaj"  %} Marcel
+                                {% else  %} 
                                 Digital Mining Experts 
+                                {%endif%}
+                               
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="topBarTextLeft">
-                                ASIC, FPGA, GPU.
+                                {% if user.is_authenticated  %}
+                                    <a class="logoutNav" href="{% url 'logout' %}">Logout</a>
+                                {% else  %} 
+                                    ASIC, FPGA, GPU.
+                                {%endif%}
                             </div>
                         </div>
                     </div>
@@ -49,7 +58,6 @@
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Dostawa" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Gwarancja" %}</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Zwroty" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Częste pytania" %}</a></li>
                             </ul>                            
                             <div class="tileListHelpTitle">{% trans "Skontaktuj się z nami" %}</div>
@@ -92,7 +100,7 @@
                        <span class="lineHelpBox"></span>
                         <div class="iconWrapper2">
                             <div class="iconContent2">
-                                <a class="tileLink" href="">
+                                <a class="tileLink" href="{% url 'order'  %} ">
                                     <div class="iconPic">
                                         <i class="fas fa-user"></i>
                                     </div>
@@ -105,24 +113,28 @@
                         <div class="helpBox2">
                             <div class="tileListHelpTitle">{% trans "Twoje konto" %}</div>
                                 <div class="loginButtonHelpBox">
-                                    <a href="" >
+                                    {% if user.is_authenticated  %}
+                                       <div class="helloMsgLogin"> {% trans "Witaj"  %} Marcel</div>
+                                    {% else  %} 
+                                    <a href="{% url 'login'  %}" >
                                         <div class="linkLoginHelpBox">
                                             {% trans "Zaloguj sie" %}
                                         </div>
                                     </a>
                                     <hr class="hrLogin">
                                     <p class="textHrLogin">{% trans "Nie masz konta?" %}</p>
-                                    <a href="" >
+                                    <a href="{% url 'register'  %}" >
                                         <div class="linkCreateHelpBox">
-                                            {% trans "Zaloguj sie" %}
+                                            {% trans "Zarejestruj sie" %}
                                         </div>
                                     </a>
+                                    {%endif%}
                                 </div>    
-                            <div class="tileListHelpTitle">Skontaktuj się z nami</div>
+                            
                             <ul class="listHelpBox "> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Twoje konto" %}</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Zamówienia" %}</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Ustawienia Konta" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'order'  %}">{% trans "Twoje konto" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'order'  %}">{% trans "Zamówienia" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'user'  %}">{% trans "Ustawienia Konta" %}</a></li>
                             </ul> 
                         </div>
                         <div class="iconWrapper3">
@@ -150,21 +162,21 @@
             </div>
             <div class="bottomBar">
                 <div class="container">
-                    <div class="row">
+                    <div class="row no-gutters">
                         <div class="col-1">
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 categoryPCHover"  >
                             <div class="categoryPC">
-                                <a class="categoryPCLink">
+                                <a href="#" class="categoryPCLink">
                                     
                                     {% trans "Koparki GPU" %} 
                                 </a>
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a class="categoryPCLink">
+                                <a href="#" class="categoryPCLink">
                                    {% trans "Serwery" %} 
                                 </a>
                             </div>
@@ -185,16 +197,16 @@
                                 </select>
                             </form>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a class="categoryPCLink">
+                                <a  href="#" class="categoryPCLink">
                                    {% trans "Akcesoria" %} 
                                 </a>
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a class="categoryPCLink">
+                                <a href="#" class="categoryPCLink">
                                     {% trans "Usługi" %} 
                                 </a>
                             </div>

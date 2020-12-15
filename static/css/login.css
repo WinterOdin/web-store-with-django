@@ -1,0 +1,19 @@
+.messageBoxLogin,.loginWrongData{
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px 20px;
+    border:1px solid rgb(27, 134, 0);
+    color: rgb(27, 134, 0);
+    background-color: rgba(94, 255, 0, 0.014);
+    text-align: center;
+    border-radius: 15px;
+}
+.loginWrongData{
+    border:1px solid red;
+    color: red;
+    background-color: rgba(255, 0, 0, 0.014);
+    width: 70%;
+    padding: 10px 20px;
+    margin-left: 15%;
+    margin-top: 6%;
+
+}

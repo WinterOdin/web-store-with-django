@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content  %}
+{% load i18n  %}
+
+<div class="grid-container-order">
+    <div class="leftOrderCol">
+        {% include 'orderNav.html' %}
+    </div>
+    <div class="rightOrderCol">
+        {% include 'refundsContent.html' %}
+    </div>
+</div>
+<script>
+    $( ".categoryRootMobile" ).hide();
+</script>
+
+
+{% include 'newsletter.html'  %}
+{% endblock  %}

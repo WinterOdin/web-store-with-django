@@ -1,0 +1,131 @@
+.formWrapper{
+    width: 100%;
+    padding: 2vh;
+    margin-top: 3vh;
+}
+.errorBoxRegister{
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px 20px;
+    border:1px solid red;
+    color: red;
+    background-color: rgba(255, 0, 0, 0.014);
+    text-align: center;
+    border-radius: 15px;
+    
+}
+.errorlist{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.formBox{
+    border-radius: 20px;
+    width: 90%;
+    padding-bottom: 3vh;
+    margin-left: 5%;
+    box-shadow: rgba(0, 0, 0, 0.055) 0px 0px 2px 1px, rgba(0, 0, 0, 0.055) 0px 4px 8px 0px;
+}
+.registerForm,.loginForm{
+    width: 86%;
+    margin-left: 7%;
+    border-radius: 20px;
+    padding: .335rem 1.3rem;
+    height: 40px;
+    border:1px solid rgb(204, 204, 204);
+    margin-bottom: 8px;
+}
+.createAccText,.fillerRegisterTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    padding-top: 2vh;
+    padding-left:4vh;
+    padding-bottom:2vh;
+}
+.checkboxRegister{
+    width: 70%;
+    margin-left: 15%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: rgb(139, 139, 139);
+    padding-top:10px;
+    text-align: center;
+}
+.helloMsgLogin{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+.btnSbtRegister{
+    background-color: rgb(0, 130, 250);
+    border-radius: 666px;
+    padding: 8px 16px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    border: none;
+    width: 70%;
+    margin-left: 15%;
+}
+.textSbtRegister{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center
+}
+.linkToLoginRegisterWrapper{
+    padding-top:1vh;
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+}
+a.btnLinkToLogin {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    background-color: rgb(0, 130, 250);
+    border-radius: 666px;
+    padding: 5px 16px;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    border: none;
+    text-decoration: none;
+    margin-top:0.5vh;
+}
+.fillerTextRegisterWrapper{
+    width: 100%;
+    padding: 2vh;
+    margin-top: 3vh;
+}
+.fillerRegisterContent{
+    width: 86%;
+    font-size: 17px;
+    margin-left: 7%;
+    border-radius: 20px;
+    color: rgb(124, 124, 124);
+}
+.teamFillerRegister{
+    width: 100%;
+    text-align: right;
+    padding-top: 2vh;
+    padding-right: 2vw;
+    font-style: italic;
+}
+.spacerRegister{
+    margin-bottom: 10vh;
+    margin-top: 5vh;
+}
+@media (max-width:960px){
+    .fillerTextRegisterWrapper {
+        padding: 0vh;
+    }
+    .formWrapper {
+        padding-top: 2vh;
+    }
+    .formBox {
+    width: 100%;
+    margin-left: 0%;
+    
+    }
+
+}

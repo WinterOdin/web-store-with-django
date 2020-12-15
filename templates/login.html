@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% include 'navbar.html'  %}
+{% load static  %}
+{% block content %}
+{% load i18n  %}
+<div class="container spacerRegister">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="formWrapper">
+                <div class="formBox">
+                    <div class="createAccText">
+                        {% trans "Zaloguj się"  %}
+                    </div>
+                    <form action="" method="POST">
+                        {% csrf_token  %}
+                        <div class="form-group">
+                            <input type="text" name="email" class="loginForm"  maxlength="150" >
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="loginForm"  maxlength="150" >
+                        </div>
+                        <button type="submit" class="btnSbtRegister">
+                            <span class="textSbtRegister">
+                                {% trans "Zaloguj się"  %}
+                            </span>
+                        </button>
+                    </form>
+                    {%for message in messages %}
+                        {%if "login" in message.tags %}
+                        <div class="loginWrongData">
+                            {{ message  }}
+                        </div> 
+                        {%endif%}
+                    {%endfor%}
+                </div>
+                <div class="linkToLoginRegisterWrapper">
+                    {% trans "Nie pamiętasz hasła?"  %}<br />
+                    <a href="#" class="btnLinkToLogin">{% trans "zmień hasło"  %}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+                {%for message in messages %}
+                    {%if "signup" in message.tags %}
+                        <div class="messageBoxLogin">
+                            {{ message  }}
+                        </div> 
+                    {%endif%}
+                {%endfor%}
+            <div class="fillerTextRegisterWrapper">
+                <div class="fillerRegisterTitle">
+                    Witaj ponownie w CryptoTech
+                </div>
+                <div class="fillerRegisterContent">
+                    Nasza firma została stworzoną z myślą o ułatwieniu dostępu dla początkujących jak i zaawansowanych osób zainteresowanych wydobywaniem kryptowalut.
+                    Na naszej stronie znajdą Państwo wszystkie rzeczy potrzebne do wydobywania kryptowalut, gotowe koparki czy też poradniki i konsultacje.
+                    <br/>Pozdrawiamy 
+                    <div class="teamFillerRegister">
+                        -Zespół CryptoTech
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var form_fields = document.getElementsByClassName('loginForm')
+    form_fields[0].placeholder='{% trans "Email"  %}';
+    form_fields[1].placeholder='{% trans "Hasło"  %}';
+    for (var field in form_fields){	
+    form_fields[field].className += ' loginForm'
+}
+</script>
+  
+  {% endblock %}

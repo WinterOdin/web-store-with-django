@@ -28,12 +28,9 @@
     margin-left: 10%;
     border-radius:15px;
     height: 15vh;
-    
+    box-shadow: rgba(0, 0, 0, 0.027) 0px 0px 2px 1px, rgba(0, 0, 0, 0.021) 0px 4px 8px 0px;
 }
-.priceBoxDetail:hover{
-    transition: box-shadow 0.2s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.065) 0px 0px 2px 1px, rgba(0, 0, 0, 0.066) 0px 4px 8px 0px;
-}
+
 .properPriceBox,.discountBox{
     width: 100%;
     text-align: right;
@@ -46,7 +43,7 @@
     padding-top: 2%;
     color: rgb(175, 175, 175);
     font-size: 15px;
-    padding-right:14%;
+    padding-right:15%;
     text-decoration: line-through;
 }
 .buttonsDetailWrapper{
@@ -78,6 +75,31 @@
     color: rgb(255, 255, 255);
     border-radius: 15px;
 }
+.descriptionDetailWrapper{
+    width: 100%;
+    border-top: 1px solid rgb(228, 228, 228);
+
+    margin-top: 5vh;
+    font-family: 'Montserrat';
+}
+.descriptionTitle{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(56, 56, 56);
+    padding-top: 3%;
+    padding-left: 5%;
+}
+.descriptionContnet{
+    padding-top: 1%;
+    padding-left: 5%;
+    font-size: 15px;
+    font-weight: 400;
+    width: 70%;
+}
+
+
+
+
 
 @media (max-width:550px){
 
