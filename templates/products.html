@@ -37,6 +37,16 @@
                         </li>
                     </ul>
                 </div>
+                <div class="tagsWrapper">
+                    <div class="categoryTagProduct ">
+                        {% trans "Tagi produktów" %} 
+                    </div>
+                    <div class="tagContainer">
+                    {% for mt in tags %}
+                        <a href="{% url 'tag' slug=mt %}" class="tagsList">{{mt}}</a>
+                    {% endfor %}
+                    </div>
+                </div>
             </div>
             <div class="rightColProduct">
                 <div class="container-fluid">

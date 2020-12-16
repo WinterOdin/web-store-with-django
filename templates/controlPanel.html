@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="container pt-5">
+            <form method="POST" id="post-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Add title">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    <input type="text" data-role="tagsinput" class="form-control" name="tags">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <p>Common Tags: 
+            {% for mt in tagsx %}
+                <a href="#" class="tagsList">{{mt}}</a>
+            {% endfor %}
+            </p>
+
+        </div>    
+  
+{% endblock content %}    
