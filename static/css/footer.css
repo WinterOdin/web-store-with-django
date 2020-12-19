@@ -1,8 +1,17 @@
 .footerBar{
     width: 100%;
     height: 30vh;
-  
   }
+.additionalInfo{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2vh;
+    
+}
+.logoFooterEnergy{
+    width: 50%;
+    margin-left: 25%;
+}
+
   .footerLogo,.numberTextFooter{
         font-family: 'Montserrat', sans-serif;
         font-size: 30px;

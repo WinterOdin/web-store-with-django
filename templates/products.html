@@ -17,24 +17,21 @@
                         {% trans "Kategorie" %} 
                     </div>
                     <ul class="ulListProduct">
+                        {% for x in categoryList  %}
                         <li class="liListProduct disableBorder">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Konteneryt Miningowe</a></span>
+                            <span>
+                                <a class="listProductLink" href="{% url 'category' category=x.category  %}"> <i class="fa fa-angle-right"></i>
+                                 
+                                {{ x.category }}
+                            
+                                
+                                </a>
+                            </span>
                         </li>
-                        <li class="liListProduct">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Koparki GPU</a></span>
-                        </li>
-                        <li class="liListProduct">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Producenci</a></span>
-                        </li>
-                        <li class="liListProduct">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Nowe</a></span>
-                        </li>
-                        <li class="liListProduct">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Używane</a></span>
-                        </li>
-                        <li class="liListProduct">
-                            <span><a class="listProductLink" href="#"> <i class="fa fa-angle-right"></i> Usługi</a></span>
-                        </li>
+                        {% endfor  %}
+                      
+        
+                       
                     </ul>
                 </div>
                 <div class="tagsWrapper">

@@ -1,3 +1,4 @@
+{% load static  %}
 {% load i18n  %}
 {% get_current_language as LANGUAGE_CODE  %}
 
@@ -156,7 +157,7 @@
                 </div>
                 <div class="logoBox">
                     <div class="logoWrapper">
-                        CryptoTech
+                       <a href="{% url 'home' %}"> <img  class="imgLogo" src="{% static 'images/logo.png'  %}"></a>
                     </div>
                 </div>
             </div>
@@ -236,7 +237,7 @@
             </div>
           </div>
           <div class="logoWrapper">
-            CryptoTech<span class="colorDotNav">.</span>
+            <a href="{% url 'home' %}"> CryptoTech<span class="colorDotNav">.</span></a>
           </div>
          <div class="iconWrapper">
             <div class="icon1">

@@ -33,6 +33,9 @@
 .langSelect:focus {
     outline: none;
 }
+
+
+
 .topBarWrapper{
     width: 70%;
     margin-left: 15%;
@@ -124,8 +127,11 @@ textarea:focus, input:focus{
     font-weight: 600;
     width: 100%;
     font-style: italic;
-    opacity: 0.9;
-    margin-top: 1vh;
+    opacity: 0.8;
+}
+.imgLogo{
+    position: absolute;
+    width: 9%;
 }
 .cartWrapper{
     display: flex;
@@ -327,6 +333,10 @@ a.categoryPCLink{
 @media (max-width:1500px){
     .logoWrapper{
         font-size: 23px;
+    }
+    .imgLogo{
+        width: 11%;
+        margin-top:0.3vh;
     }
 }
 @media (max-width:1220px){

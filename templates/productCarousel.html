@@ -11,10 +11,11 @@ I've reused this from my amg car rental project becouse i like the design and i 
             <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
                 <!-- slides -->
                 <div class="carousel-inner">
-                    <div class="carousel-item active"><img src="{% static 'images/bitcoin-mining.jpg' %}" alt="Hills" /></div>
-                    <div class="carousel-item"><img src="{% static 'images/bitcoin-mining.jpg' %}" alt="Hills" /></div>
-                    <div class="carousel-item"><img src="{% static 'images/bitcoin-mining.jpg' %}" alt="Hills" /></div>
-                    <div class="carousel-item"><img src="{% static 'images/bitcoin-mining.jpg' %}" alt="Hills" /></div>
+                    
+                    <div class="carousel-item active"><img src="{{ product.pic1.url  }}" alt="Hills" /></div>
+                    <div class="carousel-item"><img src="{{ product.pic2.url  }}" alt="Hills" /></div>
+                    <div class="carousel-item"><img src="{{ product.pic3.url  }}" alt="Hills" /></div>
+                    <div class="carousel-item"><img src="{{ product.pic4.url  }}" alt="Hills" /></div>
                 </div>
                 <!-- Left right -->
                 <a class="carousel-control-prev maxsizeCar" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a>
@@ -23,22 +24,22 @@ I've reused this from my amg car rental project becouse i like the design and i 
                 <ol class="carousel-indicators list-inline">
                     <li class="list-inline-item active">
                         <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel">
-                            <img src="{% static 'images/bitcoin-mining.jpg' %}" class="img-fluid-check" />
+                            <img src="{{ product.pic1.url  }}" class="img-fluid-check" />
                         </a>
                     </li>
                     <li class="list-inline-item">
                         <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel">
-                            <img src="{% static 'images/bitcoin-mining.jpg' %}" class="img-fluid-check" />
+                            <img src="{{ product.pic2.url  }}" class="img-fluid-check" />
                         </a>
                     </li>
                     <li class="list-inline-item">
                         <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel">
-                            <img src="{% static 'images/bitcoin-mining.jpg' %}" class="img-fluid-check" />
+                            <img src="{{ product.pic3.url  }}" class="img-fluid-check" />
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel">
-                            <img src="{% static 'images/bitcoin-mining.jpg' %}" class="img-fluid-check" />
+                        <a id="carousel-selector-3" data-slide-to="3" data-target="#custCarousel">
+                            <img src="{{ product.pic4.url  }}" class="img-fluid-check" />
                         </a>
                     </li>
                 </ol>

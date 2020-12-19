@@ -90,6 +90,7 @@ body{
 .cbp-vm-image {
 	display: block;
 	margin: 0 auto;
+	height: 14vh;
 }
 
 .cbp-vm-image img {
@@ -180,6 +181,7 @@ a:hover .cbp-vm-add{
 	text-align: left;
 	padding:15px 20px;
 	font-family: 'Lato', sans-serif;
+	height: 10vh;
 }
 
 .cbp-vm-view-grid .cbp-vm-details {
@@ -262,7 +264,7 @@ a:hover .cbp-vm-add{
 	color:rgb(163, 163, 163);
 	text-decoration: line-through;
 	position: absolute;
-	margin-left:20px;
+	margin-left:45px;
 }
 
 .cbp-vm-view-list .cbp-vm-price-promo{
@@ -270,7 +272,7 @@ a:hover .cbp-vm-add{
 	color:rgb(163, 163, 163);
 	text-decoration: line-through;
 	position: absolute;
-	left:48%;
+	left:45%;
 	top:33%
 }
 

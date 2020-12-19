@@ -1,3 +1,4 @@
+{% load static  %}
 {% load i18n  %}
 <div class="container">
     <div class="row">
@@ -80,7 +81,17 @@
         </div>
         <div class="col-xs-12 col-md-4">
             <div class="footerBar">
-                
+                <div class="additionalLinksFooter">
+                    <div class="additionalTextLinksFooter">
+                        {% trans "CryptoTech to nie tylko kryptowaluty" %} 
+                    </div>
+                    <div class="additionalInfo">
+                        Prowadzimy również działalność na rzecz lepszego jutra 
+                        <a href="http://wwenergy.pythonanywhere.com/"> WW energia </a> zajmuję się energią odnawialną dla twojego domu 
+                        Dzięki naszym systemom fotowoltaicznym zaoszczędzisz setki złotych rocznie!
+                        <a href="http://wwenergy.pythonanywhere.com/"><img  class="logoFooterEnergy "src="{% static 'images/cdd77635-0cfc-4d66-9a40-1072619656a2_200x200.png'  %}"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

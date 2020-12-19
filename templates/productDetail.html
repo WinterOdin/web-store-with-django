@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n  %}
 {% block content  %}
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-md-6">
@@ -8,26 +9,30 @@
         </div>
 		<div class="col-sm-12 col-md-6">
 			<div class="titleDesktopDetail">
-                GPU #OBM10RX5700 – Koparka kryptowalut GPU ETH, ETC 10-kartowa
+				{{ product.title  }}
             </div>
 			<div class="smallDetailInfoWrapper">
 				<div class="smallInfoContent">
-                    {% trans "Producent" %}: CryptoTech &nbsp;
+                    {% trans "Producent" %}: {{ product.title  }} &nbsp;
                 </div>
 				<div class="smallInfoContent">
                     Dostępność: 
                     
 					<span class="colorTest">
-                        12 sztuk w magazyie
+						{{ product.stock }} {% trans "sztuk w magazyie" %}
                     </span>
 				</div>
 			</div>
 			<div class="priceBoxDetail">
 				<div class="discountBox">
-                265600 zł
+					{% if product.pricePromo is None  %}
+					
+					{% else  %}
+					{{ product.priceNormal }} zł
+					{%  endif %}
                 </div>
 				<div class="properPriceBox">
-                    260000 zł
+                    {{ product.priceNormal }} zł
                 </div>
 				<div class="buttonsDetailWrapper">
 					<form method="POST" action="{% url 'set_language'  %}">
@@ -57,13 +62,7 @@
                     {% trans "Opis" %}
                 </div>
                 <div class="descriptionContnet">
-                    Ceny wszystkich koparek GPU zawierają podatek VAT 23%.
-
-Najnowsza koparka GPU OBM12RX5700 – 12 kartowa do wydobywania ETH / ETC.
-
-Najlepsze koparki GPU do wydobywania kryptowalut już w #OnlyBestMiners!
-
-Pomagamy we WSZYSTKIM, możesz kompletnie nie znac się na kopaniu czy nawet na komputerach 🙂
+                  {{ product.description  }}
                 </div>
             </div>
         </div>
