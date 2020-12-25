@@ -1,0 +1,87 @@
+
+{% load static  %}
+
+{% load i18n  %}
+{% for x in items  %}
+<div class="cartOnMobile">
+    <div class="cartMobileWrapper">
+        <div class="grid-container-cart-mobile">
+            <div class="cartGridOnMobile">
+              <div class="imgCartMobileWrapper">
+                <div class="imgCartMobileContent">
+                    <img class="imgMobileCart" src="{% url 'detail' id=x.id %}">
+                </div>
+                <div class="removeCartMobile">
+                    <div class="deleteBtnCart">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+              </div>
+              <div class="textContentMobileWrapper">
+                <div class="titleOrderMobile">
+                    <div class="productInfoCart">
+                        <div class="productTitleCart">
+                            {{x.product.title}}
+                        </div>
+                        <div class="productOrderNumberCart">
+                            {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
+                        </div>
+                    </div>
+                </div>
+                <div class="quantityMobile">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="row no-gutters">
+                                    <div class="col-3">
+                                        <div class="controlQtyCart">
+                                            <i class="fas fa-minus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="controlQtyCart">
+                                            {{x.quantity}}
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="controlQtyCart">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="colPriceCart">
+                            {% if x.product.pricePromo is None  %}
+                                
+                                {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+                            {% else  %}
+                                {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+                            {% endif  %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="totalMobile">
+                        <div class="container-fluid">
+                            <div class="row no-gutters">
+                                <div class="col-6">
+                                    <div class="colTextTotalCart">
+                                        {% trans "Suma"  %}:
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="colTotalCart">
+                                        {{ x.get_total  }} {% trans 'zł' %} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor  %}

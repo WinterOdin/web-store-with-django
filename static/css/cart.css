@@ -1,0 +1,351 @@
+.lefColCartPosition{
+    margin-top: 6vh;
+    width: 80%;
+    margin-left: 20%;
+}
+.rightColCartPosition{
+    border-left: 1px solid rgb(230, 230, 230);
+    width: 100%;
+    margin-top: 6vh;
+    height: 80vh;
+}
+.cartOnMobile{
+    display:none;
+}
+.productListPosition{
+    margin-top: 6vh;
+}
+.colTitleCart{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    text-transform:uppercase;
+    letter-spacing: 1px;
+
+    
+}
+.productPicturCart,.colPriceCart,.colQtyCart,.colTotalCart,.deleteBtnCart{
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.productPicturCart{
+
+}
+.imgCart{
+    max-width: 80%;
+   
+}
+.colPriceCart{
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+.controlQtyCart{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+.colTotalCart{
+    font-weight: 500;
+}
+.productInfoCart{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2vh;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color:rgb(0, 0, 0);
+    line-height: 24px;
+}
+.rightColWrapper{
+    padding-top: 1px;
+}
+.barColRight{
+    margin-top: 1.5vh;
+    width: 70%;
+    margin-left: 15%;
+    background-color: rgb(212, 212, 212);
+    height: 1px;
+}
+.totalCart,.cuponCodeWrapper{
+    margin-top: 5vh;
+    width: 80%;
+    margin-left: 20%;
+    font-family: 'Montserrat', sans-serif;
+}
+.cuponCodeWrapper{
+    margin-top: 9vh;
+}
+.cuponCodeText{
+    font-weight: 500;
+    font-size:12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.cuponCartBar{
+    width: 50%;
+    margin-top: 2vh;
+}
+.cuponIcon{
+    font-size:24px;
+}
+.textTotalCart,.priceTotalCart{
+    text-align: center;
+    float: left;
+}
+.priceTotalCart{
+    margin-left: 1vw;
+    font-weight: 500;
+    font-size: 16px;
+    
+}   
+.textTotalCart{
+    font-size: 14px;
+    font-weight: 600;
+    text-transform:uppercase;
+    letter-spacing: 1px;
+}
+.wrapperTermsCart{
+    margin-top: 3vh;
+    width: 80%;
+    margin-left: 18%;
+}
+
+.btnWrapperCart{
+    margin-top: 2vh;
+    width: 80%;
+    margin-left: 12%;
+}
+.bottomLineCart{
+    width: 60%;
+    margin-left: 33%;
+    height: 1px;
+    background-color: rgb(212, 212, 212);
+    margin-top: 1vh;
+}
+
+.btnSubmitCart{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    height: 40px;
+    min-width: 120px;
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    font-weight: 500;
+    color: #ffffff;
+    background: rgb(77, 77, 77);
+    border: none;
+    outline: none;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+
+.svgImgCart{
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 17vh;
+    opacity: 0.1;
+}
+.svgContentCart{
+    min-width: 50%;
+}
+
+
+a.linkTermsCart{
+   color: rgb(83, 83, 83);
+}
+a.linkTermsCart:hover{
+    color: rgb(108, 130, 255);
+ }
+ 
+
+
+.checkbox {
+    --background: rgb(255, 255, 255);
+    --border: #bdbdbd;
+    --border-hover: #8f8f8f;
+    --border-active: #1E2235;
+    --tick: #fff;
+    position: relative;
+    margin-left: 10px;
+  }
+  .checkbox input,
+  .checkbox svg {
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+  }
+  .checkbox input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    outline: none;
+    background: var(--background);
+    border: none;
+
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+    box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border));
+  }
+  .checkbox input:hover {
+    --s: 2px;
+    --b: var(--border-hover);
+  }
+  .checkbox input:checked {
+    --b: var(--border-active);
+  }
+  .checkbox svg {
+    pointer-events: none;
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--stroke, var(--border-active));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 21px;
+    height: 21px;
+    transform: scale(var(--scale, 1)) translateZ(0);
+  }
+  .checkbox.path input:checked {
+    --s: 2px;
+    transition-delay: 0.4s;
+  }
+  .checkbox.path input:checked + svg {
+    --a: 16.1 86.12;
+    --o: 102.22;
+  }
+  .checkbox.path svg {
+    stroke-dasharray: var(--a, 86.12);
+    stroke-dashoffset: var(--o, 86.12);
+    transition: stroke-dasharray 0.6s, stroke-dashoffset 0.6s;
+  }
+  .btnSubmitCart{
+    left: 10%;
+}
+  @media (max-width:1400px){
+    .lefColCartPosition{
+        width: 96%;
+        margin-left: 2%;
+    }
+    .cuponCartBar{
+        width: 90%;
+    }
+    .totalCart, .cuponCodeWrapper{
+        margin-left: 0%;
+    }
+    .btnWrapperCart{
+        margin-left: 20%;
+    }
+    .wrapperTermsCart{
+        width: 100%;
+        margin-left:0%;
+    }
+    .linkTermsCart{
+        margin-left: 10px;
+    }
+  }
+
+  @media (max-width:810px){
+    .rightColCartPosition {
+        height: auto;
+    }
+    .pcCart,.svgImgCart{
+        display: none;
+    }
+    .cartOnMobile{
+        display: block;
+    }
+    .cartOnMobile{
+        
+        width: 90%;
+        margin-left:5%;
+        border-radius: 7px;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px
+    }
+    .cartMobileWrapper{
+        padding-top: 2vh;
+        width: 88%;
+        margin-left:6%;
+    }
+    .deleteBtnCart{
+        font-size: 25px;
+        color:rgb(90, 90, 90);
+    }
+    .imgMobileCart{
+        max-width: 100%;
+    }
+    .productInfoCart {
+        margin-top: 1vh;
+        margin-bottom: 0.3vh;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .productTitleCart{
+        color:rgba(0, 0, 0, 0.815);
+    }
+    .productOrderNumberCart{
+        color:rgba(0, 0, 0, 0.616); 
+    }
+    .productPicturCart,.colPriceCart,.colQtyCart,.colTotalCart,.deleteBtnCart{
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        height: 8vh;
+        display: flex;
+        align-items:start;
+        justify-content:space-around;
+        text-align: left;
+        padding-top: 2vh;
+    }
+    .controlQtyCart{
+        padding-top: 2vh;
+        font-size: 16px;
+    }
+    .colTextTotalCart{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 17px;
+        height: 8vh;
+        display: flex;
+        align-items:start;
+        justify-content:space-around;
+        text-align: left;
+        padding-top: 2vh;
+    }
+    .totalCart, .cuponCodeWrapper {
+        width: 100%;
+        margin-left: 0%;
+    }
+    .cuponCodeText{
+        text-align: center;
+        margin-left: 0%;
+        width: 100%;
+    }
+    .cuponCartBar {
+        width: 100%;
+        margin-left: 0%;
+    }
+    .cuponCodeWrapper {
+        margin-top: 10vh;
+    }
+    .btnSubmitCart{
+        left: 15%;
+    }
+  }

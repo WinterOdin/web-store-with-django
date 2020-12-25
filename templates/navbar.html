@@ -140,9 +140,10 @@
                         </div>
                         <div class="iconWrapper3">
                             <div class="iconContent3">
-                                <a class="tileLink" href="">
+                                <a class="tileLink" href="{% url 'cart' %}">
                                     <div class="iconPic">
                                         <i class="fas fa-shopping-cart"></i>
+                                        <span class="numberItemsInCart">2</span>
                                     </div>
                                     <div class="iconText">
                                         {% trans "Koszyk" %}
@@ -157,7 +158,7 @@
                 </div>
                 <div class="logoBox">
                     <div class="logoWrapper">
-                       <a href="{% url 'home' %}"> <img  class="imgLogo" src="{% static 'images/logo.png'  %}"></a>
+                       <a class="logoTextPc "href="{% url 'home' %}"> CryptoTech</a>
                     </div>
                 </div>
             </div>
@@ -261,7 +262,7 @@
                 </a>
             </div>
             <div class="icon3">
-                <a class="tileLink" href="">
+                <a class="tileLink" href="{% url 'cart' %}">
                     <div class="iconPic">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
@@ -343,28 +344,13 @@
 </div>
 
 <script>
-$('.iconContent1 ').mouseover(function(){
-$('.helpBox1').show();
+$("[class^='iconWrapper']").mouseover(function(e) {
+  $("[class^='helpBox']").hide();
+  $(this).next("[class^='helpBox']").show();
 });
 
-$('.helpBox1').mouseleave(function(){
-$('.helpBox1').hide();
-});
-
-
-$('.iconContent2 ').mouseover(function(){
-$('.helpBox2').show();
-});
-
-$('.helpBox2').mouseleave(function(){
-$('.helpBox2').hide();
-});
-$('.iconContent3 ').mouseover(function(){
-$('.helpBox3').show();
-});
-
-$('.helpBox3').mouseleave(function(){
-$('.helpBox3').hide();
+$("[class^='helpBox']").mouseleave(function() {
+  $("[class^='helpBox']").hide();
 });
 </script>
 

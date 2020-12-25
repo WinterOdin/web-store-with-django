@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content %}
+{% load i18n  %}
+
+<div class="grid-container-cart">
+    <div class="leftColCart">
+        <div class="lefColCartPosition pcCart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="colTitleCart">
+                            
+                            {% trans "Produkt"  %}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="colTitleCart">
+                            
+                            {% trans "Cena"  %}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="colTitleCart">
+                            {% trans "Ilość"  %}
+                            
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="colTitleCart">
+                            {% trans "Suma"  %}
+                          
+                        </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="colTitleCart">
+                        {% trans "Usuń"  %}
+                      </div>
+                    </div>
+              
+                </div>
+            </div>
+            <div class="container productListPosition pcCart">
+                {% for x in items  %}
+                <div class="row no-gutters">
+                    <div class="col-3">
+                        <div class="productPicturCart">
+                            <img class="imgCart" src="{{ x.product.pic1.url  }}">
+                        </div>
+                        <div class="productInfoCart">
+                            <div class="productTitleCart">
+                                {{x.product.title}}
+                            </div>
+                            <div class="productOrderNumberCart">
+                               {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="colPriceCart">
+                            {% if x.product.pricePromo is None  %}
+                                
+                                {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+                            {% else  %}
+                                {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+                            {% endif  %}
+                            
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="colQtyCart">
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <div class="controlQtyCart">
+                                        <i class="fas fa-minus"></i>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="controlQtyCart">
+                                        &nbsp;{{x.quantity}}&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="controlQtyCart">
+                                      <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="colTotalCart">
+                            {{ x.get_total  }} {% trans 'zł' %}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="deleteBtnCart">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="bottomLineCart"></div>
+                </div>
+                {% endfor  %}
+                
+            </div>
+        </div>
+        <!------------CART MOBILE--------------------->
+            {% include  'cartMobile.html'  %}
+        <!-------------------------------------------->
+    </div>
+    <div class="rightColCart">
+            <div class="rightColCartPosition">
+                <div class="rightColWrapper">
+                    <div class="container">
+                        <div class="col-12">
+                            <div class="barColRight">
+        
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="totalCart">
+                        <div class="textTotalCart">
+                                {% trans "Suma"  %}:
+                        </div>
+                        <div class="priceTotalCart">
+                                {{orders.get_cart_total}} {% trans "zł"  %}
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="cuponCodeWrapper">
+                        <div class="cuponCodeText">
+                            {% trans "masz kupon rabatowy?"  %}
+                        </div>
+                        <div class="cuponCodeInput">
+                            <div class="cuponCartBar">
+                                <form role="search" method="get" class="product-search" action="">
+                                    <input type="search"  class="search-field" placeholder="{% trans 'Kod rabatowy' %}" value="" name="">
+                                    <button type="submit" class="btnSubmit"><i class="cuponIcon far fa-money-bill-alt"></i></button>
+                                    <input type="hidden" name="post_type" value="product">
+                  
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="wrapperTermsCart">
+                        <div class="row no-gutters">
+                            <div class="col-1">
+                                <label class="checkbox path">
+                                    <input type="checkbox">
+                                    <svg viewBox="0 0 21 21">
+                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <div class="col-8">
+                                <a class="linkTermsCart"href="#">{% trans "akceptuje warunki i zasady"  %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnWrapperCart">
+                    <div class="container">
+                        <div class="col-12">
+                            <button  onclick="location.href=''" type="button" class="btnSubmitCart">{% trans "DOSTAWA"  %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="svgImgCart">
+                    <img class="svgContentCart" src="{% static 'images/iconmonstr-shopping-bag-8.svg' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock  %}

@@ -1,0 +1,98 @@
+.grid-container-cart {
+    display: grid;
+    grid-template-columns: 0.9fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "leftColCart rightColCart"
+      "leftColCart rightColCart"
+      "leftColCart rightColCart";
+    margin-bottom: 10vh;
+  }
+  .leftColCart { 
+    grid-area: leftColCart;
+    width: 100%;
+}
+  .rightColCart {
+    width: 100%;      
+    grid-area: rightColCart;
+ }
+
+
+
+
+
+
+
+ @media (max-width:1000px){
+  .grid-container-cart {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.6fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "leftColCart"
+      "rightColCart";
+      height: auto;
+  }
+}
+
+@media (max-width:810px){
+
+.grid-container-cart-mobile {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "cartGridOnMobile";
+}
+.cartGridOnMobile {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "imgCartMobileWrapper"
+    "textContentMobileWrapper";
+  grid-area: cartGridOnMobile;
+}
+.imgCartMobileWrapper {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". imgCartMobileContent imgCartMobileContent imgCartMobileContent imgCartMobileContent imgCartMobileContent removeCartMobile"
+    ". imgCartMobileContent imgCartMobileContent imgCartMobileContent imgCartMobileContent imgCartMobileContent .";
+  grid-area: imgCartMobileWrapper;
+}
+.imgCartMobileContent {
+   grid-area: imgCartMobileContent;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   }
+.removeCartMobile { grid-area: removeCartMobile; }
+.textContentMobileWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "titleOrderMobile titleOrderMobile titleOrderMobile"
+    "quantityMobile quantityMobile quantityMobile"
+    ". totalMobile totalMobile";
+  grid-area: textContentMobileWrapper;
+}
+.titleOrderMobile { grid-area: titleOrderMobile; }
+.quantityMobile { grid-area: quantityMobile; }
+.totalMobile { grid-area: totalMobile; }
+
+
+.grid-container-cart {
+  margin-bottom: 4vh;
+}
+
+}
