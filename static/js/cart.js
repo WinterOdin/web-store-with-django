@@ -16,8 +16,8 @@ for (i = 0; i < updateBtn.length; i++){
 function updateUserOrder(productId, action){
     console.log("user created an order")
 
-    var url = 'updateItem'
-
+    var url = 'http://127.0.0.1:8000/updateItem'
+    console.log(url)
     fetch(url, {
         method:'POST',
         headers:{
@@ -25,11 +25,14 @@ function updateUserOrder(productId, action){
             'X-CSRFToken':csrftoken,
         },
         body:JSON.stringify({'productId':productId, 'action':action})
+        
     })
     .then((response) =>{
         return response.json()
+        
     })
     .then((data) =>{
         console.log('data', data)
+        location.reload()
     })
 }

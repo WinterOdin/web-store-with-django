@@ -1,0 +1,34 @@
+{% load i18n  %}
+{% for x in items  %}
+<div class="grid-container-cart-prev ">
+    <div class="cartPrevWrapper">
+      <div class="pictureCartPrev">
+        <img class="imgCart" src="{{ x.product.pic1.url  }}">
+      </div>
+      <div class="textContentCartPrevWrapper">
+        <div class="titleCartPrev">
+            <a href="{% url 'detail' id=x.product.id %}">
+                {{x.product.title}}
+            </a>
+        </div>
+        <div class="qtyCartPrev">
+            {{x.quantity}} {% trans "szt."  %}
+        </div>
+        <div class="priceCartPrev">
+            {% if x.product.pricePromo is None  %}
+                {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+            {% else  %}
+                {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+            {% endif  %}
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor  %}
+{% if items  %}
+<div class="bottomBarCartPrev">
+    <div class="bottomBtnCartPrev">
+        <a href="{% url 'cart' %}" class="cartEmptyBtn cartPrevBtn">{% trans "Przejdź do koszyka"  %}</a>
+    </div>
+</div>
+{% endif  %}

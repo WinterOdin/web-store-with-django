@@ -35,20 +35,15 @@
                     {{ product.priceNormal }} zł
                 </div>
 				<div class="buttonsDetailWrapper">
-					<form method="POST" action="{% url 'set_language'  %}">
-                        {% csrf_token  %}
-                        
 						<select class="quantityDetailSelect" >
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
+							{% for x in product.stock  %}
+							<option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+							{% endfor  %}
 						</select>
-						<button class="buttonDetail">
-							<i class="fas fa-cart-plus" aria-hidden="true"></i> {% trans "Dodaj do koszyka"  %}
-                        
+						<button data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
+							<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
 						</button>
-					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -62,7 +57,7 @@
                     {% trans "Opis" %}
                 </div>
                 <div class="descriptionContnet">
-                  {{ product.description  }}
+                  {{ product.description|safe }}
                 </div>
             </div>
         </div>

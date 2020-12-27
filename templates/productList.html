@@ -4,8 +4,8 @@
 			<div class="main">
 				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
 					<div class="cbp-vm-options">
-						<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid">Grid View</a>
-						<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list">List View</a>
+						<a href="#" class="cbp-vm-icon cbp-vm-selected" data-view="cbp-vm-view-grid"><i class="fas fa-th"></i></a>
+						<a href="#" class="cbp-vm-icon " data-view="cbp-vm-view-list"><i class="fas fa-th-list"></i></a>
 					</div>
 					<ul>
 						{% for x in productsInfo  %}
@@ -22,7 +22,7 @@
 									<div class="cbp-vm-details">
 										Silver beet shallot wakame tomatillo salsify mung bean beetroot groundnut.
 									</div>
-									<a data-product="{{ x.id }}" data-action="add" class="cbp-vm-icon cbp-vm-add  update-cart" href="#"><i class="fas fa-cart-plus"></i></a>
+									<a data-product="{{ x.id }}" data-action="add" class="cbp-vm-icon cbp-vm-add  update-cart" ><i class="fas fa-cart-plus iconCart"></i></a>
 							</div>
 						</li>
 						{% endfor  %}

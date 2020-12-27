@@ -143,7 +143,7 @@
                                 <a class="tileLink" href="{% url 'cart' %}">
                                     <div class="iconPic">
                                         <i class="fas fa-shopping-cart"></i>
-                                        <span class="numberItemsInCart">2</span>
+                                        <span class="numberItemsInCart">{{ items.count  }}</span>
                                     </div>
                                     <div class="iconText">
                                         {% trans "Koszyk" %}
@@ -153,6 +153,7 @@
                         </div>
                         <div class="helpBox3">
                             <div class="tileListHelpTitle">{% trans "Twój koszyk" %}</div>
+                            {% include 'cartPrev.html'  %}
                         </div>
                     </div>
                 </div>

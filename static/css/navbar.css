@@ -241,7 +241,9 @@ a.logoTextPc:hover{
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     color: rgb(112, 112, 112);
-    font-size: 15px;
+    font-size: 16px;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
 }
 .listHelpBox{
     list-style-type: none;

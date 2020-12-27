@@ -6,6 +6,7 @@
 <div class="grid-container-cart">
     <div class="leftColCart">
         <div class="lefColCartPosition pcCart">
+            {% if items  %}
             <div class="container">
                 <div class="row">
                     <div class="col-3">
@@ -40,20 +41,16 @@
               
                 </div>
             </div>
+            {% else  %}
+
+            {% endif  %}
             <div class="container productListPosition pcCart">
+                
                 {% for x in items  %}
-                <div class="row no-gutters">
+                <div class="row no-gutters rowSpacing">
                     <div class="col-3">
                         <div class="productPicturCart">
                             <img class="imgCart" src="{{ x.product.pic1.url  }}">
-                        </div>
-                        <div class="productInfoCart">
-                            <div class="productTitleCart">
-                                {{x.product.title}}
-                            </div>
-                            <div class="productOrderNumberCart">
-                               {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
-                            </div>
                         </div>
                     </div>
                     <div class="col-2">
@@ -72,17 +69,17 @@
                             <div class="row no-gutters">
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        <i class="fas fa-minus"></i>
+                                        <i data-product="{{ x.product.id  }}" data-action="remove" class="fas fa-minus  update-cart updatePointer"></i>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        &nbsp;{{x.quantity}}&nbsp;&nbsp;
+                                         &nbsp;{{x.quantity}}
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                      <i class="fas fa-plus"></i>
+                                      <i data-product="{{ x.product.id  }}" data-action="add"  class="fas fa-plus  update-cart updatePointer"></i>
                                     </div>
                                 </div>
                             </div>
@@ -95,10 +92,25 @@
                     </div>
                     <div class="col-2">
                         <div class="deleteBtnCart">
-                            <i class="fas fa-times"></i>
+                            <i data-product="{{ x.product.id  }}" data-action="delete" class="fas fa-times update-cart updatePointer"></i>
+                        </div>
+                    </div>
+                    <div class="productInfoCart">
+                        <div class="productTitleCart">
+                            {{x.product.title}}
+                        </div>
+                        <div class="productOrderNumberCart">
+                           {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
                         </div>
                     </div>
                     <div class="bottomLineCart"></div>
+                </div>
+                {% empty  %}
+                <div class="emptyCartWrapper">
+                    <div class="emptyCartContent">
+                        <div class="emptyCartText"> {%trans "Twój koszyk jest pusty"  %} </div> 
+                        <a href="#" class="cartEmptyBtn">{% trans "Przejdź do strony głównej"  %}</a>
+                    </div>
                 </div>
                 {% endfor  %}
                 

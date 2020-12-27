@@ -13,7 +13,7 @@
     display:none;
 }
 .productListPosition{
-    margin-top: 6vh;
+    margin-top: 4vh;
 }
 .colTitleCart{
     font-family: 'Montserrat', sans-serif;
@@ -21,9 +21,18 @@
     font-size: 16px;
     text-align: center;
     text-transform:uppercase;
-    letter-spacing: 1px;
-
-    
+    letter-spacing: 1px; 
+}
+.rowSpacing{
+    margin-bottom: 2vh;
+}
+.updatePointer{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.updatePointer:hover{
+    opacity: 0.6;
 }
 .productPicturCart,.colPriceCart,.colQtyCart,.colTotalCart,.deleteBtnCart{
     width: 100%;
@@ -129,6 +138,7 @@
     background-color: rgb(212, 212, 212);
     margin-top: 1vh;
 }
+
 
 .btnSubmitCart{
     font-family: 'Montserrat', sans-serif;
@@ -239,6 +249,49 @@ a.linkTermsCart:hover{
   .btnSubmitCart{
     left: 10%;
 }
+.deleteBtnCart,.colTotalCart,.controlQtyCart,.colPriceCart{
+    padding-top: 4vh;
+}
+.emptyCartWrapper{
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px;
+    width: 80%;
+    margin-left: 10%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 8vh;
+
+}
+.emptyCartText{
+    font-weight: 600;
+    font-size: 22px;
+    color:rgb(94, 94, 94);
+    margin-bottom: 1vh;
+}
+.cartEmptyBtn{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    background-color: rgb(255, 255, 255);
+    border-radius: 666px;
+    padding: 10px 17px;
+    font-size: 14px;
+    color: rgb(66, 66, 66);
+    border: none;
+    text-decoration: none;
+    margin-top: 0.5vh;
+    border:1px solid rgb(80, 80, 80);
+}
+a.cartEmptyBtn:hover{
+text-decoration: none;
+color: rgb(0, 0, 0);
+}
+
+
   @media (max-width:1400px){
     .lefColCartPosition{
         width: 96%;
