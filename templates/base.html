@@ -3,32 +3,36 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+    <title>CryptoTech </title>
+    <meta name="description" content="CryptoTech to nowy sklep minigowy na rynku">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbarGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/newsletter.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productDetail.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productCarousel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderUserList.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderGrid.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/userPanel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/refund.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cartGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cartPrev.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/checkoutGrid.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/newsletter.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/userPanel.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400&family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="{% static 'js/jquery.js'  %}"></script>
     <script type="text/javascript">
         var user = '{{ request.user  }}'    
         function getToken(name) {
@@ -60,12 +64,14 @@
 
 {% endblock  %}
 {% include 'footer.html'  %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="{% static 'js/cbpViewModeSwitch.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" ></script>
+
     <script src="{% static 'js/classie.js' %}"></script>
     <script src="{% static 'js/tagsinput.js'  %}"></script>
     <script src="{% static 'js/cart.js'  %}"></script>
+<script>
     
+</script>
 </body>
 </html>

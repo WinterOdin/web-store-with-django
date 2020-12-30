@@ -1,0 +1,39 @@
+.grid-container-checkout {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "leftColCheckout rightColCheckout"
+      "leftColCheckout rightColCheckout"
+      "leftColCheckout rightColCheckout";
+
+
+  }
+  
+  .leftColCheckout { 
+    grid-area: leftColCheckout;
+    width: 100%;
+    }
+  
+  .rightColCheckout {
+    grid-area: rightColCheckout;
+    width: 100%;
+ }
+
+ 
+ @media (max-width:1000px){
+
+
+    .grid-container-checkout {
+        display: grid;
+        grid-template-columns: 1fr ;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+          "leftColCheckout"
+          "rightColCheckout"
+    
+    
+      }
+  }

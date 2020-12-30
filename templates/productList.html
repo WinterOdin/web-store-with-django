@@ -11,7 +11,7 @@
 						{% for x in productsInfo  %}
 						<li>
 							<div class="qaz">
-									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}"></a>
+									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
 									<h3 class="cbp-vm-title">{{ x.title  }}</h3>
 									{% if product.pricePromo is None  %}
 									<div class="cbp-vm-price-promo">{{ x.pricePromo  }} zł</div>
