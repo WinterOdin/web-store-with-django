@@ -318,7 +318,7 @@ a:hover.linkHelpBox{
     color: rgb(112, 112, 112);
     background-color: rgb(255, 255, 255);
     position: absolute;
-    top: 90px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     padding: 0px 16px;

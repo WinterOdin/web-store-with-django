@@ -121,6 +121,7 @@
         <!-------------------------------------------->
     </div>
     <div class="rightColCart">
+            {% if user.is_authenticated  %}
             <div class="rightColCartPosition">
                 <div class="rightColWrapper">
                     <div class="container">
@@ -186,6 +187,33 @@
                     <img alt="product img"class="svgContentCart" src="{% static 'images/iconmonstr-shopping-bag-8.svg' %}">
                 </div>
             </div>
+            {% else  %} 
+            <div class="rightColCartPosition">
+                <div class="cartUseNotAuth">
+                    {% trans "Do kontynuowania zakupów potrzebujesz konta"  %}
+                </div>
+                <div class="loginButtonCartAuth">
+                    <div class="loginButtonHelpBox">         
+                        <a href="/login">
+                            <div class="linkLoginHelpBox linkCreateNotAuth">
+                                Zaloguj sie
+                            </div>
+                        </a>
+                        <hr class="hrLogin">
+                        <p class="textHrLogin">Nie masz konta?</p>
+                        <a href="/register">
+                            <div class="linkCreateHelpBox linkCreateNotAuth testLink">
+                                Zarejestruj sie
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="svgImgCart svgImgCartNotAuth">
+                    <img alt="product img"class="svgContentCart" src="{% static 'images/iconmonstr-shopping-bag-8.svg' %}">
+                </div>
+            </div>
+            {% endif %}
+
         </div>
     </div>
 </div>

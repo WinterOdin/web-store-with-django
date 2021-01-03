@@ -2,13 +2,14 @@
 {% load i18n  %}
 {% load static  %}
 {% block content  %}
-<div class="breadcrumbsWrapper">
+<!---<div class="breadcrumbsWrapper">
     <div class="container ">
         <div class="breadcrumbsText">
             Home <i class="fa fa-angle-right"></i> sklep
         </div>
     </div>
 </div>
+---->
 <div class="container-fluid">
     <div class="containerProducts">
         <div class="grid-container-product">
@@ -51,17 +52,25 @@
                     <div class="row no-gutters">
                         <div class="col-6">
                             <div class="shopTextTile">
-                                {% trans "Polecane" %} 
+                                
+                                {% if query  %}
+                                    {% trans "Wyniki wyszukiwania dla" %} {{ query  }} 
+                                {% else  %}
+                                    {% trans "Polecane" %} 
+                                {% endif  %}
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="resultsTextTile">
-                                {% trans "Wyświetlanie" %} 1–24 z 56 
+                                {% trans "Wyświetlanie" %} {{ productsInfo|length   }} wyników
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
                 {% include 'productList.html'  %}
+                {% include 'recentlyViewed.html' %}
             </div>
           </div>
     </div>

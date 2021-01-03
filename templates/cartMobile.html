@@ -9,7 +9,7 @@
             <div class="cartGridOnMobile">
               <div class="imgCartMobileWrapper">
                 <div class="imgCartMobileContent">
-                    <img alt="product img" class="imgMobileCart" src="{% url 'detail' id=x.id %}">
+                    <img alt="product img" class="imgMobileCart" src="{{ x.product.pic1.url  }}">
                 </div>
                 <div class="removeCartMobile">
                     <div class="deleteBtnCart">

@@ -290,6 +290,35 @@ a.cartEmptyBtn:hover{
 text-decoration: none;
 color: rgb(0, 0, 0);
 }
+.cartUseNotAuth{
+    padding-top: 13%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.loginButtonCartAuth{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 9%;
+}
+.svgImgCartNotAuth{
+    margin-top: 10vh;
+}
+.loginButtonHelpBox .linkLoginHelpBox, .loginButtonHelpBox .linkCreateHelpBox .linkCreateNotAuth{
+    font-size: 18px;
+    padding: 6px 0;
+}
+.loginButtonHelpBox .linkCreateHelpBox  .linkCreateNotAuth{
+    font-size: 18px;
+    padding: 10px 0 !important;
+}
+.testLink{
+    padding: 6px 0 !important;
+    font-size: 18px;
+}
 
 
   @media (max-width:1400px){

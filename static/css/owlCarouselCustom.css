@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+.carousel-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+.carousel-section .owl-carousel .owl-stage {
+  padding-left: 0 !important;
+}
+.carousel-section .owl-carousel .owl-stage-outer {
+  overflow: unset;
+}
+.carousel-section .owl-carousel .owl-nav .owl-next,
+.carousel-section .owl-carousel .owl-nav .owl-prev {
+  width: 50px;
+  border: 1px solid #c3c3c3;
+  border-radius: 50%;
+  height: 50px;
+  font-size: 30px;
+}
+.carousel-section .owl-carousel .owl-nav .owl-next:focus,
+.carousel-section .owl-carousel .owl-nav .owl-prev:focus {
+  outline: 0;
+}
+.carousel-section h2 {
+  font-size: 34px;
+  text-align: left;
+  font-weight: 700;
+}
+.carousel-container {
+  max-width: 850px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  width: 100%;
+}
+.item {
+  margin: 20px 0;
+}
+.carousel-item__card {
+  box-shadow: 0 13px 31px #f0f0f0;
+  height: 230px;
+  border-radius: 12px;
+  margin: 30px 0 35px;
+  font-weight: 500;
+  border: 1px solid #f3f3f3;
+}
+.cbp-vm-image-new {
+	display: block;
+	margin: 0 auto;
+
+}
+.cbp-vm-image-new {
+	display: block;
+	margin: 0 auto;
+  height: 8vh;
+  margin-top: 1.4vh;
+}
+.cbp-vm-image-new img {
+	display: inline-block;
+	width: 70% !important;
+  border: none;
+  margin-left: 15%;
+}
+.cbp-vm-title-new{
+  font-size: 16px;
+  margin-top: 5vh;
+  width: 90%;
+  margin-left: 5%;
+}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n  %}
+{% load static  %}
+{% block content  %}
+<!---<div class="breadcrumbsWrapper">
+    <div class="container ">
+        <div class="breadcrumbsText">
+            Home <i class="fa fa-angle-right"></i> sklep
+        </div>
+    </div>
+</div>
+---->
+<div class="container-fluid">
+    <div class="containerProducts">
+        <div class="grid-container-product">
+            <div class="leftColProduct">
+                <div class="categoryListProduct">
+                    <div class="categoryTitleProduct disableBorder">
+                        {% trans "Kategorie" %} 
+                    </div>
+                    <ul class="ulListProduct">
+                        {% for x in categoryList  %}
+                        <li class="liListProduct disableBorder">
+                            <span>
+                                <a class="listProductLink" href="{% url 'category' category=x.category  %}"> <i class="fa fa-angle-right"></i>
+                                 
+                                {{ x.category }}
+                            
+                                
+                                </a>
+                            </span>
+                        </li>
+                        {% endfor  %}
+                      
+        
+                       
+                    </ul>
+                </div>
+                <div class="tagsWrapper">
+                    <div class="categoryTagProduct ">
+                        {% trans "Tagi produktów" %} 
+                    </div>
+                    <div class="tagContainer">
+                    {% for mt in tags %}
+                        <a href="{% url 'tag' slug=mt %}" class="tagsList">{{mt}}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="rightColProduct">
+                <div class="container-fluid">
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <div class="shopTextTile">
+                                {% trans "Polecane" %} 
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="resultsTextTile">
+                                {% trans "Wyświetlanie" %} 1–24 z 56 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'productList.html'  %}
+            </div>
+          </div>
+    </div>
+
+</div>
+<script src="{% static 'js/cbpViewModeSwitch.js' %}"></script>
+{% include 'newsletter.html'  %}
+
+{% endblock  %}
