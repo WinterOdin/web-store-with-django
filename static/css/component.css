@@ -110,20 +110,32 @@ body{
 	color: #c0c0c0;
 }
 
-a.cbp-vm-add {
+a.cbp-vm-add,a.cbp-vm-block {
 	font-size: 20px;
 	border: 1px solid rgb(81, 196, 36);
-	width: 40px;
-	height: 40px;
+	width: 45px;
+	height: 45px;
 	margin-left: 10%;
 	border-radius: 50%;
 	color:rgb(81, 196, 36) !important;
 	padding: 5px 8px;
-	line-height: 40px;
+	-webkit-transition: background-color 0.4s ease-out;
+	-moz-transition: background-color 0.4s ease-out;
+	-o-transition: background-color 0.4s ease-out;
+	transition: background-color 0.4s ease-out;
 	visibility: hidden;
 	
 }
-.qaz:hover .cbp-vm-add{
+a.cbp-vm-block{
+
+	border: 1px solid rgb(128, 128, 128);
+
+	color:rgb(71, 71, 71) !important;
+
+	cursor: not-allowed;	
+}
+
+.qaz:hover .cbp-vm-add,.qaz:hover .cbp-vm-block{
 	visibility: visible;
 }
 
@@ -174,7 +186,7 @@ a:hover .cbp-vm-add{
 	text-align: left;
 	padding:15px 20px;
 	font-family: 'Montserrat', sans-serif;
-	height: 10vh;
+	height: 7vh;
 	font-weight: 400;
 }
 

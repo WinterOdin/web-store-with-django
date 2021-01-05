@@ -6,13 +6,12 @@
     font-size: 13px;
     color: white;
 }
-.helpBox1:hover .iconContent1{
-    background-color: red;
+
+
+.formNavbar.red {
+     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 8px 0px;
+     transition: 300ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
-
-
-
-
 
 
 .logoutNav{
@@ -29,29 +28,36 @@
     
 }
 .categoryPCHover:hover{
-    background-color:rgb(240, 240, 240);
+    background-color: rgb(242, 242, 242);
+    transition:  200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 .categoryRootMobile,.grid-container-mobile{
     display: none;
 }
 .langSelect{
-    padding: 15px 20px;
-    border: 0;
+    padding: 15px 40px;
+    border: none;
     font-size: 17px;
     width: 100%;
     margin-top: 0vh;
-    background: rgb(245, 245, 245);
+    background: rgb(250, 250, 250);
     text-transform: capitalize;
-    text-align: center;
+    text-align: right;
     font-family: 'Montserrat';
     
 }
 .langSelect:focus {
     outline: none;
 }
+.langSelect >.selectLangPc{
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
 
 
+}
 
 .topBarWrapper{
     width: 70%;
@@ -203,7 +209,7 @@ a.logoTextPc:hover{
     text-align: center;
     padding: 0 7px 0 7px;
 }
-.iconContent1:hover,.iconContent2:hover,.iconContent3:hover{
+.iconContent2:hover,.iconContent3:hover{
     border-top: none;
     border-radius: 8px 8px 0px 0px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
@@ -212,6 +218,17 @@ a.logoTextPc:hover{
     -webkit-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
     box-shadow: 5px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    
+}
+.iconContent1:hover{
+    border-top: none;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    z-index: 11;
+    -webkit-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 2px 1px, rgba(0, 0, 0, 0.06) 0px 4px 8px 0px;
+    transition: 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
     
 }
 .helpBox1,.helpBox2,.helpBox3{
@@ -299,7 +316,7 @@ a:hover.linkHelpBox{
     border-radius:20px;
     min-width: 100%;
     text-align: center;
-    padding: 3px 0 3px 0;
+    padding: 6px 0px ;
 }
 .loginButtonHelpBox .linkCreateHelpBox{
     color: rgb(0, 130, 250);
@@ -335,9 +352,13 @@ a:hover.linkHelpBox{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top:3px ;
+    padding-top:4px ;
 }
 a.categoryPCLink{
+    color:black;
+}
+a.categoryPCLink:hover{
+    text-decoration: none;
     color:black;
 }
 .languageMobile{

@@ -37,9 +37,9 @@
         <div class="navBar">
             <div class="mainBar">
                 <div class="searchBar">
-                    <form role="search" method="POST" class="product-search" action="">
+                    <form role="search" method="POST" class="product-search formNavbar" action="" autocomplete="off">
                         {% csrf_token  %}
-                        <input type="search"  value="{{query}}" class="search-field" placeholder="{% trans 'Szukaj produktów…'  %}"  name="search_bar">
+                        <input type="search"  value="{{query}}" class="search-field navbarInput" placeholder="{% trans 'Szukaj produktów…'  %}"  name="search_bar">
                         <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
                         <input type="hidden" name="post_type" value="product">
       
@@ -49,7 +49,7 @@
                     <div class="cartWrapper">
                         <div class="iconWrapper1">
                             <div class="iconContent1">
-                                <a class="tileLink" href="">
+                                <a class="tileLink" href="{% url 'help'  %}">
                                     <div class="iconPic">
                                         <i class="fas fa-headset"></i>
                                     </div>
@@ -59,7 +59,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="helpBox1">
+                        <!--<div class="helpBox1">
                             <div class="tileListHelpTitle">{% trans "Popularne" %}</div>
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Dostawa" %}</a></li>
@@ -103,6 +103,7 @@
                                 </div>
                             </div>
                         </div>
+                        --->
                        <span class="lineHelpBox"></span>
                         <div class="iconWrapper2">
                             <div class="iconContent2">
@@ -203,9 +204,9 @@
                                     {% get_available_languages as LANGUAGES  %}
                                     {% get_language_info_list for LANGUAGES as LG  %}
                                     {% for x in LG  %}
-                                        <option value="{{ x.code  }}" 
+                                        <option class="selectLangPc" value="{{ x.code  }}" 
                                             {% if x.code == LANGUAGE_CODE  %} selected {% endif  %}>
-                                        {{ x.name_local  }}({{ x.code  }})
+                                        {{ x.name_local  }}
                                         </option>
                                     {% endfor  %}
                                 </select>
@@ -365,5 +366,23 @@ $("[class^='iconWrapper']").mouseover(function(e) {
 $("[class^='helpBox']").mouseleave(function() {
   $("[class^='helpBox']").hide();
 });
+</script>
+<script>
+    (function() {
+    var inputs = document.getElementsByClassName('navbarInput');
+    if( !(inputs && inputs.length) ) return;
+    function toggleRed(elem) {
+        elem.classList.toggle('red');
+    }
+    for(var i=0; i < inputs.length; i++) {
+        var input = inputs[i];
+        input.addEventListener('focus', function() {
+             toggleRed(this.parentElement);
+        });
+        input.addEventListener('blur', function() {
+             toggleRed(this.parentElement);
+        });
+    }
+})();
 </script>
 

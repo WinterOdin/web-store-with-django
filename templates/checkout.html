@@ -10,26 +10,62 @@
                     <div class="col-12">
                         <div class="recipientWrapper">
                             <div class="recipientTitle">
-                                {% trans "Dane odbiorcy"  %}
+                                {% trans "1. Dane odbiorcy"  %}
                             </div>
                             <div class="recipientAdressWrapper">
-                               <div class="recipientAdressName">
-                                {{ customer.first_name  }} {{customer.last_name}}
-                               </div> 
-                               <div class="recipientAdress">
-                                   {{ shipAdress.adress  }}  <br />
-                                   {{ shipAdress.zip_code  }}
-                                   {{ shipAdress.city  }}<br />
-                                   {{ shipAdress.country  }}<br />
-                                   {{ customer.email  }}
-                               </div>
+                                <div class="form-group">
+                                    {{ forms.recipient  }}
+                                </div>
+                                <div class="form-group">
+                                    {{ forms.adress  }}
+                                </div>
+                                <div class="form-group">
+                                    {{ forms.zip_code  }}
+                                </div>
+                                <div class="form-group">
+                                    {{ forms.city  }}
+                                </div>
+                                <div class="form-group">
+                                    {{ forms.country }}
+                                </div>
+                                <div class="form-group">
+                                    {{ forms.email }}
+                                </div> 
+                                <div class="form-group">
+                                    {{ forms.phone }}
+                                </div> 
+                                <div class="invoiceWrapper">
+                                    <div class="invoiceToggle">
+                                        <label class="checkbox path">
+                                            {{ forms.invoice }}
+                                            <svg viewBox="0 0 21 21">
+                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                            </svg>
+                                        </label>
+                                        <div class="invoiceTextToggle">
+                                            &nbsp; {% trans 'Chcę otrzymać fakturę'  %} 
+                                        </div>
+                                    </div>
+                                    <div class="invoiceFromWrapper">
+                                        <div class="form-group">
+                                            {{ forms.invoiceRecipient }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ forms.invoiceAdress }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ forms.invoiceZip }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ forms.invoiceCity }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ forms.invoiceNip }}
+                                        </div>
+                                    </div>
+                                </div>   
                             </div>
-                            <div class="recipientAdressWrapper">
-                                <a href="#" class="recipientInfoLink">
-                                    {% trans "Zmień adres "  %}
-                                </a>
-                    
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -37,7 +73,7 @@
                     <div class="col-12">
                         <div class="recipientWrapper">
                             <div class="recipientTitle sumUpCheckout">
-                                {% trans "Sposób dostawy"  %}
+                                {% trans "2. Sposób dostawy"  %}
                             </div>
                             <div class="courierInfo">
                                        
@@ -57,7 +93,10 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    15,99 zł
+                                    <div class="priceDelivery">
+                                        15,99 zł
+                                    </div>
+                                   
                                 </div>
                             </div>
                             <div class="row no-gutters">
@@ -75,7 +114,9 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <div class="priceDelivery">
                                     25,99 zł
+                                    </div>
                                 </div>
                             </div>
                             <div class="row no-gutters">
@@ -93,7 +134,9 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <div class="priceDelivery">
                                     0 zł
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +147,7 @@
                     <div class="col-12">
                         <div class="recipientWrapper">
                             <div class="recipientTitle sumUpCheckout">
-                                {% trans "Twoje podsumowanie"  %}
+                                {% trans "3. Twoje podsumowanie"  %}
                             </div>
                             <div class="productWrappersCheckout">
                                 {% for x in items  %}
@@ -149,7 +192,7 @@
                     <div class="col-12">
                         <div class="recipientWrapper recipientSumWrapper">
                             <div class="recipientTitle ">
-                                {% trans "Podsumowanie zakupów"  %}
+                                {% trans "4. Podsumowanie zakupów"  %}
                             </div>
                             <div class="sumUpContainer">
                                 <div class="row">
@@ -199,9 +242,13 @@
                                     <a href="" class="btn btn-sm animated-button thar-three">{% trans "Zakończ i zapłać" %}</a>
                                 </div>
                             </div>
+                            <div class="informationAboutCheckout">
+                                {% trans 'Dodanie produktów do koszyka nie oznacza ich rezerwacji'  %}
+                            </div>
                         </div>
                     </div>
                 </div>
+               
             </div>
         </div>
     </div>
@@ -218,9 +265,30 @@
    var value2 = $("#totalPriceDelivery").text();
    var value3 = parseFloat(value1) + parseFloat(value2)
    $('#totalPriceAll').text(value3);
+   
 });
-
+</script>
+<script>
+    var form_fields = document.getElementsByClassName('shippForm')
+    form_fields[0].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
+    form_fields[1].placeholder='{% trans "Ulica numer budynku oraz domu"  %}';
+    form_fields[2].placeholder='{% trans "Kod pocztowy"  %}';
+    form_fields[3].placeholder='{% trans "Miasto"  %}';
+    form_fields[4].placeholder='{% trans "Kraj"  %}';
+    form_fields[5].placeholder='{% trans "Adres email"  %}';
+    form_fields[6].placeholder='{% trans "Numer telefonu"  %}';
+    form_fields[7].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
+    form_fields[8].placeholder='{% trans "Ulica numer budynku oraz domu"  %}';
+    form_fields[9].placeholder='{% trans "Kod pocztowy"  %}';
+    form_fields[10].placeholder='{% trans "Miasto"  %}';
+    form_fields[11].placeholder='{% trans "Numer telefonu"  %}';
 
 </script>
-
+<script>
+$('.checkboxInvoice').change(function () {
+    if ($(this).prop("checked")) 
+    {$('.invoiceFromWrapper').fadeIn("slow");return;}
+   $('.invoiceFromWrapper').fadeOut("slow");
+});
+</script>
 {% endblock  %}

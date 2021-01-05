@@ -13,7 +13,7 @@
             </div>
 			<div class="smallDetailInfoWrapper">
 				<div class="smallInfoContent">
-                    {% trans "Producent" %}: {{ product.title  }} &nbsp;
+                    {% trans "Producent" %}: {{ product.producent  }} &nbsp;
                 </div>
 				<div class="smallInfoContent">
                     Dostępność: 
@@ -34,21 +34,47 @@
 				<div class="properPriceBox">
                     {{ product.pricePromo }} zł
                 </div>
+				{% if product.stock == 0  %}
 				<div class="buttonsDetailWrapper">
-						<select class="quantityDetailSelect" >
-							{% for x in product.stock  %}
-							<option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-							{% endfor  %}
-						</select>
-						<button data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
-							<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
-						</button>
-					
+					<button  class="buttonDetail buttonDetailBlock ">
+						<i class="fas fa-cart-plus" ></i> {% trans "Produkt niedostępny"  %}
+					</button>
 				</div>
+				<div class="inaccessibleWrapper">
+					<div class="inaccBox">
+						<div class="inaccIcon">
+							
+						</div>
+						<div class="inaccText">
+								
+						</div>
+					</div>
+				</div>
+				{% else  %}
+				<div class="buttonsDetailWrapper">
+					<button data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
+						<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
+					</button>
+				</div>
+				<div class="inaccessibleWrapper">
+					<div class="inaccBox">
+						<div class="inaccIcon">
+							
+						</div>
+						<div class="inaccText">
+								
+						</div>
+					</div>
+				</div>
+				{% endif  %}
+
+
 			</div>
 		</div>
 	</div>
 </div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-12">

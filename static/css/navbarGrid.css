@@ -57,7 +57,7 @@
     width: 100%;
     height: 100%;
     grid-area: bottomBar;
-    background: rgb(245, 245, 245);
+    background: rgb(250, 250, 250);
     box-shadow: rgba(0, 0, 0, 0.64) 0px 2px 8px -5px;
  }
  .grid-container-mobile{

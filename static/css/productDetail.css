@@ -1,5 +1,5 @@
 .titleDesktopDetail{
-    margin-top:4vh;
+    margin-top:8vh;
     font-family: 'Montserrat', sans-serif;
     font-size:25px;
     font-weight: 500;
@@ -27,8 +27,8 @@
     width: 70%;
     margin-left: 10%;
     border-radius:15px;
-    height: 15vh;
-    box-shadow: rgba(0, 0, 0, 0.027) 0px 0px 2px 1px, rgba(0, 0, 0, 0.021) 0px 4px 8px 0px;
+    
+    box-shadow: rgba(0, 0, 0, 0.090) 0px 0px 2px 1px, rgba(0, 0, 0, 0.091) 0px 4px 8px 0px;
 }
 
 .properPriceBox,.discountBox{
@@ -66,7 +66,7 @@
 .buttonDetail{
     white-space: nowrap;
     width: 70%;
-    margin-left: 10%;
+    margin-left: 15%;
     height: 40px;
     font-size: 15px;
     padding: 0px 8px;
@@ -75,13 +75,44 @@
     color: rgb(255, 255, 255);
     border-radius: 15px;
 }
+.buttonDetailBlock{
+    background: rgb(87, 87, 87);
+    border:rgb(87, 87, 87);
+    color: rgb(255, 255, 255);
+}
 .descriptionDetailWrapper{
     width: 100%;
     border-top: 1px solid rgb(228, 228, 228);
-
     margin-top: 5vh;
     font-family: 'Montserrat';
 }
+
+
+
+.inaccessibleWrapper{
+    width: 100%;
+
+    padding-bottom: 5%;
+    
+}
+.inaccBox{
+    width: 100%;
+    
+}
+.inaccIcon,.inaccText{
+    float: left;
+    
+}
+.inaccIcon{
+
+}
+.inaccText{
+   
+}
+button:focus{
+    outline: none;
+}
+
 .descriptionTitle{
     font-size: 25px;
     font-weight: 500;
@@ -96,8 +127,6 @@
     font-weight: 400;
     width: 70%;
 }
-
-
 
 
 

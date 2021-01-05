@@ -1,10 +1,31 @@
 
 
 .leftCheckoutWrapper{
-    width: 70%;
-    margin-left: 30%;
- 
+    width: 60%;
+    margin-left: 40%;
+}
+.shippForm {
+    width: 90%;
+    border-radius: 20px;
+    padding: .335rem 1.3rem;
+    height: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    margin-bottom: 8px;
+}
+.shippForm::placeholder{
+	font-size: 14px;
+}
+.invoiceToggle{
+	font-size: 15px;
+}
+.invoiceTextToggle{
+	display: inline;
+	height: 5vh;
+	vertical-align: top;
+}
 
+.recipientAdressWrapper{
+	margin-top: 3vh;
 }
 .recipientWrapper{
     font-family: 'Montserrat', sans-serif;
@@ -14,6 +35,13 @@
     padding:20px 25px;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+}
+
+ .invoiceFromWrapper {
+    display:none;
+}
+.priceDelivery{
+	text-align: center;
 }
 
 .recipientSumWrapper{
@@ -92,13 +120,13 @@ a.recipientInfoLink{
 }
 .totalValueTitleCheckout{
 	width: 50%;
-	font-size: 18px;
+	font-size: 17px;
 	text-align:right;
 	float: left;
 }
 .totalValuePriceCheckout{
 	width: 39%;
-	font-size: 22px;
+	font-size: 20px;
 	float: left;
 	text-align:right;
 }
@@ -107,8 +135,17 @@ a.recipientInfoLink{
 	font-size: 18px;
 	text-align:center;
 	float: left;
-	padding-top: 0.5vh;
+	padding-top: 0.3vh;
 }
+.informationAboutCheckout{
+	width: 80%;
+	font-size: 12px;
+	color:rgb(145, 145, 145);
+	margin-left: 10%;
+	text-align: center;
+	margin-top: 3vh;
+}
+
 @media (max-width:1300px){
 
     .leftCheckoutWrapper{
@@ -148,27 +185,7 @@ a.recipientInfoLink{
 
 
 
-a.animated-button:link, a.animated-button:visited {
-    position: relative;
-    font-family: 'Montserrat', sans-serif;
-	display: block;
-	margin: 30px auto 0;
-	padding: 14px 15px;
-	color: #fff;
-	font-size:14px;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	overflow: hidden;
-	letter-spacing: .08em;
-	border-radius: 0;
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
-}
+
 a.animated-button:link:after, a.animated-button:visited:after {
 	content: "";
 	position: absolute;
@@ -195,7 +212,7 @@ a.animated-button:link, a.animated-button:visited {
 	margin: 0px auto 0;
 	padding: 14px 15px;
 	color: #fff;
-	font-size:14px;
+	font-size:12px;
 	border-radius: 0;
 	font-weight: bold;
 	text-align: center;

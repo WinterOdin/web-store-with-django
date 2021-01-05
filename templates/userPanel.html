@@ -3,7 +3,7 @@
     <div class="titleUserInfo">
         {% trans "Zmień ustawiania konta"  %}
     </div>
-    <form method="POST" class="formUserPanel" >
+    <form method="POST" action="{% url 'user'  %}"class="formUserPanel" >
         {% csrf_token  %}
         <div class="container">
             <div class="row">
@@ -38,7 +38,7 @@
                         {% trans "Adres"  %} :
                     </div>
                     <div class="form-group">
-                        {{ forms.adres  }}
+                        {{ forms.adress  }}
                     </div>
                 </div>
             </div>
@@ -77,5 +77,5 @@
             
         </div>
     </form>
-
+   
 </div>

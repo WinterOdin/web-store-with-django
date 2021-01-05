@@ -15,7 +15,10 @@
 
 #custCarousel .carousel-indicators>li {
     width: 100%;
-    height: auto;
+	height: auto;
+	padding: 9px;
+	border-radius: 14px;
+	border:1px solid rgb(221, 221, 221);
     
 }
 

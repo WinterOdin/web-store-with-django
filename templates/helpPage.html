@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content  %}
+{% load i18n  %}
+
+<div class="grid-container-order">
+    <div class="leftOrderCol">
+        <div class="listOrderWrapper">
+            <div class="listOrderNavPC">
+                <div class="userWelcomeOrderPC">
+                    {% trans "Witaj" %},
+                    <div class="userNamePC">
+                        Marcel
+                    </div>
+                </div>
+                {% for x in category  %}
+                <a href="" class="linkOrderPC">
+                    <span class="iconOrderPC"><i class="{{x.categoryIcon}}"></i> </span>
+                    <span class="textOrderPC">{{ x.category  }}</span>
+                </a>
+                {% endfor  %}
+                <div class="lineOrderPC">
+                    
+                </div>
+            </div>
+            <div class="listOrderNavMobile">
+                <div class="userWelcomeOrderMobile">
+                    {% trans "Witaj" %},
+                    <div class="userNameMobile">
+                        Marcel
+                    </div>
+                </div>
+                <div class="categoryRootMobileOrder">
+                    <div  class="categoryMobile">
+                        <div   class="full hide-scroll">
+                        <ul class="hs hsOrder" >
+                            <li class="itemCategoryMobile">
+                            <a href="" class="linkCategoryMobile">
+                                <i class="fas fa-cubes iconCategoryMobile"></i>
+                                <div class="textCategoryMobile">
+                                    {% trans "Zamówienia"  %}
+                                </div>
+                            </a>
+                            </li>
+                            <li class="itemCategoryMobile">
+                                <a href="" class="linkCategoryMobile">
+                                    <i class="fas fa-undo-alt iconCategoryMobile"></i>
+                                    <div class="textCategoryMobile">
+                                        {% trans "Zwroty"  %}
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="itemCategoryMobile">
+                                <a href="" class="linkCategoryMobile">
+                                    <i class="fas fa-users-cog iconCategoryMobile"></i> 
+                                    <div class="textCategoryMobile">
+                                        {% trans "Ustawienia"  %}
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightOrderCol">
+        <div class="container-fluid">
+            {% for x in categoryInfo  %}
+                <div class="categoryInfoWrapper" id="{{ x.category  }}">
+                    {{ x.category  }}
+                </div>
+            {% endfor  %}
+        </div>
+    </div>
+</div>
+<script>
+    $( ".categoryRootMobile" ).hide();
+</script>
+
+
+{% include 'newsletter.html'  %}
+{% endblock  %}

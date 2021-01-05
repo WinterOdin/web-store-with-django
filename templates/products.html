@@ -70,13 +70,17 @@
                 </div>
                 
                 {% include 'productList.html'  %}
-                {% include 'recentlyViewed.html' %}
+             
             </div>
           </div>
     </div>
 
 </div>
 <script src="{% static 'js/cbpViewModeSwitch.js' %}"></script>
+<div class="container">
+    {% include 'recentlyViewed.html' %}
+</div>
+
 {% include 'newsletter.html'  %}
 
 {% endblock  %}
