@@ -1,0 +1,19 @@
+{% load i18n  %}
+<section class="carousel-section">
+    <div class="carousel-container">
+        <div class="shopTextTile">
+            {% trans "Najnowsze produkty" %} 
+        </div>
+      <div class="owl-carousel owl-theme">
+        {% for x in newest  %}  
+        <div class="item">
+          <div class="carousel-item__card">
+            <a class="cbp-vm-image-new" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
+            <div class="cbp-vm-title-new">{{ x.title  }}</div>
+          </div>
+        </div>
+        {% endfor  %}
+     
+      </div>
+    </div>
+</section>

@@ -2,7 +2,7 @@
 {% load static  %}
 {% block content %}
 {% load i18n  %}
-
+{% if items  %}
 <div class="grid-container-cart">
     <div class="leftColCart">
         <div class="lefColCartPosition pcCart">
@@ -88,6 +88,7 @@
                     <div class="col-2">
                         <div class="colTotalCart">
                             {{ x.get_total  }} {% trans 'zł' %}
+                            
                         </div>
                     </div>
                     <div class="col-2">
@@ -105,13 +106,7 @@
                     </div>
                     <div class="bottomLineCart"></div>
                 </div>
-                {% empty  %}
-                <div class="emptyCartWrapper">
-                    <div class="emptyCartContent">
-                        <div class="emptyCartText"> {%trans "Twój koszyk jest pusty"  %} </div> 
-                        <a href="#" class="cartEmptyBtn">{% trans "Przejdź do strony głównej"  %}</a>
-                    </div>
-                </div>
+              
                 {% endfor  %}
                 
             </div>
@@ -139,6 +134,7 @@
                         </div>
                         <div class="priceTotalCart">
                                 {{orders.get_cart_total}} {% trans "zł"  %}
+                                
                         </div>
                     </div>
                 </div>
@@ -217,7 +213,18 @@
         </div>
     </div>
 </div>
-
+{% else  %}
+<div class="emptyCartWrapper">
+    <div class="emptyCartContent">
+        <div class="emptyCartText"> {%trans "Twój koszyk jest pusty"  %} </div> 
+        <a href="{% url 'home'  %}" class="cartEmptyBtn">{% trans "Przejdź do strony głównej"  %}</a>
+    </div>
+    
+</div>
+<div class="container">
+    {% include 'recentlyAdded.html' %}
+</div>
+{% endif  %}
 
 
 {% endblock  %}

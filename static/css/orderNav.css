@@ -1,6 +1,23 @@
 .listOrderNavMobile{
     display: none;
 }
+.categoryInfoWrapper 
+{ font-family: 'Montserrat', sans-serif;
+    display: none; }
+
+.categoryTitleHelp{
+    font-size: 25px;
+    height: 5vh;
+    font-weight: 500;
+    display: flex;           /* establish flex container */
+   
+    align-items: center; 
+}
+
+.descriptionHelpBox{
+    margin-top: 3vh;
+}
+
 .lineOrderPC{
     width: 90%;
     margin-left: 5%;

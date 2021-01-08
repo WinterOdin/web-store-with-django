@@ -66,9 +66,21 @@
     </div>
     <div class="rightOrderCol">
         <div class="container-fluid">
+            
             {% for x in categoryInfo  %}
                 <div class="categoryInfoWrapper" id="{{ x.category  }}">
-                    {{ x.category  }}
+                        {% if x.helpTitle is None  %}
+                        
+                        {% else  %}
+                        <div class="categoryTitleHelp">
+                        {{ x.helpTitle }}
+                        </div>
+                        {% endif  %}
+                    
+                    <div class="descriptionHelpBox">
+                        {{ x.description|safe  }}
+                    </div>
+                    
                 </div>
             {% endfor  %}
         </div>
@@ -76,6 +88,12 @@
 </div>
 <script>
     $( ".categoryRootMobile" ).hide();
+    
+    $(".listOrderNavPC a").on("click",function(e) {
+    e.preventDefault()
+    $(".categoryInfoWrapper").hide();
+    $("#"+$(this).find(".textOrderPC").text()).fadeIn(500);;
+})
 </script>
 
 
