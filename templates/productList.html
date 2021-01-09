@@ -1,4 +1,5 @@
 {% load static  %}
+{% load i18n  %}
 		<div class="container">
 
 			<div class="main">
@@ -7,12 +8,18 @@
 						<a href="#" class="cbp-vm-icon cbp-vm-selected" data-view="cbp-vm-view-grid"><i class="fas fa-th"></i></a>
 						<a href="#" class="cbp-vm-icon " data-view="cbp-vm-view-list"><i class="fas fa-th-list"></i></a>
 						{% if query  %}
-				
+						<div class="widthPrceChanger">
+							<select class="priceSelect" name="priceChanger" id="priceChanger">
+								<option value="random">{% trans "Sortuj: Standardowo"  %}</option>
+								<option  value="sortPriceHighLow">{% trans "Sortuj: cena malejąco"  %}</option>
+								<option  value="sortPriceLowHigh">{% trans "Sortuj: cena rosnąco"  %}</option>
+							</select>
+						</div>
 						{% else  %}
 						
 						{% endif  %}
 					</div>
-					<ul >
+					<ul class="listWrapper">
 						{% for x in productsInfo  %}
 						<li data-position="{{x.priceNormal|floatformat:'-3'}}">
 							<div class="qaz">
@@ -42,4 +49,34 @@
 				</div>
 			</div><!-- /main -->
 		</div><!-- /container -->
+<script>
+$(document).ready(function() {
+
+$('#priceChanger').on('change', function() {
+
+  let sortCallback;
+
+  // Determine the sort callback to use based on $(this) value
+  switch ($(this).val()) {
+  
+	case "sortPriceHighLow":
+	  sortCallback = (a, b) => $(b).data("position") - $(a).data("position")
+	  break;
+
+	case "sortPriceLowHigh":
+	  sortCallback = (a, b) => $(a).data("position") - $(b).data("position")
+	  break;
+
+	case "random":
+	  sortCallback = (a, b) => $(a).data("position") - Math.random() * $('.listWrapper li').length
+	  break;
+  }
+
+  // Apply the selected "sort callback"
+  $(".listWrapper").html($(".listWrapper li").sort(sortCallback))
+
+});
+});
+
+</script>
 

@@ -19,7 +19,12 @@
                     Dostępność: 
                     
 					<span class="colorTest">
+						{% if product.stock == 0  %}
+						<span style="color: rgb(238, 110, 110);">{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
+						{% else %}
 						{{ product.stock }} {% trans "sztuk w magazyie" %}
+						{% endif  %}
+						
                     </span>
 				</div>
 			</div>

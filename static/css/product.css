@@ -110,6 +110,18 @@ a.tagsList:hover{
         margin-left: 0%;
     }
 }
+
+@media (max-width:450px){
+    .shopTextTile{
+        font-size: 16px;    
+    }
+    .resultsTextTile {
+
+        margin-top: 0vh;
+    }
+
+}
+
 @media (max-width:330px){
     .shopTextTile {
         font-size: 23px;

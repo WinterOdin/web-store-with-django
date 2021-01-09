@@ -2,6 +2,10 @@ body{
 	margin:0px;
 	padding: 0px;
 }
+select {
+	outline: none;
+}
+
 
 .containerProducts{
 	width: 60%;
@@ -282,6 +286,26 @@ a:hover .cbp-vm-add{
 	top:33%
 }
 
+
+@media screen and (max-width: 1500px) {
+	.cbp-vm-image {
+		height: 17vh;
+	}
+}
+@media screen and (max-width: 1450px) {
+	.cbp-vm-title-new {
+		margin-top: 8vh !important;
+	}
+	.cbp-vm-view-grid .cbp-vm-title {
+		margin-top: 1.5vh;
+	}
+}
+@media screen and (max-width: 1300px) {
+	.cbp-vm-title-new {
+		margin-top: 7vh !important;
+	}
+} 
+
 @media screen and (max-width: 1065px) {
 	.cbp-vm-view-list .cbp-vm-details  {
 		width: 30%;
@@ -385,6 +409,19 @@ a:hover .cbp-vm-add{
 	}
 }
 @media screen and (max-width: 420px) {
+	.cbp-vm-view-grid .cbp-vm-title {
+		margin-top: 4vh;
+	}
+	.cbp-vm-price-promo {
+		height: 6vh;
+		padding-top: 1vh;
+	}
+	.cbp-vm-view-grid .cbp-vm-price {
+		margin-top: 1vh;
+	}
+	.cbp-vm-title-new {
+		margin-top: 11vh !important;
+	}
 	.cbp-vm-view-grid .cbp-vm-image {
 		width: 100%;
 	
@@ -399,7 +436,7 @@ a:hover .cbp-vm-add{
 	.cbp-vm-view-list .cbp-vm-details {
 		display: block;
 		width: 100%;
-		margin: 10px 0 20px;
+		
 	}
 	.cbp-vm-options {
 		height: 7vh;
@@ -409,9 +446,22 @@ a:hover .cbp-vm-add{
 		font-size: 13px;
 		margin-left:10px;
 		left: 0;
-		top:61%
-		
+		top:61%	
 	}
+	.cbp-vm-view-list .cbp-vm-title {
+		margin-top: 8vh;
+	}
+	.cbp-vm-view-list .cbp-vm-add {
+		width: 45px;
+		height: 45px;
+		line-height: 33px;
+		margin-left: 10%;
+		padding: 5px 8px;
+		border-radius: 50%;
+		margin-left: 80%;
+	}
+
+
 }
 
 
@@ -420,6 +470,14 @@ a:hover .cbp-vm-add{
 		top:60%	
 	}
 }
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+		.cbp-vm-title-new {
+			margin-top: 8vh !important;
+		}
+	}
 
 @media screen and (max-width: 330px) {
 	.cbp-vm-view-grid ul li {

@@ -12,7 +12,11 @@
     font-family: 'Montserrat', sans-serif;
     color: rgb(92, 92, 92);
     font-size: 17px;
-
+}
+.widthPrceChanger{
+    text-transform: none;
+    width: 25%;
+    margin-left: 2%;
 }
 .smallInfoContent{
     text-align: left;
@@ -131,7 +135,11 @@ button:focus{
 
 
 @media (max-width:550px){
-
+    .widthPrceChanger{
+        text-transform: none;
+        width: 70%;
+        margin-left: 0%;
+    }
     .buttonsDetailWrapper{
         width: 90%;
         margin-left: 5%;

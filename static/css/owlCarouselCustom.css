@@ -72,3 +72,8 @@
 .owl-nav{
   display: none;
 }
+@media screen and (max-width: 420px) {
+	.cbp-vm-image-new {
+    margin-top: 0vh;
+  }
+}

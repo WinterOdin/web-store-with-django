@@ -245,10 +245,14 @@
             <div class="searchBarMobile">
                 <form role="search" method="POST" class="product-search" action="">
                     {% csrf_token  %}
-                    <input type="search"  class="search-field" placeholder="Search Products…" value="{{query}}">
+                    <input type="search"  class="search-field" value="{{query}}" placeholder="{% trans 'Szukaj produktów…'  %}" name="search_bar">
                     <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
                     <input type="hidden" name="post_type" value="product">
                 </form>
+
+                
+
+
             </div>
           </div>
           <div class="logoWrapper">
