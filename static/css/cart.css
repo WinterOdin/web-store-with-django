@@ -47,9 +47,12 @@
 
 }
 .imgCart{
-    max-width: 80%;
-   
+  
+    max-width: 70%;
+    margin-left: 15%;
 }
+   
+
 .colPriceCart{
     font-weight: 700;
     letter-spacing: 1px;
@@ -321,6 +324,16 @@ color: rgb(0, 0, 0);
     font-size: 18px;
 }
 
+.emptyQuery{
+    margin-top: 4vh; 
+    margin-bottom: 4vh;
+}
+
+.deleteBtnCart:hover {
+    color:rgb(221, 120, 120);
+}
+
+
 
   @media (max-width:1400px){
     .lefColCartPosition{
@@ -430,5 +443,11 @@ color: rgb(0, 0, 0);
     }
     .btnSubmitCart{
         left: 15%;
+    }
+  }
+  @media (max-width:510px){
+    .emptyCartWrapper{
+        margin-top: 4vh;
+        margin-bottom: 6vh;
     }
   }

@@ -19,6 +19,7 @@
 						
 						{% endif  %}
 					</div>
+					
 					<ul class="listWrapper">
 						{% for x in productsInfo  %}
 						<li data-position="{{x.priceNormal|floatformat:'-3'}}">
@@ -44,6 +45,16 @@
 									
 							</div>
 						</li>
+						{% empty  %}
+						
+							<div class="emptyCartWrapper emptyQuery">
+								<div class="emptyCartContent">
+									<div class="emptyCartText emptyQueryTitle"> Przepraszamy, nie znaleźliśmy wyników dla frazy: <br /><span class="emptyQueryText">{{ query  }}</span></div> 
+									<a href="/" class="cartEmptyBtn">Przejdź do strony głównej</a>
+								</div>
+							</div>
+							
+						
 						{% endfor  %}
 					</ul>
 				</div>

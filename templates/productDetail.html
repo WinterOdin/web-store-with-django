@@ -13,20 +13,27 @@
             </div>
 			<div class="smallDetailInfoWrapper">
 				<div class="smallInfoContent">
-                    {% trans "Producent" %}: {{ product.producent  }} &nbsp;
-                </div>
-				<div class="smallInfoContent">
                     Dostępność: 
                     
 					<span class="colorTest">
 						{% if product.stock == 0  %}
-						<span style="color: rgb(238, 110, 110);">{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
+						<span style="color: rgb(238, 110, 110);">&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
 						{% else %}
-						{{ product.stock }} {% trans "sztuk w magazyie" %}
+						&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}
 						{% endif  %}
 						
                     </span>
 				</div>
+				<div class="smallInfoContent">
+                    {% trans "Kategoria" %}: &nbsp;{{ product.category  }} &nbsp;
+                </div>
+				<div class="smallInfoContent">
+                    {% trans "Producent" %}: &nbsp;{{ product.producent  }} &nbsp;
+                </div>
+				<div class="smallInfoContent">
+                    {% trans "ID" %}: &nbsp;{{ product.id  }} &nbsp;
+				</div>
+				
 			</div>
 			<div class="priceBoxDetail">
 				<div class="discountBox">
@@ -96,5 +103,7 @@
 </div>
 
 {% include 'newsletter.html'  %}
-
+<div class="container ">
+    {% include 'prices.html'  %}
+</div>
 {% endblock  %}

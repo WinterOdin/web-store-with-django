@@ -1,10 +1,12 @@
 .listOrderNavMobile{
     display: none;
 }
-.categoryInfoWrapper 
-{ font-family: 'Montserrat', sans-serif;
-    display: none; }
 
+
+.categoryInfoWrapper:not(:nth-child(4)) { 
+    display: none;
+    font-family: 'Montserrat', sans-serif;
+ }
 .categoryTitleHelp{
     font-size: 25px;
     height: 5vh;

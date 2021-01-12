@@ -83,6 +83,7 @@
     background: rgb(87, 87, 87);
     border:rgb(87, 87, 87);
     color: rgb(255, 255, 255);
+    cursor: not-allowed;
 }
 .descriptionDetailWrapper{
     width: 100%;

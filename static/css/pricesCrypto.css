@@ -1,0 +1,33 @@
+.cardWrapper{
+    padding:2vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px ;
+}
+.containerPriceWrapper{
+    margin-bottom: 5vh;
+    font-family: 'Montserrat', sans-serif;
+}
+.cryptoName{
+    text-align: center;
+    font-size: 22px;
+}
+.cryptoTitle{
+    text-align: center;
+    font-size: 19px;
+    font-weight: 300;
+    margin-top: 0.3vh;
+    margin-bottom: 0.5vh;
+}
+.cryptoPriceData{
+    font-size: 20px;
+    font-weight: 500;
+}
+.emptyQueryText{
+    font-weight: 400 !important;
+    color:rgb(150, 150, 150);
+}
+@media (max-width:510px){
+    .cardWrapper{
+        margin-bottom: 5vh;
+    }
+  }

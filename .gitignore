@@ -2,3 +2,5 @@
 /tiny
 /static/images/*
 /settings/settings.py
+/mainpage/migrations/*
+/user/migrations/*

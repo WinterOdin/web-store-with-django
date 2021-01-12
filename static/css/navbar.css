@@ -41,7 +41,7 @@
     font-size: 17px;
     width: 100%;
     margin-top: 0vh;
-    background: rgb(245, 245, 245);
+    background: rgb(250, 250, 250);
     text-transform: capitalize;
     text-align: right;
     font-family: 'Montserrat';
@@ -209,7 +209,7 @@ a.logoTextPc:hover{
     text-align: center;
     padding: 0 7px 0 7px;
 }
-.iconContent2:hover,.iconContent3:hover{
+.iconContent2:hover{
     border-top: none;
     border-radius: 8px 8px 0px 0px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
@@ -218,6 +218,10 @@ a.logoTextPc:hover{
     -webkit-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
     box-shadow: 5px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    
+}
+.iconContent3:hover{
+    
     
 }
 .iconContent1:hover{
@@ -322,9 +326,10 @@ a:hover.linkHelpBox{
     color: rgb(0, 130, 250);
     border: 1px solid rgb(0, 130, 250);
     background: rgb(255, 255, 255);
+    padding: 6px 0px;
 }
 .hrLogin{
-    margin: 22px 0px 21px;
+    margin: 15px 0px 15px;
     border-top: 1px solid rgb(221, 221, 221);
     position: relative;
 }
@@ -338,7 +343,7 @@ a:hover.linkHelpBox{
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0px 16px;
+    
     width: 130px;
 }
 .categoryPC{
@@ -543,6 +548,8 @@ a.categoryPCLink:hover{
         margin-left: 35%;
     }.langSelect {
         padding:7px 2px;
+        background: rgb(245, 245, 245);
+
     }
     
 }

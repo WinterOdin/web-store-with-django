@@ -91,7 +91,6 @@ a.tagsList:hover{
 }
 
 
-
 @media (max-width:1600px){
     .containerProducts{
         width: 90%;
@@ -119,7 +118,13 @@ a.tagsList:hover{
 
         margin-top: 0vh;
     }
-
+    .emptyQuery{
+       width: 100% !important;
+      margin-left: 0 !important;
+    }
+    .emptyQueryTitle{
+        font-size: 19px !important;
+    }
 }
 
 @media (max-width:330px){

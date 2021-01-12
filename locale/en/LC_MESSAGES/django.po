@@ -1,0 +1,230 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-14 17:56+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\authentication\views.py:15
+msgid "Hasło bądź email jest niepoprawne"
+msgstr "You have entered an invalid username or password"
+
+#: .\authentication\views.py:35
+msgid "Twoje konto zostało stworzone, zaloguj się"
+msgstr "Your account was created, log in"
+
+#: .\templates\footer.html:15
+msgid "Masz pytania? Zadzwon!"
+msgstr "Got question? Call us!"
+
+#: .\templates\footer.html:46 .\templates\navbar.html:90
+msgid "Sob. - Niedz."
+msgstr "Sat. - Sun."
+
+#: .\templates\footer.html:51 .\templates\navbar.html:95
+msgid "zamknięte"
+msgstr "closed"
+
+#: .\templates\footer.html:68
+msgid "Przydatne Informacje"
+msgstr "Informations"
+
+#: .\templates\footer.html:72
+msgid "Regulamin Sklepu Internetowego"
+msgstr "Terms & Conditions"
+
+#: .\templates\footer.html:73
+msgid "Polityka prywatności i cookies"
+msgstr "Privacy and cookies policy"
+
+#: .\templates\footer.html:74
+msgid "Płatność i wysyłka"
+msgstr "Payment and shipping"
+
+#: .\templates\footer.html:75
+msgid "Dochodowość"
+msgstr "Profit-earning capacity"
+
+#: .\templates\login.html:11 .\templates\login.html:23
+#: .\templates\register.html:44
+#, fuzzy
+#| msgid "Zaloguj sie"
+msgid "Zaloguj się"
+msgstr "Sign in"
+
+#: .\templates\login.html:29
+msgid "Nie pamiętasz hasła?"
+msgstr "Forgot password?"
+
+#: .\templates\login.html:30
+msgid "zmień hasło"
+msgstr "change password"
+
+#: .\templates\login.html:60 .\templates\register.html:76
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\login.html:61 .\templates\register.html:77
+msgid "Hasło"
+msgstr "Password"
+
+#: .\templates\navbar.html:12 .\templates\navbar.html:118
+msgid "Witaj"
+msgstr "Hello"
+
+#: .\templates\navbar.html:51
+msgid "Pomoc i kontakt"
+msgstr "Help"
+
+#: .\templates\navbar.html:57
+msgid "Popularne"
+msgstr "Popular"
+
+#: .\templates\navbar.html:59
+msgid "Dostawa"
+msgstr "Delivery"
+
+#: .\templates\navbar.html:60
+msgid "Gwarancja"
+msgstr "Warranty"
+
+#: .\templates\navbar.html:61
+msgid "Zwroty"
+msgstr "Refund"
+
+#: .\templates\navbar.html:62 .\templates\navbar.html:68
+msgid "Częste pytania"
+msgstr "FAQ"
+
+#: .\templates\navbar.html:64
+msgid "Skontaktuj się z nami"
+msgstr "Contact US"
+
+#: .\templates\navbar.html:66 .\templates\navbar.html:249
+msgid "Kontakt"
+msgstr "Contact US"
+
+#: .\templates\navbar.html:109 .\templates\navbar.html:259
+msgid "Twoje Konto"
+msgstr "Account"
+
+#: .\templates\navbar.html:115 .\templates\navbar.html:136
+msgid "Twoje konto"
+msgstr "Account"
+
+#: .\templates\navbar.html:122
+msgid "Zaloguj sie"
+msgstr "Sign in"
+
+#: .\templates\navbar.html:126
+msgid "Nie masz konta?"
+msgstr "Sign up"
+
+#: .\templates\navbar.html:129
+#, fuzzy
+#| msgid "Zaloguj sie"
+msgid "Zarejestruj sie"
+msgstr "Sign in"
+
+#: .\templates\navbar.html:137
+msgid "Zamówienia"
+msgstr "Orders"
+
+#: .\templates\navbar.html:138
+msgid "Ustawienia Konta"
+msgstr "Account Settings"
+
+#: .\templates\navbar.html:148 .\templates\navbar.html:269
+msgid "Koszyk"
+msgstr "Cart"
+
+#: .\templates\navbar.html:154
+msgid "Twój koszyk"
+msgstr "Your Cart"
+
+#: .\templates\navbar.html:174 .\templates\navbar.html:302
+#: .\templates\navbar.html:328
+msgid "Koparki GPU"
+msgstr "GPU Miners"
+
+#: .\templates\navbar.html:181 .\templates\navbar.html:312
+msgid "Serwery"
+msgstr "Servers"
+
+#: .\templates\navbar.html:204
+msgid "Akcesoria"
+msgstr "Accessories"
+
+#: .\templates\navbar.html:211 .\templates\navbar.html:336
+msgid "Usługi"
+msgstr "Services"
+
+#: .\templates\productDetail.html:15
+msgid "Producent"
+msgstr "Manufacturer"
+
+#: .\templates\productDetail.html:43
+msgid "Dodaj do koszyka"
+msgstr "Add to cart"
+
+#: .\templates\productDetail.html:57
+msgid "Opis"
+msgstr "About"
+
+#: .\templates\products.html:17
+msgid "Kategorie"
+msgstr "Categories"
+
+#: .\templates\products.html:46
+msgid "Polecane"
+msgstr "Recommended"
+
+#: .\templates\products.html:51
+msgid "Wyświetlanie"
+msgstr "Showing"
+
+#: .\templates\register.html:11 .\templates\register.html:34
+msgid "Załóż konto"
+msgstr "Create an account"
+
+#: .\templates\register.html:39
+msgid "Poptrzez stworzenie konta akceptujesz regulamin sklepu"
+msgstr ""
+"By creating an account you agree to our conditions of use and privacy policy"
+
+#: .\templates\register.html:43
+#, fuzzy
+#| msgid "Nie masz konta?"
+msgid "Masz konto?"
+msgstr "Sign up"
+
+#: .\templates\register.html:74
+msgid "Imię"
+msgstr "Name"
+
+#: .\templates\register.html:75
+msgid "Nazwisko"
+msgstr "Surname"
+
+#: .\templates\register.html:78
+msgid "Powtórz hasło"
+msgstr "Repeat password"
+
+#~ msgid "Wprowadziłeś błędne dane logowania"
+#~ msgstr "You have entered an invalid username or password"
+
+#~ msgid "wyników"
+#~ msgstr "results"

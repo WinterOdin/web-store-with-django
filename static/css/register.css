@@ -112,8 +112,11 @@ a.btnLinkToLogin {
     font-style: italic;
 }
 .spacerRegister{
-    margin-bottom: 10vh;
+    margin-bottom: 8vh;
     margin-top: 5vh;
+}
+.fillerTextRegisterReset{
+    margin-top: 8vh;
 }
 @media (max-width:960px){
     .fillerTextRegisterWrapper {
