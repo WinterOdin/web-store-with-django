@@ -11,7 +11,7 @@ from django.utils.translation import gettext as _
 
 
 
-def loginView(request):
+def loginView(request, *args, **kwargs):
     errorMsg = _("Hasło bądź email jest niepoprawne")
     if request.user.is_authenticated:
         return redirect('products')
@@ -31,7 +31,7 @@ def loginView(request):
     return render(request,'login.html', context )
 
 
-def registerView(request):
+def registerView(request, *args, **kwargs):
     succesMsg = _("Twoje konto zostało stworzone, zaloguj się")
     if request.user.is_authenticated:
         return redirect('products')

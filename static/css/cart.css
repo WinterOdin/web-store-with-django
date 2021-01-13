@@ -332,7 +332,13 @@ color: rgb(0, 0, 0);
 .deleteBtnCart:hover {
     color:rgb(221, 120, 120);
 }
-
+.emptyCartList{
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom:2%;
+}
 
 
   @media (max-width:1400px){

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -30,3 +30,10 @@ class createUserForm(UserCreationForm):
 
 class CustomPasswordResetForm(PasswordResetForm):
     email   = forms.EmailField(widget=forms.TextInput(attrs={'class':'registerForm','name':'email'}))
+
+class NewPasswordResetForm(SetPasswordForm):
+    error_messages = {
+        'password_mismatch': ('New Passwords and Confirm Passwords not matching'),
+    }
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'registerForm','name':'new_password1','id':'id_new_password1'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'registerForm','name':'new_password2','id':'id_new_password2'}))

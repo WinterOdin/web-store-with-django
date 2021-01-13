@@ -164,8 +164,14 @@
                             </div>
                         </div>
                         <div class="helpBox3">
+                            {% if items  %}
                             <div class="tileListHelpTitle">{% trans "Twój koszyk" %}</div>
-                            {% include 'cartPrev.html'  %}
+                                {% include 'cartPrev.html'  %}
+                            {% else  %}
+                            <div class="emptyCartList">
+                                Twój koszyk jest
+                            </div>
+                            {% endif  %}
                         </div>
                     </div>
                 </div>
