@@ -1,5 +1,6 @@
 
 
+
 .leftCheckoutWrapper{
     width: 60%;
     margin-left: 40%;
@@ -138,13 +139,14 @@ a.recipientInfoLink{
 	padding-top: 0.3vh;
 }
 .informationAboutCheckout{
-	width: 80%;
+	width: 100%;
 	font-size: 12px;
 	color:rgb(145, 145, 145);
-	margin-left: 10%;
 	text-align: center;
 	margin-top: 3vh;
 }
+
+
 
 @media (max-width:1300px){
 

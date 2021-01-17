@@ -2,165 +2,203 @@
 {% load static  %}
 {% block content %}
 {% load i18n  %}
-<div class="grid-container-checkout">
-    <div class="leftColCheckout">
-        <div class="leftCheckoutWrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recipientWrapper">
-                            <div class="recipientTitle">
-                                {% trans "1. Dane odbiorcy"  %}
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+ .StripeElement {
+	box-sizing: border-box;
+	height: 40px;
+	padding: 10px 12px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: white;
+    width: 100%;
+	box-shadow: 0 1px 3px 0 #e6ebf1;
+	-webkit-transition: box-shadow 150ms ease;
+	transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+	box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+	border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+	background-color: #fefde5 !important;
+  }
+
+</style>
+<form action="{% url 'processOrder'  %}" method="post" id="payment-form">
+    {% csrf_token  %}
+    <div class="grid-container-checkout">
+        <div class="leftColCheckout">
+            <div class="leftCheckoutWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="recipientWrapper">
+                                <div class="recipientTitle">
+                                    {% trans "1. Dane odbiorcy"  %}
+                                </div>
+                                <div class="recipientAdressWrapper">
+                                    <div class="form-group">
+                                        {{ forms.recipient  }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ forms.adress  }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ forms.zip_code  }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ forms.city  }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ forms.country }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ forms.email }}
+                                    </div> 
+                                    <div class="form-group">
+                                        {{ forms.phone }}
+                                    </div> 
+                                    <div class="invoiceWrapper">
+                                        <div class="invoiceToggle">
+                                            <label class="checkbox path">
+                                                {{ forms.invoice }}
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                            <div class="invoiceTextToggle">
+                                                &nbsp; {% trans 'Chcę otrzymać fakturę'  %} 
+                                            </div>
+                                        </div>
+                                        <div class="invoiceFromWrapper">
+                                            <div class="form-group">
+                                                {{ forms.invoiceRecipient }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ forms.invoiceAdress }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ forms.invoiceZip }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ forms.invoiceCity }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ forms.invoiceNip }}
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>
+
                             </div>
-                            <div class="recipientAdressWrapper">
-                                <div class="form-group">
-                                    {{ forms.recipient  }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="recipientWrapper">
+                                <div class="recipientTitle sumUpCheckout">
+                                    {% trans "2. Sposób dostawy"  %}
                                 </div>
-                                <div class="form-group">
-                                    {{ forms.adress  }}
+                                <div class="courierInfo">
+                                        
                                 </div>
-                                <div class="form-group">
-                                    {{ forms.zip_code  }}
-                                </div>
-                                <div class="form-group">
-                                    {{ forms.city  }}
-                                </div>
-                                <div class="form-group">
-                                    {{ forms.country }}
-                                </div>
-                                <div class="form-group">
-                                    {{ forms.email }}
-                                </div> 
-                                <div class="form-group">
-                                    {{ forms.phone }}
-                                </div> 
-                                <div class="invoiceWrapper">
-                                    <div class="invoiceToggle">
+                                <div class="row no-gutters">
+                                    <div class="col-1">
                                         <label class="checkbox path">
-                                            {{ forms.invoice }}
+                                            <input type="checkbox" value="15,99" name="price" class="priceChecbkox">
                                             <svg viewBox="0 0 21 21">
                                                 <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
                                             </svg>
                                         </label>
-                                        <div class="invoiceTextToggle">
-                                            &nbsp; {% trans 'Chcę otrzymać fakturę'  %} 
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="courierInfo">
+                                            Kurier DPD <i>za 8 - 9 Dni u ciebie</i>
                                         </div>
                                     </div>
-                                    <div class="invoiceFromWrapper">
-                                        <div class="form-group">
-                                            {{ forms.invoiceRecipient }}
+                                    <div class="col-4">
+                                        <div class="priceDelivery">
+                                            15,99 zł
                                         </div>
-                                        <div class="form-group">
-                                            {{ forms.invoiceAdress }}
-                                        </div>
-                                        <div class="form-group">
-                                            {{ forms.invoiceZip }}
-                                        </div>
-                                        <div class="form-group">
-                                            {{ forms.invoiceCity }}
-                                        </div>
-                                        <div class="form-group">
-                                            {{ forms.invoiceNip }}
+                                    
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-1">
+                                        <label class="checkbox path">
+                                            <input type="checkbox" value="25.99" name="price" class="priceChecbkox">
+                                            <svg viewBox="0 0 21 21">
+                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                            </svg>
+                                        </label>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="courierInfo">
+                                            Kurier Pocztex <i>za 4 - 7 Dni u ciebie</i>
                                         </div>
                                     </div>
-                                </div>   
+                                    <div class="col-4">
+                                        <div class="priceDelivery">
+                                        25,99 zł
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-1">
+                                        <label class="checkbox path">
+                                            <input type="checkbox" value="0" name="price" class="priceChecbkox">
+                                            <svg viewBox="0 0 21 21">
+                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                            </svg>
+                                        </label>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="courierInfo">
+                                            {% trans "Odbiór osobisty"   %}
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="priceDelivery">
+                                        0 zł
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recipientWrapper">
-                            <div class="recipientTitle sumUpCheckout">
-                                {% trans "2. Sposób dostawy"  %}
-                            </div>
-                            <div class="courierInfo">
-                                       
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col-1">
-                                    <label class="checkbox path">
-                                        <input type="checkbox" value="15,99" name="price" class="priceChecbkox">
-                                        <svg viewBox="0 0 21 21">
-                                            <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                        </svg>
-                                    </label>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="recipientWrapper">
+                                <div class="recipientTitle sumUpCheckout">
+                                    {% trans "3. Twoje podsumowanie"  %}
                                 </div>
-                                <div class="col-7">
-                                    <div class="courierInfo">
-                                        Kurier DPD <i>za 8 - 9 Dni u ciebie</i>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="priceDelivery">
-                                        15,99 zł
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col-1">
-                                    <label class="checkbox path">
-                                        <input type="checkbox" value="25.99" name="price" class="priceChecbkox">
-                                        <svg viewBox="0 0 21 21">
-                                            <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                        </svg>
-                                    </label>
-                                </div>
-                                <div class="col-7">
-                                    <div class="courierInfo">
-                                        Kurier Pocztex <i>za 4 - 7 Dni u ciebie</i>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="priceDelivery">
-                                    25,99 zł
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col-1">
-                                    <label class="checkbox path">
-                                        <input type="checkbox" value="0" name="price" class="priceChecbkox">
-                                        <svg viewBox="0 0 21 21">
-                                            <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                        </svg>
-                                    </label>
-                                </div>
-                                <div class="col-7">
-                                    <div class="courierInfo">
-                                        {% trans "Odbiór osobisty"   %}
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="priceDelivery">
-                                    0 zł
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recipientWrapper">
-                            <div class="recipientTitle sumUpCheckout">
-                                {% trans "3. Twoje podsumowanie"  %}
-                            </div>
-                            <div class="productWrappersCheckout">
-                                {% for x in items  %}
-                                <div class="row no-gutters productMarginCheckout">
-                                    <div class="col-2">
-                                        <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="checkoutTitleProduct">
-                                            {{x.product.title}}
+                                <div class="productWrappersCheckout">
+                                    {% for x in items  %}
+                                    <div class="row no-gutters productMarginCheckout">
+                                        <div class="col-2">
+                                            <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
                                         </div>
-                                        <div class="checkoutPriceProduct">
-                                            {{x.quantity}} x     
+                                        <div class="col-8">
+                                            <div class="checkoutTitleProduct">
+                                                {{x.product.title}}
+                                            </div>
+                                            <div class="checkoutPriceProduct">
+                                                {{x.quantity}} x     
+                                            {% if x.product.pricePromo is None  %}
+                                                {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+                                            {% else  %}
+                                                {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+                                            {% endif  %}
+                                            </div>
+                                        </div>
+                                        <div class="col-2 priceCheckout">
                                         {% if x.product.pricePromo is None  %}
                                             {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
                                         {% else  %}
@@ -168,91 +206,123 @@
                                         {% endif  %}
                                         </div>
                                     </div>
-                                    <div class="col-2 priceCheckout">
-                                    {% if x.product.pricePromo is None  %}
-                                        {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
-                                    {% else  %}
-                                        {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
-                                    {% endif  %}
-                                    </div>
+                                    {% endfor  %}
                                 </div>
-                                {% endfor  %}
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-    <div class="rightColCheckout">
-        <div class="rightCheckoutWrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recipientWrapper recipientSumWrapper">
-                            <div class="recipientTitle ">
-                                {% trans "4. Podsumowanie zakupów"  %}
-                            </div>
-                            <div class="sumUpContainer">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="valueItemsTitleCheckout">
-                                            {% trans "Wartość przedmiotów"  %}
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="valueItemsPriceCheckout" id="totalPriceCartItems">
-                                            {{orders.get_cart_total}} {% trans "zł"  %}
-                                        </div>
-                                    </div>
+        <div class="rightColCheckout">
+            <div class="rightCheckoutWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="recipientWrapper recipientSumWrapper">
+                                <div class="recipientTitle ">
+                                    {% trans "4. Metoda płatności"  %}
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="valueItemsTitleCheckout">
-                                            {% trans "Dostawa"  %}
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="valueItemsPriceCheckout" id="totalPriceDelivery">
-                                            0
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="lineCheckout">
-
-                                </div>
-                                <div class="totalPriceWrapper">
-                                   
-                                        <div class="totalValueTitleCheckout">
-                                            {% trans "Do zapłaty"  %}
+                                
+                                    <div class="form-row">
+                                        <label for="card-element">
+                                        
+                                        {% trans "karta kredytowa bądź debetowa"  %}
+                                        </label>
+                                        <div id="card-element">
+                                        <!-- A Stripe Element will be inserted here. -->
                                         </div>
                                     
-                                        <div class="totalValuePriceCheckout" id="totalPriceAll">
-                                            {{orders.get_cart_total}} 
-                                           
-                                        </div>
-                                        <div class="currencyCheckout">
-                                            {% trans "zł"  %}
-                                        </div>
-
+                                        <!-- Used to display form errors. -->
+                                        <div id="card-errors" role="alert"></div>
+                                        <input type="hidden" name="payment_intent_id" value="{{payment_intent_id}}">
+                                    </div>
+                            
+                                <div class="informationAboutCheckout">
+                                    {% trans "Jeśli płatność dokonywana jest europejską kartą w następnym kroku prosimy o uwierzytelnienie przelewu poprzez wybraną przez bank forme autoryzacji SMS/powiadomienie na aplikacji bankowej."  %}
+                                    <br />
+                                    <br />
+                                    {% trans "Państwa dane są przetwarzane zgodnie z wyznacznieami PCI. Firma Stripe oraz CryptoTech nie przechowuje wprowadzonych przez Państwa informacji"  %}
                                     
                                 </div>
-                                <div class="widthBtnCheckout">
-                                    <a href="" class="btn btn-sm animated-button thar-three">{% trans "Zakończ i zapłać" %}</a>
-                                </div>
-                            </div>
-                            <div class="informationAboutCheckout">
-                                {% trans 'Dodanie produktów do koszyka nie oznacza ich rezerwacji'  %}
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="recipientWrapper recipientSumWrapper">
+                                <div class="recipientTitle ">
+                                    {% trans "5. Podsumowanie zakupów"  %}
+                                </div>
+                                <div class="sumUpContainer">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="valueItemsTitleCheckout">
+                                                {% trans "Wartość przedmiotów"  %}
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="valueItemsPriceCheckout" id="totalPriceCartItems">
+                                                {{orders.get_cart_total}} {% trans "zł"  %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="valueItemsTitleCheckout">
+                                                {% trans "Dostawa"  %}
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="valueItemsPriceCheckout" id="totalPriceDelivery">
+                                                0
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lineCheckout">
+
+                                    </div>
+                                    <div class="totalPriceWrapper">
+                                    
+                                            <div class="totalValueTitleCheckout">
+                                                {% trans "Do zapłaty"  %}
+                                            </div>
+                                        
+                                            <div class="totalValuePriceCheckout" id="totalPriceAll">
+                                                {{orders.get_cart_total}} 
+                                            
+                                            </div>
+                                            <div class="currencyCheckout">
+                                                {% trans "zł"  %}
+                                            </div>
+
+                                        
+                                    </div>
+                                    <div class="widthBtnCheckout">
+                                        <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zakończ i zapłać" %}</button>
+                                    </div>
+                                </div>
+                                <div class="informationAboutCheckout">
+                                    {% trans 'Dodanie produktów do koszyka nie oznacza ich rezerwacji'  %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
-               
             </div>
         </div>
+  
     </div>
-</div>
+</form>
+<script src="{% static 'js/checkout.js'  %}"></script>
+<script>
+    card('{{publicKey}}','{{emailUser}}')
+</script>
+
+
 <script>
     $( ".categoryRootMobile" ).hide();
 

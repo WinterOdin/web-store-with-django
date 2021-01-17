@@ -71,9 +71,9 @@
                     <div class="additionalLinksContent">
                         <ul class="listFooterBox" >
                             <li class="listStyleFooterBox"><a href=" ">{% trans "Regulamin Sklepu Internetowego" %}  </a></li>
-                            <li class="listStyleFooterBox"><a href=" ">{% trans "Polityka prywatności i cookies" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href="{% url 'policy'  %} ">{% trans "Polityka prywatności i cookies" %}  </a></li>
                             <li class="listStyleFooterBox"><a href=" ">{% trans "Płatność i wysyłka" %}  </a></li>
-                            <li class="listStyleFooterBox"><a href=" ">{% trans "Dochodowość" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href=" ">{% trans "Kolokacja" %}  </a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,8 +100,18 @@
     <div class="row">
         <div class="col-12">
             <div class="winterodin">
-                made with love by <a href="https://winterodin.vcraft.pl/">winterodin</a>
+                <div id="year">
+
+                </div>
+                made with love by <a href="https://winterodin.vcraft.pl/">winterodin </a>
             </div>
+            
         </div>
     </div>
 </div>
+<script>
+      var d = new Date();
+      var n = d.getFullYear();
+      document.getElementById("year").innerHTML = "CryptoTech @"+n;
+    
+</script>

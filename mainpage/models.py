@@ -5,8 +5,11 @@ from taggit.managers import TaggableManager
 
 class Customer(models.Model):
     user            = models.OneToOneField(User, null=True,on_delete=models.CASCADE)
-    
     dateCreated     = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return str(self.user.first_name)
+
 
 class Category(models.Model):
     category = models.CharField(max_length=20,unique=True)
@@ -35,12 +38,18 @@ class Product(models.Model):
     def __str__(self):
         return str(self.title )+ " " + str(self.condition) 
 
-class ShipmentMethod(models.Model):
-    contractor   = models.CharField(max_length=15, null=True, blank=True )
-    price        = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
 
-    def __str__(self):
-        return str(self.contractor)
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Order(models.Model):
@@ -50,7 +59,7 @@ class Order(models.Model):
     transaction_id  = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return str(self.customer)
+        return str(self.customer.user.first_name)
 
     @property
     def get_cart_total(self):
@@ -64,11 +73,18 @@ class Order(models.Model):
         total = sum([item.quantity for item in orderitems])
         return total
 
+
+
+
 class OrderItem(models.Model):
     product     = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
     order       = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity    = models.IntegerField(default=0, null=True, blank=True)
     date_added  = models.DateTimeField(auto_now_add=True)
+    transaction_id  = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return str(self.id)
 
     @property
     def get_total(self):
@@ -81,6 +97,15 @@ class OrderItem(models.Model):
 
 
 
+
+class ShipmentMethod(models.Model):
+    contractor   = models.CharField(max_length=15, null=True, blank=True )
+    price        = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
+
+    def __str__(self):
+        return str(self.contractor)
+
+
 class ShippingAddress(models.Model):
     customer      = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order         = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
@@ -91,7 +116,7 @@ class ShippingAddress(models.Model):
     phone         = models.TextField(max_length=10, null=True)
     email         = models.EmailField(max_length=30, null=True)
     adress        = models.TextField(max_length=100, null=True)
-    date_added    = models.DateTimeField(auto_now_add=True)
+    date_added    = models.TextField(max_length=100,null=True)
     invoice       = models.BooleanField(default=False, blank=True, null=True)
     invoiceRecipient   = models.TextField(max_length=50, null=True, blank=True)
     invoiceAdress = models.TextField(max_length=50, null=True, blank=True)
@@ -101,6 +126,11 @@ class ShippingAddress(models.Model):
     
     def __str__(self):
         return str(self.adress)
+
+
+
+
+
 
 
 class HelpCategory(models.Model):

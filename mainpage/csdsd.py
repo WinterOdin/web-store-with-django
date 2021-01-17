@@ -179,8 +179,6 @@ def tagListView(request, slug):
 
 
 def categoryListView(request, category):
-
-    
     categoryList = Category.objects.all()
     productsInfo = Category.objects.get(category=category)
     productsInfo = Product.objects.filter(category=productsInfo)
@@ -302,21 +300,13 @@ def checkoutDetail(request):
 
 
 def processOrder(request):
+    
     transaction_id = datetime.datetime.now().timestamp()
     customer       = request.user.customer
-
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order.complete = True
+    order.save()
     if request.method == "POST" and request.user.is_authenticated:
-
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        order.complete = True
-        order.transaction_id = transaction_id
-        order.save()
-        
-        order_items = OrderItem.objects.filter(order=order)
-        for x in order_items:
-            x.transaction_id = transaction_id
-            x.save()
-
         payment_intent_id = request.POST['payment_intent_id']
         payment_method_id = request.POST['payment_method_id']
         stripe.api_key  = API_KEY
@@ -344,16 +334,14 @@ def processOrder(request):
         )   
 
 
-        customerOnWebsite = request.user.customer
         values = request.POST.copy()
         values['date_added'] = transaction_id
+        values['customer']   = customer
+        values['order']      = order
         forms = CustomerShipp(values)
+        print(forms.is_valid())
         if forms.is_valid():
-            adding = forms.save(commit=False)
-            adding.customer = customerOnWebsite
-            adding.order    = order
-            adding.save()
-
+            forms.save()
 
         if confirmation.status == 'requires_action':
             pi = stripe.PaymentIntent.retrieve(
