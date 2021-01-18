@@ -40,18 +40,6 @@ class Product(models.Model):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class Order(models.Model):
     customer        = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_oredred    = models.DateField(auto_now_add=True)
@@ -72,8 +60,6 @@ class Order(models.Model):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
         return total
-
-
 
 
 class OrderItem(models.Model):
@@ -113,16 +99,18 @@ class ShippingAddress(models.Model):
     city          = models.TextField(max_length=50, null=True)
     country       = models.TextField(max_length=50, null=True)
     zip_code      = models.TextField(max_length=15, null=True)
-    phone         = models.TextField(max_length=10, null=True)
+    phone         = models.TextField(max_length=9, null=True)
     email         = models.EmailField(max_length=30, null=True)
     adress        = models.TextField(max_length=100, null=True)
-    date_added    = models.TextField(max_length=100,null=True)
+    transaction_id= models.TextField(max_length=100,null=True)
     invoice       = models.BooleanField(default=False, blank=True, null=True)
     invoiceRecipient   = models.TextField(max_length=50, null=True, blank=True)
     invoiceAdress = models.TextField(max_length=50, null=True, blank=True)
     invoiceZip    = models.TextField(max_length=15, null=True, blank=True)
     invoiceCity   = models.TextField(max_length=50, null=True, blank=True)
     invoiceNip    = models.TextField(max_length=15, null=True, blank=True)
+    processed     = models.BooleanField(default=False, blank=True, null=True)
+    date_added    = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return str(self.adress)

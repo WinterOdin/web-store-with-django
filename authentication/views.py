@@ -7,10 +7,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from mainpage.decorators import *
 from django.utils.translation import gettext as _
 
 
-
+@unauthenticated_user
 def loginView(request, *args, **kwargs):
     errorMsg = _("Hasło bądź email jest niepoprawne")
     if request.user.is_authenticated:
@@ -30,7 +31,7 @@ def loginView(request, *args, **kwargs):
         context={}
     return render(request,'login.html', context )
 
-
+@unauthenticated_user
 def registerView(request, *args, **kwargs):
     succesMsg = _("Twoje konto zostało stworzone, zaloguj się")
     if request.user.is_authenticated:

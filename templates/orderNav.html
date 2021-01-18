@@ -4,16 +4,12 @@
         <div class="userWelcomeOrderPC">
             {% trans "Witaj" %},
             <div class="userNamePC">
-                Marcel
+                {{ request.user.customer  }}
             </div>
         </div>
         <a href="{% url 'order'  %}" class="linkOrderPC">
             <span class="iconOrderPC"><i class="fas fa-cubes"></i> </span>
             <span class="textOrderPC">{% trans "Zamówienia"  %}</span>
-        </a>
-        <a href="{% url 'refunds' %}"class="linkOrderPC">
-            <span class="iconOrderPC"> <i class="fas fa-undo-alt"></i></span>
-            <span class="textOrderPC">{% trans "Zwroty"  %}</span>
         </a>
         <a  href="{% url 'user'  %}"class="linkOrderPC">
             <span class="iconOrderPC"><i class="fas fa-users-cog"></i> </span>
@@ -27,7 +23,7 @@
         <div class="userWelcomeOrderMobile">
             {% trans "Witaj" %},
             <div class="userNameMobile">
-                Marcel
+                {{ request.user.customer  }}
             </div>
         </div>
         <div class="categoryRootMobileOrder">

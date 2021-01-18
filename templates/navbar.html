@@ -10,7 +10,7 @@
                         <div class="col-6">
                             <div class="topBarTextRight">
                                 {% if user.is_authenticated  %}
-                                    {% trans "Witaj"  %} Marcel
+                                    {% trans "Witaj"  %} {{ request.user.customer  }}
                                 {% else  %} 
                                 Digital Mining Experts 
                                 {%endif%}
@@ -21,7 +21,7 @@
                             <div class="topBarTextLeft">
                                 {% if user.is_authenticated  %}
                                 {% if request.user.is_superuser %}
-                                <a class="" href="#"> {% trans "panel administracyjny" %}</a>
+                                <a class="" href="{% url 'control' %}"> {% trans "panel dostaw" %}</a>
                                 {% endif  %}   
                                 <a class="logoutNav" href="{% url 'logout' %}"> {% trans "Wyloguj się " %}</a>
                                    
@@ -118,10 +118,10 @@
                             </div>
                         </div>
                         <div class="helpBox2">
-                            <div class="tileListHelpTitle">{% trans "Twoje konto" %}</div>
+                            <div class="tileListHelpTitle"></div>
                                 <div class="loginButtonHelpBox">
                                     {% if user.is_authenticated  %}
-                                       <div class="helloMsgLogin"> {% trans "Witaj"  %} Marcel</div>
+                                       <div class="helloMsgLogin"> {% trans "Witaj"  %} {{ request.user.customer  }}</div>
                                     {% else  %} 
                                     <a href="{% url 'login'  %}" >
                                         <div class="linkLoginHelpBox">
@@ -139,7 +139,6 @@
                                 </div>    
                             
                             <ul class="listHelpBox "> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'order'  %}">{% trans "Twoje konto" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'order'  %}">{% trans "Zamówienia" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'user'  %}">{% trans "Ustawienia Konta" %}</a></li>
                             </ul> 
@@ -289,6 +288,13 @@
                 <a class="tileLink" href="{% url 'cart' %}">
                     <div class="iconPic">
                         <i class="fas fa-shopping-cart"></i>
+                        <span class="numberItemsInCart">
+                        {% if items %}
+                            {{ items|length  }}
+                        {% else %}
+                           0
+                        {% endif %}                                         
+                        </span>
                     </div>
                     <div class="iconText">
                         {% trans "Koszyk" %} 

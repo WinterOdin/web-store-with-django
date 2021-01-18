@@ -1,30 +1,85 @@
-
 {% extends 'base.html' %}
+{% block content  %}
+{% load i18n  %}
+{% load static  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/controlPanel.css' %}">
+<div class="containerOrderPanel">
+    <div class="container">
+        <div class="shopTextTile">
+            {% trans "Zamówienia" %} 
+        </div>
+        <div class="row no-gutters rowStylingName">
+            <div class="col-3">
+                <div class="orderDisplayName">
+                   ID Tranzakcji 
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="orderDisplayName">
+                   Adresat
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="orderDisplayName">
+                    Adres
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="orderDisplayName">
+                   Data
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="orderDisplayName">
+                    Wysłano
+                </div>
+            </div>
+        </div>
+        {% for x in shipments  %}
+        <a href="{% url 'controlDetail' pk=x.transaction_id  %}" class="rowStylingLink">
 
-{% block content %}
-        <div class="container pt-5">
-            <form method="POST" id="post-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Add title">
+        
+            <div class="row no-gutters rowStyling"
+            {% if x.processed == no  %} 
+            style="background-color: black;"
+            {% endif  %}>
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{ x.transaction_id  }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{ x.recipient  }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Tags</label>
-                    <input type="text" data-role="tagsinput" class="form-control" name="tags">
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{  x.adress }}
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <p>Common Tags: 
-            {% for mt in tagsx %}
-                <a href="#" class="tagsList">{{mt}}</a>
-            {% endfor %}
-            </p>
+                <div class="col-2">
+                    <div class="orderDisplay">
+                        {{  x.date_added|date:"d M Y" }}
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="orderDisplay">
+                        {{  x.processed  }}
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor  %}
+    </div>
+</div>
 
-        </div>    
-  
-{% endblock content %}    
+
+
+<script>
+    $('.footerDisable').hide();
+</script>
+
+
+
+{% endblock  %}

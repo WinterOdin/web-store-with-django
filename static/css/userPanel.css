@@ -45,3 +45,100 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
   }
+
+
+ 
+  
+  .boxDeleteUser{
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 3vh;
+  }
+  
+  .buttonDeleteUser {
+    font-family: 'Montserrat', sans-serif;
+    font-size:17px;
+    padding: 10px;
+    color: rgb(70, 70, 70);
+    border: 1px solid #4b4b4b;
+    border-radius: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 0%;
+    transition: all 0.3s ease-out;
+  }
+  .buttonDeleteUser:hover {
+    background: #f5f5f5;
+  }
+  a.buttonDeleteUser,a.buttonDeleteUser:hover{
+      color:rgb(56, 56, 56);
+      font-weight: 500;
+      text-decoration: none;
+  }
+  
+  .overlayDeleteUser {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 300ms;
+    visibility: hidden;
+    opacity: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .overlayDeleteUser:target {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+  
+  .popupDeleteUser {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 2s ease-in-out;
+  }
+  
+  .popupDeleteUser h2 {
+    margin-top: 0;
+    color: #333;
+   
+  }
+  .popupDeleteUser .closeDeleteUser {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popupDeleteUser .closeDeleteUser:hover {
+    color: #ee9494;
+  }
+  .popupDeleteUser .contentDeleteUser {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .boxDeleteUser{
+      width: 70%;
+    }
+    .popupDeleteUser{
+      width: 70%;
+    }
+  }
+
+.formDeleteUser{
+  margin-bottom: 2vh;
+  margin-top:2vh;
+}

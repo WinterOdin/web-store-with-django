@@ -418,6 +418,10 @@ a:hover .cbp-vm-add{
 	.cbp-vm-view-grid .cbp-vm-add {
 		visibility: visible
 	}
+	.cbp-vm-options a {
+		width: 20px;
+		margin-left: 10px; 
+	}
 }
 @media screen and (max-width: 420px) {
 	.cbp-vm-view-grid .cbp-vm-title {

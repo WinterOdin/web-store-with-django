@@ -7,4 +7,5 @@ urlpatterns = [
 	path('order', user.orderView, name='order'),
 	path('user', user.userView, name='user'),
 	path('refunds', user.refundsView, name='refunds'),
+	path('detailOrder/<str:pk>/,',user.orderViewDetail, name="detailOrder")
 ]

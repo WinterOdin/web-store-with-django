@@ -1,33 +1,89 @@
+.faqQuestions{
+    font-size:2.5vh;
+  color: black;
+  cursor: pointer;
+    opacity: 0.8;
+  }
+  .faqQuestionsTextPreview{
+    margin-left: 3vw;
+    margin-top: 1.8vh;
+    text-align:left;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.orderListBorder{
+    margin-bottom: 3vh;
+   
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
+    border-radius: 8px;
+}
+.linkDetailOrderUser,.linkDetailOrderUser:hover{
+    color:rgb(88, 88, 88);
+    text-decoration: none;
+}
+.orderListBorder:hover{
+    transition: 0.1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.185) 0px 0px 2px 1px, rgba(0, 0, 0, 0.137) 0px 2px 4px 0px;
+}
+.leftColOrderUserList{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(250, 250, 250);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.leftContentColOrderList{
+    padding-top: 4vh;
+    padding-left: 2.5vh;
+    padding-bottom: 1.3vh;
+    line-height: 25px;
+}
+.rightContentColOrderList{
+    padding-top: 4vh;
+}
+.rightContainerColOrderList{
+    width: 100%;
+}
+.pictureOrderWrapper{
+    width: 15%;
+    float: left;
+    margin-left: 6%;
+}
+.productOrderWrapper{
+    width: 70%;
+    float: left;
+    margin-left: 5%;
+    padding-top:2.5vh;
+}
+
+
+
+
+
+
 .mainOrderText{
     font-family: 'Montserrat', sans-serif;
     font-size: 31px;
     font-weight: 500;
-    text-align: left;
-    
+    text-align: left; 
+    margin-bottom: 2vh;  
 }
-.filterOrderBox{
-    width: 100%;
-    padding: 1vh 1vh;
-    font-family: 'Montserrat', sans-serif;
-    height: 6vh;
-}
-.orderOptionsPadding{
-    height: 6vh;
-}
-.sortingBox{
-    width: 100%;
-}
-.sortingBoxText{
-    line-height: 30px;
-    float: left;
-    font-size: 18px;
-    font-weight: 600;
-}
-.sortingSelect{
-    width: 25%;
-    margin-left: 10px;
-    float: left;
-}
+
 .priceSelect {
     padding: 4px 7px;
     border-radius: 15px;
@@ -41,29 +97,12 @@
     font-family: 'Montserrat';
 }
 
-.pictureOrderWrapper{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.pictureOrderWrapper img{
-    width: 80%;
-}
 
-.orderListBorder{
-    margin-top: 3vh;
-    clear: both;
-    margin-bottom: 3vh;
-    padding:2vh 3vh;
-    transition: background-color 50ms linear;
-}
-.orderListBorder:hover{
-    background-color: rgb(250, 250, 250);
 
-}
-.contentWrapperOrder{
+
+
+
+.contentOrderWrapper{
     width: 100%;
     font-family: 'Montserrat', sans-serif;
 }
@@ -104,24 +143,36 @@ a.moreInfoLink{
         padding:3vh 4vh;
         border-radius: 8px;
     }
-    .titleOrder{
-        padding-top: 1vh;
-        font-size: 16px;
+    .leftContentColOrderList {
+        padding-top: 0vh; 
+        padding-left: 0vh; 
+        padding-bottom: 1.3vh;
+        line-height: 25px;
     }
-    .pictureOrderWrapper img{
-        width: 60%;
+    .leftColOrderUserList{
+        background-color: rgb(255, 255, 255);
     }
-    .sortingSelect{
-        width: 50%;
-    }
-    .orderOptionsPadding{
-        height: 7vh;
-        padding-left:2vw;
-    }
-    .sortingBoxText{
-        font-size: 16px;
    
+    .rightContainerColOrderList{
+        margin-bottom: 4vh;
     }
+    .rightContentColOrderList {
+        padding-top: 2vh; 
+         
+    }
+    .pictureOrderWrapper{
+        width: 30%;
+        float: left;
+        margin-left: 0%;
+    }
+    .productOrderWrapper{
+        width: 65%;
+        float: left;
+        margin-left: 5%;
+        padding-top:2.5vh;
+    }
+    
+   
     
   }
 

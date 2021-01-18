@@ -1,0 +1,117 @@
+
+.containerOrderPanel{
+    margin-top: 6vh;
+    margin-bottom: 22vh;
+
+}
+.orderDisplay,.orderDisplayName{
+    text-align: center;
+}
+.rowStylingName{
+    margin-bottom: 5vh;
+    font-size: 20px;
+}
+.rowStyling{
+    border-bottom: 1px solid rgb(221, 221, 221);
+    height: 4vh;
+    font-size:18px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rowStyling:hover{
+    background-color: rgb(245, 245, 245);
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+a.rowStylingLink{
+    color:black;
+
+}
+.footerDisable,.footerBorder{
+    display: none;
+}
+.containerOrderPanel{
+    font-family: 'Montserrat', sans-serif;
+}
+.titlesOrederDetail{
+    font-size: 23px;
+    font-weight: 500;
+    padding-top: 2vh;
+    padding-bottom: 0.5vh;
+    margin-left: 8%;
+    width: 80%;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+.shipmentMethodDetail{
+    font-size: 19px;
+    text-transform: uppercase;
+    padding-left: 10px;
+    width: 80%;
+    margin-left: 8%;
+    padding-top: 1.2vh;
+}
+.rowOrderDetailsMargin{
+    margin-top: 5vh;
+}
+.pictureDetailOrderImage{
+    max-width: 50%;
+    margin-left: 35%;
+}
+.tileDetailOrder{
+    padding-top: 2vh;
+    height: 16vh;
+    border-radius: 5px;
+    width: 70%;
+    margin-left: 15%;
+}
+.tileDetailOrderText{
+    padding:0px 15px 0px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.tileDetailOrderTitleName{
+    font-size: 18px;
+    font-weight: 500;
+    padding:0px 15px 2px;
+}
+.rowInfoDetailsMargin{
+    margin-top: 5vh;
+}
+.sendedOrder{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+}
+.sendedOrderAdditional{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+.selectControlProcessed {
+    padding: 15px 20px;
+    border: 0;
+    font-size: 17px;
+    width: 100%;
+    margin-top: 4vh;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+    font-family: 'Montserrat';
+    border-bottom: 1px solid #20b5bd;
+}
+
+
+
+.submitProcessed {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  text-transform: uppercase;
+}

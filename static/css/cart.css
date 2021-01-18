@@ -1,3 +1,12 @@
+button:focus {
+	outline:0;
+}
+.stockItemsNumber{
+    text-align: center;
+    font-size: 14px;
+    color:rgb(145, 145, 145);
+}
+
 .lefColCartPosition{
     margin-top: 6vh;
     width: 80%;
@@ -44,7 +53,7 @@
     text-align: center;
 }
 .productPicturCart{
-
+    padding-top: 6vh;
 }
 .imgCart{
   
@@ -165,6 +174,10 @@
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease;
 }
+.btnSubmitCart:hover{
+cursor: pointer;
+}
+
 
 .svgImgCart{
     width: 80%;
@@ -289,10 +302,12 @@ a.linkTermsCart:hover{
     text-decoration: none;
     margin-top: 0.5vh;
     border:1px solid rgb(80, 80, 80);
+    transition: 0.2s;
 }
 a.cartEmptyBtn:hover{
 text-decoration: none;
-color: rgb(0, 0, 0);
+color: rgb(206, 206, 206);
+
 }
 .cartUseNotAuth{
     padding-top: 13%;

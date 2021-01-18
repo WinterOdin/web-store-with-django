@@ -1,81 +1,31 @@
 {% load i18n  %}
+
 <div class="editUserInfoWrapper">
     <div class="titleUserInfo">
-        {% trans "Zmień ustawiania konta"  %}
+        {% trans "Usuń Konto"  %}
     </div>
-    <form method="POST" action="{% url 'user'  %}"class="formUserPanel" >
-        {% csrf_token  %}
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="labelForFormUserPanel">
-                        {% trans "Miasto"  %} :
-                    </div>
-                    <div class="form-group">
-                        {{ forms.city  }}
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">  
+                <div class="boxDeleteUser">
+                    <a class="buttonDeleteUser" href="#popup1">{%  trans 'Usuń konto'  %}</a>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="labelForFormUserPanel">
-                        {% trans "Państwo"  %} :
-                    </div>
-                    <div class="form-group">
-                        {{ forms.country  }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="labelForFormUserPanel">
-                        {% trans "Kod pocztowy"  %} :
-                    </div>
-                    <div class="form-group">
-                        {{ forms.zip_code  }}
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="labelForFormUserPanel">
-                        {% trans "Adres"  %} :
-                    </div>
-                    <div class="form-group">
-                        {{ forms.adress  }}
+
+                <div id="popup1" class="overlayDeleteUser">
+                    <div class="popupDeleteUser">
+                        <h2>{% trans 'Potwierdź usunięcie konta'  %}</h2>
+                        <a class="closeDeleteUser" href="#">&times;</a>
+                        <div class="contentDeleteUser">
+                          {% trans 'Usunięcie konta z naszego serwisu spowoduje utratę historii twoich zamówień i uniemożliwi kolejne zakupy do momentu założenia nowego konta'  %}
+                        </div>
+                        <form class="formDeleteUser" method="POST">
+                            {% csrf_token  %}
+                            <button type="submit"  class="btn btn-sm animated-button thar-three">{% trans "Usuń konto" %}</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class=" col-3">
-               
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="labelForFormUserPanel">
-                        {% trans "Numer telefonu"  %} :
-                    </div>
-                    <div class="form-group">
-                        {{ forms.phone  }}
-                    </div>
-                </div>
-                <div class=" col-3">
-               
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="phoneTextInfo">
-                        {% trans " Będziemy kontaktować się z Tobą telefonicznie tylko wtedy, kiedy będzie to konieczne. Nie udostępniamy Twoich danych osobowych osobom trzecim, nie liczac naszych kurierów, którzy dostarczą Twoje zamówienie."  %}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <button type="submit" class="btnSbtRegister">
-                        <span class="textSbtRegister">
-                            {% trans "Zaktualizuj swoje dane" %}
-                        </span>
-                    </button>
-                </div>
-            </div>
-            
         </div>
-    </form>
+    </div>
    
 </div>

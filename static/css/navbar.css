@@ -6,14 +6,10 @@
     font-size: 13px;
     color: white;
 }
-
-
 .formNavbar.red {
      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 8px 0px;
      transition: 300ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
-
-
 .logoutNav{
     -webkit-appearance: button;
     -moz-appearance: button;
@@ -195,7 +191,6 @@ a.logoTextPc:hover{
 }
 .iconPic{
     font-size: 28px;
-    width: 32px;
     height: 32px;
 }
 .tileLink:hover{
@@ -210,14 +205,14 @@ a.logoTextPc:hover{
     padding: 0 7px 0 7px;
 }
 .iconContent2:hover{
-    border-top: none;
-    border-radius: 8px 8px 0px 0px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
+   /* border-top: none;
+    border-radius: 8px 8px 8px 8px;
     background: rgb(255, 255, 255);
     z-index: 11;
     -webkit-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 10px 0px 6px -3px rgba(0, 0, 0, 0.16);
-    box-shadow: 5px 0px 6px -3px rgba(0, 0, 0, 0.16);
+    box-shadow: 5px 0px 6px -3px rgba(0, 0, 0, 0.048);
+    */
     
 }
 .iconContent3:hover{
@@ -242,8 +237,8 @@ a.logoTextPc:hover{
     top: 100%;
     min-width: 200px;
     background-color: rgb(255, 255, 255);
-    border-radius: 0px 8px 8px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px;
+    border-radius: 8px 8px 8px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.041) 0px 4px 8px 0px;
     padding: 8px 0px 15px;
     left: 0px;
 }
@@ -263,8 +258,8 @@ a.logoTextPc:hover{
     font-family: 'Montserrat', sans-serif;
     color: rgb(112, 112, 112);
     font-size: 16px;
-    margin-bottom: 2vh;
-    margin-top: 1vh;
+    margin-bottom: 1vh;
+    
 }
 .listHelpBox{
     list-style-type: none;
@@ -310,7 +305,7 @@ a:hover.linkHelpBox{
 
 .loginButtonHelpBox{
     width: 100%;
-    padding: 16px;
+    padding-left: 10px;
 }
 
 .loginButtonHelpBox .linkLoginHelpBox,.loginButtonHelpBox .linkCreateHelpBox{
@@ -533,9 +528,15 @@ a.categoryPCLink:hover{
         box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
         
       }
-      
-
-
+    .numberItemsInCart{
+        position: absolute;
+        right: 3px;
+        background-color: rgb(0, 130, 250);
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-size: 11px;
+        color: white;
+    }
 }
 @media (max-width:795px){
     .langSelect {

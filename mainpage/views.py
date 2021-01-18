@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.db.models import Q
 from taggit.models import Tag
+from .decorators import *
 
 from .models import *
 from .forms import *
@@ -134,7 +135,7 @@ def recommendedProducts(request):
     cart         = usersCart(request)    
     productsInfo = Product.objects.filter(recommend=True).order_by('-id')[:6]
     newest       = Product.objects.all().order_by('-id')[:10]
-    
+
     if request.method == "POST":
         query = request.POST.get('search_bar')    
         productsInfo = serchQueryset(query)
@@ -158,6 +159,8 @@ def recommendedProducts(request):
     context={**context, **cart}
 
     return render(request,'products.html', context)
+
+
 
 def tagListView(request, slug):
     cart         = usersCart(request)  
@@ -213,6 +216,7 @@ def helpView(request):
     context={**context, **cart}
     return render(request,'helpPage.html', context)
 
+
     
 def productDetail(request, id):
     product         = Product.objects.get(id=id)
@@ -227,8 +231,6 @@ def productDetail(request, id):
 
 
 
-
-
 def cartDetail(request):
     newest       = Product.objects.all().order_by('-id')[:10]
     cart = usersCart(request)
@@ -239,11 +241,6 @@ def cartDetail(request):
     return render(request,'cart.html',context)
 
 
-
-
-
-
-
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -252,9 +249,10 @@ def updateItem(request):
     product  = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer,complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
+    
     if action == "add":
-        orderItem.quantity = (orderItem.quantity + 1)
+        if orderItem.quantity < product.stock:
+            orderItem.quantity = (orderItem.quantity + 1)
     elif action == "remove":
         orderItem.quantity = (orderItem.quantity - 1)
     orderItem.save()
@@ -265,7 +263,7 @@ def updateItem(request):
     return JsonResponse("item was added", safe=False)
 
 
-
+@login_required(login_url='login')
 def checkoutDetail(request):
     customer = request.user.customer
     cart    = usersCart(request)
@@ -276,8 +274,8 @@ def checkoutDetail(request):
     stripe.api_key  = API_KEY
     order, created  = Order.objects.get_or_create(customer=customer, complete=False)
     total           = int(order.get_cart_total)
-
-    payment_intent   = stripe.PaymentIntent.create(
+    shipContractors = ShipmentMethod.objects.all()
+    payment_intent  = stripe.PaymentIntent.create(
         amount      = total*100,
         currency    = 'pln',
         payment_method_types = ['card']
@@ -293,7 +291,8 @@ def checkoutDetail(request):
         'customer':customer,
         'publicKey':publicKey,
         'secretKeyIntent':secretKeyIntent,
-        'payment_intent_id':payment_intent_id
+        'payment_intent_id':payment_intent_id,
+        'shipContractors':shipContractors,
 
 
     }
@@ -304,18 +303,23 @@ def checkoutDetail(request):
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     customer       = request.user.customer
-
+    
     if request.method == "POST" and request.user.is_authenticated:
-
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         order.complete = True
         order.transaction_id = transaction_id
         order.save()
         
         order_items = OrderItem.objects.filter(order=order)
-        for x in order_items:
-            x.transaction_id = transaction_id
-            x.save()
+        for item in order_items:
+            product = item.product
+            product.stock = product.stock - item.quantity
+            product.save()
+            item.transaction_id = transaction_id
+            item.save()
+
+
+      
 
         payment_intent_id = request.POST['payment_intent_id']
         payment_method_id = request.POST['payment_method_id']
@@ -343,11 +347,14 @@ def processOrder(request):
             payment_intent_id,
         )   
 
-
+        print(request.POST)
         customerOnWebsite = request.user.customer
         values = request.POST.copy()
-        values['date_added'] = transaction_id
+        values['transaction_id'] = transaction_id
+        values.pop('payment_method_id')
+        values.pop('payment_intent_id')
         forms = CustomerShipp(values)
+        print(forms.is_valid())
         if forms.is_valid():
             adding = forms.save(commit=False)
             adding.customer = customerOnWebsite

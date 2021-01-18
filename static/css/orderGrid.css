@@ -33,7 +33,7 @@
     .grid-container-order {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows:  0.1fr 1fr;
+      
         gap: 0px 0px;
         grid-template-areas:
         "leftOrderCol"

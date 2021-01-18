@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content  %}
+{% load i18n  %}
+
+<div class="container">
+    <div class="categoryTitleProduc">
+        {% trans "Zamówienia" %} 
+    </div>
+    {% for x in shipments  %}
+        <div class="row no-gutters"
+        {% if x.processed == no  %}
+        style="background-color: black;"
+        {% endif  %}>
+            <div class="col-3">
+                <div class="orderDisplay">
+                    {{ x.transaction_id  }}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="orderDisplay">
+                    {{ x.recipient  }}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="orderDisplay">
+                    {{  x.adress }}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="orderDisplay">
+                    {{  x.date_added }}
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="orderDisplay">
+                    {{  x.processed  }}
+                </div>
+            </div>
+        </div>
+    {% endfor  %}
+</div>
+
+
+{% endblock  %}
