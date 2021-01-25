@@ -1,0 +1,264 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.containerOrderPanel{
+    margin-bottom: 22vh;
+
+}
+.orderDisplay,.orderDisplayName{
+    text-align: center;
+}
+.rowStylingName{
+    margin-bottom: 5vh;
+    font-size: 20px;
+}
+.rowStyling{
+    border-bottom: 1px solid rgb(221, 221, 221);
+    height: 4vh;
+    font-size:18px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rowStyling:hover{
+    background-color: rgb(245, 245, 245);
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+a.rowStylingLink{
+    color:black;
+
+}
+.footerDisable,.footerBorder{
+    display: none;
+}
+.containerOrderPanel{
+    font-family: 'Montserrat', sans-serif;
+    width: 90%;
+    margin-left: 5%;
+}
+.titlesOrederDetail{
+    font-size: 23px;
+    font-weight: 500;
+    padding-top: 2vh;
+    padding-bottom: 0.5vh;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+.shipmentMethodDetail{
+    font-size: 19px;
+    text-transform: uppercase;
+    padding-left: 10px;
+    width: 80%;
+    margin-left: 8%;
+    padding-top: 1.2vh;
+}
+.rowOrderDetailsMargin{
+    margin-bottom: 5vh;
+}
+.pictureDetailOrderImage{
+    width: 90%;
+    margin-left: 5%;
+    padding-top: 25%;
+}
+.tileDetailOrder{
+    padding-top: 2vh;
+    height: 16vh;
+    border-radius: 5px;
+    width: 70%;
+    margin-left: 15%;
+}
+.tileDetailOrderText{
+    padding:0px 15px 0px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.tileDetailOrderTitleName{
+    font-size: 18px;
+    font-weight: 500;
+    padding:0px 15px 2px;
+}
+.rowInfoDetailsMargin{
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+.sendedOrder{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+}
+.sendedOrderAdditional{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+.selectControlProcessed {
+    padding: 15px 20px;
+    border: 0;
+    font-size: 17px;
+    width: 100%;
+    margin-top: 4vh;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+    font-family: 'Montserrat';
+    border-bottom: 1px solid #20b5bd;
+}
+
+
+
+.submitProcessed {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  text-transform: uppercase;
+}
+
+.adminPanelNav{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 25px;
+    font-weight: 500;
+   
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+a.adminPanelNavText{
+
+    color:rgb(51, 51, 51);
+}
+.colAdminWrapper{
+    height: 15vh;
+    text-align: center;
+    border:1px solid rgb(223, 223, 223);
+    border-radius: 15px;
+    transition: 200ms;
+    margin-bottom: 3vh;
+}
+.colAdminWrapper:hover{
+    box-shadow: rgba(0, 0, 0, 0.065) 0px 0px 2px 1px, rgba(0, 0, 0, 0.066) 0px 4px 8px 0px;
+}
+.controlChoseAction{
+    
+    font-size: 31px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 2vh;
+}
+.colControlText{
+    color:rgb(51, 51, 51);
+    font-weight: 500;
+    padding-top: 4vh;
+}
+.colControlIcon{
+    color:rgb(51, 51, 51);
+    font-size: 35px;
+}
+a:hover{
+    color:rgb(51, 51, 51);
+}
+.listOrderAdmin{
+    
+    position:fixed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+button[type=submit].animated-button:after, button[type=submit].animated-button:after {
+    content: "";
+    position: absolute;
+    height: 0%;
+    left: 50%;
+    top: 0;
+    
+    width: 100%;
+    z-index: -1;
+    -webkit-transition: all 0.75s ease 0s;
+    -moz-transition: all 0.75s ease 0s;
+    -o-transition: all 0.75s ease 0s;
+    transition: all 0.75s ease 0s;
+}
+button[type=submit].animated-button:hover, button[type=submit].animated-button:hover {
+    color: #FFF;
+    text-shadow: none;
+}
+button[type=submit].animated-button:hover:after, button[type=submit].animated-button:hover:after {
+    height: 450%;
+}
+button[type=submit].animated-button, button[type=submit].animated-button {
+    position: relative;
+    display: block;
+    margin: 0px auto 0;
+    padding: 14px 15px;
+    color: #fff;
+    font-size:12px;
+    border-radius: 0;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: .08em;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+button[type=submit].animated-button.thar-three {
+    color: rgb(68, 68, 68);
+    cursor: pointer;
+    display: block;
+    position: relative;
+    margin-top: 2vh;
+    border: 1px solid #dddddd;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+button[type=submit].animated-button.thar-three:hover {
+    color: #000 !important;
+    background-color: transparent;
+    text-shadow: nthree;
+}
+button[type=submit].animated-button.thar-three:hover:before {
+    left: 0%;
+    right: auto;
+    width: 100%;
+}
+button[type=submit].animated-button.thar-three:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: #f5f5f5;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+
+}

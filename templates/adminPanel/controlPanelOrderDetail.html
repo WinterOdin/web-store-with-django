@@ -1,0 +1,222 @@
+{% extends 'adminPanel/adminBase.html' %}
+{% block adminContent  %}
+{% load i18n  %}
+{% load static  %}
+
+<div class="containerOrderPanel">
+    <div class="container">
+        <div class="titlesOrederDetail">
+            {% trans "Informacje o zamówieniu:"  %}
+        </div>
+        
+        <div class="row no-gutters ">
+           <div class="col-6">
+            <div class="tileDetailOrder">
+                <div class="tileDetailOrderTitleName">
+                    {% trans "Dane odbiorcy:"  %}
+                </div>
+                <div class="tileDetailOrderText">
+                {{ shipments.recipient  }}
+                </div>
+                <div class="tileDetailOrderText">
+                    e-mail: {{ shipments.email  }}
+                </div>
+                <div class="tileDetailOrderText">
+                    tel. {{ shipments.phone  }}
+                </div>
+            </div>
+           </div>
+           <div class="col-6">
+            <div class="tileDetailOrder">
+                <div class="tileDetailOrderTitleName">
+                    {% trans "Adres dostawy:"  %}
+                </div>
+                <div class="tileDetailOrderText">
+                    {{ shipments.adress  }}
+                </div>
+                <div class="tileDetailOrderText">
+                    {{ shipments.city  }} {{ shipments.zip_code  }}
+                </div>
+                <div class="tileDetailOrderText">
+                    {{ shipments.country }} 
+                </div>
+            </div>
+           </div>
+        </div>
+        <div class="titlesOrederDetail">
+            {% trans "Dostawa:"  %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="shipmentMethodDetail">
+                    DPD
+                </div>
+            </div>
+        </div>
+        {% if shipments.invoice == True  %}
+        <div class="titlesOrederDetail">
+            {% trans "Informacje do faktury:"  %}
+        </div>
+        <div class="row no-gutters ">
+            <div class="col-6">
+             <div class="tileDetailOrder">
+                 <div class="tileDetailOrderTitleName">
+                     {% trans "Dane odbiorcy:"  %}
+                 </div>
+                 <div class="tileDetailOrderText">
+                    {{ shipments.invoiceRecipient }} 
+                 </div>
+                 <div class="tileDetailOrderText">
+                    {{ shipments.invoiceNip }}
+                 </div>
+                 <div class="tileDetailOrderText">
+                    e-mail: {{ shipments.email  }}
+                </div>
+                <div class="tileDetailOrderText">
+                    tel. {{ shipments.phone  }}
+                </div>
+             </div>
+            </div>
+            <div class="col-6">
+             <div class="tileDetailOrder">
+                 <div class="tileDetailOrderTitleName">
+                     {% trans "Adres dostawy:"  %}
+                 </div>
+                 <div class="tileDetailOrderText">
+                    {{ shipments.invoiceAdress  }}
+                 </div>
+                 <div class="tileDetailOrderText">
+                    {{ shipments.invoiceCity  }} {{ shipments.invoiceZip   }}
+                 </div>
+             </div>
+            </div>
+         </div>
+        {% endif %}
+        <div class="titlesOrederDetail">
+            {% trans "Zamówienie:"  %}
+        </div>
+        {% for x in qs  %}
+        <div class="row no-gutters rowOrderDetailsMargin">
+            <div class="col-3">
+                <div class="pictureDetailOrder">
+                    <img class="pictureDetailOrderImage" src="{{ x.product.pic1.url }}" />
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="row rowInfoDetailsMargin no-gutters">
+                    <div class="col-11">
+                        <div class="orderProductDetail">
+                            {{ x.product.title  }}
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="orderProductDetail">
+                            
+                              <b> ID  {{ x.product.id }}</b>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="orderProductDetail">
+                            ilość sztuk: {{ x.quantity    }}
+                        </div>
+                        
+                    </div>
+                    <div class="col-5">
+                        <div class="orderProductDetail">
+                            cena za sztuke:  
+                            {% if product.pricePromo is None  %}
+                                
+                                {{ x.product.pricePromo  }} {% trans "zł"  %}
+                            {% else  %}
+                            {{  x.product.priceNormal }} {% trans "zł"  %}
+                            {%  endif %}
+                        </div>
+                    </div> 
+                    <div class="col-4">
+                        <div class="orderProductDetail">
+                            suma: {{ x.get_total  }}
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor  %}
+        <div class="row no-gutters rowOrderDetailsMargin">
+            <div class="col-4">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-5">
+                     
+                    </div> 
+                    <div class="col-4">
+                         
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-5">
+                        
+                    </div> 
+                    <div class="col-4">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="col-8">
+                <div class="sendedOrder">
+                    Wysłano 
+                </div>
+                <div class="sendedOrderAdditional">
+                    Zmienienie stanu wysłania spowoduje wysłanie maila do klienta o rozpoczętym procesie wysyłki 
+                </div>
+                <form method="POST" >
+                    {% csrf_token  %}
+                    <select name="processed" class="selectControlProcessed" >
+                        <option value="None">Nieznany</option>
+                        <option value="True">Tak</option>
+                        <option value="False" selected="">Nie</option>
+                      </select>
+                      <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zmień status" %}</button>
+                     
+                </form>
+              
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </div>
+</div>
+    {% endblock  %}

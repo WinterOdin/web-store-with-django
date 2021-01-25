@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 
 class Customer(models.Model):
@@ -27,7 +28,7 @@ class Product(models.Model):
     stock       = models.PositiveIntegerField(null=True, blank=True)
     priceNormal = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     pricePromo  = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
     category    = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     tags        = TaggableManager()
     pic1        = models.ImageField(null=True, blank=True)
@@ -113,7 +114,7 @@ class ShippingAddress(models.Model):
     date_added    = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return str(self.adress)
+        return str(self.transaction_id)
 
 
 

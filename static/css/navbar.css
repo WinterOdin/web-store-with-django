@@ -241,6 +241,7 @@ a.logoTextPc:hover{
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 1px, rgba(0, 0, 0, 0.041) 0px 4px 8px 0px;
     padding: 8px 0px 15px;
     left: 0px;
+    
 }
 .helpBox2{
     left: 33.33%;
@@ -290,7 +291,7 @@ a.linkHelpBox{
     color: rgb(112, 112, 112);
 
 }
-a:hover.linkHelpBox{
+a:hover.linkHelpBox{ 
     color: rgb(112, 112, 112);
     text-decoration: none;
 }
@@ -306,6 +307,7 @@ a:hover.linkHelpBox{
 .loginButtonHelpBox{
     width: 100%;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .loginButtonHelpBox .linkLoginHelpBox,.loginButtonHelpBox .linkCreateHelpBox{
@@ -323,6 +325,9 @@ a:hover.linkHelpBox{
     background: rgb(255, 255, 255);
     padding: 6px 0px;
 }
+.linkCreateHelpBox{
+    font-size: 18px;
+}
 .hrLogin{
     margin: 15px 0px 15px;
     border-top: 1px solid rgb(221, 221, 221);
@@ -335,12 +340,12 @@ a:hover.linkHelpBox{
     color: rgb(112, 112, 112);
     background-color: rgb(255, 255, 255);
     position: absolute;
-    top: 50px;
+    top: 65px;
     left: 50%;
     transform: translateX(-50%);
-    
     width: 130px;
 }
+
 .categoryPC{
     width: 100%;
     height: 100%;

@@ -1,0 +1,84 @@
+{% extends 'adminPanel/adminBase.html' %}
+{% block adminContent  %}
+{% load i18n  %}
+{% load static  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/controlPanel.css' %}">
+<div class="containerOrderPanel">
+    <div class="container">
+        <div class=" controlChoseAction">
+            {% trans "Zamówienia" %} 
+        </div>
+        <div class="row no-gutters rowStylingName">
+            <div class="col-3">
+                <div class="orderDisplayName">
+                   ID Tranzakcji 
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="orderDisplayName">
+                   Adresat
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="orderDisplayName">
+                    Adres
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="orderDisplayName">
+                   Data
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="orderDisplayName">
+                    Wysłano
+                </div>
+            </div>
+        </div>
+        {% for x in shipments  %}
+        <a href="{% url 'controlPanelOrdersDetail' pk=x.transaction_id  %}" class="rowStylingLink">
+
+        
+            <div class="row no-gutters rowStyling"
+            {% if x.processed == no  %} 
+            style="background-color: black;"
+            {% endif  %}>
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{ x.transaction_id  }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{ x.recipient  }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="orderDisplay">
+                        {{  x.adress }}
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="orderDisplay">
+                        {{  x.date_added|date:"d M Y" }}
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="orderDisplay">
+                        {{  x.processed  }}
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor  %}
+    </div>
+</div>
+
+
+
+<script>
+    $('.footerDisable').hide();
+</script>
+
+
+{% endblock  %}

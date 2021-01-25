@@ -8,6 +8,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbarGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}">
@@ -65,11 +67,13 @@
     {% include 'navbar.html'  %}
 </div>
 
+<div class="containerAnimateRef">
 {% block content  %}
 
 
 
 {% endblock  %}
+</div>
 
 
 {% include 'footer.html'  %}

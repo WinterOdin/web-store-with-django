@@ -10,7 +10,8 @@ function _3dsec(stripe_publishable_key, pi_secret) {
         } else {
           // The payment has succeeded. Display a success message.
           $("#3ds_result").text("Thank you for payment");
-          $("#3ds_result").addClass("text-success");
+          $("#3ds_result").html('<a href="http://127.0.0.1:8000/">Powrót na strone główną</a>');
+          $("#3ds_result").addClass("testSucces");
         }
       });
     }); // DOMContentLoaded

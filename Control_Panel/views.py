@@ -7,28 +7,45 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 
+
+
+
+
+
+
 @login_required(login_url='login')
 @admin_only
 @allowed_users(allowed_roles=['admin'])
 def controlPanelView(request):
     user = request.user.customer
 
+    return render(request,'adminPanel/controlPanel.html')
+
+
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelOrders(request):
+
+    user = request.user.customer
     qs = OrderItem.objects.filter(order__complete=True) 
     products = qs.filter(order__customer=user)
-
     shipments = ShippingAddress.objects.all().order_by("-id");
-
 
     context={
         'shipments':shipments
     }
 
-    return render(request,'controlPanel.html', context)
+    return render(request,'adminPanel/controlPanelOrder.html', context)
+
+
 
 @login_required(login_url='login')
 @admin_only
 @allowed_users(allowed_roles=['admin'])
-def controlPanelDetail(request, pk):
+def controlPanelOrdersDetail(request, pk):
     shipments = ShippingAddress.objects.get(transaction_id=pk)
     qs        = OrderItem.objects.filter(transaction_id=pk) 
     if request.method == "POST":
@@ -53,5 +70,5 @@ def controlPanelDetail(request, pk):
       
     }
 
-    return render(request,'controlPanelOrderDetail.html', context)
+    return render(request,'adminPanel/controlPanelOrderDetail.html', context)
 

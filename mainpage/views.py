@@ -318,9 +318,6 @@ def processOrder(request):
             item.transaction_id = transaction_id
             item.save()
 
-
-      
-
         payment_intent_id = request.POST['payment_intent_id']
         payment_method_id = request.POST['payment_method_id']
         stripe.api_key  = API_KEY
@@ -347,7 +344,7 @@ def processOrder(request):
             payment_intent_id,
         )   
 
-        print(request.POST)
+      
         customerOnWebsite = request.user.customer
         values = request.POST.copy()
         values['transaction_id'] = transaction_id

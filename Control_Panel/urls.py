@@ -6,6 +6,7 @@ from Control_Panel import views as panel
 urlpatterns = [
 
 	path('control', panel.controlPanelView, name='control'),
-	path('controlDetail/<str:pk>/', panel.controlPanelDetail, name='controlDetail'),
+	path('controlPanelOrders', panel.controlPanelOrders, name='controlPanelOrders'),
+	path('controlPanelOrdersDetail/<str:pk>/', panel.controlPanelOrdersDetail, name='controlPanelOrdersDetail'),
 	
 ]

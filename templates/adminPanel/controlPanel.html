@@ -1,0 +1,98 @@
+{% extends 'adminPanel/adminBase.html' %}
+{% block adminContent  %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="controlChoseAction">
+                Wybierz akcje
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3 col-sm-6 ">
+            <a href="{% url 'controlPanelOrders'  %}">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Zamówienia
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Produkty 
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Kategorie 
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-angle-double-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Dostawcy
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-truck-loading"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Kategorie Pomocy
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        Pomoc
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+     
+
+    </div>
+</div>
+
+{% endblock  %}

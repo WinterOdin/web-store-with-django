@@ -137,11 +137,12 @@
                                     </a>
                                     {%endif%}
                                 </div>    
-                            
+                            {% if user.is_authenticated  %}
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'order'  %}">{% trans "Zamówienia" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="{% url 'user'  %}">{% trans "Ustawienia Konta" %}</a></li>
                             </ul> 
+                            {% endif  %}
                         </div>
                         <div class="iconWrapper3">
                             <div class="iconContent3">

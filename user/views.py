@@ -65,20 +65,20 @@ def usersCart(request):
 
 
 
-@login_required(login_url='login')
+
 def orderView(request):
     cart     = usersCart(request)
     user = request.user.customer
     qs = OrderItem.objects.filter(order__complete=True) 
     products = qs.filter(order__customer=user)
-
+    
     context={
         'products':products
     }
     context={**context, **cart}
     return render(request,'orders.html', context)
 
-@login_required(login_url='login')
+
 def orderViewDetail(request, pk):
     shipments = ShippingAddress.objects.get(transaction_id=pk)
     qs        = OrderItem.objects.filter(transaction_id=pk) 
@@ -88,13 +88,12 @@ def orderViewDetail(request, pk):
     }
     return render(request,'detailAboutOrder.html', context)
 
-@login_required(login_url='login')
+
 def refundsView(request):
 
     context={}
     return render(request,'refunds.html', context)
 
-@login_required(login_url='login')
 def userView(request):
 
     cart     = usersCart(request)      

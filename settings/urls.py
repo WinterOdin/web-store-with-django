@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from mainpage import views
 
 urlpatterns = [
     path('i18n/',include('django.conf.urls.i18n')),
@@ -10,6 +11,7 @@ urlpatterns = [
     path('',include('user.urls')),
     path('',include('authentication.urls')),
     path('',include('Control_Panel.urls')),
+    path('ckeditor', include('ckeditor_uploader.urls')),
   
 ]
 if settings.DEBUG:

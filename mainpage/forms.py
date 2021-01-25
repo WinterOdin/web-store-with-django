@@ -20,7 +20,7 @@ class CustomerShipp(ModelForm):
           'adress'          :forms.TextInput(attrs={'class':'shippForm'}),
           'email'           :forms.TextInput(attrs={'class':'shippForm','type':'email'}),
           'recipient'       :forms.TextInput(attrs={'class':'shippForm'}),
-          'phone'           :forms.TextInput(attrs={'class':'shippForm','type':'number'}),
+          'phone'           :forms.TextInput(attrs={'class':'shippForm'}),
           'invoiceRecipient':forms.TextInput(attrs={'class':'shippForm'}),
           'invoiceAdress'   :forms.TextInput(attrs={'class':'shippForm'}),
           'invoiceZip'      :forms.TextInput(attrs={'class':'shippForm'}),
