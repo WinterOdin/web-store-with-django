@@ -1,0 +1,72 @@
+{% extends 'adminPanel/adminBase.html' %}
+{% load i18n  %}
+{% load static  %}
+{% block adminContent  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <div class="container-fluid ">
+        <div class="mainOrderText">
+            {% trans "Produkty"  %}
+            <span class="addButton">
+               <a href=""> dodaj nowy produkt</a>
+            </span>
+            <span >
+                <div class="searchBar">
+                    <form role="search" method="POST" class="product-search formNavbar" action="" autocomplete="off">
+                        {% csrf_token  %}
+                        <input type="search"  value="{{query}}" class="search-field navbarInput" placeholder="{% trans 'Szukaj produktów…'  %}"  name="searchProduct">
+                        <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
+                        <input type="hidden" name="post_type" value="product">
+      
+                    </form>
+                </div> 
+            </span>
+        </div>
+        {% for x in products  %}
+        <a class="linkDetailOrderUser" href="{% url 'controlPanelProductsDetail' pk=x.id %}">
+            <div class="row no-gutters orderListBorder">
+                <div class="col-md-4 col-sm-12 ">
+                    <div class="leftColOrderUserList" 
+                    {% if x.stock == 0 %}
+                        style="background-color: rgb(255, 235, 235);"
+                    {% else  %}
+                        style="background-color: rgb(235, 255, 235);"
+                    {% endif  %}>    
+                        <div class="leftContentColOrderList">
+                            {%  trans "Produkt ID" %}
+                            <b>{{ x.id  }}</b><br />
+                            <span class="colorTest">
+                                {% if x.stock == 0  %}
+                                <span style="color: rgb(238, 110, 110);">&nbsp;{{ x.stock }} {% trans "sztuk w magazyie" %}</span>
+                                {% else %}
+                                &nbsp;{{ x.stock }} {% trans "sztuk w magazyie" %}
+                                {% endif  %}
+                                
+                            </span>
+                            <br />
+                            {% trans "cena za sztuke: "  %}
+                            {% if x.pricePromo is None  %}              
+                            {{ x.pricePromo  }} {% trans "zł"  %}
+                            {% else  %}
+                            {{  x.priceNormal }} {% trans "zł"  %}
+                            {%  endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 ">
+                    <div class="rightColOrderUserList">      
+                        <div class="rightContentColOrderList">
+                            <div class="rightContainerColOrderList">
+                                <img class="pictureOrderWrapper" src="{{ x.pic1.url }}" alt="product image"/>
+                                <div class="productOrderWrapper">
+                                    {{  x.title}} 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {%  endfor %}
+    </div>
+
+{% endblock  %}

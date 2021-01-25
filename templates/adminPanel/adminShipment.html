@@ -1,0 +1,42 @@
+{% extends 'adminPanel/adminBase.html' %}
+{% load i18n  %}
+{% load static  %}
+{% block adminContent  %}
+
+
+<div class="container">
+    <div class="row">
+        {% for x in shipp  %}
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                        {{ x }}
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor  %}
+        <div class="col-md-3 col-sm-6 ">
+            <a href="">
+                <div class="colAdminWrapper">
+                    <div class="colControlText">
+                    </div>
+                    <div class="colControlIcon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock  %}

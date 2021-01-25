@@ -1,0 +1,60 @@
+
+{% extends 'adminPanel/adminBase.html' %}
+{% block adminContent  %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                   Dodać do polecanych? {{ forms.recommend  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.title_pl  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.title_en }}
+                </div>
+                <div class="form-group">
+                    {{ forms.producent  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.stock  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.priceNormal  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.media  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.media  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.category  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.pic1  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.pic2  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.pic3  }}
+                </div>
+                <div class="form-group">
+                    {{ forms.pic4  }}
+                </div>
+            </form>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>
+
+{% endblock   %}

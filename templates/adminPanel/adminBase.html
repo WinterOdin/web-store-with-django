@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/randomStuff.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanelGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/orderUserList.css' %}"> 
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <script src="{% static 'js/jquery.js'  %}" ></script>
@@ -59,18 +59,18 @@
                     <span class="iconOrderPC"> <i class="fas fa-stream"></i> </span>
                     <span class="textOrderPC">{% trans "Zamówienia"  %}</span>
                 </a>
-                <a  href=""class="linkOrderPC">
+                <a  href="{% url 'controlPanelProducts'  %}"class="linkOrderPC">
                     <span class="iconOrderPC"><i class="fas fa-cubes"></i> </span>
                     <span class="textOrderPC">{% trans "Produkty"  %}</span>
                 </a>
                 
-                    <a  href=""class="linkOrderPC">
+                    <a  href="{% url 'controlPanelCategories'  %}"class="linkOrderPC">
                         <span class="iconOrderPC"> <i class="fas fa-angle-double-right"></i></span>
                         <span class="textOrderPC">{% trans "Kategorie"  %}</span>
                     </a>
                 
                 
-                    <a  href=""class="linkOrderPC">
+                    <a  href="{% url 'controlPanelShipMethod'  %}"class="linkOrderPC">
                         <span class="iconOrderPC"> <i class="fas fa-truck-loading"></i></span>
                         <span class="textOrderPC">{% trans "Dostawcy"  %}</span>
                     </a>

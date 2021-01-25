@@ -24,7 +24,7 @@
             </a>
         </div>
         <div class="col-md-3 col-sm-6 ">
-            <a href="">
+            <a href="{% url 'controlPanelProducts'  %}">
                 <div class="colAdminWrapper">
                     <div class="colControlText">
                         Produkty 
@@ -36,7 +36,7 @@
             </a>
         </div>
         <div class="col-md-3 col-sm-6 ">
-            <a href="">
+            <a href="{% url 'controlPanelCategories'  %}">
                 <div class="colAdminWrapper">
                     <div class="colControlText">
                         Kategorie 
@@ -48,7 +48,7 @@
             </a>
         </div>
         <div class="col-md-3 col-sm-6 ">
-            <a href="">
+            <a  href="{% url 'controlPanelShipMethod'  %}">
                 <div class="colAdminWrapper">
                     <div class="colControlText">
                         Dostawcy
@@ -92,6 +92,63 @@
 
      
 
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="controlChoseAction">
+                Uzupełnij zasoby
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="rowEmptyProducts">
+            {% for x in products  %}
+            <a class="linkDetailOrderUser" href="{% url 'controlPanelProductsDetail' pk=x.id %}">
+                <div class="row no-gutters orderListBorder">
+                    <div class="col-md-4 col-sm-12 ">
+                        <div class="leftColOrderUserList" 
+                        {% if x.stock == 0 %}
+                            style="background-color: rgb(255, 235, 235);"
+                        {% else  %}
+                            style="background-color: rgb(235, 255, 235);"
+                        {% endif  %}>    
+                            <div class="leftContentColOrderList">
+                               Produkt ID
+                                <b>{{ x.id  }}</b><br />
+                                <span class="colorTest">
+                                    {% if x.stock == 0  %}
+                                    <span style="color: rgb(238, 110, 110);">&nbsp;{{ x.stock }} sztuk w magazyie</span>
+                                    {% else %}
+                                    &nbsp;{{ x.stock }} sztuk w magazyie
+                                    {% endif  %}
+                                    
+                                </span>
+                                <br />
+                                cena za sztuke
+                                {% if x.pricePromo is None  %}              
+                                {{ x.pricePromo  }} zł
+                                {% else  %}
+                                {{  x.priceNormal }} zł
+                                {%  endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-12 ">
+                        <div class="rightColOrderUserList">      
+                            <div class="rightContentColOrderList">
+                                <div class="rightContainerColOrderList">
+                                    <img class="pictureOrderWrapper" src="{{ x.pic1.url }}" alt="product image"/>
+                                    <div class="productOrderWrapper">
+                                        {{  x.title}} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {%  endfor %}
+        </div>
     </div>
 </div>
 

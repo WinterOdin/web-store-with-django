@@ -64,8 +64,14 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <div class="orderDisplay">
+                    <div class="orderDisplay"
+                    {% if x.processed == True  %} 
+                    style="background-color: rgb(173, 236, 176);"
+                    {% else  %}
+                    style="background-color: rgb(236, 173, 173);"
+                    {% endif  %}>
                         {{  x.processed  }}
+
                     </div>
                 </div>
             </div>

@@ -20,27 +20,16 @@
     @media (max-width:950px){
       .grid-container-ControlPanel {
         display: grid;
-        
         grid-template-columns: 1fr;
+        grid-template-rows: 0fr 1fr;
         gap: 0px 0px;
         grid-template-areas:
-        "controlPanelColLeft"
-        "controlPanelColRight";
-        margin-top: 5vh;
-        width: 100vw;
+          "controlPanelColLeft"
+          "controlPanelColRight";
       }
-      .controlPanelColLeft { 
-        display: none;
-        grid-area: controlPanelColLeft;
-       }
-       .containerOrderPanel {
-        font-family: 'Montserrat', sans-serif;
-        width: 100%;
-        margin-left: 0%;
-    }
-    
-
-    
+      .controlPanelColLeft{
+        display:none;
+      }
 
 
 

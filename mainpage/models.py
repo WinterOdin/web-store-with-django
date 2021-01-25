@@ -9,7 +9,7 @@ class Customer(models.Model):
     dateCreated     = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return str(self.user.first_name)
+        return self.user.first_name
 
 
 class Category(models.Model):
@@ -47,8 +47,9 @@ class Order(models.Model):
     complete        = models.BooleanField(default=False, null=True, blank=True)
     transaction_id  = models.CharField(max_length=200, null=True)
 
+    
     def __str__(self):
-        return str(self.customer.user.first_name)
+        return str(self.customer)
 
     @property
     def get_cart_total(self):
@@ -112,6 +113,7 @@ class ShippingAddress(models.Model):
     invoiceNip    = models.TextField(max_length=15, null=True, blank=True)
     processed     = models.BooleanField(default=False, blank=True, null=True)
     date_added    = models.DateTimeField(auto_now_add=True)
+    shipType      = models.TextField(max_length=20, null=True)
     
     def __str__(self):
         return str(self.transaction_id)

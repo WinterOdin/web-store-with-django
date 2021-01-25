@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import *
+from .models import ShippingAddress
 
 
 class CustomerShipp(ModelForm):
@@ -10,7 +10,7 @@ class CustomerShipp(ModelForm):
         model   = ShippingAddress
         fields  = [ 'city', 'country','zip_code','adress',
                     'phone','email','recipient','invoice','invoiceRecipient',
-                    'invoiceAdress','invoiceZip','invoiceCity','invoiceNip','transaction_id','customer','order']
+                    'invoiceAdress','invoiceZip','invoiceCity','invoiceNip','transaction_id','customer','order','shipType']
         exclude =['processed', 'date_added']
 
         widgets ={
@@ -29,5 +29,6 @@ class CustomerShipp(ModelForm):
           'transaction_id'  :forms.TextInput(attrs={'type':'hidden'}),
           'customer'        :forms.TextInput(attrs={'type':'hidden'}),
           'order'           :forms.TextInput(attrs={'type':'hidden'}),
+         
        }
   

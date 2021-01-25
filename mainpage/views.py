@@ -112,13 +112,13 @@ def usersCart(request):
     }
     return context
 
-def serchQueryset(query):
+def searchQueryset(query):
     queryset = []
     if query is not None:
         queries  = query.split(" ")
         for x in queries:
             products = Product.objects.filter(
-                Q(title__icontains=x)|Q(description__icontains=x)|Q(category__category__icontains=x)|Q(producent__icontains=x)
+                Q(title__icontains=x)|Q(description__icontains=x)|Q(category__category__icontains=x)|Q(producent__icontains=x)|Q(id__icontains=x)
             ).distinct()
 
             for product in products:
@@ -138,7 +138,7 @@ def recommendedProducts(request):
 
     if request.method == "POST":
         query = request.POST.get('search_bar')    
-        productsInfo = serchQueryset(query)
+        productsInfo = searchQueryset(query)
         context      = {
             'newest':newest,
             'query':query,
@@ -348,6 +348,7 @@ def processOrder(request):
         customerOnWebsite = request.user.customer
         values = request.POST.copy()
         values['transaction_id'] = transaction_id
+        values['shipType'] = request.POST['contractor']
         values.pop('payment_method_id')
         values.pop('payment_intent_id')
         forms = CustomerShipp(values)

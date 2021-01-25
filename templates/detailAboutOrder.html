@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content  %}
 {% load i18n  %}
+
 {% load static  %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/controlPanel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanel.css' %}">
 <div class="containerOrderPanel">
     <div class="container">
         <div class="titlesOrederDetail">
@@ -99,7 +100,7 @@
         <div class="row no-gutters rowOrderDetailsMargin">
             <div class="col-4">
                 <div class="pictureDetailOrder">
-                    <img class="pictureDetailOrderImage" src="{{ x.product.pic1.url }}" />
+                    <img class="pictureDetailOrderImageUser" src="{{ x.product.pic1.url }}" />
                 </div>
             </div>
             <div class="col-6">
