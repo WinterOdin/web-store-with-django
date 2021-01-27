@@ -8,7 +8,7 @@
     <div class="row">
         {% for x in categories  %}
         <div class="col-md-3 col-sm-6 ">
-            <a href="">
+            <a href="{% url 'controlPanelCategoryDetail' pk=x.id  %}">
                 <div class="colAdminWrapper">
                     <div class="colControlText">
                         {{ x }}
@@ -21,11 +21,11 @@
         </div>
         {% endfor  %}
         <div class="col-md-3 col-sm-6 ">
-            <a href="">
+            <a href="{% url 'controlPanelCategoryAdd'  %}">
                 <div class="colAdminWrapper">
                     <div class="colControlText">
                     </div>
-                    <div class="colControlIcon">
+                    <div class="colControlIcon colControlIconAdd">
                         <i class="fas fa-plus"></i>
                     </div>
                 </div>

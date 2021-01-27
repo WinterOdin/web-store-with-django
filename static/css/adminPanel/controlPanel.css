@@ -280,9 +280,12 @@ a.adminPanelNavText{
     font-weight: 500;
     padding-top: 4vh;
 }
-.colControlIcon{
+.colControlIcon,.colControlIconAdd{
     color:rgb(51, 51, 51);
     font-size: 35px;
+}
+.colControlIconAdd{
+    margin-top: 5%;
 }
 a:hover{
     color:rgb(51, 51, 51);
@@ -309,8 +312,40 @@ a:hover{
     border: 1px solid rgb(204, 204, 204);
     margin-bottom: 8px;
 }
+.productPicturesAdminAction{
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+.imgProductAction{
+    width: 100%;
+}
 
-
+::-webkit-file-upload-button {
+    background: rgb(255, 255, 255);
+    color: rgb(107, 107, 107);
+    border-radius: 10px;
+    border:1px solid rgb(189, 189, 189);
+    font-size: 15px;
+    
+  }
+  #id_tags,#id_category{
+      width: 100%;
+      border-radius: 20px;
+      padding: .335rem 1.3rem;
+      height: 40px;
+      border: 1px solid rgb(204, 204, 204);
+      margin-bottom: 8px;
+  }
+  #id_recommend{
+      width: 20px;
+      height: 20px;
+  }
+  input:focus{
+      outline: none;
+  }
+  #id_category:focus{
+      outline: none;
+  }
 
 
 

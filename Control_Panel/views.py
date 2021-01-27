@@ -102,22 +102,36 @@ def controlPanelProducts(request):
 @allowed_users(allowed_roles=['admin'])
 def controlPanelProductsDetail(request,pk):
 
-    #kwargsami 
-    products = Product.objects.get(id=pk)
-    forms = AdminProduct(instance=products)
+    product = Product.objects.get(id=pk)
+    forms = AdminProduct(instance=product)
     if request.method == "POST":
-        pass
+        forms = AdminProduct(request.POST,instance=product)
+        print(forms.is_valid())
+        if forms.is_valid():
+            forms.save()
 
     context={
-        'forms':forms
+        'forms':forms,
+        'product':product,
     }
     return render(request,'adminPanel/adminProductAction.html', context)
 
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelProductsAdd(request):
 
+    
+    if request.method == "POST":
+        forms = AdminProduct(request.POST)
+        if forms.is_valid():
+            forms.save()
 
+    context={
+        'forms':forms,
 
-
-
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
 
 
 
@@ -143,3 +157,181 @@ def controlPanelShipMethod(request):
     return render(request,'adminPanel/adminShipment.html', context)
 
 
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelCategoryDetail(request,pk):
+
+    category = Category.objects.get(id=pk)
+    forms = AdminCategory(instance=category)
+    if request.method == "POST":
+        forms = AdminCategory(request.POST,instance=category)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelCategoryAdd(request):
+
+    forms = AdminCategory()
+    if request.method == "POST":
+        forms = AdminCategory(request.POST)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelContractorDetail(request,pk):
+
+    contractor = ShipmentMethod.objects.get(id=pk)
+    forms = AdminContractor(instance=contractor)
+    if request.method == "POST":
+        forms = AdminContractor(request.POST,instance=contractor)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelContractorAdd(request):
+
+
+    forms = AdminContractor()
+    if request.method == "POST":
+        forms = AdminContractor(request.POST)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelHelpList(request):
+
+    categories = HelpCategory.objects.all()
+    context={
+       'categories':categories
+    }
+    return render(request,'adminPanel/adminHelpCategories.html', context)
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelHelpDetail(request,pk):
+
+    helpCat = HelpCategory.objects.get(id=pk)
+    forms = AdminHelp(instance=helpCat)
+    if request.method == "POST":
+        forms = AdminHelp(request.POST,instance=helpCat)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelHelpAdd(request):
+
+    forms = AdminHelp()
+    if request.method == "POST":
+        forms = AdminHelp(request.POST)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelCategoryContentList(request):
+
+    categories = HelpCategoryContent.objects.all()
+    context={
+       'categories':categories
+    }
+    return render(request,'adminPanel/adminHelpContent.html', context)
+
+
+
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelCategoryContentDetail(request,pk):
+
+    catContent = HelpCategoryContent.objects.get(id=pk)
+    forms = AdminHelpContent(instance=catContent)
+    if request.method == "POST":
+        forms = AdminHelpContent(request.POST,instance=catContent)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)
+
+
+@login_required(login_url='login')
+@admin_only
+@allowed_users(allowed_roles=['admin'])
+def controlPanelCategoryContentAdd(request):
+
+    forms = AdminHelpContent()
+    if request.method == "POST":
+        forms = AdminHelpContent(request.POST)
+        if forms.is_valid():
+            forms.save()
+
+    context={
+       'forms':forms
+    }
+    return render(request,'adminPanel/adminProductAction.html', context)

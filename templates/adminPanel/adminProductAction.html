@@ -2,59 +2,44 @@
 {% extends 'adminPanel/adminBase.html' %}
 {% block adminContent  %}
 
-<div class="container">
+{% if product  %}
+<div class="controlChoseAction">
+    &nbsp;&nbsp;Edytujesz produkt <br />&nbsp;&nbsp;{{product.title}}
+</div>
+{% endif  %}
+<div class="container-fluid">
     <div class="row">
-        <div class="col-1">
-
-        </div>
-        <div class="col-10">
-            <form method="POST" action="">
-                {% csrf_token %}
-                <div class="form-group">
-                   Dodać do polecanych? {{ forms.recommend  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.title_pl  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.title_en }}
-                </div>
-                <div class="form-group">
-                    {{ forms.producent  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.stock  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.priceNormal  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.media  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.media  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.category  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.pic1  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.pic2  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.pic3  }}
-                </div>
-                <div class="form-group">
-                    {{ forms.pic4  }}
-                </div>
+        <div class="col-6 ">
+            <form action="" method="POST">
+                {% csrf_token  %}
+            
+                {{ forms.as_p  }}
+                {{ forms.media  }}
+                <button type="submit" href="" class="btn btn-sm animated-button thar-three">Zapisz</button>
             </form>
         </div>
-        <div class="col-1">
+        <div class="col-6">
 
         </div>
     </div>
+    {% if product  %}
+    <div class="row productPicturesAdminAction">
+        <div class="col-3">
+            <img src="{{ product.pic1.url  }}" alt="product img" class="imgProductAction" />
+        </div>
+        <div class="col-3">
+            <img src="{{ product.pic2.url  }}" alt="product img" class="imgProductAction" />
+        </div>
+        <div class="col-3">
+            <img src="{{ product.pic3.url  }}" alt="product img" class="imgProductAction" />
+        </div>
+        <div class="col-3">
+            <img src="{{ product.pic4.url  }}" alt="product img" class="imgProductAction" />
+        </div>
+    </div>
+    {% endif  %}
 </div>
-
+<script>
+    $( ".listOrderAdmin" ).hide();
+</script>
 {% endblock   %}

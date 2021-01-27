@@ -25,7 +25,7 @@ class Product(models.Model):
     title       = models.CharField(max_length=70, null=True, blank=True)
     condition   = models.CharField(max_length=15, null=True, blank=True )
     producent   = models.CharField(max_length=40, null=True, blank=True)
-    stock       = models.PositiveIntegerField(null=True, blank=True)
+    stock       = models.PositiveIntegerField(default=0, null=True, blank=True)
     priceNormal = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     pricePromo  = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     description = RichTextUploadingField()
@@ -35,6 +35,8 @@ class Product(models.Model):
     pic2        = models.ImageField(null=True, blank=True)
     pic3        = models.ImageField(null=True, blank=True, default='logo2.png')
     pic4        = models.ImageField(null=True, blank=True, default='logo2.png')
+
+    
 
     def __str__(self):
         return str(self.title )+ " " + str(self.condition) 
@@ -125,7 +127,7 @@ class ShippingAddress(models.Model):
 
 
 class HelpCategory(models.Model):
-    category  = models.CharField(max_length=20,unique=True)
+    category        = models.CharField(max_length=20,unique=True)
     categoryIcon    = models.TextField(max_length=55, null=True, blank=True)
 
     def __str__(self):
