@@ -5,6 +5,9 @@ body{
 select {
 	outline: none;
 }
+.iconCartMargin{
+	margin-right: 1px;
+}
 
 
 .containerProducts{
@@ -22,7 +25,8 @@ select {
 }
 .qaz:hover{
 	box-shadow: rgba(0, 0, 0, 0.065) 0px 0px 2px 1px, rgba(0, 0, 0, 0.066) 0px 4px 8px 0px;
-	transition:  300ms cubic-bezier(0.4, 0, 0.2, 1) 0s;}
+	transition:  200ms linear;
+}
 	
 
 .containerWrapper
@@ -90,6 +94,7 @@ select {
 
 .cbp-vm-switcher ul li {
 	display: block;
+	
 	position: relative;
 }
 
@@ -259,17 +264,15 @@ a:hover .cbp-vm-add{
 }
 
 .cbp-vm-view-list .cbp-vm-add {
-	
-	
 
-	font-size: 20px;
+	font-size: 22px;
     border: 1px solid rgb(81, 196, 36);
     width: 45px;
     height: 45px;
     margin-left: 0%;
     border-radius: 50%;
     color: rgb(81, 196, 36) !important;
-    padding: 5px 8px;
+    padding: 5px 9px;
     -webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
     -o-transition: background-color 0.4s ease-out;

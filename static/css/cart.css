@@ -1,6 +1,12 @@
 button:focus {
 	outline:0;
 }
+.cuponIcon{
+    margin-top: 3px;
+}
+.deleteIcon{
+    margin-top: 7px;
+}
 .stockItemsNumber{
     text-align: center;
     font-size: 14px;
@@ -36,8 +42,8 @@ button:focus {
     margin-bottom: 2vh;
 }
 .updatePointer{
-    width: 30px;
-    height: 30px;
+   width: 15px;
+   height: 15px;
     cursor: pointer;
 }
 .updatePointer:hover{

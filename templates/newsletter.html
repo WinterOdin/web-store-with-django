@@ -1,3 +1,4 @@
+{% load i18n  %}
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -11,11 +12,11 @@
                     </div>
                 </div>
                 <div class="newsletterFormBox">
-                    <form role="search" method="get" class="product-search" action="">
+                    <form  method="POST" class="product-search" action="{% url 'mailing'  %}">
                         {% csrf_token  %}
-                        <input type="search"  class="search-field" placeholder="Twój email…" value="" name="">
+                        {{ formsMailing.email }}
                         <button type="submit" class="btnSubmit"><i class="far fa-paper-plane"></i></button>
-                        <input type="hidden" name="post_type" value="product">
+                        <input type="hidden" name="post_type" value="mailing">
                     </form>
                 </div>  
             </div>

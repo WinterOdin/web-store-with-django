@@ -96,9 +96,20 @@ class ShipmentMethod(models.Model):
         return str(self.contractor)
 
 
+class PaymentType(models.Model):
+    paymentName = models.CharField(max_length=15, null=True)
+    paymentPk = models.CharField(max_length=15, null=True)
+    def __str__(self):
+        return str(self.paymentName)
+
+
+
+
+
 class ShippingAddress(models.Model):
     customer      = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order         = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    paymentName   = models.ForeignKey(PaymentType, on_delete=models.SET_NULL, null=True)
     recipient     = models.TextField(max_length=50, null=True)
     city          = models.TextField(max_length=50, null=True)
     country       = models.TextField(max_length=50, null=True)
@@ -116,6 +127,7 @@ class ShippingAddress(models.Model):
     processed     = models.BooleanField(default=False, blank=True, null=True)
     date_added    = models.DateTimeField(auto_now_add=True)
     shipType      = models.TextField(max_length=20, null=True)
+    totalPrice    = models.IntegerField(null=True)
     
     def __str__(self):
         return str(self.transaction_id)
@@ -141,3 +153,11 @@ class HelpCategoryContent(models.Model):
 
     def __str__(self):
         return str(self.helpTitle)
+
+
+
+class MailingList(models.Model):
+    email = models.EmailField(max_length=30, null=True)
+
+    def __str__(self):
+        return str(self.email)

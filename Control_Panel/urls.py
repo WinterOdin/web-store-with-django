@@ -17,12 +17,9 @@ urlpatterns = [
 	path('controlPanelCategoryAdd', panel.controlPanelCategoryAdd, name='controlPanelCategoryAdd'),
 	path('controlPanelContractorDetail/<int:pk>/', panel.controlPanelContractorDetail, name='controlPanelContractorDetail'),
 	path('controlPanelContractorAdd', panel.controlPanelContractorAdd, name='controlPanelContractorAdd'),
-
 	path('controlPanelHelpList', panel.controlPanelHelpList, name='controlPanelHelpList'),
 	path('controlPanelHelpDetail/<int:pk>/', panel.controlPanelHelpDetail, name='controlPanelHelpDetail'),
 	path('controlPanelHelpAdd', panel.controlPanelHelpAdd, name='controlPanelHelpAdd'),
-
-
 	path('controlPanelCategoryContentList', panel.controlPanelCategoryContentList, name='controlPanelCategoryContentList'),
 	path('controlPanelCategoryContentDetail/<int:pk>/', panel.controlPanelCategoryContentDetail, name='controlPanelCategoryContentDetail'),
 	path('controlPanelCategoryContentAdd', panel.controlPanelCategoryContentAdd, name='controlPanelCategoryContentAdd'),

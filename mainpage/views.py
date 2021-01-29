@@ -132,6 +132,7 @@ def searchQueryset(query):
 def recommendedProducts(request):
     categoryList = Category.objects.all()
     tags         = Product.tags.all()
+    formsMailing = MailingForm() 
     cart         = usersCart(request)    
     productsInfo = Product.objects.filter(recommend=True).order_by('-id')[:6]
     newest       = Product.objects.all().order_by('-id')[:10]
@@ -145,6 +146,7 @@ def recommendedProducts(request):
             'tags':tags,
             "productsInfo":productsInfo,
             'categoryList':categoryList,
+            'formsMailing':formsMailing
         }
         context={**context, **cart}
         
@@ -155,6 +157,7 @@ def recommendedProducts(request):
         'tags':tags,
         "productsInfo":productsInfo,
         'categoryList':categoryList,
+        'formsMailing':formsMailing,
         }
     context={**context, **cart}
 
@@ -163,6 +166,7 @@ def recommendedProducts(request):
 
 
 def tagListView(request, slug):
+    formsMailing = MailingForm() 
     cart         = usersCart(request)  
     categoryList = Category.objects.all()
     tags         = Product.tags.all()
@@ -174,6 +178,7 @@ def tagListView(request, slug):
         "tags":tags,
         "productsInfo":productsInfo,
         'categoryList':categoryList,
+        'formsMailing':formsMailing
     }
  
     return render(request,'products.html', context)
@@ -183,7 +188,7 @@ def tagListView(request, slug):
 
 def categoryListView(request, category):
 
-    
+    formsMailing = MailingForm()  
     categoryList = Category.objects.all()
     productsInfo = Category.objects.get(category=category)
     productsInfo = Product.objects.filter(category=productsInfo)
@@ -198,6 +203,7 @@ def categoryListView(request, category):
         "productsInfo":productsInfo,
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
+        'formsMailing':formsMailing,
         
     }
     context={**context, **cart}
@@ -208,10 +214,12 @@ def categoryListView(request, category):
 def helpView(request):
     category = HelpCategory.objects.all()
     categoryInfo = HelpCategoryContent.objects.all()
-    cart         = usersCart(request)  
+    cart         = usersCart(request)
+    formsMailing = MailingForm()  
     context         ={
        'category':category,
        'categoryInfo':categoryInfo,
+       'formsMailing':formsMailing
     }
     context={**context, **cart}
     return render(request,'helpPage.html', context)
@@ -222,9 +230,10 @@ def productDetail(request, id):
     product         = Product.objects.get(id=id)
     productPictures = Product.objects.filter(id=id).values().first()
     cart            = usersCart(request)  
-    
+    formsMailing    = MailingForm()
     context         ={
         "product":product,
+        "formsMailing":formsMailing 
     }
     context={**context, **cart}
     return render(request,'productDetail.html', context)
@@ -268,39 +277,197 @@ def checkoutDetail(request):
     customer = request.user.customer
     cart    = usersCart(request)
     forms   = CustomerShipp(instance=customer)
+    paymentType = PaymentType.objects.all()
     emailUser = request.user.email
-
-
-    stripe.api_key  = API_KEY
     order, created  = Order.objects.get_or_create(customer=customer, complete=False)
     total           = int(order.get_cart_total)
     shipContractors = ShipmentMethod.objects.all()
-    payment_intent  = stripe.PaymentIntent.create(
-        amount      = total*100,
-        currency    = 'pln',
-        payment_method_types = ['card']
-    )
-    
-    publicKey       = settings.STRIPE_PUBLIC_KEY
-    secretKeyIntent = payment_intent.client_secret
-    payment_intent_id = payment_intent.id
-
     context ={
         'forms':forms,
         'emailUser':emailUser,
         'customer':customer,
-        'publicKey':publicKey,
-        'secretKeyIntent':secretKeyIntent,
-        'payment_intent_id':payment_intent_id,
         'shipContractors':shipContractors,
-
-
+        'paymentType':paymentType
     }
     context={**context, **cart}
     return render(request,'checkout.html',context)
 
 
+
+
+
+@login_required(login_url='login')
 def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    customer       = request.user.customer
+    
+    if request.method == "POST" and request.user.is_authenticated:
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order.transaction_id = transaction_id
+        order.save()
+
+        shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
+        totalPrice = int(order.get_cart_total + shipPrice.price) 
+     
+        customerOnWebsite = request.user.customer
+        values = request.POST.copy()
+        values['transaction_id'] = transaction_id
+        values['shipType'] = request.POST['contractor']
+        values['totalPrice'] = totalPrice
+      
+
+        forms = CustomerShipp(values)
+        if forms.is_valid():
+            order.complete = True
+            order.save()
+
+            order_items = OrderItem.objects.filter(order=order)
+            for item in order_items:
+                product = item.product
+                product.stock = product.stock - item.quantity
+                product.save()
+                item.transaction_id = transaction_id
+                item.save()
+
+           
+            adding = forms.save(commit=False)
+            adding.customer = customerOnWebsite
+            adding.order    = order
+            adding.save()
+
+            request.session['values'] = values
+
+        if values['paymentType'] == "card":
+      
+
+
+            customer = request.user.customer
+            emailUser = request.user.email
+            stripe.api_key  = API_KEY
+            payment_intent  = stripe.PaymentIntent.create(
+                amount      = totalPrice*100,
+                currency    = 'pln',
+                payment_method_types = ['card'],
+                description = transaction_id
+            )
+            publicKey       = settings.STRIPE_PUBLIC_KEY
+            secretKeyIntent = payment_intent.client_secret
+            payment_intent_id = payment_intent.id
+
+            context = {
+                'transaction_id':transaction_id,
+                'emailUser':emailUser,
+                'publicKey':publicKey,
+                'secretKeyIntent':secretKeyIntent,
+                'payment_intent_id':payment_intent_id,
+             
+
+
+            }
+            return render(request, "cardPay.html" , context)
+
+
+
+        elif values['paymentType'] == "p24":
+            recepient   = values['recipient']
+            city        = values['city']
+            country     = values['country']
+            postal_code = values['zip_code']
+            adress      = values['adress']
+            email       = values['email']
+            customer = request.user.customer
+            emailUser = request.user.email
+            stripe.api_key  = API_KEY
+
+            payment_intent  = stripe.PaymentIntent.create(
+                amount      = totalPrice*100,
+                currency    = 'pln',
+                payment_method_types = ['p24'],
+                description = transaction_id,
+            )
+
+            publicKey       = settings.STRIPE_PUBLIC_KEY
+            secretKeyIntent = payment_intent.client_secret
+            payment_intent_id = payment_intent.id
+
+            context = {
+                'transaction_id':transaction_id,
+                'emailUser':emailUser,
+                'publicKey':publicKey,
+                'secretKeyIntent':secretKeyIntent,
+                'payment_intent_id':payment_intent_id,
+                'recepient':recepient,
+                'city':city,
+                'country':country,
+                'postal_code':postal_code,
+                'adress':adress,
+                'email':email,
+            }
+
+            return render(request, "p24Pay.html" , context)
+
+
+@login_required(login_url='login')
+def cardPayment(request):
+    payment_intent_id = request.POST['payment_intent_id']
+    payment_method_id = request.POST['payment_method_id']
+    customer = request.user.customer
+    values = request.session.get('values', None)
+   
+    stripe.api_key  = API_KEY
+
+    customer    = stripe.Customer.create(
+        name    = values.get('recipient'),
+        email   = values.get('email'),
+        phone   = values.get('phone'),
+        address = {
+            "line1":values.get('adress'),
+            "city":values.get('city'),
+            "country":values.get('country'),
+            "postal_code":values.get('zip_code'),
+        },)
+
+    stripe.PaymentIntent.modify(
+        payment_intent_id,
+        payment_method = payment_method_id,
+        description    = values.get('transaction_id'),
+        customer       = customer,
+    )   
+
+    confirmation = stripe.PaymentIntent.confirm(
+        payment_intent_id,
+    )   
+
+
+    if confirmation.status == 'requires_action':
+        pi = stripe.PaymentIntent.retrieve(
+            payment_intent_id
+        )
+        payment_intent_secret = pi.client_secret
+        stripe_public_key     = settings.STRIPE_PUBLIC_KEY 
+        context = {
+            'payment_intent_secret':payment_intent_secret,
+            'stripe_public_key':stripe_public_key
+        }
+        return render(request,"3dsc.html",context)
+
+
+    for key in list(request.session.keys()):
+        if not key.startswith("_"): 
+            del request.session[key]
+
+    return render(request,'home')
+
+
+@login_required(login_url='login')       
+def successP24(request):
+    customer = request.user.customer
+    context = {
+          'customer':customer  
+    }
+    return render(request,'orderPayed.html',context)
+
+def Holder(request):
     transaction_id = datetime.datetime.now().timestamp()
     customer       = request.user.customer
     
@@ -377,12 +544,71 @@ def processOrder(request):
         return render(request,'policy.html')
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def policyDetail(request):
     return render(request,'policy.html')
 
+
+def mailingList(request):
+    if request.method == "POST":
+        forms = MailingForm(request.POST)
+        print(request.POST)
+        print(forms.is_valid())
+        if forms.is_valid():
+            forms.save()
+            
+            return redirect('home')
+
+    return redirect('home')
 
 
 #def creatingOrder(request, orderID):

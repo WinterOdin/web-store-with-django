@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content %}
+{% load i18n  %}
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+ .StripeElement {
+	box-sizing: border-box;
+	height: 40px;
+	padding: 10px 12px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: white;
+    width: 100%;
+	box-shadow: 0 1px 3px 0 #e6ebf1;
+	-webkit-transition: box-shadow 150ms ease;
+	transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+	box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+	border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+	background-color: #fefde5 !important;
+  }
+
+</style>
+<form action="{% url 'cardPayment'  %}"class="formCheckout" method="post" id="payment-form">
+    {% csrf_token  %}
+    <div class="container">
+        <div class="row">
+            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="recipientWrapper recipientSumWrapper cardPayWrapper">
+                    <div class="recipientTitle ">
+                        {% trans "Dokonaj płatnosci"  %}
+                    </div>
+                    
+                        <div class="form-row">
+                            <label for="card-element">
+                            
+                            {% trans "karta kredytowa bądź debetowa"  %}
+                            </label>
+                            <div id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                        
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                            <input type="hidden" name="payment_intent_id" value="{{payment_intent_id}}">
+                            
+
+                        </div>
+                
+                    <div class="informationAboutCheckout">
+                        {% trans "Jeśli płatność dokonywana jest europejską kartą w następnym kroku prosimy o uwierzytelnienie przelewu poprzez wybraną przez bank forme autoryzacji SMS/powiadomienie na aplikacji bankowej."  %}
+                        <br />
+                        <br />
+                        {% trans "Państwa dane są przetwarzane zgodnie z wyznacznieami PCI. Firma Stripe oraz CryptoTech nie przechowuje wprowadzonych przez Państwa informacji"  %}
+                        
+                    </div>
+                    <div class="widthBtnCheckout">
+                        <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "zapłać" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="{% static 'js/checkoutCard.js'  %}"></script>
+<script>card('{{publicKey}}','{{emailUser}}')</script>
+<script src="{% static 'js/checkoutJQ.js'  %}"></script>
+<script src="{% static 'js/checkoutJS.js'  %}"></script>
+
+
+{% endblock  %}

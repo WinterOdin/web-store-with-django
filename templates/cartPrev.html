@@ -1,4 +1,9 @@
 {% load i18n  %}
+{% load static  %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/cartPrev.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+
 {% for x in items  %}
 <div class="grid-container-cart-prev ">
     <div class="cartPrevWrapper">

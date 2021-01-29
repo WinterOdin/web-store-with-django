@@ -1,36 +1,9 @@
 {% extends 'base.html' %}
 {% load static  %}
+
 {% block content %}
 {% load i18n  %}
-<script src="https://js.stripe.com/v3/"></script>
-<style>
- .StripeElement {
-	box-sizing: border-box;
-	height: 40px;
-	padding: 10px 12px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background-color: white;
-    width: 100%;
-	box-shadow: 0 1px 3px 0 #e6ebf1;
-	-webkit-transition: box-shadow 150ms ease;
-	transition: box-shadow 150ms ease;
-  }
-  
-  .StripeElement--focus {
-	box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-  
-  .StripeElement--invalid {
-	border-color: #fa755a;
-  }
-  
-  .StripeElement--webkit-autofill {
-	background-color: #fefde5 !important;
-  }
-
-</style>
-<form class="formCheckout" action="{% url 'processOrder'  %}" method="post" id="payment-form">
+<form class="formCheckout" action="{% url 'processOrder'  %}" method="POST">
     {% csrf_token  %}
     <div class="grid-container-checkout">
         <div class="leftColCheckout">
@@ -183,31 +156,26 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="recipientWrapper recipientSumWrapper">
-                                <div class="recipientTitle ">
-                                    {% trans "4. Metoda płatności"  %}
+                                <div class="recipientTitle sumUpCheckout">
+                                    {% trans "4. Sposób płatności"  %}
                                 </div>
-                                
-                                    <div class="form-row">
-                                        <label for="card-element">
-                                        
-                                        {% trans "karta kredytowa bądź debetowa"  %}
+                                {% for x in paymentType  %}
+                                <div class="row no-gutters">
+                                    <div class="col-1">
+                                        <label class="checkbox path">
+                                            <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox">
+                                            <svg viewBox="0 0 21 21">
+                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                            </svg>
                                         </label>
-                                        <div id="card-element">
-                                        <!-- A Stripe Element will be inserted here. -->
-                                        </div>
-                                    
-                                        <!-- Used to display form errors. -->
-                                        <div id="card-errors" role="alert"></div>
-                                        <input type="hidden" name="payment_intent_id" value="{{payment_intent_id}}">
                                     </div>
-                            
-                                <div class="informationAboutCheckout">
-                                    {% trans "Jeśli płatność dokonywana jest europejską kartą w następnym kroku prosimy o uwierzytelnienie przelewu poprzez wybraną przez bank forme autoryzacji SMS/powiadomienie na aplikacji bankowej."  %}
-                                    <br />
-                                    <br />
-                                    {% trans "Państwa dane są przetwarzane zgodnie z wyznacznieami PCI. Firma Stripe oraz CryptoTech nie przechowuje wprowadzonych przez Państwa informacji"  %}
-                                    
+                                    <div class="col-11">
+                                        <div class="courierInfo">
+                                            {{ x.paymentName }}
+                                        </div>
+                                    </div>
                                 </div>
+                                {% endfor  %}  
                             </div>
                         </div>
                     </div>
@@ -279,28 +247,17 @@
   
     </div>
 </form>
-<script src="{% static 'js/checkout.js'  %}"></script>
+
+<script src="{% static 'js/checkoutCard.js'  %}"></script>
+<script>card('{{publicKey}}','{{emailUser}}')</script>
+<script src="{% static 'js/checkoutJQ.js'  %}"></script>
 <script>
-    card('{{publicKey}}','{{emailUser}}')
-</script>
-
-
-<script>
-    $( ".categoryRootMobile" ).hide();
-   $('.priceChecbkox').click(function(){
-   $('.priceChecbkox').prop('checked', false);
-
-   $(this).prop('checked', true);
-   let priceChecbkox = $(this).attr('price');
-   $('#totalPriceDelivery').text(priceChecbkox);
-   var value1 = $("#totalPriceCartItems").attr('price_cart');
-   var value2 = $("#totalPriceDelivery").attr('price_cart');
-   var value3 = (parseFloat(value1) + parseFloat(value2)).toFixed(2)
-   console.log(parseFloat(value2))
-   $('#totalPriceAll').text(value3);
-   
+ $('.payChecbkox').click(function() {
+ $('.payChecbkox').not(this).prop("checked", false);
 });
 </script>
+
+
 <script>
     var form_fields = document.getElementsByClassName('shippForm')
     form_fields[0].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
@@ -317,11 +274,5 @@
     form_fields[11].placeholder='{% trans "NIP"  %}';
 
 </script>
-<script>
-$('.checkboxInvoice').change(function () {
-    if ($(this).prop("checked")) 
-    {$('.invoiceFromWrapper').fadeIn("slow");return;}
-   $('.invoiceFromWrapper').fadeOut("slow");
-});
-</script>
+
 {% endblock  %}

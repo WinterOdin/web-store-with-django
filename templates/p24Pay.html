@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content %}
+{% load i18n  %}
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+
+input,
+.StripeElement {
+	box-sizing: border-box;
+	height: 40px;
+	padding: 0px 12px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: white;
+    width: 100%;
+	box-shadow: 0 1px 3px 0 #e6ebf1;
+	-webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+.form-row{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+.formCheckout{
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+
+input {
+  padding: 0px 12px;
+}
+
+input:focus,
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #dadee3;
+}
+
+</style>
+
+<form action=""class="formCheckout" method="post" id="payment-form">
+    {% csrf_token  %}
+    <div class="container" style="background-color: rgb(252, 252, 252); border-radius: 5px;">
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="col-8">
+                <div class="form-row">
+                    <label for="accountholder-name">
+                        {% trans "Podaj imie i nazwisko"  %}
+                    </label>
+                    <input id="accountholder-name" name="accountholder-name">
+                </div>
+            
+                <div class="form-row">
+                
+                    <label for="p24-bank-element">
+                        {% trans "Wybierz swój bank"  %}
+                    </label>
+                    <div id="p24-bank-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                </div>
+                <div class="informationAboutCheckout">
+                    
+                        <label class="checkbox path">
+                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox" required>
+                            <svg viewBox="0 0 21 21">
+                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                            </svg>
+                        </label>
+                   
+                    Oświadczam, że zapoznałem się z <a href="https://www.przelewy24.pl/regulamin">regulaminem</a> i <a href="https://www.przelewy24.pl/obowiazekinformacyjny">obowiązkiem informacyjnym</a>  serwisu Przelewy24.
+                    <br />
+                    <br />
+                   
+                        <label class="checkbox path">
+                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox" required>
+                            <svg viewBox="0 0 21 21">
+                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                            </svg>
+                        </label>
+                    
+                    I declare that I have familiarized myself with the <a href="https://www.przelewy24.pl/regulamin">regulations</a> and <a href="https://www.przelewy24.pl/obowiazekinformacyjny">information obligation</a>  of the Przelewy24 service  
+                    
+                </div>
+        <!-- Used to display form errors. -->
+                <div id="error-message" role="alert"></div>
+                <div class="widthBtnCheckout">
+                    <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "zapłać" %}</button>
+                </div>
+            </div>
+            <div class="col-2">
+                
+            </div>
+        </div>
+    </div>  
+</form>
+
+
+
+<script>
+    var stripe = Stripe('{{publicKey}}');
+    var elements = stripe.elements();
+
+    var options = {
+  // Custom styling can be passed to options when creating an Element
+    style: {
+        base: {
+        padding: '10px 12px',
+        color: '#32325d',
+        fontSize: '16px',
+        '::placeholder': {
+            color: '#aab7c4'
+        },
+        },
+    },
+    };
+
+    // Create an instance of the p24Bank Element
+    var p24Bank = elements.create('p24Bank', options);
+
+    // Add an instance of the p24Bank Element into
+    // the `p24-bank-element` <div>
+    p24Bank.mount('#p24-bank-element')
+
+
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Redirects away from the client
+  stripe.confirmP24Payment(
+    '{{secretKeyIntent}}',
+    {
+      payment_method: {
+        p24: p24Bank,
+        billing_details: {
+          name: '{{ recepient  }}',
+          email: '{{ email}}',
+          
+        },
+      },
+      payment_method_options: {
+        p24: {
+          tos_shown_and_accepted: true,
+        }
+      },
+      return_url: '',
+    }
+  );
+});
+
+</script>
+
+
+
+
+
+
+{% endblock  %}

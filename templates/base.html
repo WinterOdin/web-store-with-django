@@ -11,39 +11,36 @@
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbarGrid.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}" >
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/productDetail.css' %}">
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/productCarousel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/orderUserList.css' %}">
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderGrid.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/refund.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cartGrid.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cartPrev.css' %}">
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/checkoutGrid.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/newsletter.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/pricesCrypto.css'  %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/userPanel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'adminPanel/css/controlPanel.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}">
+  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pricesCrypto.css'  %}"  media="print" onload="this.media='all'">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanel.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}"  media="print" onload="this.media='all'">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/owlCarouselCustom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css' %}"  media="print" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owlCarouselCustom.css' %}"  media="print" onload="this.media='all'">
     
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     
+
     <script src="{% static 'js/jquery.js'  %}" ></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/randomStuff.css' %}">
   
@@ -51,12 +48,10 @@
 <script type="text/javascript">
         var user="{{ request.user  }}";function getToken(t){let e=null;if(document.cookie&&""!==document.cookie){const o=document.cookie.split(";");for(let n=0;n<o.length;n++){const r=o[n].trim();if(r.substring(0,t.length+1)===t+"="){e=decodeURIComponent(r.substring(t.length+1));break}}}return e}const csrftoken=getToken("csrftoken");function getCookie(t){for(var e=document.cookie.split(";"),o=0;o<e.length;o++){var n=e[o].split("=");if(t==n[0].trim())return decodeURIComponent(n[1])}return null}var cart=JSON.parse(getCookie("cart"));null==cart&&(cart={},document.cookie="cart="+JSON.stringify(cart)+";domain=;path=/");
 </script>
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- optionally increase loading priority -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
-<!-- async CSS -->
 <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
-<!-- no-JS fallback -->
 <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
 </noscript>

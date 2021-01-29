@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import ShippingAddress
+from .models import ShippingAddress, MailingList,PaymentType
 
 
 class CustomerShipp(ModelForm):
@@ -10,7 +10,7 @@ class CustomerShipp(ModelForm):
         model   = ShippingAddress
         fields  = [ 'city', 'country','zip_code','adress',
                     'phone','email','recipient','invoice','invoiceRecipient',
-                    'invoiceAdress','invoiceZip','invoiceCity','invoiceNip','transaction_id','customer','order','shipType']
+                    'invoiceAdress','invoiceZip','invoiceCity','invoiceNip','transaction_id','customer','order','shipType','totalPrice']
         exclude =['processed', 'date_added']
 
         widgets ={
@@ -31,4 +31,13 @@ class CustomerShipp(ModelForm):
           'order'           :forms.TextInput(attrs={'type':'hidden'}),
          
        }
-  
+
+class MailingForm(ModelForm):
+    class Meta:
+        model   = MailingList
+        fields  = ['email']
+
+        widgets ={
+          'email':forms.TextInput(attrs={'class':'search-field','type':'email'}) 
+       }
+
