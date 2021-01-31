@@ -1,3 +1,16 @@
+.searchIcon{
+    width: 20px;
+    height: 20px;
+}
+.cartIcons{
+    height: 90%;
+    width: 90%;
+    margin-left: 5%;
+}
+.emptyCartList{
+    padding-top: 10px;
+    padding-left: 15px;
+}
 .numberItemsInCart{
     position: absolute;
     background-color: rgb(0, 130, 250);
@@ -61,14 +74,12 @@
 }
 .topBarTextLeft,.topBarTextRight{
     font-family: 'Montserrat', sans-serif;
-
+    padding-top: 2px;
 }
 .topBarTextRight{
     text-align: left;
     display: flex;
- 
     align-items: center;
-   
 }
 .topBarTextLeft{
     text-align: right;
@@ -408,15 +419,42 @@ a.categoryPCLink:hover{
     .categoryPCLink{
         font-size: 14px;
     }
+    .logoWrapper{
+        padding-right: 2vw;
+        font-size: 20px;
+    }
+    .langSelect {
+        padding: 7px 20px;
+        font-size: 15px;
+        width: 100%;
+        margin-top: 0.5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: rgb(250, 250, 250);
+    }
+    .numberItemsInCart {
+        padding: 3px 8px;
+    }
+    .emptyCartList {
+        
+        text-align: left;
+    
+    }
+    
+    .emptyCartList {
+        padding-left: 0px;
+    
+
 }
 @media (max-width:955px){
     .categoryRootMobile,.grid-container-mobile,.languageMobile{
         display: block;
     }
-    .langSelect {
-        padding: 7px 2px;
-    }
+
     .product-search {
+       
         margin-top: 1.5vh;
     }
     .colorDotNav{
@@ -439,11 +477,12 @@ a.categoryPCLink:hover{
         font-size: 25px;
     }
     .iconCategoryMobile{
-        font-size: 35px;
+        width: 45px;
         color: rgb(63, 63, 63);
     }
     .textCategoryMobile{
         font-size: 12px;
+        text-align: center;
         font-family: 'Montserrat', sans-serif;
         padding-top: 1.7vh;
     }
@@ -457,6 +496,7 @@ a.categoryPCLink:hover{
     color: black;
     }
 
+    
 
     .categoryRootMobile {
         --gutter: 10px;
@@ -481,7 +521,7 @@ a.categoryPCLink:hover{
       .hs {
         display: grid;
         grid-gap: calc(var(--gutter) / 2);
-        grid-template-columns: 10px repeat(5, calc(35% - var(--gutter) * 2)) 10px;
+        grid-template-columns: 10px repeat(6, calc(35% - var(--gutter) * 2)) 10px;
         grid-template-rows: minmax(130px, 1fr);
         overflow-x: scroll;
         scroll-snap-type: x proximity;

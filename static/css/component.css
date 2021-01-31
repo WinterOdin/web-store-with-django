@@ -308,7 +308,7 @@ a:hover .cbp-vm-add{
 }
 @media screen and (max-width: 1450px) {
 	.cbp-vm-title-new {
-		margin-top: 8vh !important;
+		margin-top: 8vh;
 	}
 	.cbp-vm-view-grid .cbp-vm-title {
 		margin-top: 1.5vh;
@@ -316,7 +316,7 @@ a:hover .cbp-vm-add{
 }
 @media screen and (max-width: 1300px) {
 	.cbp-vm-title-new {
-		margin-top: 7vh !important;
+		margin-top: 7vh ;
 	}
 } 
 
@@ -326,10 +326,37 @@ a:hover .cbp-vm-add{
 	}
 } 
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 970px) {
 	.cbp-vm-view-grid ul li {
 		width: 40%;
 	}
+	.cbp-vm-image img {
+		width: 70%;
+		margin-top: 1vh;
+	}
+	.cbp-vm-view-list .cbp-vm-image {
+		width: 22%;
+		padding-left:0px;
+	}
+	.cbp-vm-view-list .cbp-vm-image img {
+		width: 100%;
+	}
+	.cbp-vm-view-list .cbp-vm-title {
+		font-size: 17px;
+	}
+	.cbp-vm-view-list .cbp-vm-details {
+		text-align: right;
+		font-size: 13px;
+	}
+	a.cbp-vm-add, a.cbp-vm-block {
+		padding: 8px 8px;
+	}
+	.search-field {
+		font-size: 12px;
+		padding-left: 0px;
+	}
+
+
 }
 
 @media screen and (max-width: 775px) {
@@ -513,8 +540,11 @@ a:hover .cbp-vm-add{
 	.cbp-vm-view-grid .cbp-vm-price {
 		font-size: 16px;
 		width: 50%;
-		padding: 15px 20px;
+		padding: 18px 20px;
 		text-align: left;
+	}
+	.cbp-vm-price-promo {
+		padding-top: 2vh;
 	}
 	.cbp-vm-view-grid .cbp-vm-image img{
 		width: 60%;	

@@ -41,6 +41,7 @@
 									{% else  %}
 									
 									<a data-product="{{ x.id }}" data-action="add" class="cbp-vm-icon cbp-vm-add  update-cart" ><i class="fas fa-cart-plus iconCart iconCartMargin"></i></a>
+
 									{% endif  %}
 									
 							</div>
@@ -49,7 +50,7 @@
 						
 							<div class="emptyCartWrapper emptyQuery">
 								<div class="emptyCartContent">
-									<div class="emptyCartText emptyQueryTitle"> Przepraszamy, nie znaleźliśmy wyników dla frazy: <br /><span class="emptyQueryText">{{ query  }}</span></div> 
+									<div class="emptyCartText emptyQueryTitle"> Przepraszamy, nie znaleźliśmy wyników<br /><span class="emptyQueryText">{{ query  }}</span></div> 
 									<a href="{% url 'home'  %}" class="cartEmptyBtn">Przejdź do strony głównej</a>
 								</div>
 							</div>

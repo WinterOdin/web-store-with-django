@@ -14,7 +14,7 @@ class Customer(models.Model):
 
 class Category(models.Model):
     category = models.CharField(max_length=20,unique=True)
-
+    picture = models.FileField(upload_to = 'icons/',null=True, blank=True)
     def __str__(self):
         return self.category
 
@@ -107,9 +107,16 @@ class PaymentType(models.Model):
 
 
 class ShippingAddress(models.Model):
+    PAYSTATE= [
+        ('processing','processing'),
+        ('payed','payed'),
+        ('no','no')
+    ]
+
     customer      = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order         = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     paymentName   = models.ForeignKey(PaymentType, on_delete=models.SET_NULL, null=True)
+    payed         = models.CharField(max_length=15, choices=PAYSTATE, null=True)
     recipient     = models.TextField(max_length=50, null=True)
     city          = models.TextField(max_length=50, null=True)
     country       = models.TextField(max_length=50, null=True)

@@ -1,11 +1,15 @@
 button:focus {
 	outline:0;
 }
-.cuponIcon{
-    margin-top: 3px;
-}
+
 .deleteIcon{
-    margin-top: 7px;
+   
+    height: 18px;
+    width: 18px;
+}
+.deleteIcon:hover{
+   
+    opacity: 0.6;
 }
 .stockItemsNumber{
     text-align: center;
@@ -22,7 +26,7 @@ button:focus {
     border-left: 1px solid rgb(230, 230, 230);
     width: 100%;
     margin-top: 6vh;
-    height: 80vh;
+    height: auto;
 }
 .cartOnMobile{
     display:none;
@@ -120,7 +124,8 @@ button:focus {
     margin-top: 2vh;
 }
 .cuponIcon{
-    font-size:24px;
+    width: 35px;
+    height: 35px;
 }
 .textTotalCart,.priceTotalCart{
     text-align: center;
@@ -385,6 +390,16 @@ color: rgb(206, 206, 206);
     }
   }
 
+  @media (max-width:960px){
+
+    .svgImgCart {
+        width: 50%;
+        margin-left: 50%;
+        margin-top: 5vh;
+    }
+  }
+
+
   @media (max-width:810px){
     .rightColCartPosition {
         height: auto;
@@ -477,4 +492,20 @@ color: rgb(206, 206, 206);
         margin-top: 4vh;
         margin-bottom: 6vh;
     }
+    .stockItemsNumber {
+        margin-top: 15px;
+    }
+    .cartIcons {
+        height: 90%;
+        width: 50%;
+        margin-left: 15%;
+    }
   }
+  @media (max-width:330px){
+    .emptyCartText {
+        font-size: 20px;
+        margin-bottom: 1vh;
+    }
+  }
+
+

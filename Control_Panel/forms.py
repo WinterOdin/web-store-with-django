@@ -36,14 +36,16 @@ class AdminProduct(forms.ModelForm):
        }
   
 
-class AdminCategory(forms.ModelForm):  
+class AdminCategory(forms.ModelForm): 
+    picture  = forms.FileField(widget=forms.ClearableFileInput(attrs={'class':'shippForm'})) 
     class Meta:
         model   = Category
-        fields  = ['category_pl','category_en']
+        fields  = ['category_pl','category_en','picture']
     
         widgets ={
           'category_pl'        :forms.TextInput(attrs={'class':'shippForm'}),
           'category_en'        :forms.TextInput(attrs={'class':'shippForm'}),
+       
        }
         
 

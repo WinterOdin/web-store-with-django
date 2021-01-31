@@ -3,6 +3,8 @@
 {% load i18n  %}
 {% load static  %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/controlPanel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+
 <div class="containerOrderPanel">
     <div class="container">
         <div class=" controlChoseAction">
@@ -35,6 +37,17 @@
                 </div>
             </div>
         </div>
+        <span >
+            <div class="searchBar">
+                <form role="search" method="POST" class="product-search formNavbar" action="" autocomplete="off">
+                    {% csrf_token  %}
+                    <input type="search"  value="{{query}}" class="search-field navbarInput" placeholder="{% trans 'Szukaj produktów…'  %}"  name="searchProduct">
+                    <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
+                    <input type="hidden" name="post_type" value="product">
+        
+                </form>
+            </div> 
+        </span>
         {% for x in shipments  %}
         <a href="{% url 'controlPanelOrdersDetail' pk=x.transaction_id  %}" class="rowStylingLink">
 

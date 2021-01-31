@@ -93,7 +93,7 @@
          </div>
         {% endif %}
         <div class="titlesOrederDetail">
-            {% trans "Zamówienie:"  %}
+            {% trans "Zamówienie:"  %} {{ shipments.transaction_id  }}
         </div>
         {% for x in qs  %}
         <div class="row no-gutters rowOrderDetailsMargin">
@@ -117,10 +117,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row no-gutters">
                     <div class="col-3">
                         <div class="orderProductDetail">
-                            ilość sztuk: {{ x.quantity    }}
+                            ilość sztuk: <br /><b>{{ x.quantity }}</b>
                         </div>
                         
                     </div>
@@ -141,8 +141,8 @@
                         </div>
                         
                     </div>
-                    
                 </div>
+               
             </div>
         </div>
         {% endfor  %}
@@ -179,9 +179,41 @@
             </div>
             <div class="col-8">
                 <div class="sendedOrder">
-                    Wysłano 
+                    Zapłacono?
                 </div>
                 <div class="sendedOrderAdditional">
+                    Zmienienie tego stanu spowoduje wysłanie maila do klienta adekwatnego do zaznaczonej opcji <br />
+                   <span style="color:red;"> w razie potrzeby odblokuje mu możliwość ponowienia zapłaty internetowej. </span><br />
+                </div>
+                <form method="POST" action="{% url 'controlPanelProductsDetailPaying' pk=shipments.transaction_i  %}">
+                    {% csrf_token  %}
+                    <select name="paying" class="selectControlProcessed" >
+                        <option value="processing" selected>processing</option>
+                        <option value="payed">payed</option>
+                        <option value="no">no</option>
+                    </select>
+                    <input type="hidden" name="payed" value="payed">
+                    <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zmień status" %}</button>
+                     <br />
+                     <br />
+                </form>
+              
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="col-8">
+                <div class="sendedOrder">
+                    Wysłano?
+                </div>
+                <div class="sendedOrderAdditional" style="color:red;">
                     Zmienienie stanu wysłania spowoduje wysłanie maila do klienta o rozpoczętym procesie wysyłki 
                 </div>
                 <form method="POST" >
@@ -190,8 +222,9 @@
                         <option value="None">Nieznany</option>
                         <option value="True">Tak</option>
                         <option value="False" selected="">Nie</option>
-                      </select>
-                      <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zmień status" %}</button>
+                    </select>
+                    <input type="hidden" name="ship" value="ship">
+                    <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zmień status" %}</button>
                      
                 </form>
               

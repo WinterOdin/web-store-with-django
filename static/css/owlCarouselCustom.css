@@ -63,7 +63,7 @@
   margin-left: 25%;
 }
 .cbp-vm-title-new{
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   margin-top: 5vh;
   width: 90%;
@@ -72,6 +72,32 @@
 .owl-nav{
   display: none;
 }
+
+@media screen and (max-width: 970px) {
+  .cbp-vm-image-new {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    margin-top: 1.4vh;
+  }
+  .cbp-vm-image-new img {
+    display: inline-block;
+    width: 70% !important;
+    border: none;
+    margin-left: 15%;
+  }
+  .cbp-vm-title-new{
+    font-size: 13px;
+    text-align: center;
+    margin-top: 0vh;
+    width: 90%;
+    margin-left: 5%;
+  }
+  .cbp-vm-title-new {
+		margin-top: 1vh ;
+	}
+}
+
 @media screen and (max-width: 420px) {
 	.cbp-vm-image-new {
     margin-top: 0vh;

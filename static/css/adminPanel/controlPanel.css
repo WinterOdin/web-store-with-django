@@ -16,7 +16,7 @@
     height: 4vh;
     font-size:18px;
     font-family: 'Montserrat', sans-serif;
-    margin-top: 2vh;
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,6 +127,7 @@ body{
 }
 .orderDisplay,.orderDisplayName{
     text-align:left;
+    word-break: break-word;
 }
 .rowStylingName{
     margin-bottom: 5vh;
@@ -134,10 +135,11 @@ body{
 }
 .rowStyling{
     border-bottom: 1px solid rgb(221, 221, 221);
-    height: 4vh;
+    height:auto;
+    padding-bottom: 2vh;
     font-size:18px;
     font-family: 'Montserrat', sans-serif;
-    margin-top: 2vh;
+    padding-top: 2vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -346,7 +348,9 @@ a:hover{
   #id_category:focus{
       outline: none;
   }
-
+.orderProductDetail{
+    text-align: center;
+}
 
 
 

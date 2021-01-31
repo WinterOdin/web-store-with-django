@@ -115,6 +115,26 @@
     height: 30vh;
   
   }
+
+@media (max-width:990px){
+    .numberContent {
+        font-size: 16px;
+    }
+    .emailFooter {
+        font-size: 15px;
+    }
+    .iconFooter {
+        font-size: 40px;
+        padding-top: 1vh;
+    }
+    .logoFooterEnergy {
+        width: 70%;
+        margin-left: 0%;
+    }
+    .dataAddress {
+        font-size: 15px;
+    }
+}
   @media (max-width:720px){
     .footerBar{
         display: none;

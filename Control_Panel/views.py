@@ -9,14 +9,14 @@ from .forms import *
 import json
 from django.db.models import Q
 from mainpage.views import searchQueryset
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelView(request):
     user = request.user.customer
     products = Product.objects.filter(stock = 0)
@@ -29,14 +29,30 @@ def controlPanelView(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelOrders(request):
 
     user = request.user.customer
     qs = OrderItem.objects.filter(order__complete=True) 
     products = qs.filter(order__customer=user)
     shipments = ShippingAddress.objects.all().order_by("-id");
+
+    if request.method == "POST":
+        query = request.POST.get('searchProduct')      
+        shipments = []
+        if query is not None:
+            queries  = query.split(" ")
+            for x in queries:
+                pr = ShippingAddress.objects.filter(
+                    Q(transaction_id__icontains=x)|Q(email__icontains=x)|Q(adress__icontains=x)|Q(phone__icontains=x)|Q(invoiceNip__icontains=x)
+                ).distinct()
+
+                for product in pr:
+                    shipments.append(product)
+        
+        context={
+            'shipments':shipments
+        }
 
     context={
         'shipments':shipments
@@ -46,9 +62,38 @@ def controlPanelOrders(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelOrdersDetail(request, pk):
+    shipments = ShippingAddress.objects.get(transaction_id=pk)
+    qs        = OrderItem.objects.filter(transaction_id=pk) 
+    if request.method == "POST":
+        processed = request.POST['processed']
+        shipments.processed = processed
+        shipments.save()
+
+          #sending mail
+        send_mail(
+        'Zamówienie'+pk+' zostało przekazane do wysyłki',
+        'Witaj',
+        'cryptotechacc@gmail.com',
+        [shipments.email],
+        fail_silently=False,
+)
+
+        return redirect(controlPanelView)
+
+    context={
+        'shipments':shipments,
+        'qs':qs,
+      
+    }
+
+    return render(request,'adminPanel/controlPanelOrderDetail.html', context)
+
+
+@login_required(login_url='login')
+@staff_member_required
+def controlPanelProductsDetailPaying(request, pk):
     shipments = ShippingAddress.objects.get(transaction_id=pk)
     qs        = OrderItem.objects.filter(transaction_id=pk) 
     if request.method == "POST":
@@ -78,9 +123,9 @@ def controlPanelOrdersDetail(request, pk):
 
 
 
+
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelProducts(request):
     user     = request.user.customer
     products = Product.objects.all().order_by('stock')
@@ -98,8 +143,7 @@ def controlPanelProducts(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelProductsDetail(request,pk):
 
     product = Product.objects.get(id=pk)
@@ -117,16 +161,16 @@ def controlPanelProductsDetail(request,pk):
     return render(request,'adminPanel/adminProductAction.html', context)
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelProductsAdd(request):
 
-    
+    forms = AdminProduct()
     if request.method == "POST":
         forms = AdminProduct(request.POST)
         if forms.is_valid():
             forms.save()
 
+            return render(request,'adminPanel/controlPanel.html')
     context={
         'forms':forms,
 
@@ -136,8 +180,7 @@ def controlPanelProductsAdd(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelCategories(request):
     categories = Category.objects.all()
     context={
@@ -147,8 +190,7 @@ def controlPanelCategories(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelShipMethod(request):
     shipp = ShipmentMethod.objects.all()
     context={
@@ -158,8 +200,7 @@ def controlPanelShipMethod(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelCategoryDetail(request,pk):
 
     category = Category.objects.get(id=pk)
@@ -169,6 +210,7 @@ def controlPanelCategoryDetail(request,pk):
         if forms.is_valid():
             forms.save()
 
+        
     context={
        'forms':forms
     }
@@ -176,8 +218,7 @@ def controlPanelCategoryDetail(request,pk):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelCategoryAdd(request):
 
     forms = AdminCategory()
@@ -195,8 +236,7 @@ def controlPanelCategoryAdd(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelContractorDetail(request,pk):
 
     contractor = ShipmentMethod.objects.get(id=pk)
@@ -212,8 +252,7 @@ def controlPanelContractorDetail(request,pk):
     return render(request,'adminPanel/adminProductAction.html', context)
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelContractorAdd(request):
 
 
@@ -232,8 +271,7 @@ def controlPanelContractorAdd(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelHelpList(request):
 
     categories = HelpCategory.objects.all()
@@ -244,8 +282,7 @@ def controlPanelHelpList(request):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelHelpDetail(request,pk):
 
     helpCat = HelpCategory.objects.get(id=pk)
@@ -262,8 +299,7 @@ def controlPanelHelpDetail(request,pk):
 
 
 @login_required(login_url='login')
-@admin_only
-@allowed_users(allowed_roles=['admin'])
+@staff_member_required
 def controlPanelHelpAdd(request):
 
     forms = AdminHelp()

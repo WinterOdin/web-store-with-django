@@ -28,12 +28,11 @@
     .grid-container-checkout {
         display: grid;
         grid-template-columns: 1fr ;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 0.5fr;
         gap: 0px 0px;
         grid-template-areas:
           "leftColCheckout"
-          "rightColCheckout"
-    
-    
+          "rightColCheckout";
+        margin-bottom: 5vh;
       }
   }

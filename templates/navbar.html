@@ -26,7 +26,7 @@
                                 <a class="logoutNav" href="{% url 'logout' %}"> {% trans "Wyloguj się " %}</a>
                                    
                                 {% else  %} 
-                                    
+                                    biuro@wwtechnology.pl
                                 {%endif%}
                             </div>
                         </div>
@@ -40,7 +40,10 @@
                     <form role="search" method="POST" class="product-search formNavbar" action="" autocomplete="off">
                         {% csrf_token  %}
                         <input type="search"  value="{{query}}" class="search-field navbarInput" placeholder="{% trans 'Szukaj produktów…'  %}"  name="search_bar">
-                        <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
+                        <button type="submit" class="btnSubmit">
+                            <img src="{% static 'icons/search-solid.svg'  %}" class="searchIcon" alt="search">
+                
+                            </button>
                         <input type="hidden" name="post_type" value="product">
       
                     </form>
@@ -51,7 +54,7 @@
                             <div class="iconContent1">
                                 <a class="tileLink" href="{% url 'help'  %}">
                                     <div class="iconPic">
-                                        <i class="fas fa-headset"></i>
+                                        <img src="{% static 'icons/headset-solid.svg'  %}" alt="help"class="cartIcons">
                                     </div>
                                     <div class="iconText">
                                         {% trans "Pomoc i kontakt" %}
@@ -109,7 +112,7 @@
                             <div class="iconContent2">
                                 <a class="tileLink" href="{% url 'order'  %} ">
                                     <div class="iconPic">
-                                        <i class="fas fa-user"></i>
+                                        <img src="{% static 'icons/user-solid.svg'  %}" class="cartIcons" alt="user">
                                     </div>
                                     <div class="iconText">
                                         {% trans "Twoje Konto" %}
@@ -121,7 +124,7 @@
                             <div class="tileListHelpTitle"></div>
                                 <div class="loginButtonHelpBox">
                                     {% if user.is_authenticated  %}
-                                       <div class="helloMsgLogin"> {% trans "Witaj"  %} {{ request.user.customer  }}</div>
+                                       <div class="helloMsgLogin"> {% trans "Witaj"  %} <b>{{ request.user.customer  }}</b></div>
                                     {% else  %} 
                                     <a href="{% url 'login'  %}" >
                                         <div class="linkLoginHelpBox">
@@ -169,7 +172,7 @@
                                 {% include 'cartPrev.html'  %}
                             {% else  %}
                             <div class="emptyCartList">
-                                Twój koszyk jest
+                                Twój koszyk jest pusty
                             </div>
                             {% endif  %}
                         </div>
@@ -252,7 +255,9 @@
                 <form role="search" method="POST" class="product-search" action="">
                     {% csrf_token  %}
                     <input type="search"  class="search-field" value="{{query}}" placeholder="{% trans 'Szukaj produktów…'  %}" name="search_bar">
-                    <button type="submit" class="btnSubmit"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btnSubmit">
+                        <img src="{% static 'icons/search-solid.svg'  %}" class="searchIcon">
+                    </button>
                     <input type="hidden" name="post_type" value="product">
                 </form>
 
@@ -268,7 +273,7 @@
             <div class="icon1">
                 <a class="tileLink" href="">
                     <div class="iconPic">
-                        <i class="fas fa-headset"></i>
+                        <img src="{% static 'icons/headset-solid.svg'  %}" alt="help"class="cartIcons">
                     </div>
                     <div class="iconText">
                         {% trans "Kontakt" %} 
@@ -278,7 +283,7 @@
             <div class="icon2">
                 <a class="tileLink" href="">
                     <div class="iconPic">
-                        <i class="fas fa-user"></i>
+                        <img src="{% static 'icons/user-solid.svg'  %}" class="cartIcons" alt="user">
                     </div>
                     <div class="iconText">
                         {% trans "Twoje Konto" %} 
@@ -327,48 +332,25 @@
     <div  class="categoryMobile">
         <div   class="full hide-scroll">
           <ul class="hs" >
+
+            {% for x in categoryList  %}
             <li class="itemCategoryMobile">
-            <a href="" class="linkCategoryMobile">
-                <i class="fab fa-bitcoin iconCategoryMobile"></i>
+            <a href="{% url 'category' category=x.category  %}" class="linkCategoryMobile">
+              
+                <img src="{{ x.picture.url  }}"  class="iconCategoryMobile">
                 <div class="textCategoryMobile">
-                    {% trans "Koparki GPU" %} 
+                    {{ x.category }}
                 </div>
             </a>
+            </li>
+            {% endfor  %}
 
 
-            </li>
-            <li class="itemCategoryMobile">
-                <a href="" class="linkCategoryMobile">
-                    <i class="fas fa-server iconCategoryMobile"></i>
-                    <div class="textCategoryMobile">
-                        {% trans "Serwery" %} 
-                    </div>
-                </a>
-            </li>
-            <li   class="itemCategoryMobile">
-                <a  href="" class="linkCategoryMobile">
-                    <i class="fas fa-digital-tachograph iconCategoryMobile"></i>
-                    <div class="textCategoryMobile">
-                        ASIC
-                    </div>
-                </a>
-            </li>
-            <li class="itemCategoryMobile">
-                <a href="" class="linkCategoryMobile">
-                    <i class="fab fa-buffer iconCategoryMobile"></i>
-                    <div class="textCategoryMobile">
-                        {% trans "Koparki GPU" %} 
-                    </div>
-                </a>
-            </li>
-            <li class="itemCategoryMobile">
-                <a href="" class="linkCategoryMobile">
-                    <i class="fas fa-cogs iconCategoryMobile"></i>
-                    <div class="textCategoryMobile">
-                        {% trans "Usługi" %} 
-                    </div>
-                </a>
-            </li>
+
+
+      
+          
+          
           </ul>
         </div>
       </div>

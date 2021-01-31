@@ -2,8 +2,8 @@
 {% load static  %}
 {% block content %}
 {% load i18n  %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/cartGrid.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/cartGrid.css' %}?v=3.4.2">
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}?v=3.4.2">
 
  
 
@@ -75,7 +75,7 @@
                             <div class="row no-gutters">
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        <img src="{% static 'css/minus-solid.svg'  %}" alt="minus" style="margin-right: 5px;"data-product="{{ x.product.id  }}" data-action="remove" class="update-cart updatePointer ">
+                                        <img src="{% static 'icons/minus-solid.svg'  %}" alt="minus" style="margin-right: 5px;"data-product="{{ x.product.id  }}" data-action="remove" class="update-cart updatePointer ">
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        <img src="{% static 'css/plus-solid.svg'  %}" alt="plus" style="margin-left: 7px;"data-product="{{ x.product.id  }}" data-action="add"  class="update-cart updatePointer ">
+                                        <img src="{% static 'icons/plus-solid.svg'  %}" alt="plus" style="margin-left: 7px;"data-product="{{ x.product.id  }}" data-action="add"  class="update-cart updatePointer ">
                                         
                                     </div>
                                 </div>
@@ -104,12 +104,7 @@
                     </div>
                     <div class="col-2">
                         <div class="deleteBtnCart">
-
-                                <img src="{% static 'css/times-solid.svg'  %}" alt="remove" style="margin-left: 15px;"data-product="{{ x.product.id  }}"data-action="delete"  class="update-cart updatePointer deleteIcon">
-                                
-                          
-    
-                            
+                                <img src="{% static 'icons/times-solid.svg'  %}" alt="remove" style="margin-left: 15px;"data-product="{{ x.product.id  }}" data-action="delete"  class="update-cart  deleteIcon">
                         </div>
                     </div>
                     <div class="productInfoCart">
@@ -163,7 +158,11 @@
                             <div class="cuponCartBar">
                                 <form role="search" method="get" class="product-search" action="">
                                     <input type="search"  class="search-field" placeholder="{% trans 'Kod rabatowy' %}" value="" name="">
-                                    <button type="submit" class="btnSubmit"><i class="cuponIcon far fa-money-bill-alt"></i></button>
+                                    
+                                    <button type="submit" class="btnSubmit">
+                                        <img src="{% static 'icons/money-bill-alt-solid.svg'  %}" alt="cupon" class="cuponIcon">
+
+                                    </button>
                                     <input type="hidden" name="post_type" value="product">
                   
                                 </form>

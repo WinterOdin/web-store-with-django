@@ -2,6 +2,9 @@
 {% extends 'adminPanel/adminBase.html' %}
 {% block adminContent  %}
 
+<script>
+    $( ".listOrderAdmin" ).hide();
+</script>
 {% if product  %}
 <div class="controlChoseAction">
     &nbsp;&nbsp;Edytujesz produkt <br />&nbsp;&nbsp;{{product.title}}
@@ -39,7 +42,5 @@
     </div>
     {% endif  %}
 </div>
-<script>
-    $( ".listOrderAdmin" ).hide();
-</script>
+
 {% endblock   %}
