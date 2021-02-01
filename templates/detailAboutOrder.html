@@ -11,6 +11,8 @@
 }
 
 </style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}?v=3.4.2">
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanel.css' %}">
 <div class="containerOrderPanel">
     <div class="container">
@@ -62,6 +64,78 @@
                 </div>
             </div>
         </div>
+
+        {% if shipments.payed %}
+        <div class="titlesOrederDetail">
+            {% trans "Ponów opłatę:"  %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="shipmentMethodPayment">
+                    {% trans "Jeśli widzisz tę wiadomość oznacza to, że płatność za to zamówienie nie została oddnotowana na naszym koncie"%}
+                </div>
+
+                <div class="row">
+                    <div class="col-12" style="text-align: center; font-weight: 600;">
+                        <br />
+                        {% trans 'W razie wątpliwości:'  %}
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="colPayTile">
+                            <div class="colPayTitle">
+                                {% trans 'Sprawdź swoje konto i w razie potrzeby ponów płatność'  %}
+                            </div>
+                           
+                            <div class="recipientWrapper recipientSumWrapperRePay">
+                                <div class="recipientTitle sumUpCheckout">
+                                    {% trans "Wybierz Sposób płatności"  %}
+
+                                    <br />
+                                </div>
+                                <form method="POST" action="">
+                                    {% csrf_token  %}
+                                    {% for x in paymentType  %}
+                                    <div class="row no-gutters">
+                                        <div class="col-4">
+                                            <label class="checkbox path">
+                                                <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox">
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="courierInfo">
+                                                {{ x.paymentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor  %}  
+                                    <div class="widthBtnCheckout">
+                                        <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Ponów płatność " %}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                         <div class="colPayTile">
+                            {% trans 'Skontaktuj się z nami jeśli płatność jest odnotowana na twoim koncie'%}
+                        
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif  %}
+
+
+
         {% if shipments.invoice == True  %}
         <div class="titlesOrederDetail">
             {% trans "Informacje do faktury:"  %}
@@ -106,12 +180,12 @@
         </div>
         {% for x in qs  %}
         <div class="row no-gutters rowOrderDetailsMargin">
-            <div class="col-4">
+            <div class="col-sm-12 col-md-4">
                 <div class="pictureDetailOrder">
                     <img class="pictureDetailOrderImageUser" src="{{ x.product.pic1.url }}" />
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="row rowInfoDetailsMargin">
                     <div class="col-8">
                         <div class="orderProductDetail">

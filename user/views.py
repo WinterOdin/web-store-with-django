@@ -8,8 +8,12 @@ from django.utils.translation import gettext as _
 from .forms import *
 from mainpage.decorators import *
 from django.contrib.auth.decorators import login_required
+import logging
+import stripe
+from django.conf import settings
 
-
+API_KEY = settings.STRIPE_PRIVATE_KEY
+logger = logging.getLogger(__name__)
 
 def usersCart(request):
     if request.user.is_authenticated:
@@ -70,7 +74,7 @@ def orderView(request):
     cart     = usersCart(request)
     user = request.user.customer
     qs = OrderItem.objects.filter(order__complete=True) 
-    products = qs.filter(order__customer=user)
+    products = qs.filter(order__customer=user).order_by('-date_added')
     
     context={
         'products':products
@@ -82,9 +86,85 @@ def orderView(request):
 def orderViewDetail(request, pk):
     shipments = ShippingAddress.objects.get(transaction_id=pk)
     qs        = OrderItem.objects.filter(transaction_id=pk) 
+    paymentType = PaymentType.objects.all()
+    transaction_id = pk
+    
+    values = request.POST.copy()
+    values['transaction_id'] = transaction_id
+    values['email'] = shipments.email
+    values['phone'] = shipments.phone
+    values['adress'] = shipments.adress
+    values['city'] = shipments.city
+    values['country'] = shipments.country
+    values['zip_code'] = shipments.zip_code
+    request.session['values'] = values
+   
+    if request.method == "POST" and request.user.is_authenticated:
+        
+        if values['paymentType'] == "card":
+                customer = request.user.customer
+                emailUser = request.user.email
+                stripe.api_key  = API_KEY
+                payment_intent  = stripe.PaymentIntent.create(
+                    amount      = shipments.totalPrice*100,
+                    currency    = 'pln',
+                    payment_method_types = ['card'],
+                    description = transaction_id
+                )
+                publicKey       = settings.STRIPE_PUBLIC_KEY
+                secretKeyIntent = payment_intent.client_secret
+                payment_intent_id = payment_intent.id
+
+                context = {
+                    'transaction_id':transaction_id,
+                    'emailUser':emailUser,
+                    'publicKey':publicKey,
+                    'secretKeyIntent':secretKeyIntent,
+                    'payment_intent_id':payment_intent_id,
+                }
+                return render(request, "cardPay.html" , context)
+
+
+        elif values['paymentType'] == "p24":
+                recepient   = shipments.recipient
+                city        = shipments.city
+                country     = shipments.country
+                postal_code = shipments.zip_code
+                adress      = shipments.adress
+                email       = shipments.email
+                customer = request.user.customer
+                emailUser = request.user.email
+                stripe.api_key  = API_KEY
+
+                payment_intent  = stripe.PaymentIntent.create(
+                    amount      = shipments.totalPrice*100,
+                    currency    = 'pln',
+                    payment_method_types = ['p24'],
+                    description = transaction_id,
+                )
+
+                publicKey       = settings.STRIPE_PUBLIC_KEY
+                secretKeyIntent = payment_intent.client_secret
+                payment_intent_id = payment_intent.id
+
+                context = {
+                    'transaction_id':transaction_id,
+                    'emailUser':emailUser,
+                    'publicKey':publicKey,
+                    'secretKeyIntent':secretKeyIntent,
+                    'payment_intent_id':payment_intent_id,
+                    'recepient':recepient,
+                    'city':city,
+                    'country':country,
+                    'postal_code':postal_code,
+                    'adress':adress,
+                    'email':email,
+                }
+                return render(request, "p24Pay.html" , context)
     context={
         'shipments':shipments,
         'qs':qs,
+        'paymentType':paymentType,
     }
     return render(request,'detailAboutOrder.html', context)
 

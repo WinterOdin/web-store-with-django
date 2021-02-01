@@ -17,7 +17,7 @@
     grid-area: controlPanelColRight; }
   
 
-    @media (max-width:950px){
+    @media (max-width:960px){
       .grid-container-ControlPanel {
         display: grid;
         grid-template-columns: 1fr;

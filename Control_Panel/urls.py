@@ -24,5 +24,5 @@ urlpatterns = [
 	path('controlPanelCategoryContentDetail/<int:pk>/', panel.controlPanelCategoryContentDetail, name='controlPanelCategoryContentDetail'),
 	path('controlPanelCategoryContentAdd', panel.controlPanelCategoryContentAdd, name='controlPanelCategoryContentAdd'),
 
-	path('controlPanelProductsDetailPaying/<int:pk>/', panel.controlPanelProductsDetailPaying, name='controlPanelProductsDetailPaying'),
+	path('controlPanelProductsDetailPaying/<str:pk>/', panel.controlPanelProductsDetailPaying, name='controlPanelProductsDetailPaying'),
 ]

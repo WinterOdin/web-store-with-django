@@ -95,30 +95,26 @@ def controlPanelOrdersDetail(request, pk):
 @staff_member_required
 def controlPanelProductsDetailPaying(request, pk):
     shipments = ShippingAddress.objects.get(transaction_id=pk)
-    qs        = OrderItem.objects.filter(transaction_id=pk) 
     if request.method == "POST":
-        processed = request.POST['processed']
-        shipments.processed = processed
+        processed = request.POST['paying']
+        shipments.payed = processed
         shipments.save()
+        if processed =="no":
+            send_mail(
+                'Witaj',
+                'Podczas płatności za zamówienie'+pk+' nastąpił błąd, pieniądze nie zostały pobrane z konta. Zamówienie można opłacic ponownie na stronie na której widnieją http://127.0.0.1:8000/detailOrder/'+pk+'/'+',',
+                'cryptotechacc@gmail.com',
+                [shipments.email],
+                fail_silently=False,
+            )
 
-          #sending mail
-        send_mail(
-        'Zamówienie'+pk+' zostało przekazane do wysyłki',
-        'Witaj',
-        'cryptotechacc@gmail.com',
-        [shipments.email],
-        fail_silently=False,
-)
-
-        return redirect(controlPanelView)
+            return redirect(controlPanelView)
 
     context={
         'shipments':shipments,
-        'qs':qs,
-      
     }
 
-    return render(request,'adminPanel/controlPanelOrderDetail.html', context)
+    return render(request,'adminPanel/controlPanel.html', context)
 
 
 

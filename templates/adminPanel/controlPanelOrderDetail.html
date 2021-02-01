@@ -104,12 +104,12 @@
             </div>
             <div class="col-7">
                 <div class="row rowInfoDetailsMargin no-gutters">
-                    <div class="col-11">
+                    <div class="col-10">
                         <div class="orderProductDetail">
                             {{ x.product.title  }}
                         </div>
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         <div class="orderProductDetail">
                             
                               <b> ID  {{ x.product.id }}</b>
@@ -179,13 +179,15 @@
             </div>
             <div class="col-8">
                 <div class="sendedOrder">
-                    Zapłacono?
+                    Zapłacono? <br />
+
+                    {{ shipments.payed  }}
                 </div>
                 <div class="sendedOrderAdditional">
                     Zmienienie tego stanu spowoduje wysłanie maila do klienta adekwatnego do zaznaczonej opcji <br />
                    <span style="color:red;"> w razie potrzeby odblokuje mu możliwość ponowienia zapłaty internetowej. </span><br />
                 </div>
-                <form method="POST" action="{% url 'controlPanelProductsDetailPaying' pk=shipments.transaction_i  %}">
+                <form action="{% url 'controlPanelProductsDetailPaying' pk=shipments.transaction_id %}"  method="POST">
                     {% csrf_token  %}
                     <select name="paying" class="selectControlProcessed" >
                         <option value="processing" selected>processing</option>
@@ -212,6 +214,8 @@
             <div class="col-8">
                 <div class="sendedOrder">
                     Wysłano?
+                    <br />
+                    {{ shipments.processed  }}
                 </div>
                 <div class="sendedOrderAdditional" style="color:red;">
                     Zmienienie stanu wysłania spowoduje wysłanie maila do klienta o rozpoczętym procesie wysyłki 

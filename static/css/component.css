@@ -465,7 +465,7 @@ a:hover .cbp-vm-add{
 		margin-top: 1vh;
 	}
 	.cbp-vm-title-new {
-		margin-top: 11vh !important;
+		margin-top: 1vh;
 	}
 	.cbp-vm-view-grid .cbp-vm-image {
 		width: 100%;
@@ -520,7 +520,7 @@ a:hover .cbp-vm-add{
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
 		.cbp-vm-title-new {
-			margin-top: 8vh !important;
+			margin-top: 6vh ;
 		}
 	}
 

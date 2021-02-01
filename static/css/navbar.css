@@ -432,7 +432,7 @@ a.categoryPCLink:hover{
         align-items: center;
         justify-content: center;
         text-align: center;
-        background: rgb(250, 250, 250);
+        background:inherit;
     }
     .numberItemsInCart {
         padding: 3px 8px;

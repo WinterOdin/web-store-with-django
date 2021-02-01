@@ -169,6 +169,7 @@ a.rowStylingLink{
     padding-bottom: 0.5vh;
     border-bottom: 1px solid rgb(235, 235, 235);
 }
+.shipmentMethodPayment,
 .shipmentMethodDetail{
     font-size: 19px;
     text-transform: uppercase;
@@ -177,6 +178,24 @@ a.rowStylingLink{
     margin-left: 8%;
     padding-top: 1.2vh;
 }
+
+
+.shipmentMethodPayment{
+    text-transform: none;
+}
+.colPayTile{
+    text-align: center;
+    width: 80%;
+    margin-left: 8%;
+    padding-top: 1.2vh;
+}
+.colPayTitle{
+    padding-left: 5%;
+}
+.recipientSumWrapperRePay{
+    width: 100%;
+}
+
 .rowOrderDetailsMargin{
     margin-bottom: 5vh;
 }
@@ -192,14 +211,14 @@ a.rowStylingLink{
 }
 .tileDetailOrder{
     padding-top: 2vh;
-    height: 16vh;
+    height: auto;
     border-radius: 5px;
     width: 70%;
     margin-left: 15%;
 }
 .tileDetailOrderText{
     padding:0px 15px 0px;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
 }
@@ -447,8 +466,14 @@ button[type=submit].animated-button.thar-three:before {
 
 
 
-
-
+@media (max-width:960px){
+    .containerOrderPanel {
+        
+        width: 100%;
+        margin-left: 0%;
+    }
+    
+}
 
 
 

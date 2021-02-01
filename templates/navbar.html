@@ -185,7 +185,7 @@
                 </div>
             </div>
             <div class="bottomBar">
-                <div class="container">
+                <div class="container" id="categoryBar">
                     <div class="row no-gutters">
                         <div class="col-1">
 
@@ -355,6 +355,19 @@
         </div>
       </div>
 </div>
+<script>
+$(window).resize(function(){
+    if(window.innerWidth <1200)
+    {
+        $("#categoryBar").addClass('container-fluid');
+        $("#categoryBar").removeClass('container');
+    }else
+    {
+        $("#categoryBar").addClass('container');
+        $("#categoryBar").removeClass('container-fluid');
+    }
+}); 
+</script>
 <script src="{% static 'js/navbarJQ.js'  %}"></script>
 
 <script src="{% static 'js/navbarJS.js'  %}"></script>

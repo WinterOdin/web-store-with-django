@@ -338,9 +338,6 @@ def processOrder(request):
             request.session['values'] = values
 
         if values['paymentType'] == "card":
-      
-
-
             customer = request.user.customer
             emailUser = request.user.email
             stripe.api_key  = API_KEY
