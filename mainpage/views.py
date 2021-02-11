@@ -302,106 +302,111 @@ def processOrder(request):
     customer       = request.user.customer
     
     if request.method == "POST" and request.user.is_authenticated:
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        order.transaction_id = transaction_id
-        order.save()
 
-        shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
-        totalPrice = int(order.get_cart_total + shipPrice.price) 
-     
-        customerOnWebsite = request.user.customer
-        values = request.POST.copy()
-        values['transaction_id'] = transaction_id
-        values['shipType'] = request.POST['contractor']
-        values['totalPrice'] = totalPrice
-      
-
-        forms = CustomerShipp(values)
-        if forms.is_valid():
-            order.complete = True
+        order_items = OrderItem.objects.filter(order=order)
+        validator = []
+        for item in order_items:
+            if item.product.stock - item.quantity >= 0:
+                validator.append(True)
+        
+        if all(validator):
+            order, created = Order.objects.get_or_create(customer=customer, complete=False)
+            order.transaction_id = transaction_id
             order.save()
 
-            order_items = OrderItem.objects.filter(order=order)
-            for item in order_items:
-                product = item.product
-                product.stock = product.stock - item.quantity
-                product.save()
-                item.transaction_id = transaction_id
-                item.save()
+            shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
+            totalPrice = int(order.get_cart_total + shipPrice.price) 
+        
+            customerOnWebsite = request.user.customer
+            values = request.POST.copy()
+            values['transaction_id'] = transaction_id
+            values['shipType'] = request.POST['contractor']
+            values['totalPrice'] = totalPrice
+        
 
-           
-            adding = forms.save(commit=False)
-            adding.customer = customerOnWebsite
-            adding.order    = order
-            adding.save()
+            forms = CustomerShipp(values)
+            if forms.is_valid():
+                order.complete = True
+                order.save()
+                
+                for item in order_items:
+                    product = item.product
+                    product.stock = product.stock - item.quantity
+                    product.save()
+                    item.transaction_id = transaction_id
+                    item.save()
 
-            request.session['values'] = values
+                adding = forms.save(commit=False)
+                adding.customer = customerOnWebsite
+                adding.order    = order
+                adding.save()
+                request.session['values'] = values
 
-        if values['paymentType'] == "card":
-            customer = request.user.customer
-            emailUser = request.user.email
-            stripe.api_key  = API_KEY
-            payment_intent  = stripe.PaymentIntent.create(
-                amount      = totalPrice*100,
-                currency    = 'pln',
-                payment_method_types = ['card'],
-                description = transaction_id
-            )
-            publicKey       = settings.STRIPE_PUBLIC_KEY
-            secretKeyIntent = payment_intent.client_secret
-            payment_intent_id = payment_intent.id
+            if values['paymentType'] == "card":
+                customer = request.user.customer
+                emailUser = request.user.email
+                stripe.api_key  = API_KEY
+                payment_intent  = stripe.PaymentIntent.create(
+                    amount      = totalPrice*100,
+                    currency    = 'pln',
+                    payment_method_types = ['card'],
+                    description = transaction_id
+                )
+                publicKey       = settings.STRIPE_PUBLIC_KEY
+                secretKeyIntent = payment_intent.client_secret
+                payment_intent_id = payment_intent.id
 
-            context = {
-                'transaction_id':transaction_id,
-                'emailUser':emailUser,
-                'publicKey':publicKey,
-                'secretKeyIntent':secretKeyIntent,
-                'payment_intent_id':payment_intent_id,
-             
-
-
-            }
-            return render(request, "cardPay.html" , context)
+                context = {
+                    'transaction_id':transaction_id,
+                    'emailUser':emailUser,
+                    'publicKey':publicKey,
+                    'secretKeyIntent':secretKeyIntent,
+                    'payment_intent_id':payment_intent_id,
+                }
+                return render(request, "cardPay.html" , context)
 
 
 
-        elif values['paymentType'] == "p24":
-            recepient   = values['recipient']
-            city        = values['city']
-            country     = values['country']
-            postal_code = values['zip_code']
-            adress      = values['adress']
-            email       = values['email']
-            customer = request.user.customer
-            emailUser = request.user.email
-            stripe.api_key  = API_KEY
+            elif values['paymentType'] == "p24":
+                recepient   = values['recipient']
+                city        = values['city']
+                country     = values['country']
+                postal_code = values['zip_code']
+                adress      = values['adress']
+                email       = values['email']
+                customer = request.user.customer
+                emailUser = request.user.email
+                stripe.api_key  = API_KEY
 
-            payment_intent  = stripe.PaymentIntent.create(
-                amount      = totalPrice*100,
-                currency    = 'pln',
-                payment_method_types = ['p24'],
-                description = transaction_id,
-            )
+                payment_intent  = stripe.PaymentIntent.create(
+                    amount      = totalPrice*100,
+                    currency    = 'pln',
+                    payment_method_types = ['p24'],
+                    description = transaction_id,
+                )
 
-            publicKey       = settings.STRIPE_PUBLIC_KEY
-            secretKeyIntent = payment_intent.client_secret
-            payment_intent_id = payment_intent.id
+                publicKey       = settings.STRIPE_PUBLIC_KEY
+                secretKeyIntent = payment_intent.client_secret
+                payment_intent_id = payment_intent.id
 
-            context = {
-                'transaction_id':transaction_id,
-                'emailUser':emailUser,
-                'publicKey':publicKey,
-                'secretKeyIntent':secretKeyIntent,
-                'payment_intent_id':payment_intent_id,
-                'recepient':recepient,
-                'city':city,
-                'country':country,
-                'postal_code':postal_code,
-                'adress':adress,
-                'email':email,
-            }
+                context = {
+                    'transaction_id':transaction_id,
+                    'emailUser':emailUser,
+                    'publicKey':publicKey,
+                    'secretKeyIntent':secretKeyIntent,
+                    'payment_intent_id':payment_intent_id,
+                    'recepient':recepient,
+                    'city':city,
+                    'country':country,
+                    'postal_code':postal_code,
+                    'adress':adress,
+                    'email':email,
+                }
 
-            return render(request, "p24Pay.html" , context)
+                return render(request, "p24Pay.html" , context)
+
+        else:
+            return render(request,'home')
 
 
 @login_required(login_url='login')
