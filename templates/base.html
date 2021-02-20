@@ -21,29 +21,33 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/pricesCrypto.css'  %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanel.css' %}?v=3.4.2">
+    
     <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css' %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'css/owlCarouselCustom.css' %}"  media="print" onload="this.media='all'">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" integrity="sha384-6qO6EOFIDfvv6uzAzozX/BvMu/qkIIHxWYOVMjpVjX+NtPuNyd3YiOEflKIIV2ka" crossorigin="anonymous">
+ 
     
 
     <script src="{% static 'js/jquery.js'  %}" ></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/randomStuff.css' %}?v=3.4.2">
   
 
-<script type="text/javascript">
-        var user="{{ request.user  }}";function getToken(t){let e=null;if(document.cookie&&""!==document.cookie){const o=document.cookie.split(";");for(let n=0;n<o.length;n++){const r=o[n].trim();if(r.substring(0,t.length+1)===t+"="){e=decodeURIComponent(r.substring(t.length+1));break}}}return e}const csrftoken=getToken("csrftoken");function getCookie(t){for(var e=document.cookie.split(";"),o=0;o<e.length;o++){var n=e[o].split("=");if(t==n[0].trim())return decodeURIComponent(n[1])}return null}var cart=JSON.parse(getCookie("cart"));null==cart&&(cart={},document.cookie="cart="+JSON.stringify(cart)+";domain=;path=/");
+    <script type="text/javascript">
+            var user="{{ request.user  }}";function getToken(t){let e=null;if(document.cookie&&""!==document.cookie){const o=document.cookie.split(";");for(let n=0;n<o.length;n++){const r=o[n].trim();if(r.substring(0,t.length+1)===t+"="){e=decodeURIComponent(r.substring(t.length+1));break}}}return e}const csrftoken=getToken("csrftoken");function getCookie(t){for(var e=document.cookie.split(";"),o=0;o<e.length;o++){var n=e[o].split("=");if(t==n[0].trim())return decodeURIComponent(n[1])}return null}var cart=JSON.parse(getCookie("cart"));null==cart&&(cart={},document.cookie="cart="+JSON.stringify(cart)+";domain=;path=/");
 </script>
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
-<noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
+
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
 </noscript>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/regular.css" integrity="sha384-GMkIgTgosuQEt2PEwBHI7MMRsrQplN2sT/7bzPOIxG+Hn37iTlZXFb37m6uE+iHj" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/fontawesome.css" integrity="sha384-Hx1dya9ptAdKu2hLNR5C2Cwgm+wCfwD0VMGE6jk5OUxxa9I58YfxOCwEtRog+3wk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" integrity="sha384-6qO6EOFIDfvv6uzAzozX/BvMu/qkIIHxWYOVMjpVjX+NtPuNyd3YiOEflKIIV2ka" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/regular.css" integrity="sha384-GMkIgTgosuQEt2PEwBHI7MMRsrQplN2sT/7bzPOIxG+Hn37iTlZXFb37m6uE+iHj" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/fontawesome.css" integrity="sha384-Hx1dya9ptAdKu2hLNR5C2Cwgm+wCfwD0VMGE6jk5OUxxa9I58YfxOCwEtRog+3wk" crossorigin="anonymous">
 </head>
 <body>
 <div class="containerNavbarReset">
@@ -64,9 +68,8 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script src="{% static 'js/popper.min.js' %}"    crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
 <script src="{% static 'OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/owl.carousel.min.js'  %}"></script>
 
 
@@ -78,12 +81,7 @@ $(document).ready(function() {
     $.getScript("{% static 'js/owlCall.js' %}");
     $.getScript("{% static 'js/classie.js' %}");
 });
-
 </script>
-
 <script src="{% static 'js/cart.js'  %}"></script>
-
-
-
 </body>
 </html>

@@ -85,7 +85,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-1">
                                         <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox">
+                                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox typeX" onclick="check();">
                                             <svg viewBox="0 0 21 21">
                                                 <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
                                             </svg>
@@ -163,7 +163,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-1">
                                         <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox">
+                                            <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox typeY" onclick="check();">
                                             <svg viewBox="0 0 21 21">
                                                 <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
                                             </svg>
@@ -231,7 +231,7 @@
                                         
                                     </div>
                                     <div class="widthBtnCheckout">
-                                        <button type="submit" href="" class="btn btn-sm animated-button thar-three">{% trans "Zakończ i zapłać" %}</button>
+                                        <button disabled id="submit" type="submit" href="" class="btn btn-sm animated-button thar-three btnClick">{% trans "Zakończ i zapłać" %}</button>
                                     </div>
                                 </div>
                                 <div class="informationAboutCheckout">
@@ -258,6 +258,22 @@
 </script>
 
 
+
+<script>
+function check(element) {
+  var cb1_checked = document.querySelectorAll(".priceChecbkox.typeX:checked");
+  var cb2_checked = document.querySelectorAll(".payChecbkox.typeY:checked");
+  var sub = document.getElementById("submit");
+  
+  if (cb1_checked.length >= 1  &&  cb2_checked.length >= 1)
+      sub.disabled = false;
+  else
+      sub.disabled = true;
+}
+</script>
+
+
+
 <script>
     var form_fields = document.getElementsByClassName('shippForm')
     form_fields[0].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
@@ -272,7 +288,6 @@
     form_fields[9].placeholder='{% trans "Kod pocztowy"  %}';
     form_fields[10].placeholder='{% trans "Miasto"  %}';
     form_fields[11].placeholder='{% trans "NIP"  %}';
-
 </script>
 
 {% endblock  %}

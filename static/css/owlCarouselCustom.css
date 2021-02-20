@@ -82,9 +82,9 @@
   }
   .cbp-vm-image-new img {
     display: inline-block;
-    width: 70% ;
+
     border: none;
-    margin-left: 15%;
+   
   }
   .cbp-vm-title-new{
     font-size: 13px;

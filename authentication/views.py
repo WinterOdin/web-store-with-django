@@ -11,12 +11,14 @@ from mainpage.decorators import *
 from django.utils.translation import gettext as _
 
 
+
 @unauthenticated_user
 def loginView(request, *args, **kwargs):
     errorMsg = _("Hasło bądź email jest niepoprawne")
     if request.user.is_authenticated:
         return redirect('products')
     else:
+    
         if request.method == 'POST':
             username = request.POST.get('email')
             password = request.POST.get('password')
@@ -29,6 +31,7 @@ def loginView(request, *args, **kwargs):
                 return redirect('login')
 
         context={}
+    
     return render(request,'login.html', context )
 
 @unauthenticated_user
@@ -53,7 +56,6 @@ def registerView(request, *args, **kwargs):
         context={
             'forms'     :forms,
          }
-
 
     return render(request,'register.html', context)
 

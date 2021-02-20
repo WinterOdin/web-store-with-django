@@ -317,7 +317,7 @@ a.linkTermsCart:hover{
 }
 a.cartEmptyBtn:hover{
 text-decoration: none;
-color: rgb(206, 206, 206);
+color: rgb(66, 66, 66);
 
 }
 .cartUseNotAuth{
@@ -338,8 +338,8 @@ color: rgb(206, 206, 206);
     margin-top: 10vh;
 }
 .loginButtonHelpBox .linkLoginHelpBox, .loginButtonHelpBox .linkCreateHelpBox .linkCreateNotAuth{
-    font-size: 18px;
-    padding: 6px 0;
+    font-size: 16px;
+    padding: 3px 0;
 }
 .loginButtonHelpBox .linkCreateHelpBox  .linkCreateNotAuth{
     font-size: 18px;

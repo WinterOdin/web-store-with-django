@@ -303,26 +303,28 @@ def processOrder(request):
     
     if request.method == "POST" and request.user.is_authenticated:
 
-        order_items = OrderItem.objects.filter(order=order)
-        validator = []
-        for item in order_items:
-            if item.product.stock - item.quantity >= 0:
-                validator.append(True)
+       # tester = Order.objects.get_or_create(customer=customer, complete=False)
+       # validator = []
+        #for item in tester:
+            #if item.product.stock - item.quantity >= 0:
+                #validator.append(True)
         
-        if all(validator):
+        #if all(validator):
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             order.transaction_id = transaction_id
             order.save()
 
             shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
             totalPrice = int(order.get_cart_total + shipPrice.price) 
-        
+
+            order_items = OrderItem.objects.filter(order=order)
+
             customerOnWebsite = request.user.customer
             values = request.POST.copy()
             values['transaction_id'] = transaction_id
             values['shipType'] = request.POST['contractor']
             values['totalPrice'] = totalPrice
-        
+
 
             forms = CustomerShipp(values)
             if forms.is_valid():
@@ -405,8 +407,8 @@ def processOrder(request):
 
                 return render(request, "p24Pay.html" , context)
 
-        else:
-            return render(request,'home')
+        #else:
+            #return render(request,'home')
 
 
 @login_required(login_url='login')
@@ -458,7 +460,7 @@ def cardPayment(request):
         if not key.startswith("_"): 
             del request.session[key]
 
-    return render(request,'home')
+    return redirect('home')
 
 
 @login_required(login_url='login')       

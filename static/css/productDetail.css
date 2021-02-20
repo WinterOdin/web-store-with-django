@@ -28,8 +28,8 @@
 .priceBoxDetail{
     font-family: 'Montserrat', sans-serif;
     margin-top: 10%;
-    width: 70%;
-    margin-left: 10%;
+    width: 55%;
+    margin-left: 15%;
     border-radius:15px;
     
     box-shadow: rgba(0, 0, 0, 0.090) 0px 0px 2px 1px, rgba(0, 0, 0, 0.091) 0px 4px 8px 0px;
@@ -51,8 +51,6 @@
     text-decoration: line-through;
 }
 .buttonsDetailWrapper{
-    width: 80%;
-    margin-left: 10%;
     padding-top:1vh;
 }
 .quantityDetailSelect {

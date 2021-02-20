@@ -328,16 +328,16 @@ a:hover.linkHelpBox{
     border-radius:20px;
     min-width: 100%;
     text-align: center;
-    padding: 6px 0px ;
+    padding: 3px 0px ;
 }
 .loginButtonHelpBox .linkCreateHelpBox{
     color: rgb(0, 130, 250);
     border: 1px solid rgb(0, 130, 250);
     background: rgb(255, 255, 255);
-    padding: 6px 0px;
+    padding: 3px 0px;
 }
 .linkCreateHelpBox{
-    font-size: 18px;
+    font-size: 16px;
 }
 .hrLogin{
     margin: 15px 0px 15px;
@@ -346,7 +346,7 @@ a:hover.linkHelpBox{
 }
 .textHrLogin{
     font-size: 13px;
-    line-height: 16px;
+    line-height: 2px;
     text-align: center;
     color: rgb(112, 112, 112);
     background-color: rgb(255, 255, 255);
