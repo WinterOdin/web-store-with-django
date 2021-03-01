@@ -21,14 +21,21 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+
+    STATE= [
+        ('new','new'),
+        ('used','used'),
+    ]
+
     recommend   = models.BooleanField(blank=True, null=True)
     title       = models.CharField(max_length=70, null=True, blank=True)
-    condition   = models.CharField(max_length=15, null=True, blank=True )
+    condition   = models.CharField(max_length=15, null=True, blank=True, choices=STATE,)
     producent   = models.CharField(max_length=40, null=True, blank=True)
     stock       = models.PositiveIntegerField(default=0, null=True, blank=True)
     priceNormal = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     pricePromo  = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     description = RichTextUploadingField()
+    snippet     = models.CharField(max_length=50, null=True, blank=True)
     category    = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     tags        = TaggableManager()
     pic1        = models.ImageField(null=True, blank=True)
@@ -112,6 +119,8 @@ class ShippingAddress(models.Model):
         ('payed','payed'),
         ('no','no')
     ]
+
+
 
     customer      = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order         = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)

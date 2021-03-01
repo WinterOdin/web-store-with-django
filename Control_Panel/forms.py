@@ -17,7 +17,7 @@ class AdminProduct(forms.ModelForm):
     class Meta:
         model   = Product
         fields  = [ 'recommend', 'title_en','title_pl',
-                    'producent','stock','priceNormal','pricePromo','condition','description_pl',
+                    'producent','stock','priceNormal','pricePromo','description_pl',
                     'description_en','category','tags','pic1','pic2','pic3','pic4',]
       
 
@@ -28,7 +28,7 @@ class AdminProduct(forms.ModelForm):
           'stock'           :forms.NumberInput(attrs={'class':'shippForm'}),
           'pricePromo'      :forms.NumberInput(attrs={'class':'shippForm'}),
           'priceNormal'     :forms.NumberInput(attrs={'class':'shippForm'}),
-          'condition'       :forms.TextInput(attrs={'class':'shippForm'}),
+          #'condition'       :forms.TextInput(attrs={'class':'shippForm'}),
           'description_pl'  :forms.Textarea(),
           'description_en'  :forms.Textarea(),
           'category'        :forms.Select(),

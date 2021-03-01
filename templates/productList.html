@@ -26,14 +26,16 @@
 							<div class="qaz">
 									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
 									<h3 class="cbp-vm-title">{{ x.title  }}</h3>
-									{% if product.pricePromo is None  %}
+
+
+									{% if x.pricePromo  %}
 									<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
-									{% else  %}
-									
-									{%  endif %}
 									<div class="cbp-vm-price"> {{ x.pricePromo  }} zł</div>
+									{% else  %}
+									<div class="cbp-vm-price"> {{  x.priceNormal }} zł</div>
+									{% endif  %}									
 									<div class="cbp-vm-details">
-										Silver beet shallot wakame tomatillo salsify mung bean beetroot groundnut.
+										
 									</div>
 									
 									{% if x.stock == 0  %}

@@ -162,7 +162,7 @@ def controlPanelProductsAdd(request):
 
     forms = AdminProduct()
     if request.method == "POST":
-        forms = AdminProduct(request.POST)
+        forms = AdminProduct(request.POST,request.FILES)
         if forms.is_valid():
             forms.save()
 
@@ -219,9 +219,10 @@ def controlPanelCategoryAdd(request):
 
     forms = AdminCategory()
     if request.method == "POST":
-        forms = AdminCategory(request.POST)
+        forms = AdminCategory(request.POST,request.FILES)
         if forms.is_valid():
             forms.save()
+            return redirect('controlPanelCategories')
 
     context={
        'forms':forms
@@ -241,6 +242,7 @@ def controlPanelContractorDetail(request,pk):
         forms = AdminContractor(request.POST,instance=contractor)
         if forms.is_valid():
             forms.save()
+            return redirect('controlPanelShipMethod')
 
     context={
        'forms':forms
@@ -254,7 +256,7 @@ def controlPanelContractorAdd(request):
 
     forms = AdminContractor()
     if request.method == "POST":
-        forms = AdminContractor(request.POST)
+        forms = AdminContractor(request.POST, request.FILES)
         if forms.is_valid():
             forms.save()
 
@@ -300,9 +302,10 @@ def controlPanelHelpAdd(request):
 
     forms = AdminHelp()
     if request.method == "POST":
-        forms = AdminHelp(request.POST)
+        forms = AdminHelp(request.POST, request.FILES)
         if forms.is_valid():
             forms.save()
+            return redirect('controlPanelHelpList')
 
     context={
        'forms':forms
@@ -345,6 +348,7 @@ def controlPanelCategoryContentDetail(request,pk):
         forms = AdminHelpContent(request.POST,instance=catContent)
         if forms.is_valid():
             forms.save()
+            return redirect('controlPanelCategoryContentList')
 
     context={
        'forms':forms
@@ -359,7 +363,7 @@ def controlPanelCategoryContentAdd(request):
 
     forms = AdminHelpContent()
     if request.method == "POST":
-        forms = AdminHelpContent(request.POST)
+        forms = AdminHelpContent(request.POST,request.FILES)
         if forms.is_valid():
             forms.save()
 

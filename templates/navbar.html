@@ -21,7 +21,7 @@
                             <div class="topBarTextLeft">
                                 {% if user.is_authenticated  %}
                                 {% if request.user.is_superuser %}
-                                <a class="" href="{% url 'control' %}"> {% trans "panel dostaw" %}</a>
+                                <a class="" href="{% url 'control' %}"> {% trans "Panel Administracyjny" %} &nbsp; </a>
                                 {% endif  %}   
                                 <a class="logoutNav" href="{% url 'logout' %}"> {% trans "Wyloguj się " %}</a>
                                    

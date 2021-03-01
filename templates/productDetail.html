@@ -38,16 +38,18 @@
 				
 			</div>
 			<div class="priceBoxDetail">
-				<div class="discountBox">
-					{% if product.pricePromo is None  %}
-					
-					{% else  %}
-					{{ product.priceNormal }} zł
-					{%  endif %}
-                </div>
-				<div class="properPriceBox">
-                    {{ product.pricePromo }} zł
-                </div>
+				{% if product.pricePromo  %}
+					<div class="discountBox">
+						{{ product.priceNormal }} zł
+                	</div>
+					<div class="properPriceBox">
+						{{ product.pricePromo }} zł
+					</div>
+				{% else  %}
+					<div class="properPriceBox" style="padding-top:1.3vh;">
+						{{ product.priceNormal }} zł
+					</div>
+				{% endif  %}
 				{% if product.stock == 0  %}
 				<div class="buttonsDetailWrapper">
 					<button  class="buttonDetail buttonDetailBlock ">
@@ -104,8 +106,10 @@
     </div>
 </div>
 
-
+<!--
 <div class="container ">
     {% include 'prices.html'  %}
 </div>
+--->
+
 {% endblock  %}
