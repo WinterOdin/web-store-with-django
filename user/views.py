@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from mainpage.models import *
 from django.utils.translation import gettext as _
-from .forms import *
 from mainpage.decorators import *
 from django.contrib.auth.decorators import login_required
 import logging
@@ -16,6 +15,7 @@ API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
 
 def usersCart(request):
+    navbarList   = Category.objects.filter(navbar=True)
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -61,6 +61,7 @@ def usersCart(request):
             }
             items.append(item)
     context ={
+        'navbarList':navbarList,
         'items':items,
         'orders':order,
     }
@@ -75,8 +76,9 @@ def orderView(request):
     user = request.user.customer
     qs = OrderItem.objects.filter(order__complete=True) 
     products = qs.filter(order__customer=user).order_by('-date_added')
-    
+    navbarList   = Category.objects.filter(navbar=True)
     context={
+        'navbarList':navbarList,
         'products':products
     }
     context={**context, **cart}
@@ -88,6 +90,7 @@ def orderViewDetail(request, pk):
     qs        = OrderItem.objects.filter(transaction_id=pk) 
     paymentType = PaymentType.objects.all()
     transaction_id = pk
+    navbarList = Category.objects.filter(navbar=True)
     
     values = request.POST.copy()
     values['transaction_id'] = transaction_id
@@ -116,6 +119,7 @@ def orderViewDetail(request, pk):
                 payment_intent_id = payment_intent.id
 
                 context = {
+                    'navbarList':navbarList,
                     'transaction_id':transaction_id,
                     'emailUser':emailUser,
                     'publicKey':publicKey,
@@ -148,6 +152,7 @@ def orderViewDetail(request, pk):
                 payment_intent_id = payment_intent.id
 
                 context = {
+                    'navbarList':navbarList,
                     'transaction_id':transaction_id,
                     'emailUser':emailUser,
                     'publicKey':publicKey,
@@ -165,24 +170,28 @@ def orderViewDetail(request, pk):
         'shipments':shipments,
         'qs':qs,
         'paymentType':paymentType,
+        'navbarList':navbarList,
     }
     return render(request,'detailAboutOrder.html', context)
 
 
 def refundsView(request):
-
-    context={}
+    navbarList = Category.objects.filter(navbar=True)
+    context={
+        'navbarList':navbarList,
+    }
     return render(request,'refunds.html', context)
 
 def userView(request):
-
+    navbarList = Category.objects.filter(navbar=True)
     cart     = usersCart(request)      
     userData = request.user 
     if request.method == "POST":
          userData.delete()
          return redirect("home")
     context={
-        
+        'navbarList':navbarList,
+        'userData':userData,
     }
     context={**context, **cart}
     return render(request,'user.html', context)

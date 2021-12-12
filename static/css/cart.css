@@ -496,9 +496,9 @@ color: rgb(66, 66, 66);
         margin-top: 15px;
     }
     .cartIcons {
-        height: 90%;
-        width: 50%;
-        margin-left: 15%;
+        
+        width: 80%;
+        
     }
   }
   @media (max-width:330px){

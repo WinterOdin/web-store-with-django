@@ -12,7 +12,7 @@
                                 {% if user.is_authenticated  %}
                                     {% trans "Witaj"  %} {{ request.user.customer  }}
                                 {% else  %} 
-                                CryptoTech - wszystko dla krypto!
+                                ww-tech - wszystko dla krypto!
                                 {%endif%}
                                
                             </div>
@@ -110,6 +110,7 @@
                        <span class="lineHelpBox"></span>
                         <div class="iconWrapper2">
                             <div class="iconContent2">
+                                {% if user.is_authenticated  %}
                                 <a class="tileLink" href="{% url 'order'  %} ">
                                     <div class="iconPic">
                                         <img src="{% static 'icons/user-solid.svg'  %}" class="cartIcons" alt="user">
@@ -118,6 +119,17 @@
                                         {% trans "Twoje Konto" %}
                                     </div>
                                 </a>
+                                {% else  %}
+                                <a class="tileLink" href="{% url 'login'  %}">
+                                    <div class="iconPic">
+                                        <img src="{% static 'icons/user-solid.svg'  %}" class="cartIcons" alt="user">
+                                    </div>
+                                    <div class="iconText">
+                                        {% trans "Twoje Konto" %}
+                                    </div>
+                                </a>
+                                
+                                {% endif %}
                             </div>
                         </div>
                         <div class="helpBox2">
@@ -126,14 +138,14 @@
                                     {% if user.is_authenticated  %}
                                        <div class="helloMsgLogin"> {% trans "Witaj"  %} <b>{{ request.user.customer  }}</b></div>
                                     {% else  %} 
-                                    <a href="{% url 'login'  %}" >
+                                    <a href="{% url 'login'  %}" style="text-decoration: none" >
                                         <div class="linkLoginHelpBox">
                                             {% trans "Zaloguj sie" %}
                                         </div>
                                     </a>
                                     <hr class="hrLogin">
                                     <p class="textHrLogin">{% trans "Nie masz konta?" %}</p>
-                                    <a href="{% url 'register'  %}" >
+                                    <a href="{% url 'register'  %}" style="text-decoration: none" >
                                         <div class="linkCreateHelpBox">
                                             {% trans "Zarejestruj sie" %}
                                         </div>
@@ -180,7 +192,7 @@
                 </div>
                 <div class="logoBox">
                     <div class="logoWrapper">
-                       <a class="logoTextPc "href="{% url 'home' %}"> CryptoTech</a>
+                       <a class="logoTextPc "href="{% url 'home' %}"> ww-tech</a>
                     </div>
                 </div>
             </div>
@@ -192,16 +204,17 @@
                         </div>
                         <div class="col-2 categoryPCHover"  >
                             <div class="categoryPC">
-                                <a href="{% url 'category' category='Koparki GPU'  %}" class="categoryPCLink">
-                                    
-                                    {% trans "Koparki GPU" %} 
+                                
+                                <a href='{% url "category" category=navbarList.0.category_pl|slugify %}' class="categoryPCLink">
+                                    {{ navbarList.0.category }}
                                 </a>
+                               
                             </div>
                         </div>
                         <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a href="{% url 'category' category='Kontenery miningowe'  %}" class="categoryPCLink">
-                                   {% trans "Kontenery" %} 
+                                <a href='{% url "category" category=navbarList.1.category_pl|slugify %}' class="categoryPCLink">
+                                    {{ navbarList.1.category }}
                                 </a>
                             </div>
                         </div>
@@ -223,15 +236,15 @@
                         </div>
                         <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a  href="{% url 'category' category='Akcesoria'  %}" class="categoryPCLink">
-                                   {% trans "Akcesoria" %} 
+                                <a href='{% url "category" category=navbarList.2.category_pl|slugify %}' class="categoryPCLink">
+                                    {{ navbarList.2.category }}
                                 </a>
                             </div>
                         </div>
                         <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
-                                <a href="{% url 'category' category='Usługi'  %}" class="categoryPCLink">
-                                    {% trans "Usługi" %} 
+                                <a href='{% url "category" category=navbarList.3.category_pl|slugify %}' class="categoryPCLink">
+                                    {{ navbarList.3.category }}
                                 </a>
                             </div>
                         </div>
@@ -267,7 +280,7 @@
             </div>
           </div>
           <div class="logoWrapper">
-            <a href="{% url 'home' %}"> CryptoTech<span class="colorDotNav">.</span></a>
+            <a href="{% url 'home' %}"> ww-tech<span class="colorDotNav">.</span></a>
           </div>
          <div class="iconWrapper">
             <div class="icon1">
@@ -330,12 +343,12 @@
 </div>
 <div class="categoryRootMobile">
     <div  class="categoryMobile">
-        <div   class="full hide-scroll">
+        <div class="full hide-scroll">
           <ul class="hs" >
 
             {% for x in categoryList  %}
             <li class="itemCategoryMobile">
-            <a href="{% url 'category' category=x.category  %}" class="linkCategoryMobile">
+            <a href="{% url 'category' category=x.category_pl|slugify  %}" class="linkCategoryMobile">
               
                 <img src="{{ x.picture.url  }}"  class="iconCategoryMobile">
                 <div class="textCategoryMobile">

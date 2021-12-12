@@ -67,6 +67,7 @@
     text-align: center;
 }
 .bottomBar {
+    text-transform: capitalize;
     width: 100%;
     height: 100%;
     grid-area: bottomBar;
@@ -76,12 +77,6 @@
  .grid-container-mobile{
    display: none
  }
-
-
-
-
-
-
 
 
 
@@ -112,13 +107,7 @@
       
 }
 
-
-
-
-
-
-
-@media (max-width:950px){
+@media (max-width:900px){
   .grid-container-PC {
     display: none;
   }

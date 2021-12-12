@@ -15,6 +15,7 @@ class Customer(models.Model):
 class Category(models.Model):
     category = models.CharField(max_length=20,unique=True)
     picture = models.FileField(upload_to = 'icons/',null=True, blank=True)
+    navbar = models.BooleanField(default=True)
     def __str__(self):
         return self.category
 
@@ -110,17 +111,12 @@ class PaymentType(models.Model):
         return str(self.paymentName)
 
 
-
-
-
 class ShippingAddress(models.Model):
     PAYSTATE= [
         ('processing','processing'),
         ('payed','payed'),
         ('no','no')
     ]
-
-
 
     customer      = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     order         = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
@@ -149,11 +145,6 @@ class ShippingAddress(models.Model):
         return str(self.transaction_id)
 
 
-
-
-
-
-
 class HelpCategory(models.Model):
     category        = models.CharField(max_length=20,unique=True)
     categoryIcon    = models.TextField(max_length=55, null=True, blank=True)
@@ -161,6 +152,7 @@ class HelpCategory(models.Model):
     def __str__(self):
         return self.category
     
+
 class HelpCategoryContent(models.Model):
     category        = models.ForeignKey(HelpCategory, on_delete=models.SET_NULL, blank=True, null=True)
     helpTitle       = models.TextField(max_length=55, null=True, blank=True)

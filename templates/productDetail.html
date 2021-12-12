@@ -10,81 +10,86 @@
             {% include 'productCarousel.html'  %}
         </div>
 		<div class="col-sm-12 col-md-6">
-			<div class="titleDesktopDetail">
-				{{ product.title  }}
-            </div>
-			<div class="smallDetailInfoWrapper">
-				<div class="smallInfoContent">
-                    Dostępność: 
-                    
-					<span class="colorTest">
-						{% if product.stock == 0  %}
-						<span style="color: rgb(238, 110, 110);">&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
-						{% else %}
-						&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}
-						{% endif  %}
+			<div class="productDetailPosition">
+				<div class="titleDesktopDetail">
+					{{ product.title  }}
+				</div>
+				<div class="smallDetailInfoWrapper">
+					<div class="smallInfoContent">
+						Dostępność: 
 						
-                    </span>
-				</div>
-				<div class="smallInfoContent">
-                    {% trans "Kategoria" %}: &nbsp;{{ product.category  }} &nbsp;
-                </div>
-				<div class="smallInfoContent">
-                    {% trans "Producent" %}: &nbsp;{{ product.producent  }} &nbsp;
-                </div>
-				<div class="smallInfoContent">
-                    {% trans "ID" %}: &nbsp;{{ product.id  }} &nbsp;
-				</div>
-				
-			</div>
-			<div class="priceBoxDetail">
-				{% if product.pricePromo  %}
-					<div class="discountBox">
-						{{ product.priceNormal }} zł
-                	</div>
-					<div class="properPriceBox">
-						{{ product.pricePromo }} zł
+						<span class="colorTest">
+							{% if product.stock == 0  %}
+							<span style="color: rgb(238, 110, 110);">&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
+							{% else %}
+							&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}
+							{% endif  %}
+							
+						</span>
 					</div>
-				{% else  %}
-					<div class="properPriceBox" style="padding-top:1.3vh;">
-						{{ product.priceNormal }} zł
+					<div class="smallInfoContent">
+						{% trans "Kategoria" %}: &nbsp;{{ product.category  }} &nbsp;
 					</div>
-				{% endif  %}
-				{% if product.stock == 0  %}
-				<div class="buttonsDetailWrapper">
-					<button  class="buttonDetail buttonDetailBlock ">
-						<i class="fas fa-cart-plus" ></i> {% trans "Produkt niedostępny"  %}
-					</button>
+					<div class="smallInfoContent">
+						{% trans "Producent" %}: &nbsp;{{ product.producent  }} &nbsp;
+					</div>
+					<div class="smallInfoContent">
+						{% trans "ID" %}: &nbsp;{{ product.id  }} &nbsp;
+					</div>
+					
 				</div>
-				<div class="inaccessibleWrapper">
-					<div class="inaccBox">
-						<div class="inaccIcon">
+				<div class="priceBoxDetail">
+					{% if product.pricePromo  %}
+						<div class="discountBox">
+							{% if x.priceNormal is None %}
+							<div class="cbp-vm-condition">[ {{  x.condition }} ]</div>
+							{% else  %}
+								<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
+							{% endif  %}
 							
 						</div>
-						<div class="inaccText">
+						<div class="properPriceBox">
+							{{ product.pricePromo }} zł
+						</div>
+					{% else  %}
+						<div class="properPriceBox" style="padding-top:1.3vh;">
+							{{ product.priceNormal }} zł
+						</div>
+					{% endif  %}
+					{% if product.stock == 0  %}
+					<div class="buttonsDetailWrapper">
+						<button  class="buttonDetail buttonDetailBlock ">
+							<i class="fas fa-cart-plus" ></i> {% trans "Produkt niedostępny"  %}
+						</button>
+					</div>
+					<div class="inaccessibleWrapper">
+						<div class="inaccBox">
+							<div class="inaccIcon">
 								
+							</div>
+							<div class="inaccText">
+									
+							</div>
 						</div>
 					</div>
-				</div>
-				{% else  %}
-				<div class="buttonsDetailWrapper">
-					<button  type="button" data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
-						<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
-					</button>
-				</div>
-				<div class="inaccessibleWrapper">
-					<div class="inaccBox">
-						<div class="inaccIcon">
-							
-						</div>
-						<div class="inaccText">
+					{% else  %}
+					<div class="buttonsDetailWrapper">
+						<button  type="button" data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
+							<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
+						</button>
+					</div>
+					<div class="inaccessibleWrapper">
+						<div class="inaccBox">
+							<div class="inaccIcon">
 								
+							</div>
+							<div class="inaccText">
+									
+							</div>
 						</div>
 					</div>
+					{% endif  %}
 				</div>
-				{% endif  %}
-
-
 			</div>
 		</div>
 	</div>
@@ -105,7 +110,24 @@
         </div>
     </div>
 </div>
+<script>
 
+	var carouselInner = document.getElementsByClassName('carousel-item');
+  	var carouselInner = carouselInner[0];
+  	carouselInner.className += ' active';
+	
+	var listInline = document.getElementsByClassName('list-inline-item');
+	if(listInline.length < 4){
+		for(i=0; i<=4; i++){
+			listInline[i].style.width = "25%"
+		}
+		
+	}
+	var listInline = listInline[0];
+	listInline.className += ' active';
+
+	
+</script>
 <!--
 <div class="container ">
     {% include 'prices.html'  %}

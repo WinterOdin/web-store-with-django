@@ -15,7 +15,7 @@
       grid-area: leftColProduct;
       width: 100%;
       height: 100%;
-    
+      text-transform: capitalize;
      }
   
   .rightColProduct { grid-area: rightColProduct;
