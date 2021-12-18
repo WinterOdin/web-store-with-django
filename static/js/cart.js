@@ -12,7 +12,7 @@ function addCookieItem(t, e) {
         history.go(0);
 }
 function updateUserOrder(t, e) {
-    fetch("{{ request.get_host }}/updateItem", { method: "POST", headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken }, body: JSON.stringify({ productId: t, action: e }) })
+    fetch("/updateItem", { method: "POST", headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken }, body: JSON.stringify({ productId: t, action: e }) })
         .then((t) => t.json())
         .then((t) => {
             console.log(t), history.go(0);

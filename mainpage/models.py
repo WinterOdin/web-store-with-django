@@ -41,8 +41,8 @@ class Product(models.Model):
     tags        = TaggableManager()
     pic1        = models.ImageField(null=True, blank=True)
     pic2        = models.ImageField(null=True, blank=True)
-    pic3        = models.ImageField(null=True, blank=True, default='logo2.png')
-    pic4        = models.ImageField(null=True, blank=True, default='logo2.png')
+    pic3        = models.ImageField(null=True, blank=True)
+    pic4        = models.ImageField(null=True, blank=True)
 
     
 

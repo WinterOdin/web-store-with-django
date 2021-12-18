@@ -26,20 +26,16 @@
         </div>
     </div>
     {% if product  %}
-    <div class="row productPicturesAdminAction">
-        <div class="col-3">
-            <img src="{{ product.pic1.url  }}" alt="product img" class="imgProductAction" />
+        <div class="row productPicturesAdminAction">
+        {%  for x in productImages %}
+            {% if x.url is not None  %}
+            <div class="col-3">
+                <img src="{{ product.pic1.url  }}" alt="product img" class="imgProductAction" />
+            </div>
+            {% endif  %}                    
+        {%  endfor %}
         </div>
-        <div class="col-3">
-            <img src="{{ product.pic2.url  }}" alt="product img" class="imgProductAction" />
-        </div>
-        <div class="col-3">
-            <img src="{{ product.pic3.url  }}" alt="product img" class="imgProductAction" />
-        </div>
-        <div class="col-3">
-            <img src="{{ product.pic4.url  }}" alt="product img" class="imgProductAction" />
-        </div>
-    </div>
+
     {% endif  %}
 </div>
 

@@ -75,34 +75,46 @@ def usersCart(request):
         order = {'get_cart_total':0,} 
         items = []
         for i in cart:
-            product = Product.objects.get(id=i)
-            if product.priceNormal is None:
-                total = (product.priceNormal * cart[i]['quantity'])
-            else:
-                total = (product.pricePromo  * cart[i]['quantity'])
-            order['get_cart_total'] += total
-            item = {
-                'product':{
-                    'id':product.id,
-                    'recommend':product.recommend,
-                    'title':product.title,
-                    'condition ':product.condition,
-                    'title':product.title,
-                    'priceNormal':product.priceNormal,
-                    'pricePromo':product.pricePromo,
-                    'description':product.description,
-                    'category':product.category,
-                    'tags':product.tags,
-                    'pic1':product.pic1,
-                    'pic2':product.pic2,
-                    'pic3':product.pic3,
-                    'pic4':product.pic4,
-                },
-                'get_total':total,
-                'quantity':cart[i]['quantity'],
-                
-            }
-            items.append(item)
+            try:
+                product = Product.objects.get(id=i)
+                if product.stock > 0:
+                        if cart[i]['quantity'] <= product.stock:
+                            quantityCheck = cart[i]['quantity']
+                        else:
+                            quantityCheck = product.stock
+                        if product.priceNormal is None:
+                            total = (product.pricePromo  * quantityCheck)
+                        else:
+                            total = (product.priceNormal  * quantityCheck)
+                        order['get_cart_total'] += total
+                        item = {
+                            'product':{
+                                'id':product.id,
+                                'recommend':product.recommend,
+                                'title':product.title,
+                                'stock':product.stock,
+                                'condition ':product.condition,
+                                'title':product.title,
+                                'priceNormal':product.priceNormal,
+                                'pricePromo':product.pricePromo,
+                                'description':product.description,
+                                'category':product.category,
+                                'tags':product.tags,
+                                'pic1':product.pic1,
+                                'pic2':product.pic2,
+                                'pic3':product.pic3,
+                                'pic4':product.pic4,
+                            },
+                            'get_total':total,
+                            'quantity':quantityCheck,
+                            
+                        }
+                        items.append(item)
+                    
+                else:
+                    pass
+            except:
+                pass
     context ={
         'navbarList':navbarList,
         'items':items,
@@ -207,19 +219,35 @@ def categoryListView(request, category):
     navbarList   = Category.objects.filter(navbar=True)
     categoryList = Category.objects.all()
     
-   
+    languages = dict(settings.LANGUAGES).keys()
+    q = Q()
+    for lang in languages:
+        kwargs = {'category_%s' % lang: categorySlug}
+        q |= Q(**kwargs)
+    categoryName = categoryList.filter(q)
+    if categoryName.exists():
+        categoryName = categoryName[0]
+    else:
+        pass
     
-    categoryName = categoryList.get(category=categorySlug)
-    #categoryName = categoryList.filter(Q(category_pl=categorySlug) | Q(category_pl=categorySlug))
-    print(categoryName)
-    productsInfo = Product.objects.filter(category=categoryName)
-   
+
+    productsInfo = Product.objects.all.filter()
     
     productData  = Product.objects.all()
     newest       = productData.order_by('-id')[:10]
     tags         = Product.tags.all()
     categoryEmpty = 0
 
+
+
+    #categoryName = categoryList.get(category=categorySlug)
+    #print(categoryName.values())
+    #categoryName = categoryList.filter(Q(category_pl=categorySlug) | Q(category_en=categorySlug))
+    #productsInfo = Product.objects.filter(category=categoryName[0])
+
+    #categoryName = categoryList.filter(Q(category_pl=categorySlug))
+    #if len(categoryName) == 0:
+        #categoryName = categoryList.filter(Q(category_en=categorySlug))
 
     context      = {
         'navbarList':navbarList,

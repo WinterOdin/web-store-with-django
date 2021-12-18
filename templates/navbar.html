@@ -62,7 +62,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!--<div class="helpBox1">
+                        <div class="helpBox1">
                             <div class="tileListHelpTitle">{% trans "Popularne" %}</div>
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Dostawa" %}</a></li>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        --->
+                     
                        <span class="lineHelpBox"></span>
                         <div class="iconWrapper2">
                             <div class="iconContent2">
@@ -222,13 +222,13 @@
                             <form method="POST" action="{% url 'set_language'  %}">
                                 {% csrf_token  %}
                                 <input type="hidden" name="text" value="{{redirect_to}}">
-                                <select class="langSelect" name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                <select class="langSelect "  name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
                                     {% get_available_languages as LANGUAGES  %}
                                     {% get_language_info_list for LANGUAGES as LG  %}
                                     {% for x in LG  %}
-                                        <option class="selectLangPc" value="{{ x.code  }}" 
-                                            {% if x.code == LANGUAGE_CODE  %} selected {% endif  %}>
-                                        {{ x.name_local  }}
+                                        <option class="selectLangPc" value="{{x.code}}" 
+                                            {% if x.code == LANGUAGE_CODE  %}selected{% endif  %}>
+                                        {{x.name_local}}
                                         </option>
                                     {% endfor  %}
                                 </select>
@@ -328,13 +328,13 @@
         <form method="POST" action="{% url 'set_language'  %}">
             {% csrf_token  %}
             <input type="hidden" name="text" value="{{redirect_to}}">
-            <select class="langSelect" name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
+            <select class="langSelect " name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
                 {% get_available_languages as LANGUAGES  %}
                 {% get_language_info_list for LANGUAGES as LG  %}
                 {% for x in LG  %}
                     <option value="{{ x.code  }}" 
                         {% if x.code == LANGUAGE_CODE  %} selected {% endif  %}>
-                    {{ x.name_local  }}({{ x.code  }})
+                    {{ x.name_local  }}
                     </option>
                 {% endfor  %}
             </select>
@@ -384,5 +384,6 @@ $(window).resize(function(){
 <script src="{% static 'js/navbarJQ.js'  %}"></script>
 
 <script src="{% static 'js/navbarJS.js'  %}"></script>
+
 
 

@@ -22,9 +22,9 @@
 					
 					<ul class="listWrapper">
 						{% for x in productsInfo  %}
-						<li data-position="{{x.priceNormal|floatformat:'-3'}}">
+						<li data-position="{{x.pricePromo|floatformat:'-3'}}">
 							<div class="qaz">
-									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
+									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}" style="background-image: url('{{ x.pic1.url }}');"></a>
 									<a class="linkProductTitle" href="{% url 'detail' id=x.id %}"><h3 class="cbp-vm-title">{{ x.title  }}</h3></a>
 
 									

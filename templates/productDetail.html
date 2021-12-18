@@ -74,7 +74,7 @@
 					</div>
 					{% else  %}
 					<div class="buttonsDetailWrapper">
-						<button  type="button" data-product="{{ product.id }}" data-action="add"  class="buttonDetail update-cart">
+						<button  type="button" data-product="{{ product.id }}" data-stock="{{ product.stock }}" data-action="add"  class="buttonDetail update-cart">
 							<i class="fas fa-cart-plus" ></i> {% trans "Dodaj do koszyka"  %}
 						</button>
 					</div>
