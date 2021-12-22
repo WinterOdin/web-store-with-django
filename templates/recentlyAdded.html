@@ -7,10 +7,18 @@
       <div class="owl-carousel owl-theme">
         {% for x in newest  %}  
         <div class="item">
+          <a class="newestImageLink " href="{% url 'detail' id=x.id %}">
           <div class="carousel-item__card">
-            <a class="cbp-vm-image-new" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
-            <div class="cbp-vm-title-new">{{ x.title  }}</div>
+            <div class="newestImageContainer">
+              <div class="newestImageContainerPosition" style="background-image: url('{{ x.pic1.url }}');">
+               
+              </div>
+            </div>
+            <div class="newestTitleContainer">
+              <div>{{ x.title  }}</div>
+            </div>
           </div>
+        </a>
         </div>
         {% endfor  %}
      

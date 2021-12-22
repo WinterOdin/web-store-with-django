@@ -2,7 +2,7 @@
 .carousel-section {
   border-top: 1px solid rgb(233, 233, 233);
   padding-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   padding-top: 20px;
   overflow: hidden;
 }
@@ -24,6 +24,27 @@
 .carousel-section .owl-carousel .owl-nav .owl-prev:focus {
   outline: 0;
 }
+.newestImageContainer{
+  height: 75%;
+}
+.newestTitleContainer{
+  width: 96%;
+  margin-left: 2%;
+  height:25%;
+  color:#007bff;
+  text-align: center;
+  font-size: 13px;
+  text-decoration: none;
+}
+.newestImageContainerPosition{
+  background-size: contain;
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70%;
+  width: 70%;
+  margin-left:15%;
+}
 .carousel-section h2 {
   font-size: 34px;
   text-align: left;
@@ -35,9 +56,6 @@
   margin: 0 auto;
   width: 100%;
 }
-.item {
-  margin: 20px 0;
-}
 .carousel-item__card {
   box-shadow: 0 13px 31px #fafafa;
   height: 200px;
@@ -45,94 +63,29 @@
   font-weight: 500;
   border: 1px solid #ebebeb;
 }
-.cbp-vm-image-new {
+a.newestImageLink,a.newestImageLink:hover,a.newestImageLink:active {
 	display: block;
 	margin: 0 auto;
+  color:#007bff;
+  text-decoration: none;
+}
 
-}
-.cbp-vm-image-new {
-	display: block;
-	margin: 0 auto;
-  height: 10vh;
-  margin-top: 1.4vh;
-}
-.cbp-vm-image-new img {
-	display: inline-block;
-	width: 50% !important;
-  border: none;
-  margin-left: 25%;
-}
+
 .cbp-vm-title-new{
   font-size: 13px;
   text-align: center;
-  margin-top: 5vh;
-  width: 90%;
-  margin-left: 5%;
+  z-index:10000;
+  
 }
 .owl-nav{
   display: none;
 }
 
-@media screen and (max-width: 970px) {
-  .cbp-vm-image-new {
-    display: block;
-    margin: 0 auto;
-    height: auto;
-    margin-top: 1.4vh;
-  }
-  .cbp-vm-image-new img {
-    display: inline-block;
 
-    border: none;
-   
-  }
-  .cbp-vm-title-new{
-    font-size: 13px;
-    text-align: center;
-    margin-top: 0vh;
-    width: 90%;
-    margin-left: 5%;
-  }
-  .cbp-vm-title-new {
-		margin-top: 1vh ;
-	}
-}
 
 @media screen and (max-width: 420px) {
-	.cbp-vm-image-new {
-    margin-top: 0vh;
-  }
-  .cbp-vm-image-new img {
-    display: inline-block;
-    width: 70%;
-    border: none;
-    margin-left: 25%;
-  }
-  .cbp-vm-title-new{
-    font-size: 13px;
-    text-align: center;
-    margin-top: 0vh;
+  .newestTitleContainer {
     width: 90%;
-    margin-left: 2%;
-  }
-  .cbp-vm-title-new {
-		margin-top: 0vh ;
-	}
-
+    margin-left: 5%;
 }
-@media screen and (max-width: 325px) {
-	.cbp-vm-image-new {
-    margin-top: 0vh;
-  }
-  .cbp-vm-image-new img {
-
-  }
-  .cbp-vm-title-new{
-    margin-top: 1vh;
-    text-align: center;
-  }
-  .cbp-vm-title-new {
-		margin-top: 0vh ;
-	}
-
 }

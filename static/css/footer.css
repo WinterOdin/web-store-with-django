@@ -137,6 +137,23 @@
 }
   @media (max-width:720px){
     .footerBar{
-        display: none;
+        height: 27vh;
+      }
+    .additionalLinksFooter{
+        padding-top: 3vh;
+    }
+    .listStyleFooterBox{
+        text-align: center;
+        padding-top: 0.5vh;
+
+    }
+    .additionalTextLinksFooter{
+        text-align: center;
+        padding-top: 2vh;
+    }
+}
+@media (max-width:330px){
+    .footerBar{
+        height: 40vh;
       }
 }

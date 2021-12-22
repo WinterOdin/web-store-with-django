@@ -1,6 +1,6 @@
 {% load static  %}
 {% load i18n  %}
-		<div class="container">
+		<div class="container-fluid">
 
 			<div class="main">
 				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
@@ -22,29 +22,65 @@
 					
 					<ul class="listWrapper">
 						{% for x in productsInfo  %}
-						<li data-position="{{x.priceNormal|floatformat:'-3'}}">
+						<li data-position="{{x.pricePromo|floatformat:'-3'}}">
 							<div class="qaz">
-									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}"><img src="{{ x.pic1.url }}" alt="product image"></a>
-									<h3 class="cbp-vm-title">{{ x.title  }}</h3>
+									<a class="cbp-vm-image" href="{% url 'detail' id=x.id %}" style="background-image: url('{{ x.pic1.url }}');"></a>
+									<a class="linkProductTitle" href="{% url 'detail' id=x.id %}"><h3 class="cbp-vm-title">{{ x.title  }}</h3></a>
 
+									
+										{% if x.pricePromo  %}
+										<div class="listContainerPrice priceGrid">
+											<div class="container-fluid pricePromoContainer">
+												<div class="row no-gutters">
+													<div class="col-md-6 col-sm-12">
+														<div class="cbp-vm-price"> {{ x.pricePromo  }} zł</div>
+													</div>
+													<div class="col-md-6 col-sm-12">
+														{% if x.priceNormal is None %}
+														<div class="cbp-vm-condition">[ {{  x.condition }} ]</div>
+														{% else  %}
+															<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
+														{% endif  %}
+													</div>
+												</div>
+											</div>
+										</div>
 
-									{% if x.pricePromo  %}
-									<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
-									<div class="cbp-vm-price"> {{ x.pricePromo  }} zł</div>
-									{% else  %}
-									<div class="cbp-vm-price"> {{  x.priceNormal }} zł</div>
-									{% endif  %}									
+										{% else  %}
+											<div class="cbp-vm-price"> {{  x.priceNormal }} zł</div>
+										{% endif  %}
+											
+
 									<div class="cbp-vm-details">
-										
-									</div>
-									
-									{% if x.stock == 0  %}
-									<a class="cbp-vm-icon cbp-vm-block" ><i class="fas fa-cart-plus iconCart"></i></a>	
-									{% else  %}
-									
-									<a data-product="{{ x.id }}" data-action="add" class="cbp-vm-icon cbp-vm-add  update-cart" ><i class="fas fa-cart-plus iconCart iconCartMargin"></i></a>
+										{% if x.snippet   %}
+											{{ x.snippet  }}
+										{% endif  %}
+										<div class="priceList">
+											{% if x.pricePromo  %}
+											<div class="listContainerPrice">
+												<div class="container-fluid pricePromoContainer">
+													<div class="row no-gutters">
+														<div class="col-md-6 col-sm-12">
+															<div class="cbp-vm-price"> {{ x.pricePromo  }} zł</div>
+														</div>
+														<div class="col-md-6 col-sm-12">
+															{% if x.priceNormal is None %}
+															<div class="cbp-vm-condition">[ {{  x.condition }} ]</div>
+															{% else  %}
+																<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
+															{% endif  %}
+														</div>
+													</div>
+												</div>
+											</div>
+	
+											{% else  %}
+												<div class="cbp-vm-price"> {{  x.priceNormal }} zł</div>
+											{% endif  %}
+										</div>	
 
-									{% endif  %}
+									</div>
+								
 									
 							</div>
 						</li>

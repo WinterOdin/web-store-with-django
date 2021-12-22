@@ -1,3 +1,4 @@
+console.log("chuj2")
 var updateBtn =document.getElementsByClassName("update-cart")
 for (i = 0; i < updateBtn.length; i++){
     updateBtn[i].addEventListener('click', function(){
@@ -14,6 +15,7 @@ for (i = 0; i < updateBtn.length; i++){
 
 function addCookieItem(productId,action){
     if(action == "add"){
+        console.log(productId)
         if(cart[productId] === undefined){
             cart[productId] = {'quantity':1}
         }else{
@@ -33,7 +35,7 @@ function addCookieItem(productId,action){
 
 
 function updateUserOrder(productId, action){
-    var url = 'http://127.0.0.1:8000/updateItem'
+    var url = '/updateItem'
     fetch(url, {
         method:'POST',
         headers:{

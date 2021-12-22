@@ -14,6 +14,7 @@ from django.utils.translation import gettext as _
 
 @unauthenticated_user
 def loginView(request, *args, **kwargs):
+    navbarList = Category.objects.filter(navbar=True)
     errorMsg = _("Hasło bądź email jest niepoprawne")
     if request.user.is_authenticated:
         return redirect('products')
@@ -30,12 +31,15 @@ def loginView(request, *args, **kwargs):
                 messages.error(request, errorMsg, extra_tags='login')
                 return redirect('login')
 
-        context={}
+        context={
+            'navbarList': navbarList,
+        }
     
     return render(request,'login.html', context )
 
 @unauthenticated_user
 def registerView(request, *args, **kwargs):
+    navbarList = Category.objects.filter(navbar=True)
     succesMsg = _("Twoje konto zostało stworzone, zaloguj się")
     if request.user.is_authenticated:
         return redirect('products')
@@ -55,6 +59,7 @@ def registerView(request, *args, **kwargs):
     
         context={
             'forms'     :forms,
+            'navbarList': navbarList,
          }
 
     return render(request,'register.html', context)

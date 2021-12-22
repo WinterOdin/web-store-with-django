@@ -1,3 +1,4 @@
+from django.core import mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.core.mail import send_mail
@@ -54,14 +55,8 @@ def stripe_webhooks(request):
 
     return HttpResponse(status=200)
 
-
-
-
-
-
-
-
 def usersCart(request):
+    navbarList = Category.objects.filter(navbar=True)
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -69,6 +64,7 @@ def usersCart(request):
         context ={
         'items':items,
         'orders':order,
+        'navbarList':navbarList,
         }
      
     else:
@@ -79,34 +75,48 @@ def usersCart(request):
         order = {'get_cart_total':0,} 
         items = []
         for i in cart:
-            product = Product.objects.get(id=i)
-            if product.priceNormal is None:
-                total = (product.priceNormal * cart[i]['quantity'])
-            else:
-                total = (product.pricePromo  * cart[i]['quantity'])
-            order['get_cart_total'] += total
-            item = {
-                'product':{
-                    'id':product.id,
-                    'recommend':product.recommend,
-                    'title':product.title,
-                    'condition ':product.condition,
-                    'title':product.title,
-                    'priceNormal':product.priceNormal,
-                    'pricePromo':product.pricePromo,
-                    'description':product.description,
-                    'category':product.category,
-                    'tags':product.tags,
-                    'pic1':product.pic1,
-                    'pic2':product.pic2,
-                    'pic3':product.pic3,
-                    'pic4':product.pic4,
-                },
-                'get_total':total,
-                'quantity':cart[i]['quantity']
-            }
-            items.append(item)
+            try:
+                product = Product.objects.get(id=i)
+                if product.stock > 0:
+                        if cart[i]['quantity'] <= product.stock:
+                            quantityCheck = cart[i]['quantity']
+                        else:
+                            quantityCheck = product.stock
+                        if product.priceNormal is None:
+                            total = (product.pricePromo  * quantityCheck)
+                        else:
+                            total = (product.priceNormal  * quantityCheck)
+                        order['get_cart_total'] += total
+                        item = {
+                            'product':{
+                                'id':product.id,
+                                'recommend':product.recommend,
+                                'title':product.title,
+                                'stock':product.stock,
+                                'condition ':product.condition,
+                                'title':product.title,
+                                'priceNormal':product.priceNormal,
+                                'pricePromo':product.pricePromo,
+                                'description':product.description,
+                                'category':product.category,
+                                'tags':product.tags,
+                                'pic1':product.pic1,
+                                'pic2':product.pic2,
+                                'pic3':product.pic3,
+                                'pic4':product.pic4,
+                            },
+                            'get_total':total,
+                            'quantity':quantityCheck,
+                            
+                        }
+                        items.append(item)
+                    
+                else:
+                    pass
+            except:
+                pass
     context ={
+        'navbarList':navbarList,
         'items':items,
         'orders':order,
     }
@@ -126,57 +136,74 @@ def searchQueryset(query):
         return list(set(queryset)) 
 
 
-
-
-
 def recommendedProducts(request):
     categoryList = Category.objects.all()
+    navbarList   = categoryList.filter(navbar=True)
+  
     tags         = Product.tags.all()
     formsMailing = MailingForm() 
-    cart         = usersCart(request)    
-    productsInfo = Product.objects.filter(recommend=True).order_by('-id')[:6]
-    newest       = Product.objects.all().order_by('-id')[:10]
+    cart         = usersCart(request)
+
+    productData  = Product.objects.all()
+    productsInfo = productData.filter(recommend=True).order_by('-id')[:6]
+    newest       = productData.order_by('-id')[:10]
+    
+
+    mailingFlag  = False
+    currentUser  = request.user
+    if MailingList.objects.filter(email=currentUser).exists():
+        mailingFlag = True
 
     if request.method == "POST":
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         context      = {
+
             'newest':newest,
             'query':query,
             'tags':tags,
-            "productsInfo":productsInfo,
+            'productsInfo':productsInfo,
             'categoryList':categoryList,
-            'formsMailing':formsMailing
+            'formsMailing':formsMailing,
+            'navbarList':navbarList,
+            'mailingFlag':mailingFlag,
         }
         context={**context, **cart}
-        
+
         return render(request,'products.html', context)
     
     context      = {
+        'navbarList':navbarList,
         'newest':newest,
         'tags':tags,
-        "productsInfo":productsInfo,
+        'productsInfo':productsInfo,
         'categoryList':categoryList,
         'formsMailing':formsMailing,
+        'mailingFlag':mailingFlag,
         }
     context={**context, **cart}
 
     return render(request,'products.html', context)
 
 
-
 def tagListView(request, slug):
     formsMailing = MailingForm() 
     cart         = usersCart(request)  
+
     categoryList = Category.objects.all()
+    SelectedTag  = get_object_or_404(Tag, slug=slug.lower())
+    navbarList   = categoryList.filter(navbar=True)
+
+    productData  = Product.objects.all()
     tags         = Product.tags.all()
-    SelectedTag  = get_object_or_404(Tag, slug=slug)
-    productsInfo = Product.objects.filter(tags=SelectedTag)
-    newest       = Product.objects.all().order_by('-id')[:10]
+    productsInfo = productData.filter(tags=SelectedTag)
+    newest       = productData.all().order_by('-id')[:10]
+
     context      = {
         'newest':newest, 
-        "tags":tags,
-        "productsInfo":productsInfo,
+        'tags':tags,
+        'navbarList':navbarList,
+        'productsInfo':productsInfo,
         'categoryList':categoryList,
         'formsMailing':formsMailing
     }
@@ -184,23 +211,49 @@ def tagListView(request, slug):
     return render(request,'products.html', context)
 
 
-
-
 def categoryListView(request, category):
 
-    formsMailing = MailingForm()  
+    categorySlug = category.replace('-', ' ')
+    formsMailing = MailingForm()
+    cart         = usersCart(request) 
+    navbarList   = Category.objects.filter(navbar=True)
     categoryList = Category.objects.all()
-    productsInfo = Category.objects.get(category=category)
-    productsInfo = Product.objects.filter(category=productsInfo)
-    cart         = usersCart(request)  
-    newest       = Product.objects.all().order_by('-id')[:10]
+    
+    languages = dict(settings.LANGUAGES).keys()
+    q = Q()
+    for lang in languages:
+        kwargs = {'category_%s' % lang: categorySlug}
+        q |= Q(**kwargs)
+    categoryName = categoryList.filter(q)
+    if categoryName.exists():
+        categoryName = categoryName[0]
+    else:
+        pass
+    
+
+    productsInfo = Product.objects.all.filter()
+    
+    productData  = Product.objects.all()
+    newest       = productData.order_by('-id')[:10]
     tags         = Product.tags.all()
     categoryEmpty = 0
-    print(categoryEmpty)
+
+
+
+    #categoryName = categoryList.get(category=categorySlug)
+    #print(categoryName.values())
+    #categoryName = categoryList.filter(Q(category_pl=categorySlug) | Q(category_en=categorySlug))
+    #productsInfo = Product.objects.filter(category=categoryName[0])
+
+    #categoryName = categoryList.filter(Q(category_pl=categorySlug))
+    #if len(categoryName) == 0:
+        #categoryName = categoryList.filter(Q(category_en=categorySlug))
+
     context      = {
+        'navbarList':navbarList,
         'newest':newest, 
-        "tags":tags,
-        "productsInfo":productsInfo,
+        'tags':tags,
+        'productsInfo':productsInfo,
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
         'formsMailing':formsMailing,
@@ -212,11 +265,16 @@ def categoryListView(request, category):
 
 
 def helpView(request):
+    navbarList   = Category.objects.filter(navbar=True)
+
     category = HelpCategory.objects.all()
     categoryInfo = HelpCategoryContent.objects.all()
+
     cart         = usersCart(request)
     formsMailing = MailingForm()  
+
     context         ={
+       'navbarList':navbarList,
        'category':category,
        'categoryInfo':categoryInfo,
        'formsMailing':formsMailing
@@ -227,30 +285,44 @@ def helpView(request):
 
     
 def productDetail(request, id):
+    categoryList    = Category.objects.all()
+    navbarList      = categoryList.filter(navbar=True)
+
     product         = Product.objects.get(id=id)
-    productPictures = Product.objects.filter(id=id).values().first()
+    productImages = [product.pic1, product.pic2, product.pic3, product.pic4]
+
     cart            = usersCart(request)  
     formsMailing    = MailingForm()
-    context         ={
-        "product":product,
-        "formsMailing":formsMailing 
+
+    context         =   {
+        'navbarList':navbarList,
+        'productImages':productImages,
+        'product':product,
+        'formsMailing':formsMailing,
+        'categoryList':categoryList,
     }
+
     context={**context, **cart}
     return render(request,'productDetail.html', context)
 
 
 
 def cartDetail(request):
-    newest       = Product.objects.all().order_by('-id')[:10]
-    cart = usersCart(request)
+    categoryList  = Category.objects.all()
+    navbarList =categoryList.filter(navbar=True)
+    newest  = Product.objects.all().order_by('-id')[:10]
+    cart    = usersCart(request)
     context         ={
-        "newest":newest,
+        'newest':newest,
+        'categoryList':categoryList,
+        'navbarList':navbarList,
     }
     context={**context, **cart}
     return render(request,'cart.html',context)
 
 
 def updateItem(request):
+
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
@@ -274,20 +346,23 @@ def updateItem(request):
 
 @login_required(login_url='login')
 def checkoutDetail(request):
-    customer = request.user.customer
-    cart    = usersCart(request)
-    forms   = CustomerShipp(instance=customer)
+    customer    = request.user.customer
+    cart        = usersCart(request)
+    forms       = CustomerShipp(instance=customer)
     paymentType = PaymentType.objects.all()
     emailUser = request.user.email
     order, created  = Order.objects.get_or_create(customer=customer, complete=False)
     total           = int(order.get_cart_total)
     shipContractors = ShipmentMethod.objects.all()
+
+    navbarList      = Category.objects.filter(navbar=True)
     context ={
         'forms':forms,
         'emailUser':emailUser,
         'customer':customer,
         'shipContractors':shipContractors,
-        'paymentType':paymentType
+        'paymentType':paymentType,
+        'navbarList':navbarList,
     }
     context={**context, **cart}
     return render(request,'checkout.html',context)
@@ -300,7 +375,8 @@ def checkoutDetail(request):
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     customer       = request.user.customer
-    
+    navbarList     = Category.objects.filter(navbar=True)
+
     if request.method == "POST" and request.user.is_authenticated:
 
        # tester = Order.objects.get_or_create(customer=customer, complete=False)
@@ -325,6 +401,7 @@ def processOrder(request):
             values['shipType'] = request.POST['contractor']
             values['totalPrice'] = totalPrice
 
+            
 
             forms = CustomerShipp(values)
             if forms.is_valid():
@@ -364,6 +441,7 @@ def processOrder(request):
                     'publicKey':publicKey,
                     'secretKeyIntent':secretKeyIntent,
                     'payment_intent_id':payment_intent_id,
+                    'navbarList':navbarList,
                 }
                 return render(request, "cardPay.html" , context)
 
@@ -403,6 +481,7 @@ def processOrder(request):
                     'postal_code':postal_code,
                     'adress':adress,
                     'email':email,
+                    'navbarList':navbarList,
                 }
 
                 return render(request, "p24Pay.html" , context)
@@ -417,6 +496,8 @@ def cardPayment(request):
     payment_method_id = request.POST['payment_method_id']
     customer = request.user.customer
     values = request.session.get('values', None)
+    navbarList     = Category.objects.filter(navbar=True)
+
    
     stripe.api_key  = API_KEY
 
@@ -450,6 +531,7 @@ def cardPayment(request):
         payment_intent_secret = pi.client_secret
         stripe_public_key     = settings.STRIPE_PUBLIC_KEY 
         context = {
+            'navbarList':navbarList,
             'payment_intent_secret':payment_intent_secret,
             'stripe_public_key':stripe_public_key
         }
@@ -465,22 +547,27 @@ def cardPayment(request):
 
 @login_required(login_url='login')       
 def successP24(request):
+    navbarList     = Category.objects.filter(navbar=True)
     customer = request.user.customer
     context = {
-          'customer':customer  
+          'customer':customer ,
+          'navbarList':navbarList
     }
     return render(request,'orderPayed.html',context)
 
 
 def policyDetail(request):
-    return render(request,'policy.html')
+    navbarList     = Category.objects.filter(navbar=True)
+    context = {
+          
+          'navbarList':navbarList
+    }
+    return render(request,'policy.html',context)
 
 
 def mailingList(request):
     if request.method == "POST":
         forms = MailingForm(request.POST)
-        print(request.POST)
-        print(forms.is_valid())
         if forms.is_valid():
             forms.save()
             

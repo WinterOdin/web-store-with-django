@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        <img src="{% static 'icons/plus-solid.svg'  %}" alt="plus" style="margin-left: 7px;"data-product="{{ x.product.id  }}" data-action="add"  class="update-cart updatePointer ">
+                                        <img src="{% static 'icons/plus-solid.svg'  %}" alt="plus" style="margin-left: 7px;"data-product="{{ x.product.id  }}" data-action="add"  data-stock="{{ x.product.stock }}" class="update-cart updatePointer ">
                                         
                                     </div>
                                 </div>

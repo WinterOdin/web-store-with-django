@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-md-4">
             <div class="footerBar">
                 <div class="footerLogo">
-                    CryptoTech
+                    ww-tech
                 </div>
                 <div class="numberWrapperFooter">
                     <div class="iconFooter">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="footerAddress">
                     <div class="logoAddress">
-                        CryptoTech
+                        ww-tech
                     </div>
                     <div class="dataAddress">
                         <i class="fas fa-map-marker-alt"></i>&nbsp; Wilcza 31/1A Warszawa
@@ -33,12 +33,12 @@
                             <div class="row no-gutters">
                                 <div class="col-6">
                                     <div class="dayFooterHelp">
-                                        Pon. - pt.
+                                        {% trans "Pon. - pt." %}
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="hourFooterHelp">
-                                        9:00 - 16:00
+                                        9:00 - 17:00
                                     </div>
                                 </div>
                             </div>
@@ -84,13 +84,13 @@
             <div class="footerBar">
                 <div class="additionalLinksFooter">
                     <div class="additionalTextLinksFooter">
-                        {% trans "CryptoTech to nie tylko kryptowaluty" %} 
+                        {% trans "ww-tech to nie tylko kryptowaluty" %} 
                     </div>
                     <div class="additionalInfo">
                         Prowadzimy również działalność na rzecz lepszego jutra 
                         <a href="http://wwenergy.pythonanywhere.com/"> WW energia </a> zajmuję się energią odnawialną dla twojego domu 
                         Dzięki naszym systemom fotowoltaicznym zaoszczędzisz setki złotych rocznie!
-                        <a href="http://wwenergy.pythonanywhere.com/"><img alt="logo wwenergy" class="logoFooterEnergy "src="{% static 'images/cdd77635-0cfc-4d66-9a40-1072619656a2_200x200.png'  %}"></a>
+                        <!---<a href="http://wwenergy.pythonanywhere.com/"><img alt="logo wwenergy" class="logoFooterEnergy "src="{% static 'images/cdd77635-0cfc-4d66-9a40-1072619656a2_200x200.png'  %}"></a>--->
                     </div>
                 </div>
             </div>
@@ -113,6 +113,6 @@
 <script>
       var d = new Date();
       var n = d.getFullYear();
-      document.getElementById("year").innerHTML = "CryptoTech @"+n;
+      document.getElementById("year").innerHTML = "ww-tech @"+n;
     
 </script>

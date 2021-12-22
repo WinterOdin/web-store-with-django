@@ -23,7 +23,7 @@
                         {% for x in categoryList  %}
                         <li class="liListProduct disableBorder">
                             <span>
-                                <a class="listProductLink" href="{% url 'category' category=x.category  %}"> <i class="fa fa-angle-right"></i>
+                                <a class="listProductLink" href="{% url 'category' category=x.category|slugify  %}"> <i class="fa fa-angle-right"></i>
                                  
                                 {{ x.category }}
                             
@@ -82,7 +82,12 @@
     {% include 'recentlyAdded.html' %}
 </div>
 
-{% include 'newsletter.html'  %}
+{% if mailingFlag %}
+
+{% else %}
+    {% include 'newsletter.html'  %}
+{% endif  %}
+
 <div class="container ">
     {% include 'prices.html'  %}
 </div>

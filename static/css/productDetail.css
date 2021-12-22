@@ -13,6 +13,11 @@
     color: rgb(92, 92, 92);
     font-size: 17px;
 }
+.cbp-vm-condition{
+    font-size: 16px;
+    color: rgb(163, 163, 163);
+    letter-spacing: 2px;	
+}
 .widthPrceChanger{
     text-transform: none;
     width: 25%;
@@ -89,7 +94,10 @@
     margin-top: 5vh;
     font-family: 'Montserrat';
 }
-
+.productDetailPosition{
+    padding-left: 5%;
+    min-height: 60vh;
+}
 
 
 .inaccessibleWrapper{
@@ -132,6 +140,7 @@ button:focus{
 }
 
 
+
 @media (max-width:960px){
     .priceBoxDetail {
         margin-top: 10%;
@@ -148,6 +157,16 @@ button:focus{
 
 
 @media (max-width:550px){
+    .descriptionContnet {
+        padding-left: 0%;
+        text-align: center;
+        font-weight: 400;
+        width: 90%;
+    }
+    .productDetailPosition{
+        padding-left: 5%;
+        min-height: 40vh;
+    }
     .widthPrceChanger{
         text-transform: none;
         width: 70%;
@@ -174,4 +193,5 @@ button:focus{
         border-radius:15px;
         height: 16vh;
     }
+    
 }
