@@ -1,62 +1,49 @@
+
 const eth_api_url = "https://api.cryptonator.com/api/ticker/eth-usd";
-function ethereumHttpObject() {
-    try {
-        return new XMLHttpRequest();
-    } catch (t) {}
+const etc_api_url = "https://api.cryptonator.com/api/ticker/etc-usd";
+const btc_api_url = "https://api.cryptonator.com/api/ticker/btc-usd";
+const rvn_api_url = "https://api.cryptonator.com/api/ticker/rvn-usd";
+
+async function getBTC(api){
+
+    const response  = await fetch(api);
+    const data      = await response.json();
+    const price     = data.ticker.price
+    document.getElementById("btc_val").innerHTML = Math.round(price) + " $";
+
 }
-function ethereumGetData() {
-    var t = ethereumHttpObject();
-    return t.open("GET", eth_api_url, !1), t.send(null), t.responseText;
+
+getBTC(btc_api_url);
+
+async function getETH(api){
+
+    const response  = await fetch(api);
+    const data      = await response.json();
+    const price     = data.ticker.price
+    document.getElementById("eth_val").innerHTML = Math.round(price) + " $";
+
 }
-function ethereumDataHandler() {
-    var t = ethereumGetData(),
-        e = JSON.parse(t),
-        r = (e.ticker.base, e.ticker.target, e.ticker.price);
-    e.ticker.volume, e.ticker.change, e.timestamp, e.success, e.error;
-    return r;
+
+getETH(eth_api_url);
+
+
+async function getETC(api){
+
+    const response  = await fetch(api);
+    const data      = await response.json();
+    const price     = data.ticker.price
+    document.getElementById("etc_val").innerHTML = Math.round(price) + " $";
+
 }
-document.getElementById("eth_val").innerHTML = Math.round(ethereumDataHandler()) + " $";
-const ltc_api_url = "https://api.cryptonator.com/api/ticker/ltc-usd";
-function litecoinHttpObject() {
-    try {
-        return new XMLHttpRequest();
-    } catch (t) {}
+
+getETC(etc_api_url);
+
+async function getRVM(api){
+
+    const response  = await fetch(api);
+    const data      = await response.json();
+    const price     = data.ticker.price
+    document.getElementById("rvn_val").innerHTML = Math.round(price * 100) / 100 + "$";
+
 }
-function litecoinGetData() {
-    var t = litecoinHttpObject();
-    return t.open("GET", ltc_api_url, !1), t.send(null), t.responseText;
-}
-function litecoinDataHandler() {
-    var t = litecoinGetData(),
-        e = JSON.parse(t),
-        r = (e.ticker.base, e.ticker.target, e.ticker.price);
-    e.ticker.volume, e.ticker.change, e.timestamp, e.success, e.error;
-    return r;
-}
-document.getElementById("ltc_val").innerHTML = Math.round(litecoinDataHandler()) + " $";
-const api_url = "https://api.cryptonator.com/api/ticker/btc-usd",
-    time_interval = 2;
-function addLeadingZero(t) {
-    return t <= 9 ? "0" + t : t;
-}
-function clientDateTime() {
-    var t = new Date();
-    return addLeadingZero(t.getHours()) + ":" + t.getMinutes() + ":" + t.getSeconds();
-}
-function makeHttpObject() {
-    try {
-        return new XMLHttpRequest();
-    } catch (t) {}
-}
-function bitcoinGetData() {
-    var t = makeHttpObject();
-    return t.open("GET", api_url, !1), t.send(null), t.responseText;
-}
-function bitcoinDataHandler() {
-    var t = bitcoinGetData(),
-        e = JSON.parse(t),
-        r = (e.ticker.base, e.ticker.target, e.ticker.price);
-    e.ticker.volume, e.ticker.change, e.timestamp, e.success, e.error;
-    return r;
-}
-document.getElementById("btc_val").innerHTML = Math.round(bitcoinDataHandler()) + " $";
+getRVM(rvn_api_url);

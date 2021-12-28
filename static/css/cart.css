@@ -1,7 +1,10 @@
 button:focus {
 	outline:0;
 }
-
+.linkNotAuth{
+    font-size: 18px;
+    padding: 6px 0;
+}
 .deleteIcon{
    
     height: 18px;
@@ -87,7 +90,7 @@ button:focus {
 }
 .productInfoCart{
     font-family: 'Montserrat', sans-serif;
-    margin-top: 4vh;
+    margin-top: 6.5vh;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;

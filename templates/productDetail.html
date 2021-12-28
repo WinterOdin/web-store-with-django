@@ -16,8 +16,8 @@
 				</div>
 				<div class="smallDetailInfoWrapper">
 					<div class="smallInfoContent">
-						Dostępność: 
-						
+						 
+						{% trans "Dostępność:"  %}
 						<span class="colorTest">
 							{% if product.stock == 0  %}
 							<span style="color: rgb(238, 110, 110);">&nbsp;{{ product.stock }} {% trans "sztuk w magazyie" %}</span>
@@ -41,10 +41,10 @@
 				<div class="priceBoxDetail">
 					{% if product.pricePromo  %}
 						<div class="discountBox">
-							{% if x.priceNormal is None %}
-							<div class="cbp-vm-condition">[ {{  x.condition }} ]</div>
+							{% if product.priceNormal is None %}
+							<div class="cbp-vm-condition">[ {{  product.condition }} ]</div>
 							{% else  %}
-								<div class="cbp-vm-price-promo"> {{  x.priceNormal }} zł</div>
+								<div class="cbp-vm-price-promo"> {{  product.priceNormal }} zł</div>
 							{% endif  %}
 							
 						</div>
@@ -111,22 +111,12 @@
     </div>
 </div>
 <script>
-
-	var carouselInner = document.getElementsByClassName('carousel-item');
-  	var carouselInner = carouselInner[0];
-  	carouselInner.className += ' active';
-	
 	var listInline = document.getElementsByClassName('list-inline-item');
 	if(listInline.length < 4){
 		for(i=0; i<=4; i++){
 			listInline[i].style.width = "25%"
 		}
-		
 	}
-	var listInline = listInline[0];
-	listInline.className += ' active';
-
-	
 </script>
 <!--
 <div class="container ">

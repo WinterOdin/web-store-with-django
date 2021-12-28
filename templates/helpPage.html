@@ -74,23 +74,25 @@
     </div>
     <div class="rightOrderCol">
         <div class="container-fluid">
-            
-            {% for x in categoryInfo  %}
-                <div class="categoryInfoWrapper" id="{{ x.category  }}">
-                        {% if x.helpTitle is None  %}
+            <div class="helpContainerSize" style="min-height:40vh;">
+                
+                {% for x in categoryInfo  %}
+                    <div class="categoryInfoWrapper" id="{{ x.category  }}">
+                            {% if x.helpTitle is None  %}
+                            
+                            {% else  %}
+                            <div class="categoryTitleHelp">
+                            {{ x.helpTitle }}
+                            </div>
+                            {% endif  %}
                         
-                        {% else  %}
-                        <div class="categoryTitleHelp">
-                        {{ x.helpTitle }}
+                        <div class="descriptionHelpBox">
+                            {{ x.description|safe  }}
                         </div>
-                        {% endif  %}
-                    
-                    <div class="descriptionHelpBox">
-                        {{ x.description|safe  }}
+                        
                     </div>
-                    
-                </div>
-            {% endfor  %}
+                {% endfor  %}
+            </div>
         </div>
     </div>
 </div>

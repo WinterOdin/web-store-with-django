@@ -1,3 +1,4 @@
+
 .formCheckout{
 	margin-bottom: 4vh;
 }
@@ -154,8 +155,10 @@ a.recipientInfoLink{
 	text-align: center;
 	margin-top: 3vh;
 }
+.inPersonText{
+    text-align: center;
 
-
+}
 
 @media (max-width:1300px){
 

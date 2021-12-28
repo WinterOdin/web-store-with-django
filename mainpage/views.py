@@ -61,10 +61,13 @@ def usersCart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all().order_by('id')
+        len_items = len(items)
+   
         context ={
-        'items':items,
-        'orders':order,
-        'navbarList':navbarList,
+            'len_items':len_items,
+            'items':items,
+            'orders':order,
+            'navbarList':navbarList,
         }
      
     else:
@@ -72,20 +75,17 @@ def usersCart(request):
             cart  = json.loads(request.COOKIES['cart'])
         except:
             cart = {}
-        order = {'get_cart_total':0,} 
+        order = {'get_cart_total':0,}
         items = []
         for i in cart:
             try:
                 product = Product.objects.get(id=i)
                 if product.stock > 0:
-                        if cart[i]['quantity'] <= product.stock:
-                            quantityCheck = cart[i]['quantity']
-                        else:
-                            quantityCheck = product.stock
+                    if cart[i]['quantity'] <= product.stock:
                         if product.priceNormal is None:
-                            total = (product.pricePromo  * quantityCheck)
+                            total = (product.pricePromo  * cart[i]['quantity'])
                         else:
-                            total = (product.priceNormal  * quantityCheck)
+                            total = (product.priceNormal  * cart[i]['quantity'])
                         order['get_cart_total'] += total
                         item = {
                             'product':{
@@ -106,11 +106,12 @@ def usersCart(request):
                                 'pic4':product.pic4,
                             },
                             'get_total':total,
-                            'quantity':quantityCheck,
+                            'quantity':cart[i]['quantity'],
                             
                         }
                         items.append(item)
-                    
+                    else:
+                        pass
                 else:
                     pass
             except:
@@ -119,6 +120,7 @@ def usersCart(request):
         'navbarList':navbarList,
         'items':items,
         'orders':order,
+        'len_items':len_items,
     }
     return context
 
@@ -133,7 +135,7 @@ def searchQueryset(query):
 
             for product in products:
                 queryset.append(product)
-        return list(set(queryset)) 
+        return list(set(queryset))
 
 
 def recommendedProducts(request):
@@ -141,7 +143,7 @@ def recommendedProducts(request):
     navbarList   = categoryList.filter(navbar=True)
   
     tags         = Product.tags.all()
-    formsMailing = MailingForm() 
+    formsMailing = MailingForm()
     cart         = usersCart(request)
 
     productData  = Product.objects.all()
@@ -187,7 +189,7 @@ def recommendedProducts(request):
 
 
 def tagListView(request, slug):
-    formsMailing = MailingForm() 
+    formsMailing = MailingForm()
     cart         = usersCart(request)  
 
     categoryList = Category.objects.all()
@@ -200,7 +202,7 @@ def tagListView(request, slug):
     newest       = productData.all().order_by('-id')[:10]
 
     context      = {
-        'newest':newest, 
+        'newest':newest,
         'tags':tags,
         'navbarList':navbarList,
         'productsInfo':productsInfo,
@@ -215,43 +217,36 @@ def categoryListView(request, category):
 
     categorySlug = category.replace('-', ' ')
     formsMailing = MailingForm()
-    cart         = usersCart(request) 
+    cart         = usersCart(request)
     navbarList   = Category.objects.filter(navbar=True)
     categoryList = Category.objects.all()
     
+  
     languages = dict(settings.LANGUAGES).keys()
     q = Q()
     for lang in languages:
         kwargs = {'category_%s' % lang: categorySlug}
         q |= Q(**kwargs)
-    categoryName = categoryList.filter(q)
-    if categoryName.exists():
-        categoryName = categoryName[0]
-    else:
-        pass
     
+    categoryName = categoryList.get(Q(category_pl__icontains=categorySlug) | Q(category_en__icontains=categorySlug))
 
-    productsInfo = Product.objects.all.filter()
+    category = str(categoryName)
+
     
-    productData  = Product.objects.all()
-    newest       = productData.order_by('-id')[:10]
+    productsData = Product.objects.all()
+    productsInfo = []
+
+    for x in range(0, len(productsData)):
+        if str(productsData[x].category) == category:
+            productsInfo.append(productsData[x])
+   
+    newest       = productsData.order_by('-id')[:10]
     tags         = Product.tags.all()
     categoryEmpty = 0
 
-
-
-    #categoryName = categoryList.get(category=categorySlug)
-    #print(categoryName.values())
-    #categoryName = categoryList.filter(Q(category_pl=categorySlug) | Q(category_en=categorySlug))
-    #productsInfo = Product.objects.filter(category=categoryName[0])
-
-    #categoryName = categoryList.filter(Q(category_pl=categorySlug))
-    #if len(categoryName) == 0:
-        #categoryName = categoryList.filter(Q(category_en=categorySlug))
-
     context      = {
         'navbarList':navbarList,
-        'newest':newest, 
+        'newest':newest,
         'tags':tags,
         'productsInfo':productsInfo,
         'categoryList':categoryList,
@@ -356,6 +351,15 @@ def checkoutDetail(request):
     shipContractors = ShipmentMethod.objects.all()
 
     navbarList      = Category.objects.filter(navbar=True)
+    
+
+    b = list(cart.items())
+    b = b[1][1]
+    inPerson = False
+    for x in range(0,len(b)):
+        if b[x].product.inPerson == True:
+            inPerson = True
+        
     context ={
         'forms':forms,
         'emailUser':emailUser,
@@ -363,6 +367,7 @@ def checkoutDetail(request):
         'shipContractors':shipContractors,
         'paymentType':paymentType,
         'navbarList':navbarList,
+        'inPerson':inPerson,
     }
     context={**context, **cart}
     return render(request,'checkout.html',context)
@@ -379,19 +384,19 @@ def processOrder(request):
 
     if request.method == "POST" and request.user.is_authenticated:
 
-       # tester = Order.objects.get_or_create(customer=customer, complete=False)
-       # validator = []
-        #for item in tester:
-            #if item.product.stock - item.quantity >= 0:
-                #validator.append(True)
+        tester = Order.objects.get_or_create(customer=customer, complete=False)
+        validator = []
+        for item in tester:
+            if item.product.stock - item.quantity >= 0:
+                validator.append(True)
         
-        #if all(validator):
+        if all(validator):
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             order.transaction_id = transaction_id
             order.save()
 
             shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
-            totalPrice = int(order.get_cart_total + shipPrice.price) 
+            totalPrice = int(order.get_cart_total + shipPrice.price)
 
             order_items = OrderItem.objects.filter(order=order)
 
@@ -486,8 +491,8 @@ def processOrder(request):
 
                 return render(request, "p24Pay.html" , context)
 
-        #else:
-            #return render(request,'home')
+        else:
+            return render(request,'home')
 
 
 @login_required(login_url='login')
@@ -529,7 +534,7 @@ def cardPayment(request):
             payment_intent_id
         )
         payment_intent_secret = pi.client_secret
-        stripe_public_key     = settings.STRIPE_PUBLIC_KEY 
+        stripe_public_key     = settings.STRIPE_PUBLIC_KEY
         context = {
             'navbarList':navbarList,
             'payment_intent_secret':payment_intent_secret,
@@ -539,7 +544,7 @@ def cardPayment(request):
 
 
     for key in list(request.session.keys()):
-        if not key.startswith("_"): 
+        if not key.startswith("_"):
             del request.session[key]
 
     return redirect('home')

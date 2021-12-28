@@ -35,6 +35,7 @@ class Product(models.Model):
     stock       = models.PositiveIntegerField(default=0, null=True, blank=True)
     priceNormal = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     pricePromo  = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
+    inPerson    = models.BooleanField(blank=True, null=True)
     description = RichTextUploadingField()
     snippet     = models.CharField(max_length=50, null=True, blank=True)
     category    = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)

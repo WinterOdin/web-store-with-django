@@ -321,6 +321,11 @@ a:hover .cbp-vm-add{
 	color:rgb(163, 163, 163);
 	text-decoration: line-through;
 }
+@media screen and (max-width: 1620px) {
+	.cbp-vm-view-grid .cbp-vm-title {
+		margin-top: 70%;
+	}
+}
 
 
 @media screen and (max-width: 1500px) {

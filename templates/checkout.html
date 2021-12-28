@@ -3,6 +3,7 @@
 
 {% block content %}
 {% load i18n  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}?v=3.4.2">
 <form class="formCheckout" action="{% url 'processOrder'  %}" method="POST">
     {% csrf_token  %}
     <div class="grid-container-checkout">
@@ -81,29 +82,35 @@
                                 <div class="courierInfo">
                                         
                                 </div>
-                                {% for x in shipContractors  %}
-                                <div class="row no-gutters">
-                                    <div class="col-1">
-                                        <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox typeX" onclick="check();">
-                                            <svg viewBox="0 0 21 21">
-                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                            </svg>
-                                        </label>
+                                {% if inPerson  %}
+                                    <div class="inPersonText">
+                                        {% trans "Ze względu na dużą wartość oraz wrażliwość sprzętu jakim jest koparka jedyną formą dostawy jest odbiór osobisty. Możliwa jest również płatność przy odbiorze. "  %}
                                     </div>
-                                    <div class="col-7">
-                                        <div class="courierInfo">
-                                            {{ x.contractor }}
+                                {% else  %}
+                                    {% for x in shipContractors  %}
+                                        <div class="row no-gutters">
+                                            <div class="col-1">
+                                                <label class="checkbox path">
+                                                    <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox typeX" onclick="check();">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="courierInfo">
+                                                    {{ x.contractor }}
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="priceDelivery">
+                                                    {{ x.price }}
+                                                </div>
+                                            
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="priceDelivery">
-                                            {{ x.price }}
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                                {% endfor  %}
+                                    {% endfor  %}
+                                {% endif  %}
                             </div>
 
                         </div>
