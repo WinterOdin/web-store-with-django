@@ -77,6 +77,7 @@ def usersCart(request):
             cart = {}
         order = {'get_cart_total':0,}
         items = []
+        len_items = len(items)
         for i in cart:
             try:
                 product = Product.objects.get(id=i)
@@ -384,13 +385,15 @@ def processOrder(request):
 
     if request.method == "POST" and request.user.is_authenticated:
 
-        tester = Order.objects.get_or_create(customer=customer, complete=False)
-        validator = []
-        for item in tester:
-            if item.product.stock - item.quantity >= 0:
-                validator.append(True)
+        #tester = OrderItem.objects.get_or_create(customer=customer)
+        #print(tester)
+        #validator = []
+        #for item in tester:
+            #print(item)
+            #if item.product.stock - item.quantity >= 0:
+                #validator.append(True)
         
-        if all(validator):
+        #if all(validator):
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             order.transaction_id = transaction_id
             order.save()
@@ -407,7 +410,6 @@ def processOrder(request):
             values['totalPrice'] = totalPrice
 
             
-
             forms = CustomerShipp(values)
             if forms.is_valid():
                 order.complete = True
@@ -450,8 +452,6 @@ def processOrder(request):
                 }
                 return render(request, "cardPay.html" , context)
 
-
-
             elif values['paymentType'] == "p24":
                 recepient   = values['recipient']
                 city        = values['city']
@@ -491,8 +491,34 @@ def processOrder(request):
 
                 return render(request, "p24Pay.html" , context)
 
-        else:
-            return render(request,'home')
+            elif values['paymentType'] == "in_person":
+
+                recepient   = values['recipient']
+                city        = values['city']
+                country     = values['country']
+                postal_code = values['zip_code']
+                adress      = values['adress']
+                email       = values['email']
+                customer = request.user.customer
+                emailUser = request.user.email
+                amount      = totalPrice*100,
+                context = {
+                    'amount':amount,
+                    'transaction_id':transaction_id,
+                    'emailUser':emailUser,
+                    'recepient':recepient,
+                    'city':city,
+                    'country':country,
+                    'postal_code':postal_code,
+                    'adress':adress,
+                    'email':email,
+                    'navbarList':navbarList,
+                }
+
+                return render(request, "inperson.html" , context)
+
+    else:
+        return render(request,'home')
 
 
 @login_required(login_url='login')

@@ -84,7 +84,28 @@
                                 </div>
                                 {% if inPerson  %}
                                     <div class="inPersonText">
-                                        {% trans "Ze względu na dużą wartość oraz wrażliwość sprzętu jakim jest koparka jedyną formą dostawy jest odbiór osobisty. Możliwa jest również płatność przy odbiorze. "  %}
+                                        {% trans "Ze względu na dużą wartość oraz wrażliwość sprzętu znajdującym się w koszuku jedyną formą dostawy jest odbiór osobisty."  %}
+                                        <div class="row no-gutters">
+                                            <div class="col-1">
+                                                <label class="checkbox path">
+                                                    <input type="checkbox" value="Odbiór osobisty" price="0" name="contractor" class="priceChecbkox typeX" onclick="check();">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="courierInfo">
+                                                    Odbiór osobisty
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="priceDelivery">
+                                                   
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
                                     </div>
                                 {% else  %}
                                     {% for x in shipContractors  %}
@@ -122,17 +143,26 @@
                                     {% trans "3. Twoje podsumowanie"  %}
                                 </div>
                                 <div class="productWrappersCheckout">
+                                    
                                     {% for x in items  %}
-                                    <div class="row no-gutters productMarginCheckout">
-                                        <div class="col-2">
-                                            <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="checkoutTitleProduct">
-                                                {{x.product.title}}
+                                        <div class="row no-gutters productMarginCheckout">
+                                            <div class="col-2">
+                                                <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
                                             </div>
-                                            <div class="checkoutPriceProduct">
-                                                {{x.quantity}} x     
+                                            <div class="col-8">
+                                                <div class="checkoutTitleProduct">
+                                                    {{x.product.title}}
+                                                </div>
+                                                <div class="checkoutPriceProduct">
+                                                    {{x.quantity}} x     
+                                                {% if x.product.pricePromo is None  %}
+                                                    {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+                                                {% else  %}
+                                                    {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+                                                {% endif  %}
+                                                </div>
+                                            </div>
+                                            <div class="col-2 priceCheckout">
                                             {% if x.product.pricePromo is None  %}
                                                 {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
                                             {% else  %}
@@ -140,14 +170,6 @@
                                             {% endif  %}
                                             </div>
                                         </div>
-                                        <div class="col-2 priceCheckout">
-                                        {% if x.product.pricePromo is None  %}
-                                            {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
-                                        {% else  %}
-                                            {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
-                                        {% endif  %}
-                                        </div>
-                                    </div>
                                     {% endfor  %}
                                 </div>
                             </div>
@@ -166,23 +188,44 @@
                                 <div class="recipientTitle sumUpCheckout">
                                     {% trans "4. Sposób płatności"  %}
                                 </div>
-                                {% for x in paymentType  %}
-                                <div class="row no-gutters">
-                                    <div class="col-1">
-                                        <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox typeY" onclick="check();">
-                                            <svg viewBox="0 0 21 21">
-                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                            </svg>
-                                        </label>
+                                {% if inPerson  %}
+                                    <div class="inPersonText">
+                                        {% trans "Ze względu na dużą wartość sprzętu znajdującym się w koszyku jedyną formą płatności jest płatność przy odbiorze."  %}
                                     </div>
-                                    <div class="col-11">
-                                        <div class="courierInfo">
-                                            {{ x.paymentName }}
+                                    <div class="row no-gutters">
+                                        <div class="col-1">
+                                            <label class="checkbox path">
+                                                <input type="checkbox" value="in_person" name="paymentType" class="payChecbkox typeY" onclick="check();">
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="courierInfo">
+                                                Płatność przy odbiorze
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endfor  %}  
+                                {% else  %}
+                                    {% for x in paymentType  %}
+                                    <div class="row no-gutters">
+                                        <div class="col-1">
+                                            <label class="checkbox path">
+                                                <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox typeY" onclick="check();">
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="courierInfo">
+                                                {{ x.paymentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor  %}
+                                {% endif  %}  
                             </div>
                         </div>
                     </div>

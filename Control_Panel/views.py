@@ -143,6 +143,7 @@ def controlPanelProducts(request):
 def controlPanelProductsDetail(request,pk):
 
     product = Product.objects.get(id=pk)
+    productImages = [product.pic1, product.pic2, product.pic3, product.pic4]
     forms = AdminProduct(instance=product)
     if request.method == "POST":
         forms = AdminProduct(request.POST,instance=product)
@@ -153,6 +154,7 @@ def controlPanelProductsDetail(request,pk):
     context={
         'forms':forms,
         'product':product,
+        'productImages':productImages,
     }
     return render(request,'adminPanel/adminProductAction.html', context)
 
@@ -328,6 +330,7 @@ def controlPanelHelpAdd(request):
 def controlPanelCategoryContentList(request):
 
     categories = HelpCategoryContent.objects.all()
+    
     context={
        'categories':categories
     }
