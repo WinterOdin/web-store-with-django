@@ -86,7 +86,7 @@ msgid "Witaj"
 msgstr "Hello"
 
 #: .\templates\navbar.html:51
-msgid "Pomoc i kontakt"
+msgid "Informacje"
 msgstr "Help"
 
 #: .\templates\navbar.html:57
@@ -228,3 +228,9 @@ msgstr "Repeat password"
 
 #~ msgid "wyników"
 #~ msgstr "results"
+
+#~ msgid "Kategoria"
+#~ msgstr "Category"
+
+#~ msgid "Dostępność"
+#~ msgstr "Availability"

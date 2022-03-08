@@ -44,10 +44,10 @@
                             </span>
                             <br />
                             {% trans "cena za sztuke: "  %}
-                            {% if x.pricePromo is None  %}              
-                            {{ x.pricePromo  }} {% trans "zł"  %}
+                            {% if not x.priceNormal  %}              
+                                {{ x.pricePromo  }} {% trans "zł"  %}
                             {% else  %}
-                            {{  x.priceNormal }} {% trans "zł"  %}
+                                {{  x.priceNormal }} {% trans "zł"  %}
                             {%  endif %}
                         </div>
                     </div>

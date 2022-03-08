@@ -1,0 +1,15 @@
+.inpersonContainer{
+    min-height:48vh;
+    font-family: 'Montserrat', sans-serif;
+}
+.InPersonTitleText{
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+    padding-top:18vh;
+}
+.InPersonContentText{
+    text-align:center;
+    font-size:16px;
+    padding-top:6vh;
+}

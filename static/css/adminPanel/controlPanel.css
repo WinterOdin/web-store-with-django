@@ -126,7 +126,7 @@ body{
 
 }
 .orderDisplay,.orderDisplayName{
-    text-align:left;
+    text-align:center;
     word-break: break-word;
 }
 .rowStylingName{
@@ -159,8 +159,8 @@ a.rowStylingLink{
 }
 .containerOrderPanel{
     font-family: 'Montserrat', sans-serif;
-    width: 90%;
-    margin-left: 5%;
+    width: 98%;
+    margin-left: 2%;
 }
 .titlesOrederDetail{
     font-size: 23px;
@@ -460,6 +460,15 @@ button[type=submit].animated-button.thar-three:before {
 
 }
 
+
+@media (max-width:1600px){
+    .orderDisplayName{
+        font-size: 16px;
+        width: 100%;
+        margin-left: 0%;
+    }
+    
+}
 
 
 

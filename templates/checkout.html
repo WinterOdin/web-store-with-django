@@ -3,6 +3,7 @@
 
 {% block content %}
 {% load i18n  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}?v=3.4.2">
 <form class="formCheckout" action="{% url 'processOrder'  %}" method="POST">
     {% csrf_token  %}
     <div class="grid-container-checkout">
@@ -65,7 +66,19 @@
                                             <div class="form-group">
                                                 {{ forms.invoiceNip }}
                                             </div>
+                                            <div class="invoiceToggle">
+                                                <label class="checkbox path">
+                                                    <input type="checkbox" name="sameData" id="sameData" onchange="billingFunction()">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                                <div class="invoiceTextToggle">
+                                                    &nbsp; {% trans 'Wypełnij formularz automatycznie'  %} 
+                                                </div>
+                                            </div>
                                         </div>
+                                        
                                     </div>   
                                 </div>
 
@@ -81,29 +94,58 @@
                                 <div class="courierInfo">
                                         
                                 </div>
-                                {% for x in shipContractors  %}
-                                <div class="row no-gutters">
-                                    <div class="col-1">
-                                        <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox typeX" onclick="check();">
-                                            <svg viewBox="0 0 21 21">
-                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                            </svg>
-                                        </label>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="courierInfo">
-                                            {{ x.contractor }}
+                                {% if inPerson  %}
+                                    <div class="inPersonText">
+                                        <div class="inPersonTextData">
+                                            {% trans "Ze względu na dużą wartość oraz wrażliwość sprzętu znajdującym się w koszuku jedyną formą dostawy jest odbiór osobisty."  %}
+                                        </div>
+                                        <div class="row no-gutters">
+                                            <div class="col-1">
+                                                <label class="checkbox path">
+                                                    <input type="checkbox" value="Odbiór osobisty" price="0" name="contractor" class="priceChecbkox typeX" onclick="check();">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="courierInfo">
+                                                    Odbiór osobisty
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="priceDelivery">
+                                                   
+                                                </div>
+                                            
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="priceDelivery">
-                                            {{ x.price }}
+                                {% else  %}
+                                    {% for x in shipContractors  %}
+                                        <div class="row no-gutters">
+                                            <div class="col-1">
+                                                <label class="checkbox path">
+                                                    <input type="checkbox" value="{{ x.contractor }}" price="{{ x.price }}" name="contractor" class="priceChecbkox typeX" onclick="check();">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="courierInfo">
+                                                    {{ x.contractor }}
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="priceDelivery">
+                                                    {{ x.price }}
+                                                </div>
+                                            
+                                            </div>
                                         </div>
-                                    
-                                    </div>
-                                </div>
-                                {% endfor  %}
+                                    {% endfor  %}
+                                {% endif  %}
                             </div>
 
                         </div>
@@ -115,17 +157,26 @@
                                     {% trans "3. Twoje podsumowanie"  %}
                                 </div>
                                 <div class="productWrappersCheckout">
+                                    
                                     {% for x in items  %}
-                                    <div class="row no-gutters productMarginCheckout">
-                                        <div class="col-2">
-                                            <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="checkoutTitleProduct">
-                                                {{x.product.title}}
+                                        <div class="row no-gutters productMarginCheckout">
+                                            <div class="col-2">
+                                                <img class="imgMobileCheckout" src="{{ x.product.pic1.url  }}" alt="product picture"> 
                                             </div>
-                                            <div class="checkoutPriceProduct">
-                                                {{x.quantity}} x     
+                                            <div class="col-8">
+                                                <div class="checkoutTitleProduct">
+                                                    {{x.product.title}}
+                                                </div>
+                                                <div class="checkoutPriceProduct">
+                                                    {{x.quantity}} x     
+                                                {% if x.product.pricePromo is None  %}
+                                                    {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
+                                                {% else  %}
+                                                    {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
+                                                {% endif  %}
+                                                </div>
+                                            </div>
+                                            <div class="col-2 priceCheckout">
                                             {% if x.product.pricePromo is None  %}
                                                 {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
                                             {% else  %}
@@ -133,14 +184,6 @@
                                             {% endif  %}
                                             </div>
                                         </div>
-                                        <div class="col-2 priceCheckout">
-                                        {% if x.product.pricePromo is None  %}
-                                            {{ x.product.priceNormal}} {% trans 'zł/szt'  %}
-                                        {% else  %}
-                                            {{ x.product.pricePromo  }} {% trans 'zł/szt'  %}
-                                        {% endif  %}
-                                        </div>
-                                    </div>
                                     {% endfor  %}
                                 </div>
                             </div>
@@ -159,23 +202,44 @@
                                 <div class="recipientTitle sumUpCheckout">
                                     {% trans "4. Sposób płatności"  %}
                                 </div>
-                                {% for x in paymentType  %}
-                                <div class="row no-gutters">
-                                    <div class="col-1">
-                                        <label class="checkbox path">
-                                            <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox typeY" onclick="check();">
-                                            <svg viewBox="0 0 21 21">
-                                                <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
-                                            </svg>
-                                        </label>
+                                {% if inPerson  %}
+                                    <div class="inPersonText">
+                                        {% trans "Ze względu na dużą wartość sprzętu znajdującym się w koszyku jedyną formą płatności jest płatność przy odbiorze."  %}
                                     </div>
-                                    <div class="col-11">
-                                        <div class="courierInfo">
-                                            {{ x.paymentName }}
+                                    <div class="row no-gutters">
+                                        <div class="col-1">
+                                            <label class="checkbox path">
+                                                <input type="checkbox" value="in_person" name="paymentType" class="payChecbkox typeY" onclick="check();">
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="courierInfo">
+                                                Płatność przy odbiorze
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endfor  %}  
+                                {% else  %}
+                                    {% for x in paymentType  %}
+                                    <div class="row no-gutters">
+                                        <div class="col-1">
+                                            <label class="checkbox path">
+                                                <input type="checkbox" value="{{ x.paymentPk }}" name="paymentType" class="payChecbkox typeY" onclick="check();">
+                                                <svg viewBox="0 0 21 21">
+                                                    <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="courierInfo">
+                                                {{ x.paymentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor  %}
+                                {% endif  %}  
                             </div>
                         </div>
                     </div>
@@ -276,18 +340,34 @@ function check(element) {
 
 <script>
     var form_fields = document.getElementsByClassName('shippForm')
-    form_fields[0].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
-    form_fields[1].placeholder='{% trans "Ulica numer budynku oraz domu"  %}';
+    form_fields[0].placeholder='{% trans "Imię oraz nazwisko lub nazwa firmy"  %}';
+    form_fields[1].placeholder='{% trans "Ulica i numer"  %}';
     form_fields[2].placeholder='{% trans "Kod pocztowy"  %}';
     form_fields[3].placeholder='{% trans "Miasto"  %}';
     form_fields[4].placeholder='{% trans "Kraj"  %}';
     form_fields[5].placeholder='{% trans "Adres email"  %}';
     form_fields[6].placeholder='{% trans "Numer telefonu"  %}';
-    form_fields[7].placeholder='{% trans "Imię oraz nazwisko bądź nazwa firmy"  %}';
-    form_fields[8].placeholder='{% trans "Ulica numer budynku oraz domu"  %}';
+    form_fields[7].placeholder='{% trans "Imię oraz nazwisko lub nazwa firmy"  %}';
+    form_fields[8].placeholder='{% trans "Ulica i numer"  %}';
     form_fields[9].placeholder='{% trans "Kod pocztowy"  %}';
     form_fields[10].placeholder='{% trans "Miasto"  %}';
     form_fields[11].placeholder='{% trans "NIP"  %}';
+</script>
+<script>
+function billingFunction() {
+    if (document.getElementById("sameData").checked) {
+            document.getElementById("id_invoiceRecipient").value = document.getElementById("id_recipient").value;
+            document.getElementById("id_invoiceAdress").value = document.getElementById("id_adress").value;
+            document.getElementById("id_invoiceZip").value = document.getElementById("id_zip_code").value;
+            document.getElementById("id_invoiceCity").value = document.getElementById("id_city").value;
+    }
+    else {
+        document.getElementById("id_invoiceRecipient").value = "";
+            document.getElementById("id_invoiceAdress").value = "";
+            document.getElementById("id_invoiceZip").value = "";
+            document.getElementById("id_invoiceCity").value = "";
+    }
+  }
 </script>
 
 {% endblock  %}

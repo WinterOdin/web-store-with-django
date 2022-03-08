@@ -63,7 +63,7 @@
                         </div>
                         <div class="col-6">
                             <div class="resultsTextTile">
-                                {% trans "Wyświetlanie" %} {{ productsInfo|length   }} wyników
+                                {% trans "Wyświetlanie" %} {{ productsInfo|length   }} {% trans  "wyników" %}
                             </div>
                         </div>
                     </div>
@@ -82,11 +82,15 @@
     {% include 'recentlyAdded.html' %}
 </div>
 
+{% include 'formsContainers.html'  %}
+
+<!--- for newsletter
 {% if mailingFlag %}
 
 {% else %}
     {% include 'newsletter.html'  %}
 {% endif  %}
+--->
 
 <div class="container ">
     {% include 'prices.html'  %}

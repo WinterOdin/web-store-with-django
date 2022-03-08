@@ -56,7 +56,9 @@
                 <div class="row no-gutters rowSpacing">
                     <div class="col-3">
                         <div class="productPicturCart">
-                            <img alt="product img" class="imgCart" src="{{ x.product.pic1.url  }}">
+                            <a href="{% url 'detail' id=x.product.id %}">
+                                <img alt="product img" class="imgCart" src="{{ x.product.pic1.url  }}">
+                            </a>
                         </div>
                     </div>
                     <div class="col-2">
@@ -75,7 +77,7 @@
                             <div class="row no-gutters">
                                 <div class="col-4">
                                     <div class="controlQtyCart">
-                                        <img src="{% static 'icons/minus-solid.svg'  %}" alt="minus" style="margin-right: 5px;"data-product="{{ x.product.id  }}" data-action="remove" class="update-cart updatePointer ">
+                                        <img src="{% static 'icons/minus-solid.svg'  %}" alt="minus" style="margin-right: 5px;"data-product="{{ x.product.id  }}" data-action="remove"  data-stock="{{ x.product.stock }}" class="update-cart updatePointer ">
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -104,15 +106,16 @@
                     </div>
                     <div class="col-2">
                         <div class="deleteBtnCart">
-                                <img src="{% static 'icons/times-solid.svg'  %}" alt="remove" style="margin-left: 15px;"data-product="{{ x.product.id  }}" data-action="delete"  class="update-cart  deleteIcon">
+                                <img src="{% static 'icons/times-solid.svg'  %}" alt="remove" style="margin-left: 15px;"data-product="{{ x.product.id  }}" data-action="delete" data-stock="{{ x.product.stock }}"  class="update-cart  deleteIcon">
                         </div>
                     </div>
                     <div class="productInfoCart">
                         <div class="productTitleCart">
-                            {{x.product.title}}
+                            <a href="{% url 'detail' id=x.product.id %}">{{x.product.title}}</a>
                         </div>
                         <div class="productOrderNumberCart">
-                           {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
+                          
+                            
                         </div>
                     </div>
                     <div class="bottomLineCart"></div>
@@ -190,7 +193,7 @@
                 <div class="loginButtonCartAuth">
                     <div class="loginButtonHelpBox">         
                         <a href="/login">
-                            <div class="linkLoginHelpBox linkCreateNotAuth">
+                            <div class="linkLoginHelpBox linkCreateNotAuth linkNotAuth" id="linkCartNotAuth">
                                 Zaloguj sie
                             </div>
                         </a>

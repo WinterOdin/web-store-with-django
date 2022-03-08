@@ -227,7 +227,7 @@ a:hover .cbp-vm-add{
 
 .cbp-vm-view-grid .cbp-vm-price {
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: bold;
 	font-family: 'Lato', sans-serif;
 	color:rgba(0, 129, 250, 0.63);
 	display: block;
@@ -320,6 +320,11 @@ a:hover .cbp-vm-add{
 	font-size: 14px;
 	color:rgb(163, 163, 163);
 	text-decoration: line-through;
+}
+@media screen and (max-width: 1620px) {
+	.cbp-vm-view-grid .cbp-vm-title {
+		margin-top: 70%;
+	}
 }
 
 

@@ -1,7 +1,10 @@
 button:focus {
 	outline:0;
 }
-
+.linkNotAuth{
+    font-size: 18px;
+    padding: 6px 0;
+}
 .deleteIcon{
    
     height: 18px;
@@ -68,7 +71,7 @@ button:focus {
 .imgCart{
   
     max-width: 70%;
-    margin-left: 15%;
+    margin-left: 0%;
 }
    
 
@@ -87,7 +90,7 @@ button:focus {
 }
 .productInfoCart{
     font-family: 'Montserrat', sans-serif;
-    margin-top: 4vh;
+    margin-top: 6.5vh;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -337,9 +340,9 @@ color: rgb(66, 66, 66);
 .svgImgCartNotAuth{
     margin-top: 10vh;
 }
-.loginButtonHelpBox .linkLoginHelpBox, .loginButtonHelpBox .linkCreateHelpBox .linkCreateNotAuth{
+#linkCartNotAuth{
     font-size: 16px;
-    padding: 3px 0;
+    padding: 8px 0;
 }
 .loginButtonHelpBox .linkCreateHelpBox  .linkCreateNotAuth{
     font-size: 18px;

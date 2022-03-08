@@ -110,11 +110,11 @@ $('#priceChanger').on('change', function() {
   switch ($(this).val()) {
   
 	case "sortPriceHighLow":
-	  sortCallback = (a, b) => $(b).data("position") - $(a).data("position")
+	  sortCallback = (a, b) => $(a).data("position") - $(b).data("position")
 	  break;
 
 	case "sortPriceLowHigh":
-	  sortCallback = (a, b) => $(a).data("position") - $(b).data("position")
+	  sortCallback = (a, b) => $(b).data("position") - $(a).data("position")
 	  break;
 
 	case "random":

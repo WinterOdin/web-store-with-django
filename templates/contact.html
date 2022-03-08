@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content  %}
+{% load i18n  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %} " media="print" onload="this.media='all'">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="entryContent">
+                <div class="privacyPolicyText">
+                    {% trans 'Kontakt'  %}
+                </div>
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-6">
+                            <div class="footerBar">
+                               
+                                <div class="numberWrapperFooter">
+                                    
+                                    <div class="numberContainerFooter">
+                                        <div class="numberTextFooter">
+                                            {% trans "Masz pytania? Zadzwon!" %} 
+                                        </div>
+                                        <div class="numberContent">
+                                            (+48) 564 473 345
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footerAddress">
+                                    <div class="logoAddress">
+                                        ww-tech
+                                    </div>
+                                    <div class="dataAddress">
+                                        <i class="fas fa-map-marker-alt"></i>&nbsp; Wilcza 31/1A Warszawa
+                                    </div>
+                                    <div class="hoursFooter">
+                                        <div class="container">
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="dayFooterHelp">
+                                                        {% trans "Pon. - pt." %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="hourFooterHelp">
+                                                        9:00 - 17:00
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="dayFooterHelp">
+                                                        {% trans "Sob. - Niedz." %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="hourFooterHelp">
+                                                        {% trans "zamknięte" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="emailFooter">
+                                        <i class="far fa-envelope"></i>&nbsp; biuro@wwtechnology.pl
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+
+<script>
+      $( ".categoryRootMobile, .containerPricesWrapper, " ).hide();
+</script>
+{% endblock  %}

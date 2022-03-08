@@ -53,7 +53,6 @@
     color: rgb(175, 175, 175);
     font-size: 15px;
     padding-right:15%;
-    text-decoration: line-through;
 }
 .buttonsDetailWrapper{
     padding-top:1vh;
@@ -81,6 +80,8 @@
     border:rgb(19, 172, 0);
     color: rgb(255, 255, 255);
     border-radius: 15px;
+    cursor: pointer;
+
 }
 .buttonDetailBlock{
     background: rgb(87, 87, 87);
@@ -93,6 +94,7 @@
     border-top: 1px solid rgb(228, 228, 228);
     margin-top: 5vh;
     font-family: 'Montserrat';
+    min-height:50vh;
 }
 .productDetailPosition{
     padding-left: 5%;
@@ -133,7 +135,7 @@ button:focus{
 }
 .descriptionContnet{
     padding-top: 1%;
-    padding-left: 5%;
+    margin-left: 15%;
     font-size: 15px;
     font-weight: 400;
     width: 70%;

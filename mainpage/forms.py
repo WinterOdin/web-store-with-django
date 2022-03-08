@@ -29,6 +29,7 @@ class CustomerShipp(ModelForm):
           'transaction_id'  :forms.TextInput(attrs={'type':'hidden'}),
           'customer'        :forms.TextInput(attrs={'type':'hidden'}),
           'order'           :forms.TextInput(attrs={'type':'hidden'}),
+          'totalPrice'      :forms.TextInput(attrs={'type':'hidden'}),
          
        }
 

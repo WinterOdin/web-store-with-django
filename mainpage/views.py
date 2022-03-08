@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.core import mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
@@ -21,9 +22,25 @@ import stripe
 import json
 
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.core.mail import EmailMultiAlternatives
+from django import template
+
 
 API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
+
+from .cryptoApi import *
 
 
 @require_POST
@@ -56,15 +73,19 @@ def stripe_webhooks(request):
     return HttpResponse(status=200)
 
 def usersCart(request):
+    
     navbarList = Category.objects.filter(navbar=True)
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all().order_by('id')
+        len_items = len(items)
+   
         context ={
-        'items':items,
-        'orders':order,
-        'navbarList':navbarList,
+            'len_items':len_items,
+            'items':items,
+            'orders':order,
+            'navbarList':navbarList,
         }
      
     else:
@@ -72,21 +93,20 @@ def usersCart(request):
             cart  = json.loads(request.COOKIES['cart'])
         except:
             cart = {}
-        order = {'get_cart_total':0,} 
+        order = {'get_cart_total':0,}
         items = []
+        len_items = len(items)
         for i in cart:
             try:
                 product = Product.objects.get(id=i)
                 if product.stock > 0:
-                        if cart[i]['quantity'] <= product.stock:
-                            quantityCheck = cart[i]['quantity']
-                        else:
-                            quantityCheck = product.stock
+                    if cart[i]['quantity'] <= product.stock:
                         if product.priceNormal is None:
-                            total = (product.pricePromo  * quantityCheck)
+                            total = (product.pricePromo  * cart[i]['quantity'])
                         else:
-                            total = (product.priceNormal  * quantityCheck)
+                            total = (product.priceNormal  * cart[i]['quantity'])
                         order['get_cart_total'] += total
+                        print(order['get_cart_total'])
                         item = {
                             'product':{
                                 'id':product.id,
@@ -106,11 +126,12 @@ def usersCart(request):
                                 'pic4':product.pic4,
                             },
                             'get_total':total,
-                            'quantity':quantityCheck,
+                            'quantity':cart[i]['quantity'],
                             
                         }
                         items.append(item)
-                    
+                    else:
+                        pass
                 else:
                     pass
             except:
@@ -119,6 +140,7 @@ def usersCart(request):
         'navbarList':navbarList,
         'items':items,
         'orders':order,
+        'len_items':len_items,
     }
     return context
 
@@ -133,22 +155,24 @@ def searchQueryset(query):
 
             for product in products:
                 queryset.append(product)
-        return list(set(queryset)) 
+        return list(set(queryset))
 
 
 def recommendedProducts(request):
     categoryList = Category.objects.all()
     navbarList   = categoryList.filter(navbar=True)
-  
-    tags         = Product.tags.all()
-    formsMailing = MailingForm() 
+    cryptoPriceData = crypto_api_prices(request)
+
+    
+    formsMailing = MailingForm()
     cart         = usersCart(request)
 
     productData  = Product.objects.all()
     productsInfo = productData.filter(recommend=True).order_by('-id')[:6]
+
+    tags         = Product.tags.all()
     newest       = productData.order_by('-id')[:10]
     
-
     mailingFlag  = False
     currentUser  = request.user
     if MailingList.objects.filter(email=currentUser).exists():
@@ -167,6 +191,7 @@ def recommendedProducts(request):
             'formsMailing':formsMailing,
             'navbarList':navbarList,
             'mailingFlag':mailingFlag,
+            'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
         context={**context, **cart}
 
@@ -180,6 +205,7 @@ def recommendedProducts(request):
         'categoryList':categoryList,
         'formsMailing':formsMailing,
         'mailingFlag':mailingFlag,
+        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
     context={**context, **cart}
 
@@ -187,7 +213,7 @@ def recommendedProducts(request):
 
 
 def tagListView(request, slug):
-    formsMailing = MailingForm() 
+    formsMailing = MailingForm()
     cart         = usersCart(request)  
 
     categoryList = Category.objects.all()
@@ -198,65 +224,75 @@ def tagListView(request, slug):
     tags         = Product.tags.all()
     productsInfo = productData.filter(tags=SelectedTag)
     newest       = productData.all().order_by('-id')[:10]
-
+    cryptoPriceData = crypto_api_prices(request)
     context      = {
-        'newest':newest, 
+        'newest':newest,
         'tags':tags,
         'navbarList':navbarList,
         'productsInfo':productsInfo,
         'categoryList':categoryList,
-        'formsMailing':formsMailing
+        'formsMailing':formsMailing,
+        'cryptoPrices': cryptoPriceData["cryptoPrices"]
     }
  
     return render(request,'products.html', context)
 
 
 def categoryListView(request, category):
-
+    cryptoPriceData = crypto_api_prices(request)
     categorySlug = category.replace('-', ' ')
     formsMailing = MailingForm()
-    cart         = usersCart(request) 
+    cart         = usersCart(request)
     navbarList   = Category.objects.filter(navbar=True)
     categoryList = Category.objects.all()
     
+  
     languages = dict(settings.LANGUAGES).keys()
     q = Q()
     for lang in languages:
         kwargs = {'category_%s' % lang: categorySlug}
         q |= Q(**kwargs)
-    categoryName = categoryList.filter(q)
-    if categoryName.exists():
-        categoryName = categoryName[0]
-    else:
-        pass
     
+    categoryName = categoryList.get(Q(category_pl__icontains=categorySlug) | Q(category_en__icontains=categorySlug))
 
-    productsInfo = Product.objects.all.filter()
+    category = str(categoryName)
+
     
-    productData  = Product.objects.all()
-    newest       = productData.order_by('-id')[:10]
+    productsData = Product.objects.all()
+    productsInfo = []
+
+    for x in range(0, len(productsData)):
+        if str(productsData[x].category) == category:
+            productsInfo.append(productsData[x])
+   
+    newest       = productsData.order_by('-id')[:10]
     tags         = Product.tags.all()
     categoryEmpty = 0
 
-
-
-    #categoryName = categoryList.get(category=categorySlug)
-    #print(categoryName.values())
-    #categoryName = categoryList.filter(Q(category_pl=categorySlug) | Q(category_en=categorySlug))
-    #productsInfo = Product.objects.filter(category=categoryName[0])
-
-    #categoryName = categoryList.filter(Q(category_pl=categorySlug))
-    #if len(categoryName) == 0:
-        #categoryName = categoryList.filter(Q(category_en=categorySlug))
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        context      = {
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+            'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        }
+        context={**context}
+        return render(request,'products.html', context)
 
     context      = {
         'navbarList':navbarList,
-        'newest':newest, 
+        'newest':newest,
         'tags':tags,
         'productsInfo':productsInfo,
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
         'formsMailing':formsMailing,
+        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         
     }
     context={**context, **cart}
@@ -271,7 +307,24 @@ def helpView(request):
     categoryInfo = HelpCategoryContent.objects.all()
 
     cart         = usersCart(request)
-    formsMailing = MailingForm()  
+    formsMailing = MailingForm()
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)  
 
     context         ={
        'navbarList':navbarList,
@@ -294,6 +347,26 @@ def productDetail(request, id):
     cart            = usersCart(request)  
     formsMailing    = MailingForm()
 
+
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'formsMailing':formsMailing,
+            'navbarList':navbarList,
+        }
+        context={**context, **cart}
+
+        return render(request,'products.html', context)
+
     context         =   {
         'navbarList':navbarList,
         'productImages':productImages,
@@ -312,6 +385,24 @@ def cartDetail(request):
     navbarList =categoryList.filter(navbar=True)
     newest  = Product.objects.all().order_by('-id')[:10]
     cart    = usersCart(request)
+    
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context, **cart}
+
+        return render(request,'products.html', context)
+
     context         ={
         'newest':newest,
         'categoryList':categoryList,
@@ -356,6 +447,35 @@ def checkoutDetail(request):
     shipContractors = ShipmentMethod.objects.all()
 
     navbarList      = Category.objects.filter(navbar=True)
+    
+
+    b = list(cart.items())
+    b = b[1][1]
+    inPerson = False
+    for x in range(0,len(b)):
+        if b[x].product.inPerson == True:
+            inPerson = True
+    
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context, **cart}
+
+        return render(request,'products.html', context)
+
+
     context ={
         'forms':forms,
         'emailUser':emailUser,
@@ -363,6 +483,7 @@ def checkoutDetail(request):
         'shipContractors':shipContractors,
         'paymentType':paymentType,
         'navbarList':navbarList,
+        'inPerson':inPerson,
     }
     context={**context, **cart}
     return render(request,'checkout.html',context)
@@ -379,115 +500,143 @@ def processOrder(request):
 
     if request.method == "POST" and request.user.is_authenticated:
 
-       # tester = Order.objects.get_or_create(customer=customer, complete=False)
-       # validator = []
-        #for item in tester:
-            #if item.product.stock - item.quantity >= 0:
-                #validator.append(True)
-        
-        #if all(validator):
+ 
+            validator = []
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             order.transaction_id = transaction_id
-            order.save()
-
-            shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
-            totalPrice = int(order.get_cart_total + shipPrice.price) 
 
             order_items = OrderItem.objects.filter(order=order)
+            for item in order_items:
+                if item.product.stock - item.quantity >= 0:
+                    validator.append(True)
+            try:
+                if all(validator):
 
-            customerOnWebsite = request.user.customer
-            values = request.POST.copy()
-            values['transaction_id'] = transaction_id
-            values['shipType'] = request.POST['contractor']
-            values['totalPrice'] = totalPrice
+                    order.save()
+                    shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
+                    
+                    totalPrice = float(order.get_cart_total) + float(shipPrice.price)
+                    totalPrice = totalPrice*100
+                    totalPrice = int(totalPrice)
+                    customerOnWebsite = request.user.customer
+                    values = request.POST.copy()
+                    values['transaction_id'] = transaction_id
+                    values['shipType'] = request.POST['contractor']
+                    values['totalPrice'] = totalPrice
 
-            
+                    forms = CustomerShipp(values)
+                    if forms.is_valid():
+                        print("valid")
+                        order.complete = True
+                        order.save()
+                        
+                        for item in order_items:
+                            product = item.product
+                            product.stock = product.stock - item.quantity
+                            product.save()
+                            item.transaction_id = transaction_id
+                            item.save()
 
-            forms = CustomerShipp(values)
-            if forms.is_valid():
-                order.complete = True
-                order.save()
-                
-                for item in order_items:
-                    product = item.product
-                    product.stock = product.stock - item.quantity
-                    product.save()
-                    item.transaction_id = transaction_id
-                    item.save()
+                        adding = forms.save(commit=False)
+                        adding.customer = customerOnWebsite
+                        adding.order    = order
+                        adding.save()
+                        request.session['values'] = values
 
-                adding = forms.save(commit=False)
-                adding.customer = customerOnWebsite
-                adding.order    = order
-                adding.save()
-                request.session['values'] = values
+                    if values['paymentType'] == "card":
+                        customer = request.user.customer
+                        emailUser = request.user.email
+                        stripe.api_key  = API_KEY
+                        payment_intent  = stripe.PaymentIntent.create(
+                            amount      = totalPrice,
+                            currency    = 'pln',
+                            payment_method_types = ['card'],
+                            description = transaction_id
+                        )
+                        publicKey       = settings.STRIPE_PUBLIC_KEY
+                        secretKeyIntent = payment_intent.client_secret
+                        payment_intent_id = payment_intent.id
 
-            if values['paymentType'] == "card":
-                customer = request.user.customer
-                emailUser = request.user.email
-                stripe.api_key  = API_KEY
-                payment_intent  = stripe.PaymentIntent.create(
-                    amount      = totalPrice*100,
-                    currency    = 'pln',
-                    payment_method_types = ['card'],
-                    description = transaction_id
-                )
-                publicKey       = settings.STRIPE_PUBLIC_KEY
-                secretKeyIntent = payment_intent.client_secret
-                payment_intent_id = payment_intent.id
+                        context = {
+                            'transaction_id':transaction_id,
+                            'emailUser':emailUser,
+                            'publicKey':publicKey,
+                            'secretKeyIntent':secretKeyIntent,
+                            'payment_intent_id':payment_intent_id,
+                            'navbarList':navbarList,
+                        }
+                        return render(request, "cardPay.html" , context)
 
-                context = {
-                    'transaction_id':transaction_id,
-                    'emailUser':emailUser,
-                    'publicKey':publicKey,
-                    'secretKeyIntent':secretKeyIntent,
-                    'payment_intent_id':payment_intent_id,
-                    'navbarList':navbarList,
-                }
-                return render(request, "cardPay.html" , context)
+                    elif values['paymentType'] == "p24":
+                        recepient   = values['recipient']
+                        city        = values['city']
+                        country     = values['country']
+                        postal_code = values['zip_code']
+                        adress      = values['adress']
+                        email       = values['email']
+                        customer = request.user.customer
+                        emailUser = request.user.email
+                        stripe.api_key  = API_KEY
 
+                        payment_intent  = stripe.PaymentIntent.create(
+                            amount      = totalPrice,
+                            currency    = 'pln',
+                            payment_method_types = ['p24'],
+                            description = transaction_id,
+                        )
 
+                        publicKey       = settings.STRIPE_PUBLIC_KEY
+                        secretKeyIntent = payment_intent.client_secret
+                        payment_intent_id = payment_intent.id
 
-            elif values['paymentType'] == "p24":
-                recepient   = values['recipient']
-                city        = values['city']
-                country     = values['country']
-                postal_code = values['zip_code']
-                adress      = values['adress']
-                email       = values['email']
-                customer = request.user.customer
-                emailUser = request.user.email
-                stripe.api_key  = API_KEY
+                        context = {
+                            'transaction_id':transaction_id,
+                            'emailUser':emailUser,
+                            'publicKey':publicKey,
+                            'secretKeyIntent':secretKeyIntent,
+                            'payment_intent_id':payment_intent_id,
+                            'recepient':recepient,
+                            'city':city,
+                            'country':country,
+                            'postal_code':postal_code,
+                            'adress':adress,
+                            'email':email,
+                            'navbarList':navbarList,
+                        }
 
-                payment_intent  = stripe.PaymentIntent.create(
-                    amount      = totalPrice*100,
-                    currency    = 'pln',
-                    payment_method_types = ['p24'],
-                    description = transaction_id,
-                )
+                        return render(request, "p24Pay.html" , context)
 
-                publicKey       = settings.STRIPE_PUBLIC_KEY
-                secretKeyIntent = payment_intent.client_secret
-                payment_intent_id = payment_intent.id
+                    elif values['paymentType'] == "in_person":
 
-                context = {
-                    'transaction_id':transaction_id,
-                    'emailUser':emailUser,
-                    'publicKey':publicKey,
-                    'secretKeyIntent':secretKeyIntent,
-                    'payment_intent_id':payment_intent_id,
-                    'recepient':recepient,
-                    'city':city,
-                    'country':country,
-                    'postal_code':postal_code,
-                    'adress':adress,
-                    'email':email,
-                    'navbarList':navbarList,
-                }
+                        recepient   = values['recipient']
+                        city        = values['city']
+                        country     = values['country']
+                        postal_code = values['zip_code']
+                        adress      = values['adress']
+                        email       = values['email']
+                        customer = request.user.customer
+                        emailUser = request.user.email
+                        amount      = totalPrice,
+                        context = {
+                            'amount':amount,
+                            'transaction_id':transaction_id,
+                            'emailUser':emailUser,
+                            'recepient':recepient,
+                            'city':city,
+                            'country':country,
+                            'postal_code':postal_code,
+                            'adress':adress,
+                            'email':email,
+                            'navbarList':navbarList,
+                        }
 
-                return render(request, "p24Pay.html" , context)
-
-        #else:
-            #return render(request,'home')
+                        return render(request, "inperson.html" , context)
+                else:
+                    return render(request, "cartError.html")
+            except:
+                return render(request, "cartError.html",{'navbarList':navbarList})
+    else:
+        return render(request,'home')
 
 
 @login_required(login_url='login')
@@ -529,7 +678,7 @@ def cardPayment(request):
             payment_intent_id
         )
         payment_intent_secret = pi.client_secret
-        stripe_public_key     = settings.STRIPE_PUBLIC_KEY 
+        stripe_public_key     = settings.STRIPE_PUBLIC_KEY
         context = {
             'navbarList':navbarList,
             'payment_intent_secret':payment_intent_secret,
@@ -539,16 +688,63 @@ def cardPayment(request):
 
 
     for key in list(request.session.keys()):
-        if not key.startswith("_"): 
+        if not key.startswith("_"):
             del request.session[key]
 
-    return redirect('home')
+    user = request.user
+    totalPriceMail = values.get('totalPrice'),
+    subject = "Payment Confirmation Email"
+    plaintext = template.loader.get_template('payment_email_txt.txt')
+    htmltemp = template.loader.get_template('payment_email_html.html')
+    
+    c = {
+    "email":user.email,
+    'domain':'ww-tech.pl',
+    'site_name': 'ww-tech',
+    'protocol': 'https',
+    'order_id' : values.get('transaction_id'),
+    }
+    text_content = plaintext.render(c)
+    html_content = htmltemp.render(c, {"context":context})
+    try:
+        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+    
+    return render(request,"conf.html")
 
 
 @login_required(login_url='login')       
 def successP24(request):
     navbarList     = Category.objects.filter(navbar=True)
     customer = request.user.customer
+    values = request.session.get('values', None)
+
+    user = request.user
+    totalPriceMail = values.get('totalPrice'),
+    subject = "Payment Confirmation Email"
+    plaintext = template.loader.get_template('payment_email_txt.txt')
+    htmltemp = template.loader.get_template('payment_email_html.html')
+
+    c = {
+        "email":user.email,
+        'domain':'ww-tech.pl',
+        'site_name': 'ww-tech',
+        'protocol': 'https',
+        'order_id' : values.get('transaction_id'),
+    }
+    text_content = plaintext.render(c)
+    html_content = htmltemp.render(c)
+    try:
+        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        print("SSS")
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+
     context = {
           'customer':customer ,
           'navbarList':navbarList
@@ -558,12 +754,78 @@ def successP24(request):
 
 def policyDetail(request):
     navbarList     = Category.objects.filter(navbar=True)
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)
+    
     context = {
-          
           'navbarList':navbarList
     }
     return render(request,'policy.html',context)
 
+def rulesDetail(request):
+    navbarList     = Category.objects.filter(navbar=True)
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)
+    
+    context = {
+          'navbarList':navbarList
+    }
+    return render(request,'regulamin.html',context)
+
+def contactDetail(request):
+    navbarList     = Category.objects.filter(navbar=True)
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)
+    context = {
+          
+          'navbarList':navbarList
+    }
+    return render(request,'contact.html',context)
 
 def mailingList(request):
     if request.method == "POST":
@@ -576,3 +838,67 @@ def mailingList(request):
     return redirect('home')
 
 
+def contactMail(request):
+    categoryList  = Category.objects.all()
+    navbarList =categoryList.filter(navbar=True)
+    cart    = usersCart(request)
+    
+    if request.method == "POST":
+        query = request.POST.get('search_bar')
+        if query:   
+            productsInfo = searchQueryset(query)
+            tags         = Product.tags.all()
+            context      = {
+                'query':query,
+                'tags':tags,
+                'productsInfo':productsInfo,
+                'categoryList':categoryList,
+                'navbarList':navbarList,
+            }
+            context={**context, **cart}
+
+            return render(request,'products.html', context)
+        else:
+            pass
+
+
+    context = {
+        'categoryList':categoryList,
+        'navbarList':navbarList,
+    }
+
+    context={**context, **cart}
+    return render(request,'contact_us_mail.html',context)
+
+
+def miningStation(request):
+    categoryList  = Category.objects.all()
+    navbarList =categoryList.filter(navbar=True)
+    cart    = usersCart(request)
+    
+    if request.method == "POST":
+        query = request.POST.get('search_bar')
+        if query:   
+            productsInfo = searchQueryset(query)
+            tags         = Product.tags.all()
+            context      = {
+                'query':query,
+                'tags':tags,
+                'productsInfo':productsInfo,
+                'categoryList':categoryList,
+                'navbarList':navbarList,
+            }
+            context={**context, **cart}
+
+            return render(request,'products.html', context)
+        else:
+            pass
+
+
+    context = {
+        'categoryList':categoryList,
+        'navbarList':navbarList,
+    }
+
+    context={**context, **cart}
+    return render(request,'configure.html',context)

@@ -18,6 +18,9 @@ urlpatterns = [
 
 	path('help', views.helpView, name='help'),
 	path('policy', views.policyDetail, name='policy'),
+	path('rules', views.rulesDetail, name='rules'),
+	
+	path('contact', views.contactDetail, name='contact'),
 
 	path('processOrder', views.processOrder, name='processOrder'),
 	path('checkout', views.checkoutDetail, name='checkout'),
@@ -28,6 +31,7 @@ urlpatterns = [
 
 	path('mailing', views.mailingList, name='mailing'),
 
-	
+	path('contact-us', views.contactMail, name='contact-us'),
+	path('configure', views.miningStation, name='configure'),
 	
 ]

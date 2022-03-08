@@ -10,16 +10,7 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Bitcoin</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="btc_val" class="h4 kpi-value cryptoPriceData"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm">
-				<div class="cardWrapper">
-					<div class="cardWrapperBody">
-						<div class="cryptoName">Litecoin</div>
-						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="ltc_val" class="h4 kpi-value cryptoPriceData"></div>
+						<div id="btc_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.0|floatformat:0  }}</div>
 					</div>
 				</div>
 			</div>
@@ -28,7 +19,25 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Ethereum</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="eth_val" class="h4 kpi-value cryptoPriceData"></div>
+						<div id="eth_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.1|floatformat:0  }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="cardWrapper">
+					<div class="cardWrapperBody">
+						<div class="cryptoName">Ethereum Classic</div>
+						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
+						<div id="etc_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.2|floatformat:0  }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="cardWrapper">
+					<div class="cardWrapperBody">
+						<div class="cryptoName">Ravencoin</div>
+						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
+						<div id="rvn_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.3|floatformat:0  }}</div>
 					</div>
 				</div>
 			</div>

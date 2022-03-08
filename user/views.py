@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 import logging
 import stripe
 from django.conf import settings
+from mainpage.views import searchQueryset
 
 API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
@@ -77,6 +78,25 @@ def orderView(request):
     qs = OrderItem.objects.filter(order__complete=True) 
     products = qs.filter(order__customer=user).order_by('-date_added')
     navbarList   = Category.objects.filter(navbar=True)
+
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)
+
     context={
         'navbarList':navbarList,
         'products':products
@@ -177,6 +197,25 @@ def orderViewDetail(request, pk):
 
 def refundsView(request):
     navbarList = Category.objects.filter(navbar=True)
+
+    if request.method == "POST":
+        query = request.POST.get('search_bar')    
+        productsInfo = searchQueryset(query)
+        tags         = Product.tags.all()
+        newest       = Product.objects.order_by('-id')[:10]
+        categoryList = Category.objects.all()
+        context      = {
+
+            'newest':newest,
+            'query':query,
+            'tags':tags,
+            'productsInfo':productsInfo,
+            'categoryList':categoryList,
+            'navbarList':navbarList,
+        }
+        context={**context}
+        return render(request,'products.html', context)
+
     context={
         'navbarList':navbarList,
     }

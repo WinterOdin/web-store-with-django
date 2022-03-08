@@ -15,7 +15,7 @@ SECRET_KEY = ')j)!m=8vewybi=nsrw&l5#)4#sacu++ltc9y(f+kq-)3eq^+8f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 STRIPE_PUBLIC_KEY = 'pk_test_51HEYqgEPUz3ZLxoXDOQ1eA9kElSC05FZx8cUrgpbtmLTDTjVR3WSIv8MNvK5C5AFtpY1eTCPbwQ1uAdOA34lHXYX00aqD5lm9W'
 STRIPE_PRIVATE_KEY = 'sk_test_51HEYqgEPUz3ZLxoXSeaw8yhcTQK7MNGnk57g7O6juKU4L4SSUbjNgE0vVjCEzehX2DZMLpPSFha9sMBEXeLXPRS100v3J11TXs'
@@ -144,11 +144,12 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT =os.path.join(BASE_DIR, "static/images")
 
+DEFAULT_FROM_EMAIL = "support@wiktorw.usermd.net"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "mail26.mydevil.net"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "cryptotechacc@gmail.com"
-EMAIL_HOST_PASSWORD = "]~m>d5KfM%^B9QLQ"
+EMAIL_HOST_USER = "support@wiktorw.usermd.net"
+EMAIL_HOST_PASSWORD = "Naz4d7HEvxRRqvYN"
 EMAIL_USE_TLS = True 
 
 CKEDITOR_CONFIGS = {
