@@ -1,0 +1,5 @@
+Odnotowaliśmy płatność za zamówienie numer {{ order_id }}. Produkt, zakupiony przez naszą
+stronę internetową zwykle jest wysłany w ciągu 3 dni roboczych. Zapewniamy szybką i
+bezpieczną dostawę.
+W przypadku problemów związanych z zakupem prosimy o kontakt na
+serwis@wwtechnology.pl

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load i18n  %}
+{% load static  %}
+{% block content  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/configure.css' %}?v=3.4.2">
+<div class="container">
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="formMailMain">
+                        Skonfiguruj swoją koparkę
+                    </div>
+                </div>
+            </div>
+            <div class="howToMiner ">
+                Jak dokonać konfiguracji w 5 krokach? <br />
+            <div>
+            <div class="listStylingConfigure">
+                <ol>
+                    <li>Wprowadź interesujący Cię przedział cenowy</li>
+                    <li>Napisz z jakich kart chesz korzystać</li>
+                    <li>Wymień interesujące Cię waluty</li>
+                    <li>Wprowadź dane kontaktowe</li>
+                    <li>Jeśli masz jakieś pytania daj nam znać</li>
+                </ol>
+            </div>
+            <div class="endConfigText">
+                Po zatwierdzeniu formularza zostaniesz przekierowany do strony głównej, a nasz specjalista otrzyma twoje zgłoszenie.<br />
+                Staramy się by czas oczekiwania na oferte naszego specjalisty nie był dłuższy niż jeden dzień roboczy, jednak w niektórch przypadkach stworzenie
+                satysfakcjonującego zestawu może potrwać dłużej. 
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <div class="teamGreetings d-flex justify-content-end">
+                <i>-Pozdrawiamy zespół WW-tech</i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="formMailMain">
+                Formularz 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź przedział cenowy">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" name="cards" class="configureForm" maxlength="50" required="" id="cards" placeholder="Wprowadź karty z których chesz korzystać">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" name="crypto_type" class="configureForm" maxlength="50" required="" id="crypto_type" placeholder="Wprowadź interesujące Cię Kryptowaluty">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź swój numer telefonu">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 d-flex align-items-center justify-content-center">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+
+            <br />
+            <div class="acceptRulesText">
+                Zatwierdzając formularz wyrażasz zgodę na przetważanie danchy osobowych oraz na kontakt specjalisty WW-tech.
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock  %}

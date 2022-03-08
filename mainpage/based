@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.core import mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
@@ -21,7 +20,6 @@ import logging
 import stripe
 import json
 
-
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -39,8 +37,6 @@ from django import template
 
 API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
-
-from .cryptoApi import *
 
 
 @require_POST
@@ -73,7 +69,6 @@ def stripe_webhooks(request):
     return HttpResponse(status=200)
 
 def usersCart(request):
-    
     navbarList = Category.objects.filter(navbar=True)
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -106,7 +101,6 @@ def usersCart(request):
                         else:
                             total = (product.priceNormal  * cart[i]['quantity'])
                         order['get_cart_total'] += total
-                        print(order['get_cart_total'])
                         item = {
                             'product':{
                                 'id':product.id,
@@ -161,8 +155,7 @@ def searchQueryset(query):
 def recommendedProducts(request):
     categoryList = Category.objects.all()
     navbarList   = categoryList.filter(navbar=True)
-    cryptoPriceData = crypto_api_prices(request)
-
+  
     
     formsMailing = MailingForm()
     cart         = usersCart(request)
@@ -191,7 +184,6 @@ def recommendedProducts(request):
             'formsMailing':formsMailing,
             'navbarList':navbarList,
             'mailingFlag':mailingFlag,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
         context={**context, **cart}
 
@@ -205,7 +197,6 @@ def recommendedProducts(request):
         'categoryList':categoryList,
         'formsMailing':formsMailing,
         'mailingFlag':mailingFlag,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
     context={**context, **cart}
 
@@ -224,22 +215,21 @@ def tagListView(request, slug):
     tags         = Product.tags.all()
     productsInfo = productData.filter(tags=SelectedTag)
     newest       = productData.all().order_by('-id')[:10]
-    cryptoPriceData = crypto_api_prices(request)
+
     context      = {
         'newest':newest,
         'tags':tags,
         'navbarList':navbarList,
         'productsInfo':productsInfo,
         'categoryList':categoryList,
-        'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        'formsMailing':formsMailing
     }
  
     return render(request,'products.html', context)
 
 
 def categoryListView(request, category):
-    cryptoPriceData = crypto_api_prices(request)
+
     categorySlug = category.replace('-', ' ')
     formsMailing = MailingForm()
     cart         = usersCart(request)
@@ -279,7 +269,6 @@ def categoryListView(request, category):
             'productsInfo':productsInfo,
             'categoryList':categoryList,
             'navbarList':navbarList,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
         context={**context}
         return render(request,'products.html', context)
@@ -292,7 +281,6 @@ def categoryListView(request, category):
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
         'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         
     }
     context={**context, **cart}
@@ -696,20 +684,21 @@ def cardPayment(request):
     subject = "Payment Confirmation Email"
     plaintext = template.loader.get_template('payment_email_txt.txt')
     htmltemp = template.loader.get_template('payment_email_html.html')
-    
+
     c = {
-    "email":user.email,
+    'email':user.email,
     'domain':'ww-tech.pl',
     'site_name': 'ww-tech',
     'protocol': 'https',
     'order_id' : values.get('transaction_id'),
     }
     text_content = plaintext.render(c)
-    html_content = htmltemp.render(c, {"context":context})
+    html_content = htmltemp.render(c)
     try:
         msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+        
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
     
@@ -727,13 +716,14 @@ def successP24(request):
     subject = "Payment Confirmation Email"
     plaintext = template.loader.get_template('payment_email_txt.txt')
     htmltemp = template.loader.get_template('payment_email_html.html')
+    htmltemp = htmltemp.replace('{{order_id}}',values.get('transaction_id'))
 
     c = {
-        "email":user.email,
-        'domain':'ww-tech.pl',
-        'site_name': 'ww-tech',
-        'protocol': 'https',
-        'order_id' : values.get('transaction_id'),
+    'email':user.email,
+    'domain':'ww-tech.pl',
+    'site_name': 'ww-tech',
+    'protocol': 'https',
+    'order_id' : values.get('transaction_id'),
     }
     text_content = plaintext.render(c)
     html_content = htmltemp.render(c)
@@ -777,6 +767,7 @@ def policyDetail(request):
     }
     return render(request,'policy.html',context)
 
+
 def rulesDetail(request):
     navbarList     = Category.objects.filter(navbar=True)
     if request.method == "POST":
@@ -801,6 +792,8 @@ def rulesDetail(request):
           'navbarList':navbarList
     }
     return render(request,'regulamin.html',context)
+
+
 
 def contactDetail(request):
     navbarList     = Category.objects.filter(navbar=True)
@@ -838,67 +831,3 @@ def mailingList(request):
     return redirect('home')
 
 
-def contactMail(request):
-    categoryList  = Category.objects.all()
-    navbarList =categoryList.filter(navbar=True)
-    cart    = usersCart(request)
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')
-        if query:   
-            productsInfo = searchQueryset(query)
-            tags         = Product.tags.all()
-            context      = {
-                'query':query,
-                'tags':tags,
-                'productsInfo':productsInfo,
-                'categoryList':categoryList,
-                'navbarList':navbarList,
-            }
-            context={**context, **cart}
-
-            return render(request,'products.html', context)
-        else:
-            pass
-
-
-    context = {
-        'categoryList':categoryList,
-        'navbarList':navbarList,
-    }
-
-    context={**context, **cart}
-    return render(request,'contact_us_mail.html',context)
-
-
-def miningStation(request):
-    categoryList  = Category.objects.all()
-    navbarList =categoryList.filter(navbar=True)
-    cart    = usersCart(request)
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')
-        if query:   
-            productsInfo = searchQueryset(query)
-            tags         = Product.tags.all()
-            context      = {
-                'query':query,
-                'tags':tags,
-                'productsInfo':productsInfo,
-                'categoryList':categoryList,
-                'navbarList':navbarList,
-            }
-            context={**context, **cart}
-
-            return render(request,'products.html', context)
-        else:
-            pass
-
-
-    context = {
-        'categoryList':categoryList,
-        'navbarList':navbarList,
-    }
-
-    context={**context, **cart}
-    return render(request,'configure.html',context)

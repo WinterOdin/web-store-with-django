@@ -227,7 +227,7 @@ a:hover .cbp-vm-add{
 
 .cbp-vm-view-grid .cbp-vm-price {
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: bold;
 	font-family: 'Lato', sans-serif;
 	color:rgba(0, 129, 250, 0.63);
 	display: block;

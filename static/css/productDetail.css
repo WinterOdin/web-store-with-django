@@ -80,6 +80,8 @@
     border:rgb(19, 172, 0);
     color: rgb(255, 255, 255);
     border-radius: 15px;
+    cursor: pointer;
+
 }
 .buttonDetailBlock{
     background: rgb(87, 87, 87);

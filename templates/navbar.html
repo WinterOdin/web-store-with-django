@@ -3,11 +3,16 @@
 {% get_current_language as LANGUAGE_CODE  %}
 
     <div class="grid-container-PC">
+
+        
+        {% if request.user.is_superuser %}
         <div class="topBar">
             <div class="topBarWrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6">
+                            {% trans "Witaj"  %} {{ request.user.customer  }}
+                        <!--- 
                             <div class="topBarTextRight">
                                 {% if user.is_authenticated  %}
                                     {% trans "Witaj"  %} {{ request.user.customer  }}
@@ -16,24 +21,31 @@
                                 {%endif%}
                                
                             </div>
+                        -->
                         </div>
                         <div class="col-6">
+                            <a class="" href="{% url 'control' %}"> {% trans "Panel Administracyjny" %} &nbsp; </a>
+                            <!---
                             <div class="topBarTextLeft">
                                 {% if user.is_authenticated  %}
                                 {% if request.user.is_superuser %}
-                                <a class="" href="{% url 'control' %}"> {% trans "Panel Administracyjny" %} &nbsp; </a>
+                                
                                 {% endif  %}   
                                 <a class="logoutNav" href="{% url 'logout' %}"> {% trans "Wyloguj się " %}</a>
                                    
                                 {% else  %} 
-                                    biuro@wwtechnology.pl
+                                    support@ww-tech.pl
                                 {%endif%}
                             </div>
+                        -->
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {%endif%}
+
         <div class="navBar">
             <div class="mainBar">
                 <div class="searchBar">
@@ -63,17 +75,17 @@
                             </div>
                         </div>
                         <div class="helpBox1">
-                            <div class="tileListHelpTitle">{% trans "Popularne" %}</div>
+                            <!--<div class="tileListHelpTitle">{% trans "Popularne" %}</div>
                             <ul class="listHelpBox "> 
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Dostawa" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Gwarancja" %}</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Częste pytania" %}</a></li>
-                            </ul>                            
-                            <div class="tileListHelpTitle">{% trans "Skontaktuj się z nami" %}</div>
+                            </ul>  
+                                                    
+                            <div class="tileListHelpTitle">{% trans "Skontaktuj się z nami" %}</div>-->  
                             <ul class="listHelpBox"> 
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Kontakt" %}</a></li>
-                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">crypto@shop.pl</a></li>
                                 <li class="listStyleHelpBox"><a class="linkHelpBox" href="">{% trans "Częste pytania" %}</a></li>
+                                <li class="listStyleHelpBox"><a class="linkHelpBox" href="">biuro@wwtechnology.pl</a></li>
                                 <li class="listStyleHelpBox">
                                     <a class="linkHelpBox" href="">+48 564 473 362</a>
                                 </li>

@@ -128,10 +128,10 @@
                         <div class="orderProductDetail">
                             cena za sztuke:  
                             {% if product.pricePromo is None  %}
-                                
-                                {{ x.product.pricePromo  }} {% trans "zł"  %}
+                                {{  x.product.priceNormal }} {% trans "zł"  %}
+                               
                             {% else  %}
-                            {{  x.product.priceNormal }} {% trans "zł"  %}
+                                {{ x.product.pricePromo  }} {% trans "zł"  %}
                             {%  endif %}
                         </div>
                     </div> 
@@ -180,8 +180,11 @@
             <div class="col-8">
                 <div class="sendedOrder">
                     Zapłacono? <br />
-
-                    {{ shipments.payed  }}
+                    {% if shipments.payed == "payed"  %}
+                        <span style="color:green;">{{ shipments.payed  }}</span>
+                    {% else  %}
+                        <span style="color:red;">{{ shipments.payed  }}</span>
+                    {% endif  %}
                 </div>
                 <div class="sendedOrderAdditional">
                     Zmienienie tego stanu spowoduje wysłanie maila do klienta adekwatnego do zaznaczonej opcji <br />
@@ -215,7 +218,12 @@
                 <div class="sendedOrder">
                     Wysłano?
                     <br />
-                    {{ shipments.processed  }}
+                    
+                    {% if shipments.processed == True  %}
+                    <span style="color:green;">{{ shipments.processed  }}</span>
+                    {% else  %}
+                        <span style="color:red;">{{ shipments.processed  }}</span>
+                    {% endif  %}
                 </div>
                 <div class="sendedOrderAdditional" style="color:red;">
                     Zmienienie stanu wysłania spowoduje wysłanie maila do klienta o rozpoczętym procesie wysyłki 

@@ -24,8 +24,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMultiAlternatives
 from django import template
-
-
+from mainpage.views import searchQueryset
 
 
 @unauthenticated_user

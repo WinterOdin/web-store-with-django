@@ -56,7 +56,9 @@
                 <div class="row no-gutters rowSpacing">
                     <div class="col-3">
                         <div class="productPicturCart">
-                            <img alt="product img" class="imgCart" src="{{ x.product.pic1.url  }}">
+                            <a href="{% url 'detail' id=x.product.id %}">
+                                <img alt="product img" class="imgCart" src="{{ x.product.pic1.url  }}">
+                            </a>
                         </div>
                     </div>
                     <div class="col-2">
@@ -109,10 +111,11 @@
                     </div>
                     <div class="productInfoCart">
                         <div class="productTitleCart">
-                            {{x.product.title}}
+                            <a href="{% url 'detail' id=x.product.id %}">{{x.product.title}}</a>
                         </div>
                         <div class="productOrderNumberCart">
-                           {% trans 'ID PRODUKTU' %} &nbsp; {{ x.product.id}}
+                          
+                            
                         </div>
                     </div>
                     <div class="bottomLineCart"></div>
@@ -190,7 +193,7 @@
                 <div class="loginButtonCartAuth">
                     <div class="loginButtonHelpBox">         
                         <a href="/login">
-                            <div class="linkLoginHelpBox linkCreateNotAuth linkNotAuth">
+                            <div class="linkLoginHelpBox linkCreateNotAuth linkNotAuth" id="linkCartNotAuth">
                                 Zaloguj sie
                             </div>
                         </a>

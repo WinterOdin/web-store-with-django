@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.core import mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
@@ -22,25 +21,9 @@ import stripe
 import json
 
 
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from django.contrib import messages
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.models import User
-from django.template.loader import render_to_string
-from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
-from django.core.mail import EmailMultiAlternatives
-from django import template
-
 
 API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
-
-from .cryptoApi import *
 
 
 @require_POST
@@ -73,7 +56,6 @@ def stripe_webhooks(request):
     return HttpResponse(status=200)
 
 def usersCart(request):
-    
     navbarList = Category.objects.filter(navbar=True)
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -106,7 +88,6 @@ def usersCart(request):
                         else:
                             total = (product.priceNormal  * cart[i]['quantity'])
                         order['get_cart_total'] += total
-                        print(order['get_cart_total'])
                         item = {
                             'product':{
                                 'id':product.id,
@@ -161,18 +142,16 @@ def searchQueryset(query):
 def recommendedProducts(request):
     categoryList = Category.objects.all()
     navbarList   = categoryList.filter(navbar=True)
-    cryptoPriceData = crypto_api_prices(request)
-
-    
+  
+    tags         = Product.tags.all()
     formsMailing = MailingForm()
     cart         = usersCart(request)
 
     productData  = Product.objects.all()
     productsInfo = productData.filter(recommend=True).order_by('-id')[:6]
-
-    tags         = Product.tags.all()
     newest       = productData.order_by('-id')[:10]
     
+
     mailingFlag  = False
     currentUser  = request.user
     if MailingList.objects.filter(email=currentUser).exists():
@@ -191,7 +170,6 @@ def recommendedProducts(request):
             'formsMailing':formsMailing,
             'navbarList':navbarList,
             'mailingFlag':mailingFlag,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
         context={**context, **cart}
 
@@ -205,7 +183,6 @@ def recommendedProducts(request):
         'categoryList':categoryList,
         'formsMailing':formsMailing,
         'mailingFlag':mailingFlag,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         }
     context={**context, **cart}
 
@@ -224,22 +201,21 @@ def tagListView(request, slug):
     tags         = Product.tags.all()
     productsInfo = productData.filter(tags=SelectedTag)
     newest       = productData.all().order_by('-id')[:10]
-    cryptoPriceData = crypto_api_prices(request)
+
     context      = {
         'newest':newest,
         'tags':tags,
         'navbarList':navbarList,
         'productsInfo':productsInfo,
         'categoryList':categoryList,
-        'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        'formsMailing':formsMailing
     }
  
     return render(request,'products.html', context)
 
 
 def categoryListView(request, category):
-    cryptoPriceData = crypto_api_prices(request)
+
     categorySlug = category.replace('-', ' ')
     formsMailing = MailingForm()
     cart         = usersCart(request)
@@ -269,21 +245,6 @@ def categoryListView(request, category):
     tags         = Product.tags.all()
     categoryEmpty = 0
 
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        context      = {
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
-        }
-        context={**context}
-        return render(request,'products.html', context)
-
     context      = {
         'navbarList':navbarList,
         'newest':newest,
@@ -292,7 +253,6 @@ def categoryListView(request, category):
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
         'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
         
     }
     context={**context, **cart}
@@ -307,24 +267,7 @@ def helpView(request):
     categoryInfo = HelpCategoryContent.objects.all()
 
     cart         = usersCart(request)
-    formsMailing = MailingForm()
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        categoryList = Category.objects.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context}
-        return render(request,'products.html', context)  
+    formsMailing = MailingForm()  
 
     context         ={
        'navbarList':navbarList,
@@ -347,26 +290,6 @@ def productDetail(request, id):
     cart            = usersCart(request)  
     formsMailing    = MailingForm()
 
-
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'formsMailing':formsMailing,
-            'navbarList':navbarList,
-        }
-        context={**context, **cart}
-
-        return render(request,'products.html', context)
-
     context         =   {
         'navbarList':navbarList,
         'productImages':productImages,
@@ -385,24 +308,6 @@ def cartDetail(request):
     navbarList =categoryList.filter(navbar=True)
     newest  = Product.objects.all().order_by('-id')[:10]
     cart    = usersCart(request)
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context, **cart}
-
-        return render(request,'products.html', context)
-
     context         ={
         'newest':newest,
         'categoryList':categoryList,
@@ -455,27 +360,7 @@ def checkoutDetail(request):
     for x in range(0,len(b)):
         if b[x].product.inPerson == True:
             inPerson = True
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        categoryList = Category.objects.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context, **cart}
-
-        return render(request,'products.html', context)
-
-
+        
     context ={
         'forms':forms,
         'emailUser':emailUser,
@@ -514,10 +399,8 @@ def processOrder(request):
 
                     order.save()
                     shipPrice = ShipmentMethod.objects.get(contractor = request.POST["contractor"])
-                    
-                    totalPrice = float(order.get_cart_total) + float(shipPrice.price)
-                    totalPrice = totalPrice*100
-                    totalPrice = int(totalPrice)
+                    totalPrice = int(order.get_cart_total + shipPrice.price)
+
                     customerOnWebsite = request.user.customer
                     values = request.POST.copy()
                     values['transaction_id'] = transaction_id
@@ -526,7 +409,6 @@ def processOrder(request):
 
                     forms = CustomerShipp(values)
                     if forms.is_valid():
-                        print("valid")
                         order.complete = True
                         order.save()
                         
@@ -548,7 +430,7 @@ def processOrder(request):
                         emailUser = request.user.email
                         stripe.api_key  = API_KEY
                         payment_intent  = stripe.PaymentIntent.create(
-                            amount      = totalPrice,
+                            amount      = totalPrice*100,
                             currency    = 'pln',
                             payment_method_types = ['card'],
                             description = transaction_id
@@ -579,7 +461,7 @@ def processOrder(request):
                         stripe.api_key  = API_KEY
 
                         payment_intent  = stripe.PaymentIntent.create(
-                            amount      = totalPrice,
+                            amount      = totalPrice*100,
                             currency    = 'pln',
                             payment_method_types = ['p24'],
                             description = transaction_id,
@@ -616,7 +498,7 @@ def processOrder(request):
                         email       = values['email']
                         customer = request.user.customer
                         emailUser = request.user.email
-                        amount      = totalPrice,
+                        amount      = totalPrice*100,
                         context = {
                             'amount':amount,
                             'transaction_id':transaction_id,
@@ -691,60 +573,13 @@ def cardPayment(request):
         if not key.startswith("_"):
             del request.session[key]
 
-    user = request.user
-    totalPriceMail = values.get('totalPrice'),
-    subject = "Payment Confirmation Email"
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
-    
-    c = {
-    "email":user.email,
-    'domain':'ww-tech.pl',
-    'site_name': 'ww-tech',
-    'protocol': 'https',
-    'order_id' : values.get('transaction_id'),
-    }
-    text_content = plaintext.render(c)
-    html_content = htmltemp.render(c, {"context":context})
-    try:
-        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-    except BadHeaderError:
-        return HttpResponse('Invalid header found.')
-    
-    return render(request,"conf.html")
+    return redirect('home')
 
 
 @login_required(login_url='login')       
 def successP24(request):
     navbarList     = Category.objects.filter(navbar=True)
     customer = request.user.customer
-    values = request.session.get('values', None)
-
-    user = request.user
-    totalPriceMail = values.get('totalPrice'),
-    subject = "Payment Confirmation Email"
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
-
-    c = {
-        "email":user.email,
-        'domain':'ww-tech.pl',
-        'site_name': 'ww-tech',
-        'protocol': 'https',
-        'order_id' : values.get('transaction_id'),
-    }
-    text_content = plaintext.render(c)
-    html_content = htmltemp.render(c)
-    try:
-        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-        print("SSS")
-    except BadHeaderError:
-        return HttpResponse('Invalid header found.')
-
     context = {
           'customer':customer ,
           'navbarList':navbarList
@@ -754,78 +589,12 @@ def successP24(request):
 
 def policyDetail(request):
     navbarList     = Category.objects.filter(navbar=True)
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        categoryList = Category.objects.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context}
-        return render(request,'products.html', context)
-    
-    context = {
-          'navbarList':navbarList
-    }
-    return render(request,'policy.html',context)
-
-def rulesDetail(request):
-    navbarList     = Category.objects.filter(navbar=True)
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        categoryList = Category.objects.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context}
-        return render(request,'products.html', context)
-    
-    context = {
-          'navbarList':navbarList
-    }
-    return render(request,'regulamin.html',context)
-
-def contactDetail(request):
-    navbarList     = Category.objects.filter(navbar=True)
-    if request.method == "POST":
-        query = request.POST.get('search_bar')    
-        productsInfo = searchQueryset(query)
-        tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
-        categoryList = Category.objects.all()
-        context      = {
-
-            'newest':newest,
-            'query':query,
-            'tags':tags,
-            'productsInfo':productsInfo,
-            'categoryList':categoryList,
-            'navbarList':navbarList,
-        }
-        context={**context}
-        return render(request,'products.html', context)
     context = {
           
           'navbarList':navbarList
     }
-    return render(request,'contact.html',context)
+    return render(request,'policy.html',context)
+
 
 def mailingList(request):
     if request.method == "POST":
@@ -838,67 +607,3 @@ def mailingList(request):
     return redirect('home')
 
 
-def contactMail(request):
-    categoryList  = Category.objects.all()
-    navbarList =categoryList.filter(navbar=True)
-    cart    = usersCart(request)
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')
-        if query:   
-            productsInfo = searchQueryset(query)
-            tags         = Product.tags.all()
-            context      = {
-                'query':query,
-                'tags':tags,
-                'productsInfo':productsInfo,
-                'categoryList':categoryList,
-                'navbarList':navbarList,
-            }
-            context={**context, **cart}
-
-            return render(request,'products.html', context)
-        else:
-            pass
-
-
-    context = {
-        'categoryList':categoryList,
-        'navbarList':navbarList,
-    }
-
-    context={**context, **cart}
-    return render(request,'contact_us_mail.html',context)
-
-
-def miningStation(request):
-    categoryList  = Category.objects.all()
-    navbarList =categoryList.filter(navbar=True)
-    cart    = usersCart(request)
-    
-    if request.method == "POST":
-        query = request.POST.get('search_bar')
-        if query:   
-            productsInfo = searchQueryset(query)
-            tags         = Product.tags.all()
-            context      = {
-                'query':query,
-                'tags':tags,
-                'productsInfo':productsInfo,
-                'categoryList':categoryList,
-                'navbarList':navbarList,
-            }
-            context={**context, **cart}
-
-            return render(request,'products.html', context)
-        else:
-            pass
-
-
-    context = {
-        'categoryList':categoryList,
-        'navbarList':navbarList,
-    }
-
-    context={**context, **cart}
-    return render(request,'configure.html',context)

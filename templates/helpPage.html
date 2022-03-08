@@ -7,7 +7,7 @@
         <div class="listOrderWrapper">
             <div class="listOrderNavPC linkListHelpPage">
                 <div class="userWelcomeOrderPC">
-                    {% trans "Witaj" %},
+                    {% trans "Witaj" %}
                     <div class="userNamePC">
                         {{ request.user.customer  }}
                     </div>
@@ -75,11 +75,24 @@
     <div class="rightOrderCol">
         <div class="container-fluid">
             <div class="helpContainerSize" style="min-height:40vh;">
-                
+                <div class="FaqInfoData" >
+                    <h3>Sekcja FAQ</h3>
+                    <br />
+                    <p>
+                        Witaj w sekcji FAQ sklepu WW-tech.
+                    </p>
+                    <p>
+                        Po prawej stronie znajduje się menu z najczęsciej poruszanymi tematami dotyczącymi działania sklepu jak i samego świata kryptowalut.<br /><br />
+                        Jeśli temat który Cię zastanawia nie został wymieniony zachęcamy do kontaktu z naszym konsultantem poprzez adres mailowy: biuro@wwtechnology.pl <br />
+                         
+                    </p>
+                    <p style="text-align:right"><i>Zespół WW-tech</i></p>
+
+                </div>
                 {% for x in categoryInfo  %}
                     <div class="categoryInfoWrapper" id="{{ x.category  }}">
                             {% if x.helpTitle is None  %}
-                            
+                            aaaaaaa
                             {% else  %}
                             <div class="categoryTitleHelp">
                             {{ x.helpTitle }}
@@ -102,6 +115,7 @@
     $(".linkListHelpPage a").on("click",function(e) {
     e.preventDefault()
     $(".categoryInfoWrapper").hide();
+    $(".FaqInfoData").hide();
     $("#"+$(this).find(".textOrderPC").text()).fadeIn(500);
 
     

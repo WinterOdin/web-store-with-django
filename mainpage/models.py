@@ -148,7 +148,7 @@ class ShippingAddress(models.Model):
 
 class HelpCategory(models.Model):
     category        = models.CharField(max_length=20,unique=True)
-    categoryIcon    = models.TextField(max_length=55, null=True, blank=True)
+    categoryIcon    = models.FileField(upload_to = 'icons/',null=True, blank=True)
 
     def __str__(self):
         return self.category

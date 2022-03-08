@@ -1,0 +1,34 @@
+{% load i18n  %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="newsletterWrapper">
+                <div class="newsletterTextBox">
+                    <h3><i class="far fa-paper-plane"></i> Skontaktuj się z nami</h3>
+                    <div class="newsletterText">
+                        {% trans "Masz pytania bądź potrzebujesz pomocy? Napisz do nas a nasz zespół skontaktuje się z tobą." %}
+                        
+                    </div>
+                </div>
+                <div class="newsletterFormBox d-flex align-items-center justify-content-center">
+                    <a href="{% url 'contact-us' %}" class="cartEmptyBtn">Napisz do nas</a>
+                </div>  
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="newsletterWrapper ">
+                <div class="newsletterTextBox">
+                    <h3><i class="fa fa-qrcode" aria-hidden="true"></i></i> Stwórz swoją koparkę</h3>
+                    <div class="newsletterText">
+                        {% trans "Przejdź do konfiguratora koparek, wybierz preferowane komponenty oraz walutę, nasz zespół zajmie się resztą." %}
+                        
+                    </div>
+                </div>
+                <div class="newsletterFormBox d-flex align-items-center justify-content-center">
+                  
+                    <a href="{% url 'configure'  %}" class="cartEmptyBtn">Stwórz swoją koparkę</a>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

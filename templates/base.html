@@ -48,13 +48,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" integrity="sha384-6qO6EOFIDfvv6uzAzozX/BvMu/qkIIHxWYOVMjpVjX+NtPuNyd3YiOEflKIIV2ka" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/regular.css" integrity="sha384-GMkIgTgosuQEt2PEwBHI7MMRsrQplN2sT/7bzPOIxG+Hn37iTlZXFb37m6uE+iHj" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/fontawesome.css" integrity="sha384-Hx1dya9ptAdKu2hLNR5C2Cwgm+wCfwD0VMGE6jk5OUxxa9I58YfxOCwEtRog+3wk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{% static 'css/cookiesCSS.css' %}">
 </head>
 <body>
 <div class="containerNavbarReset">
     {% include 'navbar.html'  %}
 </div>
-
+<div class="CHUJ"></div>
 <div class="containerAnimateRef">
 {% block content  %}
 
@@ -66,8 +66,34 @@
 
 {% include 'footer.html'  %}
 
+<div class="wrapper">
+    <img src="{% static 'images/cookie.png' %}" alt="cookie image">
+    <div class="content">
+      <header>Cookies Consent</header>
+      <p>This website use cookies to ensure you get the best experience on our website.</p>
+      <div class="buttons">
+        <button class="item">I understand</button>
+        <a href="{% url 'policy'  %} " class="item">Learn more</a>
+      </div>
+    </div>
+  </div>
+<script>
+    const cookieBox = document.querySelector(".wrapper"),
+    acceptBtn = cookieBox.querySelector("button");
 
-
+    acceptBtn.onclick = ()=>{
+      //setting cookie for 1 month, after one month it'll be expired automatically
+      document.cookie = "CookieBy=CodingNepal; max-age="+60*60*24*30;
+      if(document.cookie){ //if cookie is set
+        cookieBox.classList.add("hide"); //hide cookie box
+      }else{ //if cookie not set then alert an error
+        alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+      }
+    }
+    let checkCookie = document.cookie.indexOf("CookieBy=CodingNepal"); //checking our cookie
+    //if cookie is set then hide the cookie box else show it
+    checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
+</script>
 
 <script src="{% static 'js/popper.min.js' %}"    crossorigin="anonymous"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
@@ -77,7 +103,6 @@
 
 <script>
 $(document).ready(function() {
-    $.getScript("{% static 'js/cryptoPrice.js' %}");
     $.getScript("{% static 'js/tagsinput.js'  %}");
     $.getScript("{% static 'js/owlCall.js' %}");
     $.getScript("{% static 'js/classie.js' %}");

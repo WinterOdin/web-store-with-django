@@ -71,10 +71,10 @@
                     </div>
                     <div class="additionalLinksContent">
                         <ul class="listFooterBox" >
-                            <li class="listStyleFooterBox"><a href=" ">{% trans "Regulamin Sklepu Internetowego" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href="{% url 'rules'  %}">{% trans "Regulamin Sklepu Internetowego" %}  </a></li>
                             <li class="listStyleFooterBox"><a href="{% url 'policy'  %} ">{% trans "Polityka prywatności i cookies" %}  </a></li>
-                            <li class="listStyleFooterBox"><a href=" ">{% trans "Płatność i wysyłka" %}  </a></li>
-                            <li class="listStyleFooterBox"><a href=" ">{% trans "Kolokacja" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href="{% url 'help'  %} ">{% trans "Płatność i wysyłka" %}  </a></li>
+                            <li class="listStyleFooterBox"><a href="{% url 'help'  %}  ">{% trans "Kolokacja" %}  </a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
             <div class="footerBar">
                 <div class="additionalLinksFooter">
                     <div class="additionalTextLinksFooter">
-                        {% trans "ww-tech to nie tylko kryptowaluty" %} 
+                        {% trans "WW-tech to nie tylko kryptowaluty" %} 
                     </div>
                     <div class="additionalInfo">
                         Prowadzimy również działalność na rzecz lepszego jutra 

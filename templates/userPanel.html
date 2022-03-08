@@ -10,7 +10,16 @@
                 <div class="boxDeleteUser">
                     
                     <a class="buttonDeleteUser" href="{% url 'reset_password'  %}">{%  trans 'Zmień hasło'  %}</a><br /><br /><br />
-                    <a class="buttonDeleteUser" href="#popup1">{%  trans 'Usuń konto'  %}</a>
+                    <a class="buttonDeleteUser" href="#popup1">{%  trans ' Usuń konto '  %}</a><br /><br /><br />
+                    {% if user.is_authenticated  %}
+                        {% if request.user.is_superuser %}
+                            <a class="buttonDeleteUser"  href="{% url 'control' %}">{% trans "&nbsp; &nbsp;&nbsp;  Admin &nbsp; &nbsp;&nbsp;" %}</a><br /><br /><br />
+                        {% endif  %}
+                        <a class="buttonDeleteUser" href="{% url 'logout' %}"> {% trans "Wyloguj się " %}</a><br /><br /><br />    
+                    {% else  %} 
+
+                    {%endif%}
+                   
                 </div>
 
                 <div id="popup1" class="overlayDeleteUser">

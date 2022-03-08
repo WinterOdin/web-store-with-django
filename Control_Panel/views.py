@@ -11,8 +11,21 @@ from django.db.models import Q
 from mainpage.views import searchQueryset
 from django.contrib.admin.views.decorators import staff_member_required
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.core.mail import EmailMultiAlternatives
+from django import template
 
-
+from django.utils.html import strip_tags
 
 
 @login_required(login_url='login')
@@ -44,7 +57,7 @@ def controlPanelOrders(request):
             queries  = query.split(" ")
             for x in queries:
                 pr = ShippingAddress.objects.filter(
-                    Q(transaction_id__icontains=x)|Q(email__icontains=x)|Q(adress__icontains=x)|Q(phone__icontains=x)|Q(invoiceNip__icontains=x)
+                    Q(transaction_id__icontains=x)|Q(email__icontains=x)|Q(adress__icontains=x)|Q(phone__icontains=x)|Q(invoiceNip__icontains=x)|Q(recipient__icontains=x)
                 ).distinct()
 
                 for product in pr:
@@ -71,14 +84,24 @@ def controlPanelOrdersDetail(request, pk):
         shipments.processed = processed
         shipments.save()
 
-          #sending mail
-        send_mail(
-        'Zamówienie'+pk+' zostało przekazane do wysyłki',
-        'Witaj',
-        'cryptotechacc@gmail.com',
-        [shipments.email],
-        fail_silently=False,
-)
+        subject = "Shipment Confirmation Email"
+        htmltemp = template.loader.get_template('shipment_html.html')
+
+        c = {
+        "email":shipments.email,
+        'domain':'ww-tech.pl',
+        'site_name': 'ww-tech',
+        'protocol': 'https',
+        }
+        html_content = htmltemp.render(c)
+        text_content = strip_tags(htmltemp)
+        try:
+            msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [shipments.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
 
         return redirect(controlPanelView)
 
@@ -100,13 +123,49 @@ def controlPanelProductsDetailPaying(request, pk):
         shipments.payed = processed
         shipments.save()
         if processed =="no":
-            send_mail(
-                'Witaj',
-                'Podczas płatności za zamówienie'+pk+' nastąpił błąd, pieniądze nie zostały pobrane z konta. Zamówienie można opłacic ponownie na stronie na której widnieją http://127.0.0.1:8000/detailOrder/'+pk+'/'+',',
-                'cryptotechacc@gmail.com',
-                [shipments.email],
-                fail_silently=False,
-            )
+            values = request.session.get('values', None)
+            subject = "Błąd płatności"
+            htmltemp = template.loader.get_template('error_payment_email.html')
+
+            c = {
+                "email":shipments.email,
+                'domain':'ww-tech.pl',
+                'site_name': 'ww-tech',
+                'protocol': 'https',
+                'order_id' : shipments.transaction_id,
+            }
+            text_content = strip_tags(htmltemp)
+            html_content = htmltemp.render(c)
+
+            try:
+                msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [shipments.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
+        elif processed == "payed":
+            values = request.session.get('values', None)
+            subject = "Płatność została odnotowana"
+            htmltemp = template.loader.get_template('booked_payment_email.html')
+
+            c = {
+                "email":shipments.email,
+                'domain':'ww-tech.pl',
+                'site_name': 'ww-tech',
+                'protocol': 'https',
+                'order_id' : shipments.transaction_id,
+            }
+            text_content = strip_tags(htmltemp)
+            html_content = htmltemp.render(c)
+
+            try:
+                msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [shipments.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
 
             return redirect(controlPanelView)
 

@@ -157,9 +157,12 @@ a.recipientInfoLink{
 }
 .inPersonText{
     text-align: center;
+    padding-bottom: 1vh;
 
 }
-
+.inPersonTextData{
+    margin-bottom:1vh;
+}
 @media (max-width:1300px){
 
     .leftCheckoutWrapper{
