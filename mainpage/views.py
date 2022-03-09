@@ -36,6 +36,7 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMultiAlternatives
 from django import template
 
+from .mails import *
 
 API_KEY = settings.STRIPE_PRIVATE_KEY
 logger = logging.getLogger(__name__)
@@ -698,11 +699,11 @@ def cardPayment(request):
     htmltemp = template.loader.get_template('payment_email_html.html')
     
     c = {
-    "email":user.email,
-    'domain':'ww-tech.pl',
-    'site_name': 'ww-tech',
-    'protocol': 'https',
-    'order_id' : values.get('transaction_id'),
+        "email":user.email,
+        'domain':'ww-tech.pl',
+        'site_name': 'ww-tech',
+        'protocol': 'https',
+        'order_id' : values.get('transaction_id'),
     }
     text_content = plaintext.render(c)
     html_content = htmltemp.render(c, {"context":context})
@@ -859,7 +860,9 @@ def contactMail(request):
 
             return render(request,'products.html', context)
         else:
-            pass
+            post = request.POST.copy()
+            contactMail(post)
+
 
 
     context = {
@@ -892,7 +895,10 @@ def miningStation(request):
 
             return render(request,'products.html', context)
         else:
-            pass
+            post = request.POST.copy()
+            configuratorMail(post)
+
+
 
 
     context = {

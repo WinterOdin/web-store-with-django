@@ -1,6 +1,8 @@
+
 {% extends 'base.html' %}
 {% load i18n  %}
 {% load static  %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/configure.css' %}?v=3.4.2">
 {% block content  %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/configure.css' %}?v=3.4.2">
 <div class="container">
@@ -14,16 +16,16 @@
                     </div>
                 </div>
             </div>
-            <div class="howToMiner ">
+            <div class="howToMiner">
                 Jak dokonać konfiguracji w 5 krokach? <br />
-            <div>
+            </div>
             <div class="listStylingConfigure">
                 <ol>
                     <li>Wprowadź interesujący Cię przedział cenowy</li>
                     <li>Napisz z jakich kart chesz korzystać</li>
                     <li>Wymień interesujące Cię waluty</li>
                     <li>Wprowadź dane kontaktowe</li>
-                    <li>Jeśli masz jakieś pytania daj nam znać</li>
+                    <li>Prosimy o opis do czego ma służyć koparka, jakie wyniki są oczekiwane</li>
                 </ol>
             </div>
             <div class="endConfigText">
@@ -43,49 +45,83 @@
     </div>
     <div class="row">
         <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="formMailMain">
+            <div class="formMailMain formMailMainText">
                 Formularz 
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź przedział cenowy">
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" name="cards" class="configureForm" maxlength="50" required="" id="cards" placeholder="Wprowadź karty z których chesz korzystać">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" name="crypto_type" class="configureForm" maxlength="50" required="" id="crypto_type" placeholder="Wprowadź interesujące Cię Kryptowaluty">
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź swój numer telefonu">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-8 d-flex align-items-center justify-content-center">
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-10">
-
-            <br />
-            <div class="acceptRulesText">
-                Zatwierdzając formularz wyrażasz zgodę na przetważanie danchy osobowych oraz na kontakt specjalisty WW-tech.
+    <form method="POST">
+        <div class="configureRowInput">
+            <div class="row no-gutters">
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź przedział cenowy">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="cards" class="configureForm" maxlength="50" required="" id="cards" placeholder="Wprowadź karty z których chesz korzystać">
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="crypto_type" class="configureForm" maxlength="50" required="" id="crypto_type" placeholder="Wprowadź interesujące Cię Kryptowaluty">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="quantity" class="configureForm" maxlength="50" required="" id="quantity" placeholder="Wprowadź swój numer telefonu">
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <input type="text" name="name" class="configureForm" maxlength="50" required="" id="name" placeholder="Wprowadź swoje imię">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="surname" class="configureForm" maxlength="50" required="" id="surname" placeholder="Wprowadź swoję nazwisko">
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="phone" class="configureForm" maxlength="50" required="" id="phone" placeholder="Wprowadź numer telefonu">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="email" class="configureForm" maxlength="50" required="" id="email" placeholder="Wprowadź swój email">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 textAreaCol">
+                    <textarea  placeholder="Prosimy o opis do czego ma służyć koparka, jakie wyniki są oczekiwane" id="story" name="story" cols="120" rows="7" style="max-width:100%;"></textarea>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button type="button" class="btnSubmitForm">Wyślij</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="acceptRulesText">
+                        Zatwierdzając formularz wyrażasz zgodę na przetważanie danchy osobowych oraz na kontakt specjalisty WW-tech.
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
 
 

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load i18n  %}
 {% load static  %}
 {% block content  %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/configure.css' %}?v=3.4.2">
@@ -13,8 +12,63 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="endConfigText">
+                        Kryptowaluty są skomplikowane, a wiedza na ich temat jest zależna od źródła informacji. Nasi konsultanci służą pomocą i doradztwem by podjęli Państwo najlepszą możliwą dezycje.
+                        Staramy się by czas oczekiwania na odpowiedź naszego specjalisty nie był dłuższy niż jeden dzień roboczy, jednak w niektórch może potrwać to dłużej.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <form method="POST">
+        <div class="configureRowInput">
+            <div class="row no-gutters">
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <input type="text" name="name" class="configureForm" maxlength="50" required="" id="name" placeholder="Wprowadź swoje imię">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="surname" class="configureForm" maxlength="50" required="" id="surname" placeholder="Wprowadź swoję nazwisko">
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="phone" class="configureForm" maxlength="50" required="" id="phone" placeholder="Wprowadź numer telefonu">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" name="email" class="configureForm" maxlength="50" required="" id="email" placeholder="Wprowadź swój email">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 textAreaCol">
+                    <textarea  placeholder="Prosimy o opis problemu" id="story" name="story" cols="120" rows="7" style="max-width:100%;"></textarea>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button type="button" class="btnSubmitForm">Wyślij</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="acceptRulesText">
+                        Zatwierdzając formularz wyrażasz zgodę na przetważanie danchy osobowych oraz na kontakt specjalisty WW-tech.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 </div>
 

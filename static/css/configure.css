@@ -1,8 +1,79 @@
 .configureForm{
     width: 90%;
+    margin-left: 5%;
     border-radius: 20px;
     padding: 0.335rem 1.3rem;
     height: 40px;
     border: 1px solid rgb(204, 204, 204);
     margin-bottom: 8px;
+}
+.formMailMain{
+    font-family: 'Montserrat';
+    font-size:27px;
+    text-align:center;
+    margin-top: 5vh;
+    font-weight: bold;
+    opacity:0.9;
+}
+.howToMiner{
+    font-size:18px;
+    margin-bottom: 0.5vh;
+}
+.listStylingConfigure li{
+    line-height:27px;
+    font-size:16px
+}
+.endConfigText{
+    margin-top:1vh;
+    line-height:25px;
+}
+.teamGreetings{
+    margin-top:2vh;
+    font-size:16px;
+    margin-left:5%;
+}
+.configureRowInput{
+    margin-top:2vh
+}
+.formMailMainText{
+    margin-top:2vh
+}
+.textAreaCol{
+    width: 90%;
+}
+textarea{
+    border-radius: 7px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.335rem 1.3rem;
+    border: 1px solid rgb(204, 204, 204);
+}
+.btnSubmitForm{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    height: 40px;
+    min-width: 140px;
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    font-weight: 500;
+    color: #ffffff;
+    background: rgb(77, 77, 77);;
+    border: none;
+    outline: none;
+    margin-top: 2vh;
+    opacity: 0.8;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+.btnSubmitForm:hover{
+    opacity: 1;
+}
+.acceptRulesText{
+    margin-top:3vh;
+    margin-bottom: 3vh;
 }
