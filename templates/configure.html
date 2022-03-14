@@ -51,51 +51,52 @@
         </div>
     </div>
 
-    <form method="POST">
+    <form method="POST" action="">
+        {% csrf_token %}
         <div class="configureRowInput">
             <div class="row no-gutters">
-                <div class="col-6 ">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
                     <div class="form-group">
                         <input type="text" name="price" class="configureForm" maxlength="50" required="" id="price" placeholder="Wprowadź przedział cenowy">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
-                        <input type="text" name="cards" class="configureForm" maxlength="50" required="" id="cards" placeholder="Wprowadź karty z których chesz korzystać">
+                        <input type="text" name="cards" class="configureForm" maxlength="50" required="" id="cards" placeholder="Wprowadź z jakich kart chcesz korzystać">
                     </div>
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="crypto_type" class="configureForm" maxlength="50" required="" id="crypto_type" placeholder="Wprowadź interesujące Cię Kryptowaluty">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
-                        <input type="text" name="quantity" class="configureForm" maxlength="50" required="" id="quantity" placeholder="Wprowadź swój numer telefonu">
+                        <input type="text" name="quantity" class="configureForm" maxlength="50" required="" id="quantity" placeholder="Wprowadź ilość kart">
                     </div>
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-6 ">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
                     <div class="form-group">
                         <input type="text" name="name" class="configureForm" maxlength="50" required="" id="name" placeholder="Wprowadź swoje imię">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="surname" class="configureForm" maxlength="50" required="" id="surname" placeholder="Wprowadź swoję nazwisko">
                     </div>
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="phone" class="configureForm" maxlength="50" required="" id="phone" placeholder="Wprowadź numer telefonu">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         <input type="text" name="email" class="configureForm" maxlength="50" required="" id="email" placeholder="Wprowadź swój email">
                     </div>
@@ -110,7 +111,7 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button type="button" class="btnSubmitForm">Wyślij</button>
+                    <button type="submit"  class="btnSubmitForm">Wyślij</button>
                 </div>
             </div>
             <div class="row">

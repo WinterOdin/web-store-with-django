@@ -1,0 +1,5 @@
+Nowa prośba o kontakt
+{{ name }} {{ surname }} |
+Telefon: {{ phone }} |
+Email: {{ email_customer }} |
+Pytanie: {{ story }}  |

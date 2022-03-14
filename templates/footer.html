@@ -59,6 +59,29 @@
                     <div class="emailFooter">
                         <i class="far fa-envelope"></i>&nbsp; biuro@wwtechnology.pl
                     </div>
+                    <div class="socialIconsRow">
+                        <div class="row">
+                        
+                            <div class="col-4 d-flex align-items-center justify-content-center">
+                                <div class="socialIconFooter">
+                                    <a  href="#"><i class="fab fa-facebook-square socialLinkFooter"></i></a>
+                                </div>
+                                
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center">
+                                <div class="socialIconFooter">
+                                    <a  href="#"><i class="fab fa-instagram socialLinkFooter "></i></a>
+                                </div>
+                                
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center">
+                                <div class="socialIconFooter">
+                                    <a class=""  href="#"><i class="fab fa-youtube socialLinkFooter"></i></a>
+                                </div>
+                                
+                            </div>
+                        </div>  
+                    </div>
 
                 </div>
             </div>
@@ -76,13 +99,13 @@
                             <li class="listStyleFooterBox"><a href="{% url 'help'  %} ">{% trans "Płatność i wysyłka" %}  </a></li>
                             <li class="listStyleFooterBox"><a href="{% url 'help'  %}  ">{% trans "Kolokacja" %}  </a></li>
                         </ul>
-                    </div>
+                    </div>                 
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-md-4">
             <div class="footerBar">
-                <div class="additionalLinksFooter">
+                <div class="additionalAboutFooter">
                     <div class="additionalTextLinksFooter">
                         {% trans "WW-tech to nie tylko kryptowaluty" %} 
                     </div>
@@ -90,12 +113,15 @@
                         Prowadzimy również działalność na rzecz lepszego jutra 
                         <a href="http://wwenergy.pythonanywhere.com/"> WW energia </a> zajmuję się energią odnawialną dla twojego domu 
                         Dzięki naszym systemom fotowoltaicznym zaoszczędzisz setki złotych rocznie!
-                        <!---<a href="http://wwenergy.pythonanywhere.com/"><img alt="logo wwenergy" class="logoFooterEnergy "src="{% static 'images/cdd77635-0cfc-4d66-9a40-1072619656a2_200x200.png'  %}"></a>--->
+                        <!---<a href="http://wwenergy.pythonanywhere.com/"><img alt="logo wwenergy" class="logoFooterEnergy "src="{% static 'images/cdd77635-0cfc-4d66-9a40-1072619656a2_200x200.png'  %}"></a>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="spacerFooterEnd">
+
 </div>
 <div class="container footerBorder">
     <div class="row">
@@ -116,3 +142,4 @@
       document.getElementById("year").innerHTML = "ww-tech @"+n;
     
 </script>
+

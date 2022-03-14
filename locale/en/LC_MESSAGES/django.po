@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 17:56+0100\n"
+"POT-Creation-Date: 2022-01-12 22:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,219 +18,667 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\authentication\views.py:15
-msgid "Hasło bądź email jest niepoprawne"
-msgstr "You have entered an invalid username or password"
+#: authentication/views.py:34
+msgid "HasÅ‚o bÄ…dÅº email jest niepoprawne"
+msgstr ""
 
-#: .\authentication\views.py:35
-msgid "Twoje konto zostało stworzone, zaloguj się"
-msgstr "Your account was created, log in"
+#: authentication/views.py:59
+msgid "Twoje konto zostaÅ‚o stworzone, zaloguj siÄ™"
+msgstr ""
 
-#: .\templates\footer.html:15
-msgid "Masz pytania? Zadzwon!"
-msgstr "Got question? Call us!"
-
-#: .\templates\footer.html:46 .\templates\navbar.html:90
-msgid "Sob. - Niedz."
-msgstr "Sat. - Sun."
-
-#: .\templates\footer.html:51 .\templates\navbar.html:95
-msgid "zamknięte"
-msgstr "closed"
-
-#: .\templates\footer.html:68
-msgid "Przydatne Informacje"
-msgstr "Informations"
-
-#: .\templates\footer.html:72
-msgid "Regulamin Sklepu Internetowego"
-msgstr "Terms & Conditions"
-
-#: .\templates\footer.html:73
-msgid "Polityka prywatności i cookies"
-msgstr "Privacy and cookies policy"
-
-#: .\templates\footer.html:74
-msgid "Płatność i wysyłka"
-msgstr "Payment and shipping"
-
-#: .\templates\footer.html:75
-msgid "Dochodowość"
-msgstr "Profit-earning capacity"
-
-#: .\templates\login.html:11 .\templates\login.html:23
-#: .\templates\register.html:44
-#, fuzzy
-#| msgid "Zaloguj sie"
-msgid "Zaloguj się"
-msgstr "Sign in"
-
-#: .\templates\login.html:29
-msgid "Nie pamiętasz hasła?"
-msgstr "Forgot password?"
-
-#: .\templates\login.html:30
-msgid "zmień hasło"
-msgstr "change password"
-
-#: .\templates\login.html:60 .\templates\register.html:76
-msgid "Email"
-msgstr "Email"
-
-#: .\templates\login.html:61 .\templates\register.html:77
-msgid "Hasło"
-msgstr "Password"
-
-#: .\templates\navbar.html:12 .\templates\navbar.html:118
+#: templates/adminPanel/adminBase.html:53 templates/helpPage.html:10
+#: templates/helpPage.html:27 templates/navbar.html:13
+#: templates/navbar.html:139 templates/orderNav.html:6
+#: templates/orderNav.html:25
 msgid "Witaj"
-msgstr "Hello"
+msgstr ""
 
-#: .\templates\navbar.html:51
-msgid "Informacje"
-msgstr "Help"
+#: templates/adminPanel/adminBase.html:60
+#: templates/adminPanel/controlPanelOrder.html:11 templates/navbar.html:157
+#: templates/orderListView.html:7 templates/orderNav.html:13
+#: templates/orderNav.html:38 templates/orderUserList.html:6
+msgid "ZamÃ³wienia"
+msgstr ""
 
-#: .\templates\navbar.html:57
-msgid "Popularne"
-msgstr "Popular"
+#: templates/adminPanel/adminBase.html:64
+#: templates/adminPanel/adminProducts.html:8
+msgid "Produkty"
+msgstr ""
 
-#: .\templates\navbar.html:59
-msgid "Dostawa"
-msgstr "Delivery"
-
-#: .\templates\navbar.html:60
-msgid "Gwarancja"
-msgstr "Warranty"
-
-#: .\templates\navbar.html:61
-msgid "Zwroty"
-msgstr "Refund"
-
-#: .\templates\navbar.html:62 .\templates\navbar.html:68
-msgid "Częste pytania"
-msgstr "FAQ"
-
-#: .\templates\navbar.html:64
-msgid "Skontaktuj się z nami"
-msgstr "Contact US"
-
-#: .\templates\navbar.html:66 .\templates\navbar.html:249
-msgid "Kontakt"
-msgstr "Contact US"
-
-#: .\templates\navbar.html:109 .\templates\navbar.html:259
-msgid "Twoje Konto"
-msgstr "Account"
-
-#: .\templates\navbar.html:115 .\templates\navbar.html:136
-msgid "Twoje konto"
-msgstr "Account"
-
-#: .\templates\navbar.html:122
-msgid "Zaloguj sie"
-msgstr "Sign in"
-
-#: .\templates\navbar.html:126
-msgid "Nie masz konta?"
-msgstr "Sign up"
-
-#: .\templates\navbar.html:129
-#, fuzzy
-#| msgid "Zaloguj sie"
-msgid "Zarejestruj sie"
-msgstr "Sign in"
-
-#: .\templates\navbar.html:137
-msgid "Zamówienia"
-msgstr "Orders"
-
-#: .\templates\navbar.html:138
-msgid "Ustawienia Konta"
-msgstr "Account Settings"
-
-#: .\templates\navbar.html:148 .\templates\navbar.html:269
-msgid "Koszyk"
-msgstr "Cart"
-
-#: .\templates\navbar.html:154
-msgid "Twój koszyk"
-msgstr "Your Cart"
-
-#: .\templates\navbar.html:174 .\templates\navbar.html:302
-#: .\templates\navbar.html:328
-msgid "Koparki GPU"
-msgstr "GPU Miners"
-
-#: .\templates\navbar.html:181 .\templates\navbar.html:312
-msgid "Serwery"
-msgstr "Servers"
-
-#: .\templates\navbar.html:204
-msgid "Akcesoria"
-msgstr "Accessories"
-
-#: .\templates\navbar.html:211 .\templates\navbar.html:336
-msgid "Usługi"
-msgstr "Services"
-
-#: .\templates\productDetail.html:15
-msgid "Producent"
-msgstr "Manufacturer"
-
-#: .\templates\productDetail.html:43
-msgid "Dodaj do koszyka"
-msgstr "Add to cart"
-
-#: .\templates\productDetail.html:57
-msgid "Opis"
-msgstr "About"
-
-#: .\templates\products.html:17
+#: templates/adminPanel/adminBase.html:69 templates/productSearch.html:19
+#: templates/products.html:20
 msgid "Kategorie"
-msgstr "Categories"
+msgstr ""
 
-#: .\templates\products.html:46
+#: templates/adminPanel/adminBase.html:75
+msgid "Dostawcy"
+msgstr ""
+
+#: templates/adminPanel/adminBase.html:81
+msgid "Kategorie Pomocy"
+msgstr ""
+
+#: templates/adminPanel/adminBase.html:87
+msgid "Pomoc"
+msgstr ""
+
+#: templates/adminPanel/adminProducts.html:16
+#: templates/adminPanel/controlPanelOrder.html:44 templates/navbar.html:42
+#: templates/navbar.html:270
+msgid "Szukaj produktÃ³wâ€¦"
+msgstr ""
+
+#: templates/adminPanel/adminProducts.html:35
+msgid "Produkt ID"
+msgstr ""
+
+#: templates/adminPanel/adminProducts.html:39
+#: templates/adminPanel/adminProducts.html:41 templates/productDetail.html:23
+#: templates/productDetail.html:25
+msgid "sztuk w magazyie"
+msgstr ""
+
+#: templates/adminPanel/adminProducts.html:46 templates/orderUserList.html:17
+msgid "cena za sztuke: "
+msgstr ""
+
+#: templates/adminPanel/adminProducts.html:48
+#: templates/adminPanel/adminProducts.html:50
+#: templates/adminPanel/controlPanelOrderDetail.html:132
+#: templates/adminPanel/controlPanelOrderDetail.html:134
+#: templates/cart.html:101 templates/cart.html:147 templates/cartMobile.html:79
+#: templates/checkout.html:248 templates/checkout.html:278
+#: templates/detailAboutOrder.html:215 templates/detailAboutOrder.html:217
+#: templates/orderUserList.html:19 templates/orderUserList.html:21
+msgid "zÅ‚"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:9
+#: templates/detailAboutOrder.html:20
+msgid "Informacje o zamÃ³wieniu:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:16
+#: templates/adminPanel/controlPanelOrderDetail.html:64
+#: templates/detailAboutOrder.html:27 templates/detailAboutOrder.html:147
+msgid "Dane odbiorcy:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:32
+#: templates/adminPanel/controlPanelOrderDetail.html:83
+#: templates/detailAboutOrder.html:43 templates/detailAboutOrder.html:166
+msgid "Adres dostawy:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:47
+#: templates/detailAboutOrder.html:58
+msgid "Dostawa:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:58
+#: templates/detailAboutOrder.html:141
+msgid "Informacje do faktury:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:96
+#: templates/detailAboutOrder.html:179
+msgid "ZamÃ³wienie:"
+msgstr ""
+
+#: templates/adminPanel/controlPanelOrderDetail.html:198
+#: templates/adminPanel/controlPanelOrderDetail.html:231
+msgid "ZmieÅ„ status"
+msgstr ""
+
+#: templates/cardPay.html:43
+msgid "Dokonaj pÅ‚atnosci"
+msgstr ""
+
+#: templates/cardPay.html:49
+msgid "karta kredytowa bÄ…dÅº debetowa"
+msgstr ""
+
+#: templates/cardPay.html:63
+msgid ""
+"JeÅ›li pÅ‚atnoÅ›Ä‡ dokonywana jest europejskÄ… kartÄ… w nastÄ™pnym kroku prosimy o "
+"uwierzytelnienie przelewu poprzez wybranÄ… przez bank forme autoryzacji SMS/"
+"powiadomienie na aplikacji bankowej."
+msgstr ""
+
+#: templates/cardPay.html:66
+msgid ""
+"PaÅ„stwa dane sÄ… przetwarzane zgodnie z wyznacznieami PCI. Firma Stripe oraz "
+"CryptoTech nie przechowuje wprowadzonych przez PaÅ„stwa informacji"
+msgstr ""
+
+#: templates/cardPay.html:70 templates/p24Pay.html:94
+msgid "zapÅ‚aÄ‡"
+msgstr ""
+
+#: templates/cart.html:21
+msgid "Produkt"
+msgstr ""
+
+#: templates/cart.html:27
+msgid "Cena"
+msgstr ""
+
+#: templates/cart.html:32
+msgid "IloÅ›Ä‡"
+msgstr ""
+
+#: templates/cart.html:38 templates/cart.html:144 templates/cartMobile.html:74
+msgid "Suma"
+msgstr ""
+
+#: templates/cart.html:44
+msgid "UsuÅ„"
+msgstr ""
+
+#: templates/cart.html:66 templates/cart.html:68 templates/cartMobile.html:60
+#: templates/cartMobile.html:62 templates/cartPrev.html:24
+#: templates/cartPrev.html:26 templates/checkout.html:159
+#: templates/checkout.html:161 templates/checkout.html:167
+#: templates/checkout.html:169
+msgid "zÅ‚/szt"
+msgstr ""
+
+#: templates/cart.html:96 templates/cartMobile.html:53
+msgid "Liczba sztuk"
+msgstr ""
+
+#: templates/cart.html:115 templates/cartMobile.html:27
+msgid "ID PRODUKTU"
+msgstr ""
+
+#: templates/cart.html:155
+msgid "masz kupon rabatowy?"
+msgstr ""
+
+#: templates/cart.html:160
+msgid "Kod rabatowy"
+msgstr ""
+
+#: templates/cart.html:177
+msgid "DOSTAWA"
+msgstr ""
+
+#: templates/cart.html:188
+msgid "Do kontynuowania zakupÃ³w potrzebujesz konta"
+msgstr ""
+
+#: templates/cart.html:217
+msgid "TwÃ³j koszyk jest pusty"
+msgstr ""
+
+#: templates/cart.html:218 templates/orderUserList.html:44
+msgid "PrzejdÅº do strony gÅ‚Ã³wnej"
+msgstr ""
+
+#: templates/cartError.html:15
+msgid "Przedmioty z twojego koszyka sÄ… juÅ¼ nieaktualne"
+msgstr ""
+
+#: templates/cartError.html:28
+msgid ""
+"NiektÃ³re produkty z twojego koszyka zostaÅ‚y sprzedane, sprawdÅº zawartoÅ›Ä‡ "
+"swojego koszyka oraz dostÄ™pnoÅ›Ä‡ produktÃ³w i ponÃ³w zamÃ³wienie"
+msgstr ""
+
+#: templates/cartPrev.html:20
+msgid "szt."
+msgstr ""
+
+#: templates/cartPrev.html:37
+msgid "PrzejdÅº do koszyka"
+msgstr ""
+
+#: templates/checkout.html:17
+msgid "1. Dane odbiorcy"
+msgstr ""
+
+#: templates/checkout.html:50
+msgid "ChcÄ™ otrzymaÄ‡ fakturÄ™"
+msgstr ""
+
+#: templates/checkout.html:80
+msgid "2. SposÃ³b dostawy"
+msgstr ""
+
+#: templates/checkout.html:87
+msgid ""
+"Ze wzglÄ™du na duÅ¼Ä… wartoÅ›Ä‡ oraz wraÅ¼liwoÅ›Ä‡ sprzÄ™tu znajdujÄ…cym siÄ™ w koszuku "
+"jedynÄ… formÄ… dostawy jest odbiÃ³r osobisty."
+msgstr ""
+
+#: templates/checkout.html:143
+msgid "3. Twoje podsumowanie"
+msgstr ""
+
+#: templates/checkout.html:189
+msgid "4. SposÃ³b pÅ‚atnoÅ›ci"
+msgstr ""
+
+#: templates/checkout.html:193
+msgid ""
+"Ze wzglÄ™du na duÅ¼Ä… wartoÅ›Ä‡ sprzÄ™tu znajdujÄ…cym siÄ™ w koszyku jedynÄ… formÄ… "
+"pÅ‚atnoÅ›ci jest pÅ‚atnoÅ›Ä‡ przy odbiorze."
+msgstr ""
+
+#: templates/checkout.html:237
+msgid "5. Podsumowanie zakupÃ³w"
+msgstr ""
+
+#: templates/checkout.html:243
+msgid "WartoÅ›Ä‡ przedmiotÃ³w"
+msgstr ""
+
+#: templates/checkout.html:255 templates/navbar.html:68
+msgid "Dostawa"
+msgstr ""
+
+#: templates/checkout.html:270
+msgid "Do zapÅ‚aty"
+msgstr ""
+
+#: templates/checkout.html:284
+msgid "ZakoÅ„cz i zapÅ‚aÄ‡"
+msgstr ""
+
+#: templates/checkout.html:288
+msgid "Dodanie produktÃ³w do koszyka nie oznacza ich rezerwacji"
+msgstr ""
+
+#: templates/checkout.html:329 templates/checkout.html:336
+msgid "ImiÄ™ oraz nazwisko bÄ…dÅº nazwa firmy"
+msgstr ""
+
+#: templates/checkout.html:330 templates/checkout.html:337
+msgid "Ulica numer budynku oraz domu"
+msgstr ""
+
+#: templates/checkout.html:331 templates/checkout.html:338
+msgid "Kod pocztowy"
+msgstr ""
+
+#: templates/checkout.html:332 templates/checkout.html:339
+msgid "Miasto"
+msgstr ""
+
+#: templates/checkout.html:333
+msgid "Kraj"
+msgstr ""
+
+#: templates/checkout.html:334
+msgid "Adres email"
+msgstr ""
+
+#: templates/checkout.html:335
+msgid "Numer telefonu"
+msgstr ""
+
+#: templates/checkout.html:340
+msgid "NIP"
+msgstr ""
+
+#: templates/detailAboutOrder.html:70
+msgid "PonÃ³w opÅ‚atÄ™:"
+msgstr ""
+
+#: templates/detailAboutOrder.html:75
+msgid ""
+"JeÅ›li widzisz tÄ™ wiadomoÅ›Ä‡ oznacza to, Å¼e pÅ‚atnoÅ›Ä‡ za to zamÃ³wienie nie "
+"zostaÅ‚a oddnotowana na naszym koncie"
+msgstr ""
+
+#: templates/detailAboutOrder.html:81
+msgid "W razie wÄ…tpliwoÅ›ci:"
+msgstr ""
+
+#: templates/detailAboutOrder.html:90
+msgid "SprawdÅº swoje konto i w razie potrzeby ponÃ³w pÅ‚atnoÅ›Ä‡"
+msgstr ""
+
+#: templates/detailAboutOrder.html:95
+msgid "Wybierz SposÃ³b pÅ‚atnoÅ›ci"
+msgstr ""
+
+#: templates/detailAboutOrder.html:119
+msgid "PonÃ³w pÅ‚atnoÅ›Ä‡ "
+msgstr ""
+
+#: templates/detailAboutOrder.html:127
+msgid "Skontaktuj siÄ™ z nami jeÅ›li pÅ‚atnoÅ›Ä‡ jest odnotowana na twoim koncie"
+msgstr ""
+
+#: templates/footer.html:17
+msgid "Masz pytania? Zadzwon!"
+msgstr ""
+
+#: templates/footer.html:36
+msgid "Pon. - pt."
+msgstr ""
+
+#: templates/footer.html:48 templates/navbar.html:98
+msgid "Sob. - Niedz."
+msgstr ""
+
+#: templates/footer.html:53 templates/navbar.html:103
+msgid "zamkniÄ™te"
+msgstr ""
+
+#: templates/footer.html:70
+msgid "Przydatne Informacje"
+msgstr ""
+
+#: templates/footer.html:74
+msgid "Regulamin Sklepu Internetowego"
+msgstr ""
+
+#: templates/footer.html:75
+msgid "Polityka prywatnoÅ›ci i cookies"
+msgstr ""
+
+#: templates/footer.html:76
+msgid "PÅ‚atnoÅ›Ä‡ i wysyÅ‚ka"
+msgstr ""
+
+#: templates/footer.html:77
+msgid "Kolokacja"
+msgstr ""
+
+#: templates/footer.html:87
+msgid "ww-tech to nie tylko kryptowaluty"
+msgstr ""
+
+#: templates/inperson.html:15
+msgid "Twoje zamÃ³wienie czeka na odbiÃ³r"
+msgstr ""
+
+#: templates/inperson.html:28
+msgid "Twoje zamÃ³wienie o numerze"
+msgstr ""
+
+#: templates/inperson.html:28
+msgid ""
+"czeka na odbiÃ³r w naszej siedzibie, skontaktujemy siÄ™ z tobÄ… w celu "
+"ustalenia dogodnego terminu odbioru."
+msgstr ""
+
+#: templates/login.html:14 templates/login.html:26 templates/register.html:46
+#: templates/resetPasswordComplete.html:58
+msgid "Zaloguj siÄ™"
+msgstr ""
+
+#: templates/login.html:39
+msgid "Nie pamiÄ™tasz hasÅ‚a?"
+msgstr ""
+
+#: templates/login.html:40
+msgid "zmieÅ„ hasÅ‚o"
+msgstr ""
+
+#: templates/login.html:72 templates/register.html:78
+#: templates/resetPassword.html:97
+msgid "Email"
+msgstr ""
+
+#: templates/login.html:73 templates/register.html:79
+msgid "HasÅ‚o"
+msgstr ""
+
+#: templates/navbar.html:24
+msgid "Panel Administracyjny"
+msgstr ""
+
+#: templates/navbar.html:26
+msgid "Wyloguj siÄ™ "
+msgstr ""
+
+#: templates/navbar.html:60 templates/navbar.html:292
+msgid "Informacje"
+msgstr ""
+
+#: templates/navbar.html:66
+msgid "Popularne"
+msgstr ""
+
+#: templates/navbar.html:69
+msgid "Gwarancja"
+msgstr ""
+
+#: templates/navbar.html:70 templates/navbar.html:76
+msgid "CzÄ™ste pytania"
+msgstr ""
+
+#: templates/navbar.html:72
+msgid "Skontaktuj siÄ™ z nami"
+msgstr ""
+
+#: templates/navbar.html:74
+msgid "Kontakt"
+msgstr ""
+
+#: templates/navbar.html:119 templates/navbar.html:128
+#: templates/navbar.html:302
+msgid "Twoje Konto"
+msgstr ""
+
+#: templates/navbar.html:143
+msgid "Zaloguj sie"
+msgstr ""
+
+#: templates/navbar.html:147
+msgid "Nie masz konta?"
+msgstr ""
+
+#: templates/navbar.html:150
+msgid "Zarejestruj sie"
+msgstr ""
+
+#: templates/navbar.html:158 templates/orderNav.html:17
+msgid "Ustawienia Konta"
+msgstr ""
+
+#: templates/navbar.html:176 templates/navbar.html:319
+msgid "Koszyk"
+msgstr ""
+
+#: templates/navbar.html:183
+msgid "TwÃ³j koszyk"
+msgstr ""
+
+#: templates/newsletter.html:9
+msgid ""
+"Zapisz siÄ™ do naszego newslettera i nie przegap Å¼adnych okazji. BÄ…dÅº na "
+"bieÅ¼Ä…co z najnowszymi technologiami."
+msgstr ""
+
+#: templates/orderNav.html:46 templates/refundsContent.html:4
+msgid "Zwroty"
+msgstr ""
+
+#: templates/orderNav.html:54
+msgid "Ustawienia"
+msgstr ""
+
+#: templates/orderPayed.html:31
+msgid "DziÄ™kujemy"
+msgstr ""
+
+#: templates/orderPayed.html:32
+msgid "Zakup zakoÅ„czony sukcesem"
+msgstr ""
+
+#: templates/orderPayed.html:34
+msgid "PowrÃ³t na stronÄ™ gÅ‚Ã³wnÄ…"
+msgstr ""
+
+#: templates/orderUserList.html:14
+msgid "ZamÃ³wienie nr"
+msgstr ""
+
+#: templates/orderUserList.html:43
+msgid "Nie posiadasz Å¼adnych zamÃ³wieÅ„"
+msgstr ""
+
+#: templates/p24Pay.html:54
+msgid "Podaj imie i nazwisko"
+msgstr ""
+
+#: templates/p24Pay.html:62
+msgid "Wybierz swÃ³j bank"
+msgstr ""
+
+#: templates/policy.html:9
+msgid "polityka prywatnosci"
+msgstr ""
+
+#: templates/prices.html:4
+msgid "Aktualne ceny kryptowalut"
+msgstr ""
+
+#: templates/prices.html:12 templates/prices.html:21 templates/prices.html:30
+#: templates/prices.html:39
+msgid "Cena w dolarach"
+msgstr ""
+
+#: templates/productDetail.html:20
+msgid "DostÄ™pnoÅ›Ä‡:"
+msgstr ""
+
+#: templates/productDetail.html:31
+msgid "Kategoria"
+msgstr ""
+
+#: templates/productDetail.html:34
+msgid "Producent"
+msgstr ""
+
+#: templates/productDetail.html:37
+msgid "ID"
+msgstr ""
+
+#: templates/productDetail.html:62
+msgid "Produkt niedostÄ™pny"
+msgstr ""
+
+#: templates/productDetail.html:78
+msgid "Dodaj do koszyka"
+msgstr ""
+
+#: templates/productDetail.html:104
+msgid "Opis"
+msgstr ""
+
+#: templates/productList.html:13
+msgid "Sortuj: Standardowo"
+msgstr ""
+
+#: templates/productList.html:14
+msgid "Sortuj: cena malejÄ…co"
+msgstr ""
+
+#: templates/productList.html:15
+msgid "Sortuj: cena rosnÄ…co"
+msgstr ""
+
+#: templates/productSearch.html:41 templates/products.html:42
+msgid "Tagi produktÃ³w"
+msgstr ""
+
+#: templates/productSearch.html:55 templates/products.html:60
 msgid "Polecane"
-msgstr "Recommended"
+msgstr ""
 
-#: .\templates\products.html:51
-msgid "Wyświetlanie"
-msgstr "Showing"
+#: templates/productSearch.html:60 templates/products.html:66
+msgid "WyÅ›wietlanie"
+msgstr ""
 
-#: .\templates\register.html:11 .\templates\register.html:34
-msgid "Załóż konto"
-msgstr "Create an account"
+#: templates/products.html:58
+msgid "Wyszukano"
+msgstr ""
 
-#: .\templates\register.html:39
+#: templates/products.html:66
+msgid "wynikÃ³w"
+msgstr ""
+
+#: templates/recentlyAdded.html:5
+msgid "Najnowsze produkty"
+msgstr ""
+
+#: templates/register.html:13 templates/register.html:36
+msgid "ZaÅ‚Ã³Å¼ konto"
+msgstr ""
+
+#: templates/register.html:41
 msgid "Poptrzez stworzenie konta akceptujesz regulamin sklepu"
 msgstr ""
-"By creating an account you agree to our conditions of use and privacy policy"
 
-#: .\templates\register.html:43
-#, fuzzy
-#| msgid "Nie masz konta?"
+#: templates/register.html:45
 msgid "Masz konto?"
-msgstr "Sign up"
+msgstr ""
 
-#: .\templates\register.html:74
-msgid "Imię"
-msgstr "Name"
+#: templates/register.html:76
+msgid "ImiÄ™"
+msgstr ""
 
-#: .\templates\register.html:75
+#: templates/register.html:77
 msgid "Nazwisko"
-msgstr "Surname"
+msgstr ""
 
-#: .\templates\register.html:78
-msgid "Powtórz hasło"
-msgstr "Repeat password"
+#: templates/register.html:80
+msgid "PowtÃ³rz hasÅ‚o"
+msgstr ""
 
-#~ msgid "Wprowadziłeś błędne dane logowania"
-#~ msgstr "You have entered an invalid username or password"
+#: templates/resetPassword.html:49
+msgid "Zresetuj swoje hasÅ‚o"
+msgstr ""
 
-#~ msgid "wyników"
-#~ msgstr "results"
+#: templates/resetPassword.html:52
+msgid ""
+"JeÅ›li na ten e-mail zostaÅ‚o zaÅ‚oÅ¼one konto, przeÅ›lemy Ci na niego email z "
+"linkiem ."
+msgstr ""
 
-#~ msgid "Kategoria"
-#~ msgstr "Category"
+#: templates/resetPassword.html:61
+msgid "Odzyskaj swoje konto"
+msgstr ""
 
-#~ msgid "Dostępność"
-#~ msgstr "Availability"
+#: templates/resetPasswordComplete.html:51
+msgid "Potwierdzenie"
+msgstr ""
+
+#: templates/resetPasswordNew.html:51
+msgid "WprowadÅº nowe haslo"
+msgstr ""
+
+#: templates/resetPasswordNew.html:65 templates/userPanel.html:12
+msgid "ZmieÅ„ hasÅ‚o"
+msgstr ""
+
+#: templates/resetPasswordNew.html:105
+msgid "Nowe hasÅ‚o"
+msgstr ""
+
+#: templates/resetPasswordNew.html:106
+msgid "PotwierdÅº nowe hasÅ‚o"
+msgstr ""
+
+#: templates/userPanel.html:5
+msgid "Ustawienia konta"
+msgstr ""
+
+#: templates/userPanel.html:13 templates/userPanel.html:25
+msgid "UsuÅ„ konto"
+msgstr ""
+
+#: templates/userPanel.html:18
+msgid "PotwierdÅº usuniÄ™cie konta"
+msgstr ""
+
+#: templates/userPanel.html:21
+msgid ""
+"UsuniÄ™cie konta z naszego serwisu spowoduje utratÄ™ historii twoich zamÃ³wieÅ„ "
+"i uniemoÅ¼liwi kolejne zakupy do momentu zaÅ‚oÅ¼enia nowego konta"
+msgstr ""

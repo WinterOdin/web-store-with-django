@@ -45,16 +45,16 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
 </noscript>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" integrity="sha384-6qO6EOFIDfvv6uzAzozX/BvMu/qkIIHxWYOVMjpVjX+NtPuNyd3YiOEflKIIV2ka" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/regular.css" integrity="sha384-GMkIgTgosuQEt2PEwBHI7MMRsrQplN2sT/7bzPOIxG+Hn37iTlZXFb37m6uE+iHj" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/fontawesome.css" integrity="sha384-Hx1dya9ptAdKu2hLNR5C2Cwgm+wCfwD0VMGE6jk5OUxxa9I58YfxOCwEtRog+3wk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/cookiesCSS.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/brands.min.css" integrity="sha512-dBL5cY4qTt42J1cfabCHTYR7KMztyd+n4t2GhD6EH/MKWJIIHuEYckJ1nHEpTwIaiDkrjzbc6WyiSkdLP+3INQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
 <div class="containerNavbarReset">
     {% include 'navbar.html'  %}
 </div>
-<div class="CHUJ"></div>
+
 <div class="containerAnimateRef">
 {% block content  %}
 
@@ -66,8 +66,12 @@
 
 {% include 'footer.html'  %}
 
+<div class="wrapperOverlayOutter">
+  {% include 'overlay.html'  %}
+</div>
+<script src="{% static 'js/carouselOverlay.js' %}"crossorigin="anonymous"></script>
 <div class="wrapper">
-    <img src="{% static 'images/cookie.png' %}" alt="cookie image">
+    <img src="{% static 'media/cookie.png' %}" alt="cookie image">
     <div class="content">
       <header>Cookies Consent</header>
       <p>This website use cookies to ensure you get the best experience on our website.</p>
@@ -76,30 +80,57 @@
         <a href="{% url 'policy'  %} " class="item">Learn more</a>
       </div>
     </div>
-  </div>
+  </div> 
+
+
 <script>
     const cookieBox = document.querySelector(".wrapper"),
     acceptBtn = cookieBox.querySelector("button");
 
     acceptBtn.onclick = ()=>{
-      //setting cookie for 1 month, after one month it'll be expired automatically
-      document.cookie = "CookieBy=CodingNepal; max-age="+60*60*24*30;
-      if(document.cookie){ //if cookie is set
-        cookieBox.classList.add("hide"); //hide cookie box
-      }else{ //if cookie not set then alert an error
+
+      document.cookie = "CookieBy=WWTech; max-age="+60*60*24*30;
+      if(document.cookie){ 
+        cookieBox.classList.add("hide"); 
+      }else{ 
         alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
       }
     }
-    let checkCookie = document.cookie.indexOf("CookieBy=CodingNepal"); //checking our cookie
-    //if cookie is set then hide the cookie box else show it
+    let checkCookie = document.cookie.indexOf("CookieBy=WWTech");
     checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
+   
+    
 </script>
+
+
+
+<script>
+  const overlayBox = document.querySelector(".wrapperOverlayOutter"),
+  acceptOverlay = overlayBox.querySelector("button");
+  acceptOverlay.onclick = ()=>{
+    
+    document.cookie = "CookieBy=Overlay; max-age="+60*60*24*30;
+    if(document.cookie){ //if cookie is set
+      overlayBox.classList.add("hide"); 
+      
+      //hide cookie box
+    }else{ //if cookie not set then alert an error
+      alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+    }
+  }
+  let checkOverlay = document.cookie.indexOf("CookieBy=Overlay"); //checking our cookie
+  
+  //if cookie is set then hide the cookie box else show it
+  checkOverlay != -1 ? overlayBox.classList.add("hide") : overlayBox.classList.remove("hide");
+  //checkOverlay != -1 ?  $("body").removeProp("overflow-y") : $("body").prop("overflow-y");
+
+</script>
+
+
 
 <script src="{% static 'js/popper.min.js' %}"    crossorigin="anonymous"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
 <script src="{% static 'owl/dist/owl.carousel.min.js'  %}"></script>
-
-
 
 <script>
 $(document).ready(function() {

@@ -16,8 +16,8 @@ def configuratorMail(data):
 
     subject = '!-Konfiguracja koparki-!'
 
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
+    htmltemp = template.loader.get_template('configurator_email.html')
+    plaintext = template.loader.get_template('configurator_txt.txt')
 
     c = {
         'email':'biuro@wwtechnology.pl',
@@ -45,10 +45,11 @@ def configuratorMail(data):
 
 def contactMail(data):
 
-    subject = '!-Konfiguracja koparki-!'
+    subject = '!-Nowe pytanie-!'
 
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
+    
+    htmltemp = template.loader.get_template('contact_email.html')
+    plaintext = template.loader.get_template('contact_txt.txt')
 
     c = {
         'email':'biuro@wwtechnology.pl',
@@ -70,3 +71,53 @@ def contactMail(data):
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
 
+def  cardPaymentEmail(dataUser, values):
+    
+    user = dataUser
+    totalPriceMail = values.get('totalPrice'),
+    subject = "Payment Confirmation Email"
+    plaintext = template.loader.get_template('payment_email_txt.txt')
+    htmltemp = template.loader.get_template('payment_email_html.html')
+    
+    c = {
+        "email":user.email,
+        'domain':'ww-tech.pl',
+        'site_name': 'ww-tech',
+        'protocol': 'https',
+        'order_id' : values.get('transaction_id'),
+    }
+    text_content = plaintext.render(c)
+    #html_content = htmltemp.render(c, {"context":context})
+
+    html_content = htmltemp.render(c)
+
+    try:
+        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+
+def p24PaymentEmail(dataUser, values):
+    user = dataUser
+    totalPriceMail = values.get('totalPrice'),
+    subject = "Payment Confirmation Email"
+    plaintext = template.loader.get_template('payment_email_txt.txt')
+    htmltemp = template.loader.get_template('payment_email_html.html')
+
+    c = {
+        "email":user.email,
+        'domain':'ww-tech.pl',
+        'site_name': 'ww-tech',
+        'protocol': 'https',
+        'order_id' : values.get('transaction_id'),
+    }
+    text_content = plaintext.render(c)
+    html_content = htmltemp.render(c)
+    try:
+        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        print("SSS")
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')

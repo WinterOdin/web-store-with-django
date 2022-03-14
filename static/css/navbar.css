@@ -380,6 +380,8 @@ a:hover.linkHelpBox{
     width: 100%;
     height: 100%;
     padding:9px 0 9px;
+    border-left: 1px solid rgba(192, 192, 192, 0.253);
+    border-right: 1px solid rgba(192, 192, 192, 0.253);
 }
 .categoryPCLink{
     font-family: 'Montserrat', sans-serif;

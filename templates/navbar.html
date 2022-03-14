@@ -231,7 +231,14 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <form method="POST" action="{% url 'set_language'  %}">
+                            <div class="categoryPC">
+                                <a href='{% url "about-us" %}#aboutUSContainer' class="categoryPCLink">
+                                    O Nas
+                                </a>
+                            </div>
+
+
+                        <!--    <form method="POST" action="{% url 'set_language'  %}">
                                 {% csrf_token  %}
                                 <input type="hidden" name="text" value="{{redirect_to}}">
                                 <select class="langSelect "  name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
@@ -245,6 +252,8 @@
                                     {% endfor  %}
                                 </select>
                             </form>
+                        -->
+
                         </div>
                         <div class="col-2 categoryPCHover">
                             <div class="categoryPC">
@@ -337,7 +346,12 @@
       </div>
 <div class="languageMobile">
     <div class="languageWrapperMobile">
-        <form method="POST" action="{% url 'set_language'  %}">
+        <div class="categoryPC">
+            <a href='{% url "about-us" %}' class="categoryPCLink">
+                O Nas
+            </a>
+        </div>
+    <!--   <form method="POST" action="{% url 'set_language'  %}">
             {% csrf_token  %}
             <input type="hidden" name="text" value="{{redirect_to}}">
             <select class="langSelect " name="language" id="" onchange='if(this.value != 0) { this.form.submit(); }'>
@@ -351,6 +365,7 @@
                 {% endfor  %}
             </select>
         </form>
+    -->
     </div>
 </div>
 <div class="categoryRootMobile">

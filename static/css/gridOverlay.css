@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding:0;
+}
+.grid-container-overlay {
+  display: grid;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "title title title . . . time time time" "chose . slide1 slide1 slide1 slide1 slide1 slide2 slide2" "chose . slide1 slide1 slide1 slide1 slide1 slide3 slide3" "chose . slide1 slide1 slide1 slide1 slide1 link link" "navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel navbarLogoCarousel";
+}
+
+.time { grid-area: time; }
+
+.slide2 { grid-area: slide2; }
+
+.slide3 { grid-area: slide3; }
+
+.link { grid-area: link; }
+
+.slide1 { grid-area: slide1; }
+
+.chose { grid-area: chose; }
+
+.navbarLogoCarousel { grid-area: navbarLogoCarousel; }
+
+.title { grid-area: title; }
+
+
+  
+  @media (max-width:720px){
+
+      .grid-container-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 0.7fr 0.7fr 1.3fr 1.3fr 1.5fr 0.5fr;
+        gap: 1px 1px;
+        grid-template-areas: "title title"  "slide1 slide1" "slide1 slide1" "navbarLogoCarousel navbarLogoCarousel"  "time time" "slide2 slide2";
+      }
+      
+      .title { grid-area: title; }
+      
+      .time { grid-area: time; }
+      
+      .navbarLogoCarousel { grid-area: navbarLogoCarousel; }
+      
+      .slide1 { grid-area: slide1; }
+      .slide2 { grid-area: slide2; }
+
+  }

@@ -692,27 +692,8 @@ def cardPayment(request):
         if not key.startswith("_"):
             del request.session[key]
 
-    user = request.user
-    totalPriceMail = values.get('totalPrice'),
-    subject = "Payment Confirmation Email"
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
-    
-    c = {
-        "email":user.email,
-        'domain':'ww-tech.pl',
-        'site_name': 'ww-tech',
-        'protocol': 'https',
-        'order_id' : values.get('transaction_id'),
-    }
-    text_content = plaintext.render(c)
-    html_content = htmltemp.render(c, {"context":context})
-    try:
-        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-    except BadHeaderError:
-        return HttpResponse('Invalid header found.')
+
+    cardPaymentEmail(request.user, values )
     
     return render(request,"conf.html")
 
@@ -723,29 +704,8 @@ def successP24(request):
     customer = request.user.customer
     values = request.session.get('values', None)
 
-    user = request.user
-    totalPriceMail = values.get('totalPrice'),
-    subject = "Payment Confirmation Email"
-    plaintext = template.loader.get_template('payment_email_txt.txt')
-    htmltemp = template.loader.get_template('payment_email_html.html')
-
-    c = {
-        "email":user.email,
-        'domain':'ww-tech.pl',
-        'site_name': 'ww-tech',
-        'protocol': 'https',
-        'order_id' : values.get('transaction_id'),
-    }
-    text_content = plaintext.render(c)
-    html_content = htmltemp.render(c)
-    try:
-        msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-        print("SSS")
-    except BadHeaderError:
-        return HttpResponse('Invalid header found.')
-
+    p24PaymentEmail(request.user, values)
+    
     context = {
           'customer':customer ,
           'navbarList':navbarList
@@ -863,8 +823,6 @@ def contactMail(request):
             post = request.POST.copy()
             contactMail(post)
 
-
-
     context = {
         'categoryList':categoryList,
         'navbarList':navbarList,
@@ -898,9 +856,6 @@ def miningStation(request):
             post = request.POST.copy()
             configuratorMail(post)
 
-
-
-
     context = {
         'categoryList':categoryList,
         'navbarList':navbarList,
@@ -908,3 +863,32 @@ def miningStation(request):
 
     context={**context, **cart}
     return render(request,'configure.html',context)
+
+def aboutUs(request):
+    categoryList  = Category.objects.all()
+    navbarList =categoryList.filter(navbar=True)
+    cart    = usersCart(request)
+    
+    if request.method == "POST":
+        query = request.POST.get('search_bar')
+        if query:   
+            productsInfo = searchQueryset(query)
+            tags         = Product.tags.all()
+            context      = {
+                'query':query,
+                'tags':tags,
+                'productsInfo':productsInfo,
+                'categoryList':categoryList,
+                'navbarList':navbarList,
+            }
+            context={**context, **cart}
+
+            return render(request,'products.html', context)
+
+            
+    context = {
+        'categoryList':categoryList,
+        'navbarList':navbarList,
+    }
+
+    return render(request,'aboutUS.html',context)

@@ -33,5 +33,6 @@ urlpatterns = [
 
 	path('contact-us', views.contactMail, name='contact-us'),
 	path('configure', views.miningStation, name='configure'),
+	path('about-us', views.aboutUs, name='about-us'),
 	
 ]

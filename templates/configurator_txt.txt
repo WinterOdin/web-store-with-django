@@ -1,0 +1,9 @@
+Nowa prośba o konfiguracje
+{{ name }} {{ surname }} |
+Telefon: {{ phone }} |
+Email: {{ email_customer }} | 
+Kwota: {{price}} |
+Karty: {{ cards  }} |
+Ilość kart: {{ quantity }} | 
+Rodzaje walut: {{ crypto_type }} | 
+Komentarz: {{ story }}  |
