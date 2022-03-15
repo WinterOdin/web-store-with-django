@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}?v=3.4.2" >
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productGrid.css' %}?v=3.4.2">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}?v=3.4.2"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/productCarousel.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderGrid.css' %}?v=3.4.2">
@@ -21,34 +21,32 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/orderNav.css' %}?v=3.4.2">
     <link rel="stylesheet" type="text/css" href="{% static 'css/pricesCrypto.css'  %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'css/adminPanel/controlPanel.css' %}?v=3.4.2">
-    
     <link rel="stylesheet" type="text/css" href="{% static 'owl/dist/assets/owl.carousel.min.css' %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'owl/dist/assets/owl.theme.default.min.css' %}?v=3.4.2"  media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="{% static 'css/owlCarouselCustom.css' %}"  media="print" onload="this.media='all'">
-
- 
-    
-
     <script src="{% static 'js/jquery.js'  %}" ></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/randomStuff.css' %}?v=3.4.2">
-  
 
-    <script type="text/javascript">
-            var user="{{ request.user  }}";function getToken(t){let e=null;if(document.cookie&&""!==document.cookie){const o=document.cookie.split(";");for(let n=0;n<o.length;n++){const r=o[n].trim();if(r.substring(0,t.length+1)===t+"="){e=decodeURIComponent(r.substring(t.length+1));break}}}return e}const csrftoken=getToken("csrftoken");function getCookie(t){for(var e=document.cookie.split(";"),o=0;o<e.length;o++){var n=e[o].split("=");if(t==n[0].trim())return decodeURIComponent(n[1])}return null}var cart=JSON.parse(getCookie("cart"));null==cart&&(cart={},document.cookie="cart="+JSON.stringify(cart)+";domain=;path=/");
+<script type="text/javascript">
+    var user="{{ request.user  }}";function getToken(t){let e=null;if(document.cookie&&""!==document.cookie){const o=document.cookie.split(";");for(let n=0;n<o.length;n++){const r=o[n].trim();if(r.substring(0,t.length+1)===t+"="){e=decodeURIComponent(r.substring(t.length+1));break}}}return e}const csrftoken=getToken("csrftoken");function getCookie(t){for(var e=document.cookie.split(";"),o=0;o<e.length;o++){var n=e[o].split("=");if(t==n[0].trim())return decodeURIComponent(n[1])}return null}var cart=JSON.parse(getCookie("cart"));null==cart&&(cart={},document.cookie="cart="+JSON.stringify(cart)+";domain=;path=/");
 </script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
 
-    <noscript>
+<noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
 </noscript>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/cookiesCSS.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/brands.min.css" integrity="sha512-dBL5cY4qTt42J1cfabCHTYR7KMztyd+n4t2GhD6EH/MKWJIIHuEYckJ1nHEpTwIaiDkrjzbc6WyiSkdLP+3INQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gridOverlay.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mainCarousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/carouselStyle.css' %}">
+
+  </head>
 
 <body>
 <div class="containerNavbarReset">
@@ -58,80 +56,84 @@
 <div class="containerAnimateRef">
 {% block content  %}
 
-
-
 {% endblock  %}
 </div>
 
-
 {% include 'footer.html'  %}
 
-<div class="wrapperOverlayOutter">
+<div class="wrapperOverlayOutter" id="overlayOut" >
   {% include 'overlay.html'  %}
 </div>
+
+
+<script src="{% static 'js/disableScroll.js' %}"    crossorigin="anonymous"></script>
+
 <script src="{% static 'js/carouselOverlay.js' %}"crossorigin="anonymous"></script>
-<div class="wrapper">
+
+
+<div class="wrapper" id="wrapperConsent">
     <img src="{% static 'media/cookie.png' %}" alt="cookie image">
     <div class="content">
       <header>Cookies Consent</header>
       <p>This website use cookies to ensure you get the best experience on our website.</p>
       <div class="buttons">
-        <button class="item">I understand</button>
+        <button id="buttonConsent" class="item">I understand</button>
         <a href="{% url 'policy'  %} " class="item">Learn more</a>
       </div>
     </div>
-  </div> 
-
+  </div>
 
 <script>
-    const cookieBox = document.querySelector(".wrapper"),
-    acceptBtn = cookieBox.querySelector("button");
+  setCookie = (cname, cvalue, exdays) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
-    acceptBtn.onclick = ()=>{
+  getCookie = (cName) => {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie);
+    const cArr = cDecoded.split("; ");
+    let value;
+    cArr.forEach(val => {
+      if(val.indexOf(name) === 0) value = val.substring(name.length);
+    })
+    return value;
+  }
 
-      document.cookie = "CookieBy=WWTech; max-age="+60*60*24*30;
-      if(document.cookie){ 
-        cookieBox.classList.add("hide"); 
-      }else{ 
-        alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
-      }
+  document.getElementById("endShop").addEventListener("click" , () => {
+    enableScroll()
+    //here im using JQ because style.display="none" isn't working
+    //why? I don't know, 99% it's because i'm not reloading DOM
+    $("#overlayOut").hide(100);
+    setCookie("overlay", true, 1)
+  })
+
+  document.getElementById("buttonConsent").addEventListener("click" , () => {
+    //same here
+    $("#wrapperConsent").hide(100);
+    setCookie("consent", true, 1)
+  })
+
+  cookieCheck = () =>{
+    if(!getCookie("overlay")){
+      disableScroll();
+      //same here 
+      $("#overlayOut").show(50);
     }
-    let checkCookie = document.cookie.indexOf("CookieBy=WWTech");
-    checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
-   
-    
-</script>
 
-
-
-<script>
-  const overlayBox = document.querySelector(".wrapperOverlayOutter"),
-  acceptOverlay = overlayBox.querySelector("button");
-  acceptOverlay.onclick = ()=>{
-    
-    document.cookie = "CookieBy=Overlay; max-age="+60*60*24*30;
-    if(document.cookie){ //if cookie is set
-      overlayBox.classList.add("hide"); 
-      
-      //hide cookie box
-    }else{ //if cookie not set then alert an error
-      alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+    if(!getCookie("consent")){
+      //same 
+      $("#wrapperConsent").show(50);
     }
   }
-  let checkOverlay = document.cookie.indexOf("CookieBy=Overlay"); //checking our cookie
-  
-  //if cookie is set then hide the cookie box else show it
-  checkOverlay != -1 ? overlayBox.classList.add("hide") : overlayBox.classList.remove("hide");
-  //checkOverlay != -1 ?  $("body").removeProp("overflow-y") : $("body").prop("overflow-y");
 
+  window.addEventListener("load", cookieCheck);
 </script>
-
-
-
 <script src="{% static 'js/popper.min.js' %}"    crossorigin="anonymous"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
 <script src="{% static 'owl/dist/owl.carousel.min.js'  %}"></script>
-
 <script>
 $(document).ready(function() {
     $.getScript("{% static 'js/tagsinput.js'  %}");
@@ -139,6 +141,7 @@ $(document).ready(function() {
     $.getScript("{% static 'js/classie.js' %}");
 });
 </script>
+
 <script src="{% static 'js/cart.js'  %}"></script>
 </body>
 </html>

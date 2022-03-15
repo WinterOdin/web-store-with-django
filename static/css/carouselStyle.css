@@ -3,6 +3,7 @@
     margin-left: 1%;
     color: #000;
     opacity: .8;
+    padding-top: 3%;
   }
   .link{
     width:80%;
@@ -40,7 +41,7 @@
     opacity: 0.8;
     font-weight: 400;
     margin-left: 12vh;
-    margin-top: -20px;
+    margin-top: -10px;
   }
   .timePOS{
     position: relative;
@@ -57,7 +58,7 @@
     height: 100%;
   }
   .carouselList{
-    color: rgb(128, 128, 128);
+    color: rgb(8, 8, 8);
     min-width: 80%;
     text-align: center;
     margin-left:10%;
@@ -71,12 +72,13 @@
     -webkit-transition: opacity 1s ease;
   }
   .carouselList:hover {
-    color:#fcc842;
+    color:rgb(0, 130, 250);
     opacity: 0.9;
+    cursor: pointer;
   }
   .carActive{
     opacity: 1;
-    border-bottom: #fcc842 5px solid;
+    border-bottom: rgb(0, 130, 250) 5px solid;
   }
   .wwTechPic{
     display: none;
@@ -84,11 +86,6 @@
   .backToShop {
     min-height:20vh;
     padding-top: 15%;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    color: #000;
-    opacity: 0.9;
-    font-size: 30px;
     text-align: right;
   }
   .backToShop a, .backToShop a:hover,.backToShop a::after {
@@ -135,23 +132,10 @@
     display:none;
   }
   .carouselList.active{
-    color:#fcc842;
+    color:rgb(0, 130, 250);
     opacity: 0.9;
     -webkit-transition: opacity 1s ease;
-    transition: text-shadow 0.5s ease;
-    text-shadow: 0px 0px 17px rgba(200, 149, 0, 1);
   }
-#endShop{
-    background: Transparent no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
-    -webkit-box-shadow: none; 
-    -moz-box-shadow: none;
-    color: #000;
-    opacity: 0.7;
-}
 .containerBorder{
     height:100vh;
     width:auto;
@@ -160,7 +144,35 @@
     margin-top: 13vh;
     z-index:10;
 }
+#endShop{
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 17px;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 130, 250);
+  width: 80%;
+  margin-left: 0%;
+  color: rgb(41, 41, 41);
+  transition: 0.2s linear;
+  font-weight: 700;
+  font-size:20px
+}
+
+#endShop:hover {
+  color:white;
+  background-color: rgb(0, 130, 250);
+  transition: 0.2s linear;
+  cursor: pointer;
+}
+.dotColor{
+  color: rgb(0, 130, 250);
+}
+
   @media (max-width: 770px){
+    .chose{
+      display: none;
+    }
     .slide2Data img,.slide3Data img{
         display: none 
    }
