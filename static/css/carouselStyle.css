@@ -137,11 +137,11 @@
     -webkit-transition: opacity 1s ease;
   }
 .containerBorder{
-    height:100vh;
+    height:110vh;
     width:auto;
 }
 .wrapperOverlayAbout{
-    margin-top: 13vh;
+    margin-top: 20vh;
     z-index:10;
 }
 #endShop{
@@ -168,8 +168,31 @@
 .dotColor{
   color: rgb(0, 130, 250);
 }
+@media (max-width: 1450px){
+    .wrapperOverlayAbout{
+      margin-top: 30vh;
+  }
+
+}
+@media (max-width: 1050px){
+.slide1Content {
+    font-size: 15px;
+  }
+  .slide1Title,.slide1SecondTitle {
+    font-size: 26px;
+  }
+  .slide1Data {
+    padding-top: 0%;
+  }
+  .titleAbout {
+      font-size: 18px;
+  }.titleData {
+    font-size: 30px;
+  } 
+}
 
   @media (max-width: 770px){
+
     .chose{
       display: none;
     }
@@ -232,7 +255,7 @@
    }
     .slide1Content {
         padding-top: 0.5vh;
-        font-size: 17px;
+        font-size: 14px;
    }
     .slide1SecondTitle {
         font-size: 30px;
@@ -243,14 +266,17 @@
         left: 0;
    }
     .backToShop {
-        padding-top: 38%;
+        padding-top: 20%;
    }
    .wrapperOverlayAbout{
-    margin-top: 15vh;
-}
-.containerBorder{
-    height:80vh;
-}
+    margin-top: 45vh;
+  }
+  .containerBorder{
+      height:80vh;
+  }
+  .containerBorder{
+    height:120vh;
+  }
   }
   @media (max-width: 395px){
     .titleData{
@@ -279,6 +305,9 @@
     .backToShop {
         padding-top: 35%;
    }
+   .containerBorder{
+    height:100vh;
+  }
   }
   @media (max-width: 377px){
     .titleData{
@@ -294,7 +323,7 @@
    }
     .slide1Content {
         padding-top: 0.5vh;
-        font-size: 14px;
+        font-size: 12px;
    }
     .slide1SecondTitle {
         font-size: 25px;
@@ -305,7 +334,11 @@
         left: 0;
    }
     .backToShop {
-        padding-top: 35%;
+        padding-top: 25%;
    }
+   .wrapperOverlayAbout{
+    margin-top: 50vh;
+  }
+
   }
   
