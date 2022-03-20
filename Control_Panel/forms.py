@@ -7,6 +7,7 @@ from taggit.managers import *
 
 class AdminProduct(forms.ModelForm):
     recommend = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'checkboxInvoice',}),required=False)
+    display = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'checkboxInvoice',}),required=False)
     #description_pl = forms.CharField(widget=RichTextUploadingField())
     #description_en = forms.CharField(widget=RichTextUploadingField())
     tags            = TagField()
@@ -16,7 +17,7 @@ class AdminProduct(forms.ModelForm):
     pic4            = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'shippForm imgInput',}),required=False)
     class Meta:
         model   = Product
-        fields  = [ 'recommend', 'title_en','title_pl',
+        fields  = [ 'recommend','display', 'title_en','title_pl',
                     'producent','stock','priceNormal','pricePromo','description_pl',
                     'description_en','category','tags','pic1','pic2','pic3','pic4',]
       

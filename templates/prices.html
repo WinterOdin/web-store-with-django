@@ -1,5 +1,6 @@
 {% load i18n  %}
 {% load static  %}
+
 	<div class="shopTextTile">
         {% trans "Aktualne ceny kryptowalut"  %}
     </div>
@@ -10,7 +11,7 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Bitcoin</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="btc_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.0|floatformat:0  }}</div>
+						<div id="btc_val" class="h4 kpi-value cryptoPriceData"></div>
 					</div>
 				</div>
 			</div>
@@ -19,7 +20,7 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Ethereum</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="eth_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.1|floatformat:0  }}</div>
+						<div id="eth_val" class="h4 kpi-value cryptoPriceData"></div>
 					</div>
 				</div>
 			</div>
@@ -28,7 +29,7 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Ethereum Classic</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="etc_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.2|floatformat:0  }}</div>
+						<div id="etc_val" class="h4 kpi-value cryptoPriceData"></div>
 					</div>
 				</div>
 			</div>
@@ -37,13 +38,29 @@
 					<div class="cardWrapperBody">
 						<div class="cryptoName">Ravencoin</div>
 						<div class="cryptoTitle">{% trans "Cena w dolarach"  %}</div>
-						<div id="rvn_val" class="h4 kpi-value cryptoPriceData">{{ cryptoPrices.3|floatformat:0  }}</div>
+						<div id="rvn_val" class="h4 kpi-value cryptoPriceData"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+<script>
+	
+	cookiePriceCheck = () =>{
+		var data = document.cookie.split('CryptoPrice=')[1].split(';')[0];
+		var dataJSON = JSON.parse(data)
+		document.getElementById("btc_val").innerHTML = Math.round(dataJSON["BTC"])
+		document.getElementById("eth_val").innerHTML = Math.round(dataJSON["ETH"])
+		document.getElementById("etc_val").innerHTML = Math.round(dataJSON["ETC"])
+		document.getElementById("rvn_val").innerHTML = dataJSON["RVN"]
+	}
+
+	window.addEventListener("load", cookiePriceCheck);
+
+
+</script>
 
 
 

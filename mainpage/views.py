@@ -107,7 +107,7 @@ def usersCart(request):
                         else:
                             total = (product.priceNormal  * cart[i]['quantity'])
                         order['get_cart_total'] += total
-                        print(order['get_cart_total'])
+
                         item = {
                             'product':{
                                 'id':product.id,
@@ -151,7 +151,7 @@ def searchQueryset(query):
         queries  = query.split(" ")
         for x in queries:
             products = Product.objects.filter(
-                Q(title__icontains=x)|Q(description__icontains=x)|Q(category__category__icontains=x)|Q(producent__icontains=x)|Q(id__icontains=x)
+                Q(title__icontains=x)|Q(description__icontains=x)|Q(category__category__icontains=x)|Q(producent__icontains=x)|Q(id__icontains=x)|Q(display=True)
             ).distinct()
 
             for product in products:
@@ -162,13 +162,13 @@ def searchQueryset(query):
 def recommendedProducts(request):
     categoryList = Category.objects.all()
     navbarList   = categoryList.filter(navbar=True)
-    cryptoPriceData = crypto_api_prices(request)
+
 
     
     formsMailing = MailingForm()
     cart         = usersCart(request)
 
-    productData  = Product.objects.all()
+    productData  = Product.objects.filter(display=True)
     productsInfo = productData.filter(recommend=True).order_by('-id')[:6]
 
     tags         = Product.tags.all()
@@ -192,7 +192,7 @@ def recommendedProducts(request):
             'formsMailing':formsMailing,
             'navbarList':navbarList,
             'mailingFlag':mailingFlag,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
+            
         }
         context={**context, **cart}
 
@@ -206,7 +206,7 @@ def recommendedProducts(request):
         'categoryList':categoryList,
         'formsMailing':formsMailing,
         'mailingFlag':mailingFlag,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        
         }
     context={**context, **cart}
 
@@ -221,11 +221,11 @@ def tagListView(request, slug):
     SelectedTag  = get_object_or_404(Tag, slug=slug.lower())
     navbarList   = categoryList.filter(navbar=True)
 
-    productData  = Product.objects.all()
-    tags         = Product.tags.all()
+    productData  = Product.objects.filter(display=True)
+    tags         = Product.tags.filter(display=True)
     productsInfo = productData.filter(tags=SelectedTag)
     newest       = productData.all().order_by('-id')[:10]
-    cryptoPriceData = crypto_api_prices(request)
+
     context      = {
         'newest':newest,
         'tags':tags,
@@ -233,14 +233,14 @@ def tagListView(request, slug):
         'productsInfo':productsInfo,
         'categoryList':categoryList,
         'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        
     }
  
     return render(request,'products.html', context)
 
 
 def categoryListView(request, category):
-    cryptoPriceData = crypto_api_prices(request)
+
     categorySlug = category.replace('-', ' ')
     formsMailing = MailingForm()
     cart         = usersCart(request)
@@ -259,7 +259,7 @@ def categoryListView(request, category):
     category = str(categoryName)
 
     
-    productsData = Product.objects.all()
+    productsData = Product.objects.filter(display=True)
     productsInfo = []
 
     for x in range(0, len(productsData)):
@@ -280,7 +280,7 @@ def categoryListView(request, category):
             'productsInfo':productsInfo,
             'categoryList':categoryList,
             'navbarList':navbarList,
-            'cryptoPrices': cryptoPriceData["cryptoPrices"]
+            
         }
         context={**context}
         return render(request,'products.html', context)
@@ -293,7 +293,7 @@ def categoryListView(request, category):
         'categoryList':categoryList,
         'categoryEmpty':categoryEmpty,
         'formsMailing':formsMailing,
-        'cryptoPrices': cryptoPriceData["cryptoPrices"]
+        
         
     }
     context={**context, **cart}
@@ -313,7 +313,7 @@ def helpView(request):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         categoryList = Category.objects.all()
         context      = {
 
@@ -353,7 +353,7 @@ def productDetail(request, id):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         context      = {
 
             'newest':newest,
@@ -384,7 +384,7 @@ def productDetail(request, id):
 def cartDetail(request):
     categoryList  = Category.objects.all()
     navbarList =categoryList.filter(navbar=True)
-    newest  = Product.objects.all().order_by('-id')[:10]
+    newest  = Product.objects.filter(display=True).order_by('-id')[:10]
     cart    = usersCart(request)
     
     if request.method == "POST":
@@ -461,7 +461,7 @@ def checkoutDetail(request):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         categoryList = Category.objects.all()
         context      = {
 
@@ -527,13 +527,14 @@ def processOrder(request):
 
                     forms = CustomerShipp(values)
                     if forms.is_valid():
-                        print("valid")
                         order.complete = True
                         order.save()
                         
                         for item in order_items:
                             product = item.product
                             product.stock = product.stock - item.quantity
+                            if product.stock==0:
+                                product.display = False
                             product.save()
                             item.transaction_id = transaction_id
                             item.save()
@@ -719,7 +720,7 @@ def policyDetail(request):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         categoryList = Category.objects.all()
         context      = {
 
@@ -744,7 +745,7 @@ def rulesDetail(request):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         categoryList = Category.objects.all()
         context      = {
 
@@ -769,7 +770,7 @@ def contactDetail(request):
         query = request.POST.get('search_bar')    
         productsInfo = searchQueryset(query)
         tags         = Product.tags.all()
-        newest       = Product.objects.order_by('-id')[:10]
+        newest       = Product.objects.filter(display=True).order_by('-id')[:10]
         categoryList = Category.objects.all()
         context      = {
 

@@ -108,12 +108,28 @@
     //why? I don't know, 99% it's because i'm not reloading DOM
     $("#overlayOut").hide(100);
     setCookie("overlay", true, 1)
+
+    //setting cookie for crypto-prices 
+    const q = new Date();
+    q.setDate(q.getDate() + 1);
+    let expires = "expires=" + q.toUTCString();
+
+    let url = "{% url 'priceAPI' %}";
+    var remote = $.ajax({
+      type: "GET",
+      url: url,
+      async: false
+    }).responseText;
+
+    document.cookie = "CryptoPrice" + "=" + remote + ";" + expires + ";path=/"
+
   })
 
   document.getElementById("buttonConsent").addEventListener("click" , () => {
     //same here
     $("#wrapperConsent").hide(100);
     setCookie("consent", true, 1)
+    
   })
 
   cookieCheck = () =>{

@@ -63,7 +63,17 @@
                     <span class="iconOrderPC"><i class="fas fa-cubes"></i> </span>
                     <span class="textOrderPC">{% trans "Produkty"  %}</span>
                 </a>
+                <a  href="{% url 'controlPanelProductsDisplayed'  %}"class="linkOrderPC">
+                    <span class="iconOrderPC"><i class="fas fa-cubes"></i> </span>
+                    <span class="textOrderPC">{% trans "Widoczność"  %}</span>
+                </a>
+                <a  href="{% url 'controlPanelProductsStock'  %}"class="linkOrderPC">
+                    <span class="iconOrderPC"><i class="fas fa-cubes"></i> </span>
+                    <span class="textOrderPC">{% trans "Braki"  %}</span>
+                </a>
                 
+                
+
                     <a  href="{% url 'controlPanelCategories'  %}"class="linkOrderPC">
                         <span class="iconOrderPC"> <i class="fas fa-angle-double-right"></i></span>
                         <span class="textOrderPC">{% trans "Kategorie"  %}</span>

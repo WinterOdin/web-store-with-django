@@ -1,3 +1,4 @@
+from sys import displayhook
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -33,9 +34,10 @@ class Product(models.Model):
     condition   = models.CharField(max_length=15, null=True, blank=True, choices=STATE,)
     producent   = models.CharField(max_length=40, null=True, blank=True)
     stock       = models.PositiveIntegerField(default=0, null=True, blank=True)
+    display     = models.BooleanField(null=True, blank=True, default=True)
     priceNormal = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
     pricePromo  = models.DecimalField(max_digits=8, decimal_places=2,null=True,blank=True)
-    inPerson    = models.BooleanField(blank=True, null=True)
+    inPerson    = models.BooleanField(null=True, blank=True)
     description = RichTextUploadingField()
     snippet     = models.CharField(max_length=50, null=True, blank=True)
     category    = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)

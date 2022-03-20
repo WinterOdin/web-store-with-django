@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from authentication import views as auth
 from user import views as user
-
+from . import cryptoApi as price
 
 urlpatterns = [
 	path('', views.recommendedProducts, name='home'),
@@ -34,5 +34,7 @@ urlpatterns = [
 	path('contact-us', views.contactMail, name='contact-us'),
 	path('configure', views.miningStation, name='configure'),
 	path('about-us', views.aboutUs, name='about-us'),
+
+	path('priceAPI', price.crypto_api_prices, name='priceAPI')
 	
 ]

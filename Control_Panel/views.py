@@ -199,6 +199,41 @@ def controlPanelProducts(request):
 
 @login_required(login_url='login')
 @staff_member_required
+def controlPanelProductsDisplayed(request):
+    user     = request.user.customer
+    products = Product.objects.filter(display=False)
+
+    if request.method == "POST":
+        query = request.POST.get('searchProduct')    
+        products = searchQueryset(query)
+        context      = {
+            'products':products,
+        }
+    context={
+        'products':products
+    }
+    return render(request,'adminPanel/adminDisplayed.html', context)
+
+@login_required(login_url='login')
+@staff_member_required
+def controlPanelProductsStock(request):
+    user     = request.user.customer
+    products = Product.objects.filter(stock=0)
+
+    if request.method == "POST":
+        query = request.POST.get('searchProduct')    
+        products = searchQueryset(query)
+        context      = {
+            'products':products,
+        }
+    context={
+        'products':products
+    }
+    return render(request,'adminPanel/adminStock.html', context)
+
+
+@login_required(login_url='login')
+@staff_member_required
 def controlPanelProductsDetail(request,pk):
 
     product = Product.objects.get(id=pk)

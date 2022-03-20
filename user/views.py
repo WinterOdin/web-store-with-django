@@ -234,3 +234,4 @@ def userView(request):
     }
     context={**context, **cart}
     return render(request,'user.html', context)
+
