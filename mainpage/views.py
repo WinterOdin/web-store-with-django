@@ -799,6 +799,17 @@ def mailingList(request):
 
     return redirect('home')
 
+def mailSendConf(request):
+    categoryList  = Category.objects.all()
+    navbarList =categoryList.filter(navbar=True)
+    cart    = usersCart(request)
+
+    context = {
+        'categoryList':categoryList,
+        'navbarList':navbarList,
+    }
+
+    return render(request,'mailSendConf.html',context)
 
 def contactMail(request):
     categoryList  = Category.objects.all()
@@ -823,6 +834,7 @@ def contactMail(request):
         else:
             post = request.POST.copy()
             contactMail(post)
+            return redirect('mail-send-conf')
 
     context = {
         'categoryList':categoryList,
@@ -856,6 +868,7 @@ def miningStation(request):
         else:
             post = request.POST.copy()
             configuratorMail(post)
+            return redirect('mail-send-conf')
 
     context = {
         'categoryList':categoryList,
@@ -893,3 +906,4 @@ def aboutUs(request):
     }
 
     return render(request,'aboutUS.html',context)
+

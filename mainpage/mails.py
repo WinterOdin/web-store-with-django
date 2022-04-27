@@ -12,6 +12,7 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMultiAlternatives
 from django import template
 
+
 def configuratorMail(data):
 
     subject = '!-Konfiguracja koparki-!'
@@ -20,7 +21,7 @@ def configuratorMail(data):
     plaintext = template.loader.get_template('configurator_txt.txt')
 
     c = {
-        'email':'biuro@wwtechnology.pl',
+        'email':'cczuryszkiewicz@gmail.com',
         'domain':'ww-tech.pl',
         'site_name': 'ww-tech',
         'protocol': 'https',
@@ -37,11 +38,12 @@ def configuratorMail(data):
     text_content = plaintext.render(c)
     html_content = htmltemp.render(c)
     try:
-        msg = EmailMultiAlternatives(subject, text_content, 'Konfigurator WW-tech <support@ww-tech.pl>', ['biuro@wwtechnology.pl'], headers = {'Reply-To': data["email"]})
+        msg = EmailMultiAlternatives(subject, text_content, 'Konfigurator WW-tech <support@ww-tech.pl>', ['cczuryszkiewicz@gmail.com'], headers = {'Reply-To': data["email"]})
         msg.attach_alternative(html_content, "text/html")
         msg.send()
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
+    
 
 def contactMail(data):
 
@@ -68,6 +70,7 @@ def contactMail(data):
         msg = EmailMultiAlternatives(subject, text_content, 'Pytanie na WW-tech <support@ww-tech.pl>', ['biuro@wwtechnology.pl'], headers = {'Reply-To': data["email"]})
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+        return redirect('mail-send-conf')
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
 
@@ -118,6 +121,5 @@ def p24PaymentEmail(dataUser, values):
         msg = EmailMultiAlternatives(subject, text_content, 'WW-tech <support@ww-tech.pl>', [user.email], headers = {'Reply-To': 'support@ww-tech.pl'})
         msg.attach_alternative(html_content, "text/html")
         msg.send()
-        print("SSS")
     except BadHeaderError:
         return HttpResponse('Invalid header found.')

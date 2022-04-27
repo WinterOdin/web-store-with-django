@@ -172,8 +172,30 @@
     .wrapperOverlayAbout{
       margin-top: 30vh;
   }
+}
+@media (max-width: 1250px){
+  .titleAbout{
+    font-size:20px;
+  }
+  .titleData {
+    font-size: 45px;
+    padding-top: 2%;
+}
+#endShop {
+  font-size: 17px;
+}
+.slide1Data {
+  padding-top: 0%;
+}
+.slide1Title,.slide1SecondTitle {
+  font-size: 27px;
+}
+.slide1Content {
+  font-size: 15px;
+}
 
 }
+
 @media (max-width: 1050px){
 .slide1Content {
     font-size: 15px;

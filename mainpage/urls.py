@@ -35,6 +35,8 @@ urlpatterns = [
 	path('configure', views.miningStation, name='configure'),
 	path('about-us', views.aboutUs, name='about-us'),
 
-	path('priceAPI', price.crypto_api_prices, name='priceAPI')
+	path('priceAPI', price.crypto_api_prices, name='priceAPI'),
+
+	path('mail-send-conf', views.mailSendConf, name='mail-send-conf')
 	
 ]

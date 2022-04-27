@@ -401,7 +401,6 @@ a.categoryPCLink:hover{
 .languageMobile{
     display: none;
     width: 100%;
-    height: 5vh;
     background: rgb(245, 245, 245);
     box-shadow: rgba(0, 0, 0, 0.64) 0px 2px 8px -5px;
 }
